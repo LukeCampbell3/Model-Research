@@ -1,0 +1,47 @@
+# Quick Test Configuration
+# Runs a minimal version to verify everything works
+
+experiment:
+  name: "quick_test"
+  seed: 42
+  output_dir: "results/quick"
+  device: "cpu"
+
+model:
+  vocab_size: 128
+  d_model: 64
+  n_heads: 2
+  n_layers: 2
+  d_ff: 128
+  num_experts: 4
+  max_k: 2
+  max_loops: 4
+  max_seq_len: 64
+  dropout: 0.1
+  tie_weights: true
+  use_adaptive_router: true
+  use_probes: true
+  use_reflection: true
+  use_shared_expert: true
+  use_loops: true
+  delta_threshold: 0.01
+  utility_threshold: 0.005
+
+training:
+  learning_rate: 1.0e-3
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  warmup_steps: 10
+  max_steps: 100
+  batch_size: 8
+  log_interval: 10
+  eval_interval: 50
+  save_interval: 100
+
+data:
+  task_mix:
+    addition: 0.3
+    sorting: 0.3
+    parentheses: 0.2
+    hidden_constraint: 0.2
+  eval_size: 32

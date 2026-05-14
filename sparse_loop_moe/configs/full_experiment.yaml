@@ -1,0 +1,100 @@
+# Full Experiment Configuration
+# Sparse Loop-MoE Research Testbed
+
+experiment:
+  name: "full_sparse_loop_moe_v1"
+  seed: 42
+  output_dir: "results"
+  device: "auto"  # auto-detect cuda/cpu
+
+# Model configuration
+model:
+  vocab_size: 512
+  d_model: 256
+  n_heads: 4
+  n_layers: 4
+  d_ff: 512
+  num_experts: 8
+  max_k: 4
+  max_loops: 8
+  max_seq_len: 256
+  dropout: 0.1
+  tie_weights: true
+
+  # Feature flags (for ablation control)
+  use_adaptive_router: true
+  use_probes: true
+  use_reflection: true
+  use_shared_expert: true
+  use_loops: true
+
+  # Thresholds
+  delta_threshold: 0.01
+  utility_threshold: 0.005
+
+# Kernel constraints (immutable)
+kernel:
+  max_loop_depth: 16
+  max_experts_per_token: 6
+  min_utility_threshold: 0.01
+  max_compute_budget_multiplier: 4.0
+  oscillation_window: 3
+  oscillation_threshold: 0.02
+  max_consecutive_rollbacks: 3
+  max_reflection_depth: 4
+  reflection_must_improve: true
+  min_reflection_improvement: 0.005
+
+# Training configuration
+training:
+  learning_rate: 3.0e-4
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  warmup_steps: 100
+  max_steps: 10000
+  batch_size: 32
+
+  # Loss weights
+  loss_weights:
+    lambda_balance: 0.01
+    lambda_compute: 0.001
+    lambda_probe: 0.1
+    lambda_halt: 0.05
+    lambda_reflection: 0.05
+    lambda_consistency: 0.01
+    lambda_revision: 0.05
+
+  # Logging
+  log_interval: 50
+  eval_interval: 500
+  save_interval: 1000
+
+# Data generation
+data:
+  task_mix:
+    addition: 0.15
+    addition_distractor: 0.10
+    sorting: 0.15
+    parentheses: 0.15
+    multi_hop: 0.20
+    hidden_constraint: 0.25
+  eval_size: 256
+
+# Experiment matrix (Phase 9)
+experiment_matrix:
+  run_dense_baseline: true
+  run_fixed_moe: true
+  run_adaptive_moe: true
+  run_looped_moe: true
+  run_full_system: true
+  run_ablations: true
+  run_critical_comparison: true
+
+# Success criteria thresholds
+success_criteria:
+  hard_task_accuracy_improvement: 0.05  # +5-10%
+  easy_task_compute_increase_max: 0.05  # ≤5%
+  validation_failure_reduction: 0.15    # ≥15%
+  early_commitment_reduction: 0.20      # ≥20%
+  spinlock_rate_max: 0.01               # <1%
+  reflection_value_positive: true
