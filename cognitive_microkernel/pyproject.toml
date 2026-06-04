@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cognitive-microkernel"
+version = "0.1.0"
+description = "Minimal, safe, extensible runtime for recursive branch/fork cognitive processes"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0.0",
+    "pytest>=7.0.0",
+    "uuid7>=0.1.0",
+    "msgpack>=1.0.0",
+    "sqlite-utils>=3.30.0",
+    "dataclasses-json>=0.5.0",
+    "python-ulid>=1.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+    "python-dotenv>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

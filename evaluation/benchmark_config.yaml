@@ -1,0 +1,186 @@
+# Benchmark Configuration for Sparse Loop-MoE Research Testbed
+# Evaluates architectural innovations via controlled synthetic experiments
+
+benchmark:
+  name: "sparse_loop_moe_architecture_benchmark_v1"
+  description: "Compares adaptive sparse compute, looping, probes, and reflection against fixed baselines"
+  mode: "benchmark-lite"  # smoke | benchmark-lite | benchmark-full
+  seed: 42
+  device: "cpu"
+  output_dir: "evaluation/benchmark_results/latest"
+
+# Training configuration (controls fairness)
+training:
+  # benchmark-lite: 1000 steps (fast iteration, ~3 min per variant)
+  # benchmark-full: 5000 steps (final comparison, ~15 min per variant)
+  steps_smoke: 20
+  steps_lite: 50
+  steps_full: 500
+  batch_size: 32
+  learning_rate: 3.0e-4
+  weight_decay: 0.01
+  warmup_steps: 50
+  eval_interval: 200
+  num_seeds: 3  # For statistical confidence (full mode only)
+
+# Model configurations (shared across all variants)
+model_base:
+  vocab_size: 256
+  d_model: 128
+  max_seq_len: 128
+  n_heads: 4
+  n_layers: 2
+  d_ff: 256
+  num_experts: 4
+  dropout: 0.1
+
+# Evaluation datasets (synthetic, controlled)
+datasets:
+  # Easy tasks (low uncertainty, low ambiguity)
+  addition_easy:
+    task_type: "addition"
+    params: { num_digits: 2, num_distractors: 0 }
+    sample_count: 256
+    expected_difficulty: "easy"
+    
+  # Medium tasks (moderate uncertainty)
+  addition_hard:
+    task_type: "addition"
+    params: { num_digits: 4, num_distractors: 3 }
+    sample_count: 256
+    expected_difficulty: "hard"
+    
+  sorting_easy:
+    task_type: "sorting"
+    params: { list_length: 3 }
+    sample_count: 256
+    expected_difficulty: "easy"
+    
+  sorting_hard:
+    task_type: "sorting"
+    params: { list_length: 7 }
+    sample_count: 256
+    expected_difficulty: "hard"
+    
+  parentheses_easy:
+    task_type: "parentheses"
+    params: { max_depth: 2, include_noise: false }
+    sample_count: 256
+    expected_difficulty: "easy"
+    
+  parentheses_hard:
+    task_type: "parentheses"
+    params: { max_depth: 5, include_noise: true }
+    sample_count: 256
+    expected_difficulty: "hard"
+    
+  multi_hop_easy:
+    task_type: "multi_hop"
+    params: { num_hops: 2 }
+    sample_count: 256
+    expected_difficulty: "easy"
+    
+  multi_hop_hard:
+    task_type: "multi_hop"
+    params: { num_hops: 5 }
+    sample_count: 256
+    expected_difficulty: "hard"
+    
+  hidden_constraint:
+    task_type: "hidden_constraint"
+    params: {}
+    sample_count: 256
+    expected_difficulty: "hard"
+    
+  mixed_training:
+    task_type: "mixed"
+    params: {}
+    sample_count: 512
+    expected_difficulty: "mixed"
+
+# Models to evaluate
+models:
+  # Baseline 1: Dense transformer (no MoE, no loops)
+  dense_baseline:
+    type: "dense"
+    description: "Dense decoder-only transformer (simple baseline)"
+    config_overrides: {}
+    
+  # Baseline 2: Fixed MoE (standard MoE without innovations)
+  fixed_moe:
+    type: "sparse_loop_moe"
+    description: "Fixed top-2 MoE with shared expert (MoE baseline)"
+    config_overrides:
+      use_adaptive_router: false
+      use_probes: false
+      use_reflection: false
+      use_shared_expert: true
+      use_loops: false
+      max_k: 2
+      
+  # Candidate 1: Adaptive MoE (without loops)
+  adaptive_moe:
+    type: "sparse_loop_moe"
+    description: "Adaptive width MoE, no loops (tests adaptive routing alone)"
+    config_overrides:
+      use_adaptive_router: true
+      use_probes: false
+      use_reflection: false
+      use_shared_expert: true
+      use_loops: false
+      max_k: 4
+      
+  # Candidate 2: Looped MoE (without adaptive routing)
+  looped_moe:
+    type: "sparse_loop_moe"
+    description: "Fixed MoE + bounded loops (tests looping alone)"
+    config_overrides:
+      use_adaptive_router: false
+      use_probes: false
+      use_reflection: false
+      use_shared_expert: true
+      use_loops: true
+      max_k: 2
+      max_loops: 4
+      
+  # Candidate 3: Full system (all innovations)
+  full_system:
+    type: "sparse_loop_moe"
+    description: "Full Sparse Loop-MoE (adaptive + loops + probes + reflection)"
+    config_overrides:
+      use_adaptive_router: true
+      use_probes: true
+      use_reflection: true
+      use_shared_expert: true
+      use_loops: true
+      max_k: 4
+      max_loops: 4
+
+# Metrics
+metrics:
+  primary:
+    - accuracy  # Token-level prediction accuracy (non-padding)
+    - loss  # Cross-entropy loss
+  secondary:
+    - quality_per_compute  # accuracy / (loops * experts_used)
+    - avg_loops_per_block
+    - avg_experts_per_step
+    - halt_rate
+    - oscillation_rate
+    - spinlock_rate
+  per_difficulty:
+    - easy_accuracy
+    - hard_accuracy
+    - hard_vs_easy_delta
+
+# Success criteria (from the research question)
+success_criteria:
+  # The full system should outperform baselines on HARD tasks
+  hard_task_accuracy_improvement_vs_dense: 0.03  # +3% minimum
+  hard_task_accuracy_improvement_vs_fixed_moe: 0.02  # +2% minimum
+  # Without burning too much extra compute on EASY tasks
+  easy_task_compute_increase_max: 0.10  # ≤10% extra loops/experts on easy tasks
+  # Spinlock rate should be near zero
+  spinlock_rate_max: 0.01
+  # Quality-per-compute should improve
+  quality_per_compute_improvement: 0.05  # +5% vs best baseline
