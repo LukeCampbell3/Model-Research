@@ -33,6 +33,13 @@ class PVRECModelConfig:
     dropout: float = 0.1
     tie_weights: bool = True
     load_bias_cap: float = 0.20
+    pvr_execution_mode: str = "variable_k_pack_by_expert"
+    pvr_expert_type: str = "delta_rank_medium"
+    pvr_training_dispatch_mode: str | None = None
+    pvr_inference_dispatch_mode: str | None = None
+    target_avg_k: float = 2.0
+    expert_capacity: int | None = None
+    branch_ticket_shadow_mode: bool = True
 
 
 class PVRECBlock(nn.Module):
@@ -56,6 +63,13 @@ class PVRECBlock(nn.Module):
             max_k=config.max_k,
             dropout=config.dropout,
             load_bias_cap=config.load_bias_cap,
+            execution_mode=config.pvr_execution_mode,
+            expert_type=config.pvr_expert_type,
+            pvr_training_dispatch_mode=config.pvr_training_dispatch_mode,
+            pvr_inference_dispatch_mode=config.pvr_inference_dispatch_mode,
+            target_avg_k=config.target_avg_k,
+            expert_capacity=config.expert_capacity,
+            branch_ticket_shadow_mode=config.branch_ticket_shadow_mode,
         )
 
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, dict]:

@@ -7,13 +7,15 @@ load-pressure bias, prototype neighborhoods, and bitset masks.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import IntEnum
 from typing import Optional
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+from sparse_loop_moe.models.pvr_ec.diagnostics import K_ALLOWED
 
 
 class Difficulty(IntEnum):
@@ -40,6 +42,11 @@ class PVRECConfig:
     # Primary owner target weight
     primary_weight_target: float = 0.70
     dropout: float = 0.1
+    routing_mode: str = "variable_k_pack_by_expert"
+    target_avg_k: float = 2.0
+    k_allowed: tuple[int, ...] = K_ALLOWED
+    expert_capacity: Optional[int] = None
+    branch_ticket_shadow_mode: bool = True
 
 
 @dataclass
@@ -53,6 +60,9 @@ class RoutingOutput:
     all_probs: torch.Tensor                # [N, num_experts]
     load_balance_loss: torch.Tensor        # scalar
     metrics: dict
+    nearest_proto_ids: Optional[torch.Tensor] = None
+    nearest_proto_dist: Optional[torch.Tensor] = None
+    selected_mask: Optional[torch.Tensor] = None
 
 
 @dataclass
@@ -108,7 +118,7 @@ class PVRECRouter(nn.Module):
         self.register_buffer("primary_owner_counts", torch.zeros(c.num_experts))
         self.register_buffer("update_step", torch.tensor(0, dtype=torch.long))
 
-    def forward(self, x: torch.Tensor) -> RoutingOutput:
+    def forward(self, x: torch.Tensor, routing_mode: Optional[str] = None) -> RoutingOutput:
         """Route tokens through PVR-EC.
 
         Args:
@@ -120,6 +130,7 @@ class PVRECRouter(nn.Module):
         N = x.shape[0]
         device = x.device
         c = self.config
+        routing_mode = routing_mode or c.routing_mode
 
         # Step 1: Project to routing space
         z = self.route_proj(x)  # [N, d_route]
@@ -180,36 +191,27 @@ class PVRECRouter(nn.Module):
         # Normalize primary weight toward target
         primary_weights = torch.clamp(primary_weights, min=0.3, max=0.95)
 
-        # Step 7: Extra expert assignments for NORMAL/HARD
-        max_extra = c.max_k - 1  # max 3 extra (top4 total)
-        extra_expert_ids = torch.full((N, max_extra), -1, device=device, dtype=torch.long)
-        extra_weights = torch.zeros(N, max_extra, device=device)
-
-        # NORMAL tokens: 1 extra expert
-        normal_mask = difficulty == Difficulty.NORMAL
-        if normal_mask.any():
-            normal_probs = probs[normal_mask].clone()
-            # Zero out primary
-            normal_probs[torch.arange(normal_mask.sum(), device=device),
-                         primary_expert_ids[normal_mask]] = 0
-            extra1 = normal_probs.argmax(dim=-1)
-            extra1_w = normal_probs[torch.arange(normal_mask.sum(), device=device), extra1]
-            extra_expert_ids[normal_mask, 0] = extra1
-            extra_weights[normal_mask, 0] = extra1_w
-
-        # HARD tokens: up to 3 extra experts
-        hard_mask = difficulty == Difficulty.HARD
-        if hard_mask.any():
-            hard_probs = probs[hard_mask].clone()
-            hard_probs[torch.arange(hard_mask.sum(), device=device),
-                       primary_expert_ids[hard_mask]] = 0
-            for slot in range(min(3, max_extra)):
-                extra_e = hard_probs.argmax(dim=-1)
-                extra_w = hard_probs[torch.arange(hard_mask.sum(), device=device), extra_e]
-                extra_expert_ids[hard_mask, slot] = extra_e
-                extra_weights[hard_mask, slot] = extra_w
-                # Zero out selected
-                hard_probs[torch.arange(hard_mask.sum(), device=device), extra_e] = 0
+        # Step 7: Expert assignments. Modes share probabilities but differ in
+        # route-width regularity and expert-choice budget enforcement.
+        if routing_mode in {"fixed_top2_pack_by_expert", "fixed_top2_all_experts_masked"}:
+            extra_expert_ids, extra_weights, selected_mask, mode_metrics = self._fixed_top2_assignments(
+                probs, primary_expert_ids
+            )
+            difficulty = torch.full_like(difficulty, Difficulty.NORMAL)
+        elif routing_mode == "hybrid_expert_choice_bucketed":
+            extra_expert_ids, extra_weights, selected_mask, mode_metrics = self._hybrid_expert_choice_assignments(
+                probs=probs,
+                primary_expert_ids=primary_expert_ids,
+                difficulty=difficulty,
+                margin=margin,
+                norm_entropy=norm_entropy,
+            )
+        else:
+            extra_expert_ids, extra_weights, selected_mask, mode_metrics = self._variable_k_assignments(
+                probs=probs,
+                primary_expert_ids=primary_expert_ids,
+                difficulty=difficulty,
+            )
 
         # Normalize extra weights so primary + extras sum to ~1
         total_extra_w = extra_weights.sum(dim=-1)  # [N]
@@ -230,11 +232,34 @@ class PVRECRouter(nn.Module):
             self._update_load_state(expert_load, primary_expert_ids, N)
 
         # Metrics
+        final_k = selected_mask.sum(dim=-1)
+        assignment_budget_target = N * c.target_avg_k
+        total_final_assignments = final_k.sum().item()
+        budget_drift = (
+            (total_final_assignments - assignment_budget_target) / max(assignment_budget_target, 1.0)
+        )
+        k_distribution = {
+            "k1": (final_k == 1).sum().item(),
+            "k2": (final_k == 2).sum().item(),
+            "k4": (final_k == 4).sum().item(),
+        }
         metrics = {
+            "routing_mode": routing_mode,
             "easy_rate": (difficulty == Difficulty.EASY).float().mean().item(),
             "normal_rate": (difficulty == Difficulty.NORMAL).float().mean().item(),
             "hard_rate": (difficulty == Difficulty.HARD).float().mean().item(),
-            "avg_active_experts": 1.0 + (extra_expert_ids != -1).float().sum() / max(N, 1),
+            "avg_active_experts": final_k.float().mean().item(),
+            "actual_avg_k": final_k.float().mean().item(),
+            "target_avg_K": c.target_avg_k,
+            "K_distribution": k_distribution,
+            "num_k1_tokens": k_distribution["k1"],
+            "num_k2_tokens": k_distribution["k2"],
+            "num_k4_tokens": k_distribution["k4"],
+            "assignment_budget_drift": budget_drift,
+            "total_final_assignments": total_final_assignments,
+            "assignment_budget_status": (
+                "PVR_EC_ASSIGNMENT_BUDGET_DRIFT" if abs(budget_drift) > 0.10 else "ok"
+            ),
             "routing_entropy": norm_entropy.mean().item(),
             "avg_margin": margin.mean().item(),
             "expert_utilization": (expert_load > 0.001).float().mean().item(),
@@ -243,6 +268,7 @@ class PVRECRouter(nn.Module):
             "dead_expert_count": (expert_load < 0.001).sum().item(),
             "load_bias_magnitude": self.load_bias.abs().mean().item(),
         }
+        metrics.update(mode_metrics)
 
         return RoutingOutput(
             primary_expert_ids=primary_expert_ids,
@@ -253,7 +279,219 @@ class PVRECRouter(nn.Module):
             all_probs=probs,
             load_balance_loss=load_balance_loss,
             metrics=metrics,
+            nearest_proto_ids=nearest_proto_ids,
+            nearest_proto_dist=nearest_proto_dist,
+            selected_mask=selected_mask,
         )
+
+    def _fixed_top2_assignments(
+        self,
+        probs: torch.Tensor,
+        primary_expert_ids: torch.Tensor,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, dict]:
+        """Select top-2 experts for every token."""
+
+        N, E = probs.shape
+        device = probs.device
+        max_extra = max(self.config.max_k - 1, 0)
+        extra_expert_ids = torch.full((N, max_extra), -1, device=device, dtype=torch.long)
+        extra_weights = torch.zeros(N, max_extra, device=device)
+        selected_mask = torch.zeros(N, E, device=device, dtype=torch.bool)
+        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
+
+        if max_extra > 0 and E > 1:
+            masked = probs.clone()
+            masked[torch.arange(N, device=device), primary_expert_ids] = -1.0
+            extra = masked.argmax(dim=-1)
+            extra_expert_ids[:, 0] = extra
+            extra_weights[:, 0] = probs[torch.arange(N, device=device), extra]
+            selected_mask.scatter_(1, extra.unsqueeze(1), True)
+
+        return extra_expert_ids, extra_weights, selected_mask, {
+            "fallback_top1_count": 0,
+            "overflow_count": 0,
+            "expert_choice_select_time_ms": 0.0,
+            "coverage_repair_time_ms": 0.0,
+            "k_bucket_enforce_time_ms": 0.0,
+            "capacity_repair_time_ms": 0.0,
+        }
+
+    def _variable_k_assignments(
+        self,
+        probs: torch.Tensor,
+        primary_expert_ids: torch.Tensor,
+        difficulty: torch.Tensor,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, dict]:
+        """Current bucketed variable-k assignment path."""
+
+        N, E = probs.shape
+        device = probs.device
+        c = self.config
+        max_extra = c.max_k - 1
+        extra_expert_ids = torch.full((N, max_extra), -1, device=device, dtype=torch.long)
+        extra_weights = torch.zeros(N, max_extra, device=device)
+        selected_mask = torch.zeros(N, E, device=device, dtype=torch.bool)
+        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
+
+        normal_mask = difficulty == Difficulty.NORMAL
+        if normal_mask.any() and max_extra > 0:
+            normal_probs = probs[normal_mask].clone()
+            normal_probs[torch.arange(normal_mask.sum(), device=device),
+                         primary_expert_ids[normal_mask]] = 0
+            extra1 = normal_probs.argmax(dim=-1)
+            extra1_w = normal_probs[torch.arange(normal_mask.sum(), device=device), extra1]
+            extra_expert_ids[normal_mask, 0] = extra1
+            extra_weights[normal_mask, 0] = extra1_w
+            selected_mask[normal_mask, extra1] = True
+
+        hard_mask = difficulty == Difficulty.HARD
+        if hard_mask.any() and max_extra > 0:
+            hard_probs = probs[hard_mask].clone()
+            hard_probs[torch.arange(hard_mask.sum(), device=device),
+                       primary_expert_ids[hard_mask]] = 0
+            hard_rows = hard_mask.nonzero(as_tuple=True)[0]
+            for slot in range(min(3, max_extra)):
+                extra_e = hard_probs.argmax(dim=-1)
+                extra_w = hard_probs[torch.arange(hard_mask.sum(), device=device), extra_e]
+                extra_expert_ids[hard_mask, slot] = extra_e
+                extra_weights[hard_mask, slot] = extra_w
+                selected_mask[hard_rows, extra_e] = True
+                hard_probs[torch.arange(hard_mask.sum(), device=device), extra_e] = 0
+
+        return extra_expert_ids, extra_weights, selected_mask, {
+            "fallback_top1_count": 0,
+            "overflow_count": 0,
+            "expert_choice_select_time_ms": 0.0,
+            "coverage_repair_time_ms": 0.0,
+            "k_bucket_enforce_time_ms": 0.0,
+            "capacity_repair_time_ms": 0.0,
+        }
+
+    def _hybrid_expert_choice_assignments(
+        self,
+        *,
+        probs: torch.Tensor,
+        primary_expert_ids: torch.Tensor,
+        difficulty: torch.Tensor,
+        margin: torch.Tensor,
+        norm_entropy: torch.Tensor,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, dict]:
+        """Hybrid expert-choice top-C bidding with bucketed K enforcement."""
+
+        N, E = probs.shape
+        device = probs.device
+        c = self.config
+        max_k = min(c.max_k, max(c.k_allowed))
+        capacity = c.expert_capacity or max(1, int((N * c.target_avg_k / E) * c.expert_capacity_factor))
+
+        selected_mask = torch.zeros(N, E, device=device, dtype=torch.bool)
+
+        # Experts bid for their top-C tokens, preserving capacity as an upper bound.
+        for expert_id in range(E):
+            top_count = min(capacity, N)
+            token_ids = probs[:, expert_id].topk(top_count).indices
+            selected_mask[token_ids, expert_id] = True
+
+        fallback_top1 = (~selected_mask.any(dim=-1)).sum().item()
+        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
+
+        # K hints: uncertainty controls speculation width, then enforce {1,2,4}.
+        requested_k = torch.ones(N, device=device, dtype=torch.long)
+        requested_k[difficulty == Difficulty.NORMAL] = 2
+        requested_k[difficulty == Difficulty.HARD] = 4
+        requested_k[(norm_entropy > 0.85) & (margin < 0.10)] = 4
+        requested_k = torch.clamp(requested_k, max=max_k)
+
+        overflow_count = 0
+        for token_id in range(N):
+            current = selected_mask[token_id].nonzero(as_tuple=True)[0]
+            keep_k = int(requested_k[token_id].item())
+            if keep_k not in c.k_allowed:
+                keep_k = min((k for k in c.k_allowed if k >= keep_k), default=max_k)
+            keep_k = min(keep_k, max_k, E)
+            if current.numel() > keep_k:
+                overflow_count += int(current.numel() - keep_k)
+                primary = primary_expert_ids[token_id]
+                optional = current[current != primary]
+                optional_keep_count = max(keep_k - 1, 0)
+                if optional_keep_count > 0 and optional.numel() > 0:
+                    scores = probs[token_id, optional]
+                    keep_optional = optional[scores.topk(min(optional_keep_count, optional.numel())).indices]
+                    keep = torch.cat([primary.view(1), keep_optional])
+                else:
+                    keep = primary.view(1)
+                selected_mask[token_id].zero_()
+                selected_mask[token_id, keep] = True
+            elif current.numel() < keep_k:
+                missing = keep_k - current.numel()
+                token_probs = probs[token_id].clone()
+                token_probs[current] = -1.0
+                add = token_probs.topk(min(missing, E - current.numel())).indices
+                selected_mask[token_id, add] = True
+
+        # Capacity repair drops weakest non-primary overflow assignments.
+        capacity_drops = 0
+        for expert_id in range(E):
+            assigned = selected_mask[:, expert_id].nonzero(as_tuple=True)[0]
+            if assigned.numel() <= capacity:
+                continue
+            primary_assigned = assigned[primary_expert_ids[assigned] == expert_id]
+            optional_assigned = assigned[primary_expert_ids[assigned] != expert_id]
+            keep_optional_count = max(capacity - primary_assigned.numel(), 0)
+            if optional_assigned.numel() > keep_optional_count:
+                drop_count = optional_assigned.numel() - keep_optional_count
+                drop_scores = probs[optional_assigned, expert_id]
+                drop = optional_assigned[drop_scores.topk(drop_count, largest=False).indices]
+                selected_mask[drop, expert_id] = False
+                capacity_drops += int(drop_count)
+
+        # Top1 coverage is hard; repair any token knocked down to zero.
+        no_assignment = ~selected_mask.any(dim=-1)
+        if no_assignment.any():
+            selected_mask[no_assignment, primary_expert_ids[no_assignment]] = True
+
+        for token_id in range(N):
+            current = selected_mask[token_id].nonzero(as_tuple=True)[0]
+            if current.numel() in c.k_allowed:
+                continue
+            if current.numel() == 3 and 4 in c.k_allowed and max_k >= 4:
+                token_probs = probs[token_id].clone()
+                token_probs[current] = -1.0
+                add = token_probs.argmax()
+                selected_mask[token_id, add] = True
+            elif current.numel() > max_k:
+                primary = primary_expert_ids[token_id]
+                optional = current[current != primary]
+                keep_optional = optional[
+                    probs[token_id, optional].topk(max(max_k - 1, 0)).indices
+                ] if max_k > 1 and optional.numel() > 0 else optional[:0]
+                selected_mask[token_id].zero_()
+                selected_mask[token_id, primary] = True
+                selected_mask[token_id, keep_optional] = True
+
+        max_extra = c.max_k - 1
+        extra_expert_ids = torch.full((N, max_extra), -1, device=device, dtype=torch.long)
+        extra_weights = torch.zeros(N, max_extra, device=device)
+        for token_id in range(N):
+            selected = selected_mask[token_id].nonzero(as_tuple=True)[0]
+            extras = selected[selected != primary_expert_ids[token_id]]
+            if extras.numel() > 0:
+                extras = extras[probs[token_id, extras].argsort(descending=True)]
+                extras = extras[:max_extra]
+                extra_expert_ids[token_id, :extras.numel()] = extras
+                extra_weights[token_id, :extras.numel()] = probs[token_id, extras]
+
+        return extra_expert_ids, extra_weights, selected_mask, {
+            "fallback_top1_count": fallback_top1,
+            "overflow_count": overflow_count,
+            "expert_capacity": capacity,
+            "capacity_repair_drop_count": capacity_drops,
+            "expert_choice_select_time_ms": 0.0,
+            "coverage_repair_time_ms": 0.0,
+            "k_bucket_enforce_time_ms": 0.0,
+            "capacity_repair_time_ms": 0.0,
+            "PVR_EC_SPECULATIVE_ROUTER_ENABLED": True,
+        }
 
     def _update_load_state(self, expert_load: torch.Tensor, primary_ids: torch.Tensor, N: int):
         """Update load-pressure bias using EMA."""

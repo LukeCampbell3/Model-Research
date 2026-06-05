@@ -1,50 +1,28 @@
 {
-  "run_id": "algo_20260604_030240_benchmark-lite",
-  "mode": "benchmark-lite",
-  "scale": "small",
-  "total_time_s": 748.5759944915771,
+  "run_id": "algo_20260604_215314_smoke",
+  "mode": "smoke",
+  "scale": "tiny",
+  "total_time_s": 8.32248568534851,
   "seed": 42,
-  "train_steps": 300,
-  "n_samples": 500,
-  "num_models": 3,
+  "train_steps": 10,
+  "n_samples": 64,
+  "num_models": 1,
   "num_failures": 0,
-  "total_valid_results": 24,
-  "total_samples": 5433,
+  "total_valid_results": 2,
+  "total_samples": 56,
   "families_attempted": [
-    "clrs",
-    "listops",
-    "scan",
     "dyck"
   ],
   "families_succeeded": [
-    "dyck",
-    "listops",
-    "scan_style",
-    "clrs_style"
+    "dyck"
   ],
   "model_table": {
-    "fixed_moe": {
-      "params": 1001092,
-      "avg_accuracy": 0.0704251220819848,
-      "avg_exact_match": 0.0,
-      "avg_loss": 0.4389877804399779,
-      "avg_qpc": 0.0352125610409924,
-      "avg_loops": 1.0
-    },
     "pvr_ec": {
-      "params": 614274,
-      "avg_accuracy": 0.03563385917667761,
+      "params": 136194,
+      "avg_accuracy": 0.0,
       "avg_exact_match": 0.0,
-      "avg_loss": 0.45674285075316823,
-      "avg_qpc": 0.03563385917667761,
-      "avg_loops": 1.0
-    },
-    "pvr_ec_matched": {
-      "params": 879618,
-      "avg_accuracy": 0.05886206901011144,
-      "avg_exact_match": 0.0,
-      "avg_loss": 0.44930605310946703,
-      "avg_qpc": 0.05886206901011144,
+      "avg_loss": 4.607102632522583,
+      "avg_qpc": 0.0,
       "avg_loops": 1.0
     }
   },
@@ -81,14 +59,7 @@
     }
   },
   "recommendation": {
-    "status": "VALID_ALGORITHMIC_BENCHMARK",
-    "architecture_recommendation": "HOLD_NEEDS_MORE_EVIDENCE",
-    "reason": "4 respected benchmark families evaluated successfully. fixed_moe leads (0.0704) but adaptive is close on task wins",
-    "adaptive_vs_dense": 0,
-    "adaptive_vs_fixed": -0.0704251220819848,
-    "full_vs_adaptive": 0,
-    "fixed_vs_dense": 0.0704251220819848,
-    "fixed_qpc": 0.0352125610409924,
-    "adaptive_qpc": 0
+    "status": "INVALID_EVAL_PIPELINE",
+    "reason": "Smoke mode: verification only."
   }
 }

@@ -12,5 +12,18 @@ A collapse-resistant sparse routing system that:
 
 from sparse_loop_moe.models.pvr_ec.pvr_ec_router import PVRECRouter
 from sparse_loop_moe.models.pvr_ec.pvr_ec_moe import PVRECMoEFFN
+from sparse_loop_moe.models.pvr_ec.diagnostics import (
+    EXECUTION_MODES,
+    EXPERT_TYPES,
+    PVR_EC_STATUSES,
+    write_diagnostic_reports,
+)
 
-__all__ = ["PVRECRouter", "PVRECMoEFFN"]
+__all__ = [
+    "PVRECRouter",
+    "PVRECMoEFFN",
+    "EXECUTION_MODES",
+    "EXPERT_TYPES",
+    "PVR_EC_STATUSES",
+    "write_diagnostic_reports",
+]

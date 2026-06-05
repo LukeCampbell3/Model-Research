@@ -1,13 +1,13 @@
 # Algorithmic Benchmark Report
 
-**Status:** VALID_ALGORITHMIC_BENCHMARK  
-**Architecture:** HOLD_NEEDS_MORE_EVIDENCE  
-**Mode:** benchmark-lite | **Scale:** small | **Steps:** 300  
-**Families:** dyck, listops, scan_style, clrs_style  
-**Samples:** 5,433 | **Time:** 748.6s
+**Status:** INVALID_EVAL_PIPELINE  
+**Architecture:** N/A  
+**Mode:** smoke | **Scale:** tiny | **Steps:** 10  
+**Families:** dyck  
+**Samples:** 56 | **Time:** 8.3s
 
 ## Reason
-4 respected benchmark families evaluated successfully. fixed_moe leads (0.0704) but adaptive is close on task wins
+Smoke mode: verification only.
 
 ## Validity
 
@@ -19,9 +19,7 @@
 
 | Model | Params | Avg Acc | Avg EM | Avg Loss | Avg QPC | Avg Loops |
 |-------|--------|---------|--------|----------|---------|-----------|
-| fixed_moe | 1,001,092 | 0.0704 | 0.0000 | 0.439 | 0.0352 | 1.0 |
-| pvr_ec | 614,274 | 0.0356 | 0.0000 | 0.457 | 0.0356 | 1.0 |
-| pvr_ec_matched | 879,618 | 0.0589 | 0.0000 | 0.449 | 0.0589 | 1.0 |
+| pvr_ec | 136,194 | 0.0000 | 0.0000 | 4.607 | 0.0000 | 1.0 |
 
 ## Win/Loss/Tie (accuracy, threshold=0.5%)
 
@@ -37,7 +35,7 @@
 ## Key Comparisons
 
 - adaptive_moe vs dense_baseline: +0.0000
-- adaptive_moe vs fixed_moe: -0.0704
+- adaptive_moe vs fixed_moe: +0.0000
 - full_system vs adaptive_moe: +0.0000
 
 ## Caveats

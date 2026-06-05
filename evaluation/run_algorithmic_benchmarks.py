@@ -41,6 +41,11 @@ from algorithmic_benchmarks.task_families import (
     SCANStyleGenerator, DyckGenerator,
 )
 from sparse_loop_moe.models.pvr_ec.pvr_ec_model import PVRECModel, PVRECModelConfig
+from sparse_loop_moe.models.pvr_ec.diagnostics import (
+    EXECUTION_MODES,
+    EXPERT_TYPES,
+    write_diagnostic_reports,
+)
 
 
 # =============================================================================
@@ -146,7 +151,9 @@ class Result:
 class AlgorithmicBenchmarkRunner:
     def __init__(self, mode="smoke", families=None, seed=42, scale="small",
                  sample_limit=None, device="cpu", amp=False, train_steps=None,
-                 models=None, profile_compute=False):
+                 models=None, profile_compute=False, pvr_execution_mode=None,
+                 pvr_expert_type=None, pvr_training_dispatch_mode=None,
+                 pvr_inference_dispatch_mode=None):
         self.mode = mode
         self.families = families or ["clrs", "listops", "scan", "dyck"]
         self.seed = seed
@@ -156,6 +163,10 @@ class AlgorithmicBenchmarkRunner:
         self.profile_compute = profile_compute
         self.sample_limit = sample_limit
         self.model_filter = models  # None = all models
+        self.pvr_execution_mode = pvr_execution_mode
+        self.pvr_expert_type = pvr_expert_type
+        self.pvr_training_dispatch_mode = pvr_training_dispatch_mode
+        self.pvr_inference_dispatch_mode = pvr_inference_dispatch_mode
 
         # Steps config
         if train_steps:
@@ -295,6 +306,12 @@ class AlgorithmicBenchmarkRunner:
             else:
                 d_expert = scale["d_ff"] // 2
                 num_proto = scale["num_experts"] * 4
+            if self.pvr_expert_type == "delta_rank_small":
+                d_expert = max(1, scale["d_ff"] // 4)
+            elif self.pvr_expert_type == "delta_rank_medium":
+                d_expert = max(1, scale["d_ff"] // 2)
+            elif self.pvr_expert_type in {"delta_rank_large", "full_expert_ffn"}:
+                d_expert = scale["d_ff"]
 
             pvr_config = PVRECModelConfig(
                 vocab_size=vocab_size, d_model=scale["d_model"], n_heads=scale["n_heads"],
@@ -304,6 +321,13 @@ class AlgorithmicBenchmarkRunner:
                 max_k=4 if not overrides.get("no_extra") else 1,
                 d_expert=d_expert,
                 max_seq_len=scale["d_model"]*2, dropout=0.1,
+                pvr_execution_mode=self.pvr_execution_mode or (
+                    "fixed_top2_pack_by_expert" if overrides.get("fixed_top2")
+                    else "variable_k_pack_by_expert"
+                ),
+                pvr_expert_type=self.pvr_expert_type or "delta_rank_medium",
+                pvr_training_dispatch_mode=self.pvr_training_dispatch_mode,
+                pvr_inference_dispatch_mode=self.pvr_inference_dispatch_mode,
             )
             model = PVRECModel(pvr_config)
 
@@ -618,6 +642,20 @@ class AlgorithmicBenchmarkRunner:
         # failure_analysis.md
         self._write_failure_analysis(summary)
 
+        # PVR-EC diagnostic MVP report skeletons. These are explicit scaffold
+        # reports until a full matched ablation matrix is run.
+        if any(r.model_name.startswith("pvr_ec") for r in self.results) or (
+            self.model_filter and any(m.startswith("pvr_ec") for m in self.model_filter)
+        ):
+            write_diagnostic_reports(self.output_dir, {
+                "status": "PARTIAL_PVR_EC_DIAGNOSTIC_IMPLEMENTATION",
+                "run_id": self.run_id,
+                "pvr_execution_mode": self.pvr_execution_mode,
+                "pvr_expert_type": self.pvr_expert_type,
+                "pvr_training_dispatch_mode": self.pvr_training_dispatch_mode,
+                "pvr_inference_dispatch_mode": self.pvr_inference_dispatch_mode,
+            })
+
         # reproducibility_manifest.json
         gpu_name = ""
         if torch.cuda.is_available():
@@ -736,6 +774,10 @@ def main():
     parser.add_argument("--models", default=None, help="Comma-separated model names to evaluate")
     parser.add_argument("--profile-compute", action="store_true", help="Track compute metrics")
     parser.add_argument("--length-generalization", action="store_true", help="Run length extrapolation test")
+    parser.add_argument("--pvr-execution-mode", choices=sorted(EXECUTION_MODES), default=None)
+    parser.add_argument("--pvr-expert-type", choices=sorted(EXPERT_TYPES), default=None)
+    parser.add_argument("--pvr-training-dispatch-mode", choices=["dense", "sparse"], default=None)
+    parser.add_argument("--pvr-inference-dispatch-mode", choices=["dense", "sparse"], default=None)
     args = parser.parse_args()
 
     families = [f.strip() for f in args.families.split(",")]
@@ -746,6 +788,10 @@ def main():
         scale=args.scale, sample_limit=args.sample_limit, device=args.device,
         amp=args.amp, train_steps=args.train_steps, models=models,
         profile_compute=args.profile_compute,
+        pvr_execution_mode=args.pvr_execution_mode,
+        pvr_expert_type=args.pvr_expert_type,
+        pvr_training_dispatch_mode=args.pvr_training_dispatch_mode,
+        pvr_inference_dispatch_mode=args.pvr_inference_dispatch_mode,
     )
     summary = runner.run()
     rec = summary["recommendation"]

@@ -1,6 +1,6 @@
 # Failure Analysis
 
-**Run:** algo_20260604_030240_benchmark-lite
+**Run:** algo_20260604_215314_smoke
 
 ## No Model Failures
 
@@ -10,3 +10,5 @@
 - No text tokenizer exists (custom 256-token symbolic vocab)
 - ARC-Challenge, GSM8K, HellaSwag: accessible but incompatible
 - Required: BPE tokenizer, 32K+ vocab, language pretraining
+
+## Skipped Families: {'clrs', 'listops', 'scan'}

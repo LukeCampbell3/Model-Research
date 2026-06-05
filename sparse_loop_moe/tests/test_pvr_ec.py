@@ -20,6 +20,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import torch
 import pytest
 
+from sparse_loop_moe.models.pvr_ec.diagnostics import (
+    EXECUTION_MODES,
+    EXPERT_TYPES,
+    REQUIRED_BRANCH_TICKET_FIELDS,
+    MergeabilityState,
+    MergeabilityWeights,
+    make_branch_ticket,
+    post_expert_mergeability,
+    pre_expert_mergeability,
+    residual_merge,
+    weighted_hidden_merge,
+    write_diagnostic_reports,
+)
 from sparse_loop_moe.models.pvr_ec.pvr_ec_router import (
     PVRECRouter, PVRECConfig, RoutingOutput, Difficulty,
 )
@@ -154,6 +167,143 @@ class TestPVRECMoE:
         assert "hard_rate" in aux
         assert "avg_active_experts" in aux
 
+    def test_execution_modes_register(self):
+        expected = {
+            "dense_all_experts",
+            "fixed_top2_all_experts_masked",
+            "fixed_top2_pack_by_expert",
+            "variable_k_pack_by_expert",
+            "hybrid_expert_choice_bucketed",
+        }
+        assert expected.issubset(EXECUTION_MODES)
+
+    def test_expert_type_ablation_registers(self):
+        expected = {
+            "shared_base_only",
+            "delta_rank_small",
+            "delta_rank_medium",
+            "delta_rank_large",
+            "full_expert_ffn",
+        }
+        assert expected.issubset(EXPERT_TYPES)
+
+    def test_dense_all_experts_trains_all_experts(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            execution_mode="dense_all_experts",
+        )
+        x = torch.randn(2, 4, 32)
+        out, _ = model(x)
+        out.sum().backward()
+        grad_sums = [
+            sum((p.grad.abs().sum().item() if p.grad is not None else 0.0) for p in expert.parameters())
+            for expert in model.expert_deltas
+        ]
+        assert all(g > 0.0 for g in grad_sums)
+
+    def test_sparse_modes_train_only_selected_experts(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            execution_mode="fixed_top2_pack_by_expert",
+        )
+        selected = torch.tensor([0, 1] * 4)
+        extra = torch.full((8, 3), -1, dtype=torch.long)
+        extra[:, 0] = 1
+        probs = torch.zeros(8, 4)
+        probs[:, 0] = 0.6
+        probs[:, 1] = 0.4
+        selected_mask = torch.zeros(8, 4, dtype=torch.bool)
+        selected_mask[:, 0] = True
+        selected_mask[:, 1] = True
+        routing = RoutingOutput(
+            primary_expert_ids=selected,
+            primary_weights=torch.full((8,), 0.6),
+            extra_expert_ids=extra,
+            extra_weights=torch.cat([torch.full((8, 1), 0.4), torch.zeros(8, 2)], dim=1),
+            difficulty=torch.full((8,), Difficulty.NORMAL, dtype=torch.long),
+            all_probs=probs,
+            load_balance_loss=torch.tensor(0.0),
+            metrics={"routing_entropy": 0.0, "expert_utilization": 0.5, "dead_expert_count": 2,
+                     "load_imbalance": 0.0, "easy_rate": 0.0, "normal_rate": 1.0,
+                     "hard_rate": 0.0, "avg_active_experts": 2.0},
+            selected_mask=selected_mask,
+        )
+        model.router.forward = lambda x, routing_mode=None: routing
+        x = torch.randn(1, 8, 32)
+        out, _ = model(x)
+        out.sum().backward()
+        grad_sums = [
+            sum((p.grad.abs().sum().item() if p.grad is not None else 0.0) for p in expert.parameters())
+            for expert in model.expert_deltas
+        ]
+        assert grad_sums[0] > 0.0
+        assert grad_sums[1] > 0.0
+        assert grad_sums[2] == 0.0
+        assert grad_sums[3] == 0.0
+
+    def test_fixed_top2_all_experts_masked_computes_all_experts(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            execution_mode="fixed_top2_all_experts_masked",
+        )
+        calls = [0, 0, 0, 0]
+        handles = []
+        for idx, expert in enumerate(model.expert_deltas):
+            handles.append(expert.register_forward_hook(lambda m, i, o, idx=idx: calls.__setitem__(idx, calls[idx] + 1)))
+        model(torch.randn(1, 8, 32))
+        for handle in handles:
+            handle.remove()
+        assert calls == [1, 1, 1, 1]
+
+    def test_fixed_top2_pack_by_expert_computes_selected_top2_only(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            execution_mode="fixed_top2_pack_by_expert",
+        )
+        calls = [0, 0, 0, 0]
+        handles = []
+        for idx, expert in enumerate(model.expert_deltas):
+            handles.append(expert.register_forward_hook(lambda m, i, o, idx=idx: calls.__setitem__(idx, calls[idx] + 1)))
+        primary = torch.zeros(8, dtype=torch.long)
+        extra = torch.full((8, 3), -1, dtype=torch.long)
+        extra[:, 0] = 1
+        probs = torch.zeros(8, 4)
+        probs[:, 0] = 0.6
+        probs[:, 1] = 0.4
+        selected_mask = torch.zeros(8, 4, dtype=torch.bool)
+        selected_mask[:, :2] = True
+        routing = RoutingOutput(
+            primary_expert_ids=primary,
+            primary_weights=torch.full((8,), 0.6),
+            extra_expert_ids=extra,
+            extra_weights=torch.cat([torch.full((8, 1), 0.4), torch.zeros(8, 2)], dim=1),
+            difficulty=torch.full((8,), Difficulty.NORMAL, dtype=torch.long),
+            all_probs=probs,
+            load_balance_loss=torch.tensor(0.0),
+            metrics={"routing_entropy": 0.0, "expert_utilization": 0.5, "dead_expert_count": 2,
+                     "load_imbalance": 0.0, "easy_rate": 0.0, "normal_rate": 1.0,
+                     "hard_rate": 0.0, "avg_active_experts": 2.0},
+            selected_mask=selected_mask,
+        )
+        model.router.forward = lambda x, routing_mode=None: routing
+        model(torch.randn(1, 8, 32))
+        for handle in handles:
+            handle.remove()
+        assert calls[:2] == [1, 1]
+        assert calls[2:] == [0, 0]
+
+    def test_timing_metrics_are_reported(self, moe):
+        _, aux = moe(torch.randn(2, 8, 64))
+        timing = aux["timing"]
+        for key in [
+            "forward_total_ms", "forward_router_score_ms", "forward_assignment_build_ms",
+            "forward_pack_ms", "forward_expert_compute_ms", "forward_scatter_ms",
+            "dispatch_overhead_ratio", "compute_to_dispatch_ratio",
+            "forward_dispatch_overhead_ratio", "backward_dispatch_overhead_ratio",
+            "training_compute_to_dispatch_ratio",
+        ]:
+            assert key in timing
+
 
 class TestPVRECModel:
     def test_model_forward_produces_logits(self, model):
@@ -231,6 +381,132 @@ class TestBaselinePreservation:
         model = SparseLoopMoEModel(config)
         out = model(torch.randint(0, 128, (2, 16)), torch.randint(0, 128, (2, 16)))
         assert "logits" in out and "loss" in out
+
+
+class TestHybridRouter:
+    def test_hybrid_k_is_allowed_and_top1_covered(self):
+        cfg = PVRECConfig(
+            d_model=32, num_experts=4, num_prototypes=8, d_route=16,
+            max_k=4, routing_mode="hybrid_expert_choice_bucketed",
+        )
+        router = PVRECRouter(cfg)
+        out = router(torch.randn(64, 32), routing_mode="hybrid_expert_choice_bucketed")
+        k = out.selected_mask.sum(dim=-1)
+        assert set(k.tolist()).issubset({1, 2, 4})
+        assert (k >= 1).all()
+        assert (k <= 4).all()
+        assert out.selected_mask[torch.arange(64), out.primary_expert_ids].all()
+
+    def test_capacity_is_respected_as_upper_bound_when_feasible(self):
+        cfg = PVRECConfig(
+            d_model=32, num_experts=4, num_prototypes=8, d_route=16,
+            max_k=4, routing_mode="hybrid_expert_choice_bucketed", expert_capacity=64,
+        )
+        router = PVRECRouter(cfg)
+        out = router(torch.randn(64, 32), routing_mode="hybrid_expert_choice_bucketed")
+        expert_load = out.selected_mask.sum(dim=0)
+        assert (expert_load <= 64).all()
+
+    def test_assignment_budget_drift_is_reported(self):
+        cfg = PVRECConfig(
+            d_model=32, num_experts=4, num_prototypes=8, d_route=16,
+            max_k=4, routing_mode="hybrid_expert_choice_bucketed", target_avg_k=4.0,
+        )
+        router = PVRECRouter(cfg)
+        out = router(torch.randn(16, 32), routing_mode="hybrid_expert_choice_bucketed")
+        assert "assignment_budget_drift" in out.metrics
+        assert "assignment_budget_status" in out.metrics
+
+
+class TestMergeabilityAndTickets:
+    def test_weighted_merge_preserves_tensor_shape(self):
+        expert_outputs = torch.randn(5, 3, 16)
+        weights = torch.rand(5, 3)
+        out = weighted_hidden_merge(expert_outputs, weights)
+        assert out.shape == (5, 16)
+
+    def test_residual_merge_preserves_primary_owner_contribution(self):
+        primary = torch.randn(5, 16)
+        aux = torch.randn(5, 16)
+        out = residual_merge(primary, aux, alpha=0.0)
+        assert torch.allclose(out, primary)
+
+    def test_pre_expert_mergeability_does_not_require_expert_outputs(self):
+        probs = torch.tensor([[0.8, 0.1, 0.1], [0.34, 0.33, 0.33]])
+        selected = torch.tensor([[True, False, False], [True, True, True]])
+        score = pre_expert_mergeability(probs, selected)
+        assert score.shape == (2,)
+        assert ((score >= 0) & (score <= 1)).all()
+
+    def test_post_expert_mergeability_uses_stable_disagreement(self):
+        probs = torch.tensor([[0.8, 0.1, 0.1], [0.34, 0.33, 0.33]])
+        selected = torch.tensor([[True, False, False], [True, True, True]])
+        low_d = torch.tensor([0.0, 0.0])
+        high_d = torch.tensor([2.0, 2.0])
+        low_score = post_expert_mergeability(probs, selected, low_d)
+        high_score = post_expert_mergeability(probs, selected, high_d)
+        assert (low_score > high_score).all()
+
+    def test_risk_defaults_zero_for_hidden_token_hot_path(self):
+        probs = torch.tensor([[0.8, 0.1, 0.1]])
+        selected = torch.tensor([[True, False, False]])
+        default_score = pre_expert_mergeability(probs, selected)
+        zero_score = pre_expert_mergeability(probs, selected, risk=0.0)
+        assert torch.allclose(default_score, zero_score)
+
+    def test_formula_scores_confident_low_disagreement_higher(self):
+        confident = torch.tensor([[0.9, 0.05, 0.05]])
+        uncertain = torch.tensor([[0.34, 0.33, 0.33]])
+        selected = torch.tensor([[True, False, False]])
+        confident_score = post_expert_mergeability(confident, selected, torch.tensor([0.0]))
+        uncertain_score = post_expert_mergeability(uncertain, selected, torch.tensor([2.0]), risk=1.0)
+        assert confident_score.item() > uncertain_score.item()
+
+    def test_branch_tickets_include_required_fields_and_are_shadow_only(self):
+        ticket = make_branch_ticket(
+            state_id=1, primary_expert=0, selected_experts=[0, 2],
+            uncertainty=0.5, mergeability_score=0.6, branch_value=0.1,
+            affinity=[0.7, 0.1, 0.2], prototype_ids=[3], prototype_distance=0.2,
+            difficulty_bucket="normal", merge_type="residual_merge",
+        )
+        assert set(REQUIRED_BRANCH_TICKET_FIELDS).issubset(ticket)
+        assert ticket["runtime_branch_recommended"] is False
+
+    def test_moe_branch_tickets_are_shadow_only_by_default(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            execution_mode="hybrid_expert_choice_bucketed",
+        )
+        _, aux = model(torch.randn(1, 8, 32))
+        assert "PVR_EC_BRANCH_TICKETS_SHADOW_ONLY" in aux["statuses"]
+        assert all(ticket["runtime_branch_recommended"] is False for ticket in aux["branch_tickets"])
+
+    def test_replay_label_and_scalar_update_change_weights(self):
+        state = MergeabilityState(learning_rate=0.1)
+        before = state.current_weights.w_c
+        features = {
+            "score": 0.2, "p1": 0.8, "p2": 0.1, "selected_mass": 0.9,
+            "entropy": 0.2, "disagreement": 0.1, "risk": 0.0,
+        }
+        state.record_replay_update(features, y=1.0)
+        assert state.replay_labels == [1.0]
+        assert state.current_weights.w_c > before
+
+    def test_required_reports_are_written(self, tmp_path):
+        paths = write_diagnostic_reports(tmp_path)
+        expected = {
+            "pvr_ec_sparse_dispatch_ablation_report.json",
+            "pvr_ec_sparse_dispatch_ablation_report.md",
+            "dispatch_timing_report.json",
+            "expert_type_ablation_report.json",
+            "hybrid_router_report.json",
+            "mergeability_formula_report.json",
+            "soft_vs_hard_speculation_report.json",
+            "branch_ticket_shadow_report.json",
+        }
+        assert expected.issubset(paths)
+        for name in expected:
+            assert (tmp_path / name).exists()
 
 
 if __name__ == "__main__":
