@@ -344,6 +344,22 @@ class TestPVRECModel:
         assert "hidden_states" in out
         assert "loop_stats" in out  # Empty list is fine for PVR-EC
 
+    def test_model_exposes_pvr_diagnostics_for_benchmark_reports(self, model):
+        input_ids = torch.randint(0, 128, (2, 16))
+        targets = torch.randint(0, 128, (2, 16))
+        out = model(input_ids, targets)
+        diag = out["pvr_diagnostics"]
+        for key in [
+            "pvr_execution_mode",
+            "dispatch_overhead_ratio",
+            "compute_to_dispatch_ratio",
+            "actual_avg_k",
+            "assignment_budget_drift",
+            "mergeability_score_mean",
+            "branch_ticket_count",
+        ]:
+            assert key in diag
+
 
 class TestBaselinePreservation:
     """Verify existing baselines still work after PVR-EC addition."""
@@ -507,6 +523,65 @@ class TestMergeabilityAndTickets:
         assert expected.issubset(paths)
         for name in expected:
             assert (tmp_path / name).exists()
+
+    def test_reports_include_record_driven_metrics_and_statuses(self, tmp_path):
+        records = [
+            {
+                "model_name": "pvr_ec",
+                "task": "toy",
+                "accuracy": 0.1,
+                "loss": 2.0,
+                "qpc": 0.05,
+                "inference_time_s": 2.0,
+                "training_time_s": 4.0,
+                "pvr_execution_mode": "variable_k_pack_by_expert",
+                "pvr_expert_type": "delta_rank_medium",
+                "pvr_total_step_time_ms": 10.0,
+                "pvr_router_score_time_ms": 2.0,
+                "pvr_assignment_build_time_ms": 2.0,
+                "pvr_pack_time_ms": 2.0,
+                "pvr_expert_compute_time_ms": 1.0,
+                "pvr_scatter_time_ms": 2.0,
+                "pvr_dispatch_overhead_ratio": 0.8,
+                "pvr_compute_to_dispatch_ratio": 0.2,
+                "pvr_forward_dispatch_overhead_ratio": 0.8,
+                "pvr_backward_dispatch_overhead_ratio": 0.0,
+                "pvr_training_compute_to_dispatch_ratio": 0.2,
+                "pvr_tokens_per_second": 100.0,
+                "pvr_avg_tokens_per_active_expert": 4.0,
+                "pvr_small_expert_batch_rate": 0.5,
+                "pvr_actual_avg_k": 4.0,
+                "pvr_target_avg_k": 2.0,
+                "pvr_assignment_budget_drift": 1.0,
+                "pvr_expert_utilization": 1.0,
+                "pvr_expert_load_cv": 0.3,
+                "pvr_route_entropy": 0.7,
+                "pvr_num_k1_tokens": 0,
+                "pvr_num_k2_tokens": 0,
+                "pvr_num_k4_tokens": 8,
+                "pvr_mergeability_score_mean": 0.6,
+                "pvr_mergeability_score_std": 0.1,
+                "pvr_expert_disagreement_mean": 0.2,
+                "pvr_branch_ticket_count": 3,
+            },
+            {
+                "model_name": "fixed_moe",
+                "task": "toy",
+                "accuracy": 0.2,
+                "loss": 1.8,
+                "qpc": 0.1,
+                "inference_time_s": 1.0,
+                "training_time_s": 1.0,
+            },
+        ]
+        write_diagnostic_reports(tmp_path, {"pvr_eval_records": records})
+        dispatch = __import__("json").loads((tmp_path / "dispatch_timing_report.json").read_text())
+        branch = __import__("json").loads((tmp_path / "branch_ticket_shadow_report.json").read_text())
+        assert dispatch["metrics"]["dispatch_overhead_ratio"] == 0.8
+        assert "PVR_EC_SPARSE_DISPATCH_BOTTLENECK" in dispatch["statuses"]
+        assert "PVR_EC_ASSIGNMENT_BUDGET_DRIFT" in dispatch["statuses"]
+        assert branch["branch_ticket_count"] == 3
+        assert branch["shadow_only"] is True
 
 
 if __name__ == "__main__":

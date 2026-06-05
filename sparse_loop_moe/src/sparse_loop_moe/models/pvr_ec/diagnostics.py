@@ -323,6 +323,191 @@ def empty_report(status: str = "PARTIAL_PVR_EC_DIAGNOSTIC_IMPLEMENTATION") -> di
     }
 
 
+def _numeric_mean(records: list[dict[str, Any]], key: str) -> float:
+    values = [float(r[key]) for r in records if isinstance(r.get(key), (int, float))]
+    return sum(values) / max(len(values), 1)
+
+
+def _numeric_sum(records: list[dict[str, Any]], key: str) -> float:
+    return sum(float(r[key]) for r in records if isinstance(r.get(key), (int, float)))
+
+
+def _pvr_records(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not payload:
+        return []
+    return [
+        r for r in payload.get("pvr_eval_records", [])
+        if r.get("model_name") == "pvr_ec" or r.get("pvr_execution_mode")
+    ]
+
+
+def _fixed_records(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not payload:
+        return []
+    return [r for r in payload.get("pvr_eval_records", []) if r.get("model_name") == "fixed_moe"]
+
+
+def _group_by(records: list[dict[str, Any]], key: str) -> dict[str, list[dict[str, Any]]]:
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for record in records:
+        groups.setdefault(str(record.get(key, "")), []).append(record)
+    return groups
+
+
+def _quality_per_ms(record: dict[str, Any]) -> float:
+    inference_ms = float(record.get("inference_time_s", 0.0)) * 1000.0
+    return float(record.get("accuracy", 0.0)) / max(inference_ms, 1e-8)
+
+
+def _derive_statuses(pvr_records: list[dict[str, Any]]) -> list[str]:
+    statuses = [
+        "PVR_EC_SOFT_SPECULATION_ONLY",
+        "PVR_EC_BRANCH_TICKETS_SHADOW_ONLY",
+        "PVR_EC_RUNTIME_BRANCHING_DISABLED",
+        "PVR_EC_FORMULAIC_MERGEABILITY_ENABLED",
+        "PVR_EC_MERGEABILITY_FORMULA_SHADOW_MODE",
+    ]
+    if not pvr_records:
+        statuses.append("PVR_EC_SPARSE_TRANSITION_NOT_SOLVED")
+        return statuses
+
+    dispatch = _numeric_mean(pvr_records, "pvr_dispatch_overhead_ratio")
+    compute_to_dispatch = _numeric_mean(pvr_records, "pvr_compute_to_dispatch_ratio")
+    expert_compute = _numeric_mean(pvr_records, "pvr_expert_compute_time_ms")
+    pack_scatter = _numeric_mean(pvr_records, "pvr_pack_time_ms") + _numeric_mean(
+        pvr_records, "pvr_scatter_time_ms"
+    )
+    drift = abs(_numeric_mean(pvr_records, "pvr_assignment_budget_drift"))
+
+    if dispatch > 0.30:
+        statuses.append("PVR_EC_SPARSE_DISPATCH_BOTTLENECK")
+    if compute_to_dispatch < 1.0 or expert_compute < pack_scatter:
+        statuses.append("PVR_EC_SPARSE_DISPATCH_PREMATURE")
+    if drift > 0.10:
+        statuses.append("PVR_EC_ASSIGNMENT_BUDGET_DRIFT")
+    if _numeric_mean(pvr_records, "pvr_backward_dispatch_overhead_ratio") > 0.30:
+        statuses.append("PVR_EC_FORWARD_DISPATCH_ACCEPTABLE_BACKWARD_EXPENSIVE")
+    if "hybrid_expert_choice_bucketed" in {
+        str(r.get("pvr_execution_mode", "")) for r in pvr_records
+    }:
+        statuses.append("PVR_EC_SPECULATIVE_ROUTER_ENABLED")
+
+    statuses.append("PVR_EC_SPARSE_TRANSITION_NOT_SOLVED")
+    return list(dict.fromkeys(statuses))
+
+
+def _sparse_dispatch_report(base: dict[str, Any], pvr_records: list[dict[str, Any]]) -> dict[str, Any]:
+    return {
+        **base,
+        "record_count": len(pvr_records),
+        "metrics": {
+            "total_step_time_ms": _numeric_mean(pvr_records, "pvr_total_step_time_ms"),
+            "router_score_time_ms": _numeric_mean(pvr_records, "pvr_router_score_time_ms"),
+            "assignment_build_time_ms": _numeric_mean(pvr_records, "pvr_assignment_build_time_ms"),
+            "pack_time_ms": _numeric_mean(pvr_records, "pvr_pack_time_ms"),
+            "expert_compute_time_ms": _numeric_mean(pvr_records, "pvr_expert_compute_time_ms"),
+            "scatter_time_ms": _numeric_mean(pvr_records, "pvr_scatter_time_ms"),
+            "tokens_per_second": _numeric_mean(pvr_records, "pvr_tokens_per_second"),
+            "dispatch_overhead_ratio": _numeric_mean(pvr_records, "pvr_dispatch_overhead_ratio"),
+            "compute_to_dispatch_ratio": _numeric_mean(pvr_records, "pvr_compute_to_dispatch_ratio"),
+            "forward_dispatch_overhead_ratio": _numeric_mean(
+                pvr_records, "pvr_forward_dispatch_overhead_ratio"
+            ),
+            "backward_dispatch_overhead_ratio": _numeric_mean(
+                pvr_records, "pvr_backward_dispatch_overhead_ratio"
+            ),
+            "training_compute_to_dispatch_ratio": _numeric_mean(
+                pvr_records, "pvr_training_compute_to_dispatch_ratio"
+            ),
+            "avg_tokens_per_active_expert": _numeric_mean(
+                pvr_records, "pvr_avg_tokens_per_active_expert"
+            ),
+            "small_expert_batch_rate": _numeric_mean(pvr_records, "pvr_small_expert_batch_rate"),
+            "actual_avg_k": _numeric_mean(pvr_records, "pvr_actual_avg_k"),
+            "route_entropy": _numeric_mean(pvr_records, "pvr_route_entropy"),
+            "expert_load_cv": _numeric_mean(pvr_records, "pvr_expert_load_cv"),
+        },
+    }
+
+
+def _mode_report(pvr_records: list[dict[str, Any]], fixed_records: list[dict[str, Any]]) -> dict[str, Any]:
+    fixed_by_task = {r.get("task"): r for r in fixed_records}
+    by_mode = {}
+    for mode, records in _group_by(pvr_records, "pvr_execution_mode").items():
+        fixed_matches = [fixed_by_task[r.get("task")] for r in records if r.get("task") in fixed_by_task]
+        avg_quality_per_ms = sum(_quality_per_ms(r) for r in records) / max(len(records), 1)
+        fixed_quality_per_ms = sum(_quality_per_ms(r) for r in fixed_matches) / max(len(fixed_matches), 1)
+        by_mode[mode] = {
+            "record_count": len(records),
+            "avg_accuracy": _numeric_mean(records, "accuracy"),
+            "avg_loss": _numeric_mean(records, "loss"),
+            "avg_qpc": _numeric_mean(records, "qpc"),
+            "quality_per_ms": avg_quality_per_ms,
+            "fixed_moe_quality_per_ms": fixed_quality_per_ms,
+            "quality_per_ms_ratio_vs_fixed_moe": avg_quality_per_ms / max(fixed_quality_per_ms, 1e-8),
+            "avg_training_time_s": _numeric_mean(records, "training_time_s"),
+            "avg_inference_time_s": _numeric_mean(records, "inference_time_s"),
+            "dispatch_overhead_ratio": _numeric_mean(records, "pvr_dispatch_overhead_ratio"),
+            "compute_to_dispatch_ratio": _numeric_mean(records, "pvr_compute_to_dispatch_ratio"),
+            "actual_avg_k": _numeric_mean(records, "pvr_actual_avg_k"),
+            "assignment_budget_drift": _numeric_mean(records, "pvr_assignment_budget_drift"),
+        }
+    return by_mode
+
+
+def _hybrid_report(base: dict[str, Any], pvr_records: list[dict[str, Any]]) -> dict[str, Any]:
+    hybrid = [
+        r for r in pvr_records
+        if r.get("pvr_execution_mode") == "hybrid_expert_choice_bucketed"
+    ]
+    records = hybrid or pvr_records
+    total_k = (
+        _numeric_sum(records, "pvr_num_k1_tokens")
+        + _numeric_sum(records, "pvr_num_k2_tokens")
+        + _numeric_sum(records, "pvr_num_k4_tokens")
+    )
+    return {
+        **base,
+        "record_count": len(records),
+        "K_distribution": {
+            "k1": _numeric_sum(records, "pvr_num_k1_tokens"),
+            "k2": _numeric_sum(records, "pvr_num_k2_tokens"),
+            "k4": _numeric_sum(records, "pvr_num_k4_tokens"),
+            "total_bucketed_tokens": total_k,
+        },
+        "avg_K": _numeric_mean(records, "pvr_actual_avg_k"),
+        "target_avg_K": _numeric_mean(records, "pvr_target_avg_k"),
+        "actual_avg_k": _numeric_mean(records, "pvr_actual_avg_k"),
+        "assignment_budget_drift": _numeric_mean(records, "pvr_assignment_budget_drift"),
+        "expert_utilization": _numeric_mean(records, "pvr_expert_utilization"),
+        "expert_load_cv": _numeric_mean(records, "pvr_expert_load_cv"),
+        "soft_branch_gain": None,
+        "top2_gain_over_top1": None,
+        "top4_gain_over_top1": None,
+        "quality_per_branch_compute": None,
+    }
+
+
+def _mergeability_report(base: dict[str, Any], pvr_records: list[dict[str, Any]]) -> dict[str, Any]:
+    return {
+        **base,
+        "current_weights": asdict(MergeabilityWeights()),
+        "initial_weights": asdict(MergeabilityWeights()),
+        "number_of_replay_updates": 0,
+        "learning_rate": 0.01,
+        "mergeability_score_distribution": {
+            "mean": _numeric_mean(pvr_records, "pvr_mergeability_score_mean"),
+            "std": _numeric_mean(pvr_records, "pvr_mergeability_score_std"),
+        },
+        "merge_success_by_bucket": {},
+        "merge_failure_by_bucket": {},
+        "calibration_error": None,
+        "weight_update_history": [],
+        "active_or_shadow_mode": "shadow",
+        "expert_disagreement_mean": _numeric_mean(pvr_records, "pvr_expert_disagreement_mean"),
+    }
+
+
 def write_diagnostic_reports(output_dir: str | Path, payload: dict[str, Any] | None = None) -> dict[str, Path]:
     """Write required MVP report files with explicit partial/complete status."""
 
@@ -331,27 +516,36 @@ def write_diagnostic_reports(output_dir: str | Path, payload: dict[str, Any] | N
     base = empty_report()
     if payload:
         base.update(payload)
+    pvr_eval_records = _pvr_records(payload)
+    fixed_eval_records = _fixed_records(payload)
+    base["statuses"] = _derive_statuses(pvr_eval_records)
+    mode_summary = _mode_report(pvr_eval_records, fixed_eval_records)
 
     reports = {
-        "pvr_ec_sparse_dispatch_ablation_report.json": base,
-        "dispatch_timing_report.json": base,
-        "expert_type_ablation_report.json": base,
-        "hybrid_router_report.json": base,
-        "mergeability_formula_report.json": {
-            **base,
-            "current_weights": asdict(MergeabilityWeights()),
-            "initial_weights": asdict(MergeabilityWeights()),
-            "number_of_replay_updates": 0,
-            "learning_rate": 0.01,
-            "mergeability_score_distribution": {},
-            "merge_success_by_bucket": {},
-            "merge_failure_by_bucket": {},
-            "calibration_error": None,
-            "weight_update_history": [],
-            "active_or_shadow_mode": "shadow",
+        "pvr_ec_sparse_dispatch_ablation_report.json": {
+            **_sparse_dispatch_report(base, pvr_eval_records),
+            "mode_summary": mode_summary,
         },
-        "soft_vs_hard_speculation_report.json": base,
-        "branch_ticket_shadow_report.json": base,
+        "dispatch_timing_report.json": _sparse_dispatch_report(base, pvr_eval_records),
+        "expert_type_ablation_report.json": {
+            **base,
+            "by_expert_type": _group_by(pvr_eval_records, "pvr_expert_type"),
+        },
+        "hybrid_router_report.json": _hybrid_report(base, pvr_eval_records),
+        "mergeability_formula_report.json": _mergeability_report(base, pvr_eval_records),
+        "soft_vs_hard_speculation_report.json": {
+            **base,
+            "soft_speculation_only": True,
+            "hard_runtime_branching_enabled": False,
+            "branch_ticket_count": _numeric_sum(pvr_eval_records, "pvr_branch_ticket_count"),
+            "runtime_branch_recommended_count": 0,
+        },
+        "branch_ticket_shadow_report.json": {
+            **base,
+            "branch_ticket_count": _numeric_sum(pvr_eval_records, "pvr_branch_ticket_count"),
+            "runtime_branch_recommended_default": False,
+            "shadow_only": True,
+        },
     }
     paths: dict[str, Path] = {}
     for filename, data in reports.items():
@@ -366,8 +560,13 @@ def write_diagnostic_reports(output_dir: str | Path, payload: dict[str, Any] | N
                 "# PVR-EC Sparse Dispatch Ablation Report",
                 "",
                 f"**Status:** {base['status']}",
+                f"**Statuses:** {', '.join(base['statuses'])}",
                 "",
                 "Hard runtime branching is disabled. Branch tickets are shadow-only.",
+                "",
+                "## Mode Summary",
+                "",
+                json.dumps(mode_summary, indent=2, default=str),
             ]
         ),
         encoding="utf-8",

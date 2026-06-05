@@ -376,7 +376,14 @@ class PVRECRouter(nn.Module):
         margin: torch.Tensor,
         norm_entropy: torch.Tensor,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, dict]:
-        """Hybrid expert-choice top-C bidding with bucketed K enforcement."""
+        """Hybrid expert-choice scaffold with vectorized bucketed K enforcement.
+
+        The original MVP used Python loops over every token. That made the
+        diagnostic router dominate training wall-clock on GPU. This path keeps
+        the same bounded speculation contract (K in {1, 2, 4}, top1 coverage,
+        capacity repair) while using token-side top-k tensors and only looping
+        over experts for capacity repair.
+        """
 
         N, E = probs.shape
         device = probs.device
@@ -384,50 +391,23 @@ class PVRECRouter(nn.Module):
         max_k = min(c.max_k, max(c.k_allowed))
         capacity = c.expert_capacity or max(1, int((N * c.target_avg_k / E) * c.expert_capacity_factor))
 
-        selected_mask = torch.zeros(N, E, device=device, dtype=torch.bool)
-
-        # Experts bid for their top-C tokens, preserving capacity as an upper bound.
-        for expert_id in range(E):
-            top_count = min(capacity, N)
-            token_ids = probs[:, expert_id].topk(top_count).indices
-            selected_mask[token_ids, expert_id] = True
-
-        fallback_top1 = (~selected_mask.any(dim=-1)).sum().item()
-        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
-
         # K hints: uncertainty controls speculation width, then enforce {1,2,4}.
         requested_k = torch.ones(N, device=device, dtype=torch.long)
         requested_k[difficulty == Difficulty.NORMAL] = 2
         requested_k[difficulty == Difficulty.HARD] = 4
         requested_k[(norm_entropy > 0.85) & (margin < 0.10)] = 4
-        requested_k = torch.clamp(requested_k, max=max_k)
+        requested_k = torch.clamp(requested_k, max=min(max_k, E))
 
+        top_count = min(max_k, E)
+        top_ids = probs.topk(top_count, dim=-1).indices
+        ranks = torch.arange(top_count, device=device).unsqueeze(0)
+        keep_by_rank = ranks < requested_k.unsqueeze(1)
+
+        selected_mask = torch.zeros(N, E, device=device, dtype=torch.bool)
+        selected_mask.scatter_(1, top_ids, keep_by_rank)
+        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
+        fallback_top1 = 0
         overflow_count = 0
-        for token_id in range(N):
-            current = selected_mask[token_id].nonzero(as_tuple=True)[0]
-            keep_k = int(requested_k[token_id].item())
-            if keep_k not in c.k_allowed:
-                keep_k = min((k for k in c.k_allowed if k >= keep_k), default=max_k)
-            keep_k = min(keep_k, max_k, E)
-            if current.numel() > keep_k:
-                overflow_count += int(current.numel() - keep_k)
-                primary = primary_expert_ids[token_id]
-                optional = current[current != primary]
-                optional_keep_count = max(keep_k - 1, 0)
-                if optional_keep_count > 0 and optional.numel() > 0:
-                    scores = probs[token_id, optional]
-                    keep_optional = optional[scores.topk(min(optional_keep_count, optional.numel())).indices]
-                    keep = torch.cat([primary.view(1), keep_optional])
-                else:
-                    keep = primary.view(1)
-                selected_mask[token_id].zero_()
-                selected_mask[token_id, keep] = True
-            elif current.numel() < keep_k:
-                missing = keep_k - current.numel()
-                token_probs = probs[token_id].clone()
-                token_probs[current] = -1.0
-                add = token_probs.topk(min(missing, E - current.numel())).indices
-                selected_mask[token_id, add] = True
 
         # Capacity repair drops weakest non-primary overflow assignments.
         capacity_drops = 0
@@ -446,40 +426,34 @@ class PVRECRouter(nn.Module):
                 capacity_drops += int(drop_count)
 
         # Top1 coverage is hard; repair any token knocked down to zero.
-        no_assignment = ~selected_mask.any(dim=-1)
-        if no_assignment.any():
-            selected_mask[no_assignment, primary_expert_ids[no_assignment]] = True
+        selected_mask.scatter_(1, primary_expert_ids.unsqueeze(1), True)
 
-        for token_id in range(N):
-            current = selected_mask[token_id].nonzero(as_tuple=True)[0]
-            if current.numel() in c.k_allowed:
-                continue
-            if current.numel() == 3 and 4 in c.k_allowed and max_k >= 4:
-                token_probs = probs[token_id].clone()
-                token_probs[current] = -1.0
-                add = token_probs.argmax()
-                selected_mask[token_id, add] = True
-            elif current.numel() > max_k:
-                primary = primary_expert_ids[token_id]
-                optional = current[current != primary]
-                keep_optional = optional[
-                    probs[token_id, optional].topk(max(max_k - 1, 0)).indices
-                ] if max_k > 1 and optional.numel() > 0 else optional[:0]
-                selected_mask[token_id].zero_()
-                selected_mask[token_id, primary] = True
-                selected_mask[token_id, keep_optional] = True
+        # Capacity repair can turn K=4 into K=3. Refill those rows with the
+        # strongest remaining expert so K remains in {1, 2, 4}.
+        k_counts = selected_mask.sum(dim=-1)
+        three_mask = (k_counts == 3) & (4 in c.k_allowed) & (max_k >= 4) & (E >= 4)
+        if three_mask.any():
+            refill_scores = probs[three_mask].masked_fill(selected_mask[three_mask], -1.0)
+            refill = refill_scores.argmax(dim=-1)
+            rows = three_mask.nonzero(as_tuple=True)[0]
+            selected_mask[rows, refill] = True
 
         max_extra = c.max_k - 1
-        extra_expert_ids = torch.full((N, max_extra), -1, device=device, dtype=torch.long)
-        extra_weights = torch.zeros(N, max_extra, device=device)
-        for token_id in range(N):
-            selected = selected_mask[token_id].nonzero(as_tuple=True)[0]
-            extras = selected[selected != primary_expert_ids[token_id]]
-            if extras.numel() > 0:
-                extras = extras[probs[token_id, extras].argsort(descending=True)]
-                extras = extras[:max_extra]
-                extra_expert_ids[token_id, :extras.numel()] = extras
-                extra_weights[token_id, :extras.numel()] = probs[token_id, extras]
+        extras_mask = selected_mask.clone()
+        extras_mask.scatter_(1, primary_expert_ids.unsqueeze(1), False)
+        if max_extra > 0:
+            extra_scores = probs.masked_fill(~extras_mask, -1.0)
+            top_extra_w, top_extra_ids = extra_scores.topk(max_extra, dim=-1)
+            valid = top_extra_w >= 0.0
+            extra_expert_ids = torch.where(
+                valid,
+                top_extra_ids,
+                torch.full_like(top_extra_ids, -1),
+            )
+            extra_weights = torch.where(valid, top_extra_w, torch.zeros_like(top_extra_w))
+        else:
+            extra_expert_ids = torch.empty(N, 0, device=device, dtype=torch.long)
+            extra_weights = torch.empty(N, 0, device=device)
 
         return extra_expert_ids, extra_weights, selected_mask, {
             "fallback_top1_count": fallback_top1,

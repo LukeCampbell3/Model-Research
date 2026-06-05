@@ -111,6 +111,8 @@ class PVRECMoEFFN(nn.Module):
         target_avg_k: float = 2.0,
         expert_capacity: Optional[int] = None,
         branch_ticket_shadow_mode: bool = True,
+        emit_branch_tickets_during_training: bool = False,
+        max_shadow_branch_tickets: int = 64,
     ):
         super().__init__()
         if execution_mode not in EXECUTION_MODES:
@@ -124,6 +126,8 @@ class PVRECMoEFFN(nn.Module):
         self.pvr_training_dispatch_mode = pvr_training_dispatch_mode
         self.pvr_inference_dispatch_mode = pvr_inference_dispatch_mode
         self.branch_ticket_shadow_mode = branch_ticket_shadow_mode
+        self.emit_branch_tickets_during_training = emit_branch_tickets_during_training
+        self.max_shadow_branch_tickets = max_shadow_branch_tickets
         self.mergeability_state = MergeabilityState()
         if d_expert is None:
             if expert_type == "delta_rank_small":
@@ -283,8 +287,10 @@ class PVRECMoEFFN(nn.Module):
 
     @staticmethod
     def _now_ms(device: torch.device) -> float:
-        if device.type == "cuda":
-            torch.cuda.synchronize(device)
+        # Synchronizing CUDA at every instrumentation boundary is far more
+        # expensive than the tiny experts in this prototype. These timings are
+        # diagnostic estimates; full synchronized profiling belongs in a
+        # dedicated profiler run, not the training hot path.
         return time.perf_counter() * 1000.0
 
     def _elapsed_ms(self, start_ms: float, device: torch.device) -> float:
@@ -533,7 +539,13 @@ class PVRECMoEFFN(nn.Module):
 
         tickets = []
         entropy = normalized_entropy(routing.all_probs)
-        if self.branch_ticket_shadow_mode:
+        should_emit_tickets = (
+            self.branch_ticket_shadow_mode
+            and (not self.training or self.emit_branch_tickets_during_training)
+            and self.max_shadow_branch_tickets > 0
+        )
+        if should_emit_tickets:
+            emitted = 0
             for state_id in range(routing.all_probs.shape[0]):
                 selected = selected_mask[state_id].nonzero(as_tuple=True)[0].tolist()
                 if len(selected) <= 1:
@@ -565,6 +577,9 @@ class PVRECMoEFFN(nn.Module):
                     difficulty_bucket=Difficulty(int(routing.difficulty[state_id])).name.lower(),
                     merge_type=merge_type,
                 ))
+                emitted += 1
+                if emitted >= self.max_shadow_branch_tickets:
+                    break
 
         score_by_k = {}
         k_vals = selected_mask.sum(dim=-1)

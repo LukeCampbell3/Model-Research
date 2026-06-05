@@ -141,6 +141,35 @@ class Result:
     inference_time_s: float
     difficulty: str
     length_bucket: str
+    pvr_execution_mode: str = ""
+    pvr_expert_type: str = ""
+    pvr_dispatch_overhead_ratio: float = 0.0
+    pvr_compute_to_dispatch_ratio: float = 0.0
+    pvr_forward_dispatch_overhead_ratio: float = 0.0
+    pvr_backward_dispatch_overhead_ratio: float = 0.0
+    pvr_training_compute_to_dispatch_ratio: float = 0.0
+    pvr_total_step_time_ms: float = 0.0
+    pvr_router_score_time_ms: float = 0.0
+    pvr_assignment_build_time_ms: float = 0.0
+    pvr_pack_time_ms: float = 0.0
+    pvr_expert_compute_time_ms: float = 0.0
+    pvr_scatter_time_ms: float = 0.0
+    pvr_tokens_per_second: float = 0.0
+    pvr_avg_tokens_per_active_expert: float = 0.0
+    pvr_small_expert_batch_rate: float = 0.0
+    pvr_actual_avg_k: float = 0.0
+    pvr_target_avg_k: float = 0.0
+    pvr_assignment_budget_drift: float = 0.0
+    pvr_expert_utilization: float = 0.0
+    pvr_expert_load_cv: float = 0.0
+    pvr_route_entropy: float = 0.0
+    pvr_num_k1_tokens: float = 0.0
+    pvr_num_k2_tokens: float = 0.0
+    pvr_num_k4_tokens: float = 0.0
+    pvr_mergeability_score_mean: float = 0.0
+    pvr_mergeability_score_std: float = 0.0
+    pvr_expert_disagreement_mean: float = 0.0
+    pvr_branch_ticket_count: float = 0.0
     error: str = ""
 
 
@@ -416,6 +445,7 @@ class AlgorithmicBenchmarkRunner:
         halt_count = 0
         osc_count = 0
         num_batches = 0
+        pvr_diag_history: list[dict[str, Any]] = []
 
         with torch.no_grad():
             for i in range(0, len(samples), bs):
@@ -425,6 +455,8 @@ class AlgorithmicBenchmarkRunner:
 
                 output = model(input_ids=input_ids, targets=target_ids)
                 total_loss += output["loss"].item()
+                if "pvr_diagnostics" in output:
+                    pvr_diag_history.append(output["pvr_diagnostics"])
 
                 preds = output["logits"].argmax(dim=-1)
                 mask = target_ids != 0
@@ -463,6 +495,8 @@ class AlgorithmicBenchmarkRunner:
         difficulties = [s.difficulty for s in samples]
         majority_diff = max(set(difficulties), key=difficulties.count) if difficulties else "mixed"
 
+        pvr_diag = self._aggregate_pvr_eval_diagnostics(pvr_diag_history)
+
         return Result(
             run_id=self.run_id, model_name=model_name, family=family,
             task=ds_name, split="eval", sample_count=n,
@@ -471,7 +505,54 @@ class AlgorithmicBenchmarkRunner:
             halt_rate=halt_rate, oscillation_rate=osc_rate, qpc=qpc,
             total_parameters=params, training_time_s=0, inference_time_s=0,
             difficulty=majority_diff, length_bucket="mixed",
+            **pvr_diag,
         )
+
+    @staticmethod
+    def _aggregate_pvr_eval_diagnostics(history: list[dict[str, Any]]) -> dict[str, Any]:
+        """Average PVR diagnostics across eval batches."""
+
+        keys = [
+            "dispatch_overhead_ratio",
+            "compute_to_dispatch_ratio",
+            "forward_dispatch_overhead_ratio",
+            "backward_dispatch_overhead_ratio",
+            "training_compute_to_dispatch_ratio",
+            "total_step_time_ms",
+            "router_score_time_ms",
+            "assignment_build_time_ms",
+            "pack_time_ms",
+            "expert_compute_time_ms",
+            "scatter_time_ms",
+            "tokens_per_second",
+            "avg_tokens_per_active_expert",
+            "small_expert_batch_rate",
+            "actual_avg_k",
+            "target_avg_K",
+            "assignment_budget_drift",
+            "expert_utilization",
+            "expert_load_cv",
+            "route_entropy",
+            "num_k1_tokens",
+            "num_k2_tokens",
+            "num_k4_tokens",
+            "mergeability_score_mean",
+            "mergeability_score_std",
+            "expert_disagreement_mean",
+            "branch_ticket_count",
+        ]
+        if not history:
+            return {}
+
+        out: dict[str, Any] = {
+            "pvr_execution_mode": history[0].get("pvr_execution_mode", ""),
+            "pvr_expert_type": history[0].get("pvr_expert_type", ""),
+        }
+        rename = {"target_avg_K": "target_avg_k"}
+        for key in keys:
+            values = [float(item[key]) for item in history if isinstance(item.get(key), (int, float))]
+            out[f"pvr_{rename.get(key, key)}"] = float(np.mean(values)) if values else 0.0
+        return out
 
     # =========================================================================
     # Summary and Output
@@ -654,6 +735,7 @@ class AlgorithmicBenchmarkRunner:
                 "pvr_expert_type": self.pvr_expert_type,
                 "pvr_training_dispatch_mode": self.pvr_training_dispatch_mode,
                 "pvr_inference_dispatch_mode": self.pvr_inference_dispatch_mode,
+                "pvr_eval_records": rows,
             })
 
         # reproducibility_manifest.json
