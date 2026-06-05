@@ -1,0 +1,53 @@
+{
+  "status": "PARTIAL_PVR_EC_DIAGNOSTIC_IMPLEMENTATION",
+  "statuses": [
+    "PVR_EC_SPARSE_DISPATCH_BOTTLENECK",
+    "PVR_EC_DENSE_ALL_EXPERTS_FASTER",
+    "PVR_EC_FIXED_TOP2_FASTER_THAN_VARIABLE_K",
+    "PVR_EC_DELTA_TOO_SMALL_TO_AMORTIZE_DISPATCH",
+    "PVR_EC_SPARSE_DISPATCH_PREMATURE",
+    "PVR_EC_DENSE_TRAINING_RECOMMENDED",
+    "PVR_EC_READY_FOR_SPARSE_EFFICIENCY_PHASE",
+    "PVR_EC_TRAINING_GRADIENT_SPARSITY_BOTTLENECK",
+    "PVR_EC_FORWARD_DISPATCH_ACCEPTABLE_BACKWARD_EXPENSIVE",
+    "PVR_EC_ASSIGNMENT_BUDGET_DRIFT",
+    "PVR_EC_SPARSE_TRANSITION_NOT_SOLVED",
+    "PVR_EC_SPECULATIVE_ROUTER_ENABLED",
+    "PVR_EC_SOFT_SPECULATION_ONLY",
+    "PVR_EC_BRANCH_TICKETS_SHADOW_ONLY",
+    "PVR_EC_RUNTIME_BRANCHING_DISABLED",
+    "PVR_EC_RUNTIME_BRANCHING_GATED",
+    "PVR_EC_SPECULATION_OVERUSED",
+    "PVR_EC_SPECULATION_UNDERUSED",
+    "PVR_EC_HARD_BRANCHING_NOT_READY",
+    "PVR_EC_FORMULAIC_MERGEABILITY_ENABLED",
+    "PVR_EC_MERGEABILITY_FORMULA_SHADOW_MODE",
+    "PVR_EC_MERGEABILITY_FORMULA_ACTIVE",
+    "PVR_EC_MERGEABILITY_REPLAY_LEARNING_ENABLED",
+    "PVR_EC_MERGEABILITY_CALIBRATION_POOR",
+    "PVR_EC_MERGEABILITY_CALIBRATED",
+    "PVR_EC_MERGEABILITY_TOO_PERMISSIVE",
+    "PVR_EC_MERGEABILITY_TOO_CONSERVATIVE"
+  ],
+  "execution_modes": [
+    "dense_all_experts",
+    "fixed_top2_all_experts_masked",
+    "fixed_top2_pack_by_expert",
+    "hybrid_expert_choice_bucketed",
+    "variable_k_pack_by_expert"
+  ],
+  "expert_types": [
+    "delta_rank_large",
+    "delta_rank_medium",
+    "delta_rank_small",
+    "full_expert_ffn",
+    "shared_base_only"
+  ],
+  "hard_runtime_branching": "disabled",
+  "branch_tickets": "shadow_only",
+  "run_id": "algo_20260605_010247_benchmark-lite",
+  "pvr_execution_mode": "fixed_top2_all_experts_masked",
+  "pvr_expert_type": "delta_rank_medium",
+  "pvr_training_dispatch_mode": null,
+  "pvr_inference_dispatch_mode": null
+}

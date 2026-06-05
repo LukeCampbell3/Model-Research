@@ -45,9 +45,9 @@
   ],
   "hard_runtime_branching": "disabled",
   "branch_tickets": "shadow_only",
-  "run_id": "algo_20260604_215314_smoke",
+  "run_id": "algo_20260605_012333_benchmark-lite",
   "pvr_execution_mode": "hybrid_expert_choice_bucketed",
-  "pvr_expert_type": "delta_rank_small",
-  "pvr_training_dispatch_mode": "dense",
-  "pvr_inference_dispatch_mode": "sparse"
+  "pvr_expert_type": "delta_rank_medium",
+  "pvr_training_dispatch_mode": null,
+  "pvr_inference_dispatch_mode": null
 }
