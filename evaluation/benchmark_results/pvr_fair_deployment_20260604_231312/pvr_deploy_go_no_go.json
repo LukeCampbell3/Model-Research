@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-05T03:14:13.423520",
+    "run_id": "algo_20260605_031404_benchmark-lite",
+    "git_commit": "7ad729dcda12a77e6d5bb30ac7fef9640c5f22b0",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --benchmark-inference-only --mode benchmark-lite --scale small --device cuda --amp --seed 42 --models fixed_moe_looped_reference,fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_deploy_top2,pvr_ec_deploy_bucketed,pvr_ec_deploy_dense_masked_control --warmup-steps 3 --timed-steps 10 --batch-sizes 1,8,32,64 --sequence-lengths 32,64,128 --pvr-expert-type delta_rank_small --pvr-aux-alpha 0.5 --profile-deploy",
+    "model_variants": [
+      "fixed_moe_looped_reference",
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_deploy_top2",
+      "pvr_ec_deploy_bucketed",
+      "pvr_ec_deploy_dense_masked_control"
+    ],
+    "batch_sizes": [
+      1,
+      8,
+      32,
+      64
+    ],
+    "sequence_lengths": [
+      32,
+      64,
+      128
+    ],
+    "train_steps": 200,
+    "sample_limit": null,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PVR_EC_DEPLOY_CANDIDATE",
+  "statuses": [
+    "FIXED_MOE_VECTORIZED_BASELINE_READY",
+    "PVR_EC_AUXILIARY_EXPERT_NOT_USEFUL_YET",
+    "PVR_EC_DEPLOY_BUCKETED_READY",
+    "PVR_EC_DEPLOY_CANDIDATE",
+    "PVR_EC_DEPLOY_TOP1_READY",
+    "PVR_EC_DEPLOY_TOP2_READY"
+  ],
+  "go": false,
+  "do_not_promote": true,
+  "primary_baseline": "fixed_moe_vectorized",
+  "primary_candidate": "pvr_ec_deploy_top2",
+  "go_no_go_verdict": "NO_GO_FOR_TOP2_PROMOTION_YET",
+  "reason": "top2 is faster than fixed_moe_vectorized and within strict loss threshold, but top1 beat top2 on 200-step capability loss/accuracy; auxiliary expert benefit is not proven.",
+  "candidate_path": "PVR deploy remains a deployment candidate; prefer top1/top2 follow-up rather than promotion."
+}

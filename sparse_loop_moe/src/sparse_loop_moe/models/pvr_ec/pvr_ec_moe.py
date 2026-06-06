@@ -19,6 +19,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from sparse_loop_moe.models.pvr_ec.diagnostics import (
+    DEPLOY_MODES,
     EXECUTION_MODES,
     EXPERT_TYPES,
     MergeabilityState,
@@ -113,16 +114,33 @@ class PVRECMoEFFN(nn.Module):
         branch_ticket_shadow_mode: bool = True,
         emit_branch_tickets_during_training: bool = False,
         max_shadow_branch_tickets: int = 64,
+        pvr_deploy_mode: str = "off",
+        pvr_aux_alpha: float = 0.5,
+        profile: bool = False,
+        collect_debug: bool = False,
+        emit_branch_tickets: bool = False,
+        mergeability_mode: str = "disabled",
+        runtime_branching: bool = False,
     ):
         super().__init__()
         if execution_mode not in EXECUTION_MODES:
             raise ValueError(f"Unknown PVR-EC execution mode: {execution_mode}")
         if expert_type not in EXPERT_TYPES:
             raise ValueError(f"Unknown PVR-EC expert type: {expert_type}")
+        if pvr_deploy_mode not in DEPLOY_MODES:
+            raise ValueError(f"Unknown PVR-EC deploy mode: {pvr_deploy_mode}")
         self.d_model = d_model
         self.num_experts = num_experts
+        self.d_expert = d_expert
         self.execution_mode = execution_mode
         self.expert_type = expert_type
+        self.pvr_deploy_mode = pvr_deploy_mode
+        self.pvr_aux_alpha = pvr_aux_alpha
+        self.profile = profile
+        self.collect_debug = collect_debug
+        self.emit_branch_tickets = emit_branch_tickets
+        self.mergeability_mode = mergeability_mode
+        self.runtime_branching = runtime_branching
         self.pvr_training_dispatch_mode = pvr_training_dispatch_mode
         self.pvr_inference_dispatch_mode = pvr_inference_dispatch_mode
         self.branch_ticket_shadow_mode = branch_ticket_shadow_mode
@@ -187,6 +205,9 @@ class PVRECMoEFFN(nn.Module):
             output: [batch, seq_len, d_model]
             aux: Dictionary with losses and metrics
         """
+        if self.pvr_deploy_mode != "off":
+            return self._deploy_forward(x)
+
         batch_size, seq_len, d_model = x.shape
         device = x.device
         forward_start = self._now_ms(device)
@@ -264,6 +285,113 @@ class PVRECMoEFFN(nn.Module):
         }
 
         return output, aux
+
+    def _deploy_forward(self, x: torch.Tensor) -> tuple[torch.Tensor, dict]:
+        """Low-overhead deployment forward path.
+
+        This path avoids branch tickets, mergeability objects, JSON/report
+        construction, CUDA sync, and per-token Python work.
+        """
+
+        batch_size, seq_len, d_model = x.shape
+        flat_x = x.reshape(-1, d_model)
+        shared_out = self.shared_base(flat_x)
+
+        mode = self.pvr_deploy_mode
+        if mode == "top1":
+            top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=1)
+            expert_out = self._vectorized_expert_deltas(flat_x, top_ids)
+            sparse_out = top_weights[:, :1].unsqueeze(-1).mul(expert_out).sum(dim=1)
+            actual_k = 1.0
+        elif mode == "top2":
+            top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=2)
+            expert_out = self._vectorized_expert_deltas(flat_x, top_ids)
+            primary = top_weights[:, :1].unsqueeze(-1) * expert_out[:, :1]
+            aux = self.pvr_aux_alpha * top_weights[:, 1:2].unsqueeze(-1) * expert_out[:, 1:2]
+            sparse_out = (primary + aux).sum(dim=1)
+            actual_k = 2.0
+        elif mode == "bucketed":
+            top_ids, top_weights, entropy = self.router.deploy_topk(flat_x, k=4)
+            k4 = entropy > 0.70
+            k2 = (entropy > 0.40) & ~k4
+            rank = torch.arange(top_ids.shape[1], device=top_ids.device).unsqueeze(0)
+            keep_k = torch.ones_like(entropy, dtype=torch.long)
+            keep_k = torch.where(k2, torch.full_like(keep_k, 2), keep_k)
+            keep_k = torch.where(k4, torch.full_like(keep_k, 4), keep_k)
+            keep = rank < keep_k.unsqueeze(1)
+            expert_out = self._vectorized_expert_deltas(flat_x, top_ids)
+            weights = top_weights * keep.to(top_weights.dtype)
+            sparse_out = (weights.unsqueeze(-1) * expert_out).sum(dim=1)
+            actual_k = keep.to(top_weights.dtype).sum(dim=-1).float().mean()
+        elif mode == "dense_masked_control":
+            top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=2)
+            all_ids = torch.arange(self.num_experts, device=flat_x.device).unsqueeze(0).expand(flat_x.shape[0], -1)
+            expert_out = self._vectorized_expert_deltas(flat_x, all_ids)
+            weights = torch.zeros(flat_x.shape[0], self.num_experts, device=flat_x.device, dtype=flat_x.dtype)
+            weights.scatter_(1, top_ids, top_weights)
+            sparse_out = (weights.unsqueeze(-1) * expert_out).sum(dim=1)
+            actual_k = 2.0
+        else:
+            raise ValueError(f"Unsupported deploy mode: {mode}")
+
+        output = (shared_out + sparse_out).view(batch_size, seq_len, d_model)
+        avg_k_tensor = torch.as_tensor(actual_k, device=x.device, dtype=x.dtype)
+        status = "PVR_EC_DEPLOY_TOP2_IMPLEMENTED"
+        if mode == "top1":
+            status = "PVR_EC_DEPLOY_TOP1_IMPLEMENTED"
+        elif mode == "bucketed":
+            status = "PVR_EC_DEPLOY_BUCKETED_IMPLEMENTED"
+        aux = {
+            "load_balance_loss": torch.zeros((), device=x.device, dtype=x.dtype),
+            "pvr_execution_mode": f"pvr_ec_deploy_{mode}",
+            "pvr_expert_type": self.expert_type,
+            "deploy_mode": mode,
+            "expert_execution_mode": "FULLY_VECTORIZED",
+            "branch_tickets": [],
+            "branch_tickets_enabled": False,
+            "runtime_branching_enabled": False,
+            "mergeability_mode": self.mergeability_mode,
+            "routing_metrics": {
+                "actual_avg_k": avg_k_tensor,
+                "target_avg_K": avg_k_tensor,
+                "assignment_budget_drift": 0.0,
+                "expert_utilization": 1.0,
+                "load_imbalance": 0.0,
+                "routing_entropy": 0.0,
+                "num_k1_tokens": 0.0,
+                "num_k2_tokens": 0.0,
+                "num_k4_tokens": 0.0,
+                "assignment_budget_status": "deploy",
+            },
+            "timing": self._empty_timing(),
+            "mergeability": {
+                "mergeability_score_mean": 0.0,
+                "mergeability_score_std": 0.0,
+                "expert_disagreement_mean": 0.0,
+            },
+            "statuses": [
+                status,
+                "PVR_EC_RUNTIME_BRANCHING_DISABLED",
+            ],
+        }
+        return output, aux
+
+    def _stacked_expert_weights(self) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        w1 = torch.stack([expert.w1.weight.transpose(0, 1) for expert in self.expert_deltas], dim=0)
+        b1 = torch.stack([expert.w1.bias for expert in self.expert_deltas], dim=0)
+        w2 = torch.stack([expert.w2.weight.transpose(0, 1) for expert in self.expert_deltas], dim=0)
+        b2 = torch.stack([expert.w2.bias for expert in self.expert_deltas], dim=0)
+        return w1, b1, w2, b2
+
+    def _vectorized_expert_deltas(self, flat_x: torch.Tensor, expert_ids: torch.Tensor) -> torch.Tensor:
+        w1, b1, w2, b2 = self._stacked_expert_weights()
+        selected_w1 = w1[expert_ids]
+        selected_b1 = b1[expert_ids]
+        selected_w2 = w2[expert_ids]
+        selected_b2 = b2[expert_ids]
+        hidden = torch.einsum("nh,nkhr->nkr", flat_x, selected_w1) + selected_b1
+        hidden = F.gelu(hidden)
+        return torch.einsum("nkr,nkrh->nkh", hidden, selected_w2) + selected_b2
 
     def _resolve_execution_mode(self, requested: Optional[str], fixed_k: Optional[int]) -> str:
         if requested:

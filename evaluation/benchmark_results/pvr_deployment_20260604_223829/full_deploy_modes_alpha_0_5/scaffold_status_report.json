@@ -1,0 +1,148 @@
+{
+  "report_type": "pvr_ec_scaffold_status",
+  "date": "2026-06-03",
+  "overall_status": "PARTIAL_PVR_EC_IMPLEMENTATION",
+  "tests_passing": 18,
+  "tests_failing": 0,
+  "baselines_preserved": true,
+  "components": {
+    "pvr_ec_router": {
+      "status": "IMPLEMENTED",
+      "file": "sparse_loop_moe/src/sparse_loop_moe/models/pvr_ec/pvr_ec_router.py",
+      "test_artifact": "sparse_loop_moe/tests/test_pvr_ec.py::TestPVRECRouter (7 tests)",
+      "benchmark_artifact": "Smoke verified, GPU benchmark pending Docker restart"
+    },
+    "prototype_map": {
+      "status": "IMPLEMENTED",
+      "file": "Inline in pvr_ec_router.py (learned prototypes + cdist)",
+      "test_artifact": "Tested via router tests",
+      "benchmark_artifact": "Pending"
+    },
+    "bitset_compatibility_masks": {
+      "status": "IMPLEMENTED",
+      "file": "proto_expert_compat buffer in pvr_ec_router.py",
+      "test_artifact": "test_load_bias_cannot_route_outside_compatible_mask",
+      "benchmark_artifact": "Pending"
+    },
+    "load_pressure_bias": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_router.py (EMA update, capped)",
+      "test_artifact": "test_load_bias_is_capped",
+      "benchmark_artifact": "Pending"
+    },
+    "difficulty_classifier": {
+      "status": "IMPLEMENTED",
+      "file": "Vectorized in pvr_ec_router.py",
+      "test_artifact": "test_difficulty_labels_are_per_token, test_hard_bucket_does_not_become_default",
+      "benchmark_artifact": "Pending"
+    },
+    "expert_choice_expansion": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_router.py forward()",
+      "test_artifact": "test_extra_expert_slots_respect_capacity",
+      "benchmark_artifact": "Pending"
+    },
+    "guaranteed_top1_ownership": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_router.py",
+      "test_artifact": "test_every_token_gets_top1_primary_owner",
+      "benchmark_artifact": "Pending"
+    },
+    "pack_by_expert_execution": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_moe.py _pack_execute_scatter()",
+      "test_artifact": "test_pack_by_expert_not_per_token, test_scatter_add_correctness",
+      "benchmark_artifact": "Pending GPU profiling"
+    },
+    "shared_base_plus_expert_deltas": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_moe.py (PVRECMoEFFN)",
+      "test_artifact": "test_shared_base_always_runs",
+      "benchmark_artifact": "Pending"
+    },
+    "token_flatten_unflatten": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_moe.py forward()",
+      "test_artifact": "test_model_forward_produces_logits (shape preserved)",
+      "benchmark_artifact": "Pending"
+    },
+    "route_width_bucketing": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_router.py (Difficulty enum)",
+      "test_artifact": "test_difficulty_labels_are_per_token",
+      "benchmark_artifact": "Pending"
+    },
+    "scatter_add": {
+      "status": "IMPLEMENTED",
+      "file": "pvr_ec_moe.py (torch.scatter_add_)",
+      "test_artifact": "test_scatter_add_correctness",
+      "benchmark_artifact": "Pending"
+    },
+    "benchmark_integration": {
+      "status": "IMPLEMENTED",
+      "file": "evaluation/run_algorithmic_benchmarks.py (pvr_ec model type)",
+      "test_artifact": "Smoke run: 32 valid results, 0 failures",
+      "benchmark_artifact": "Pending Docker GPU run"
+    },
+    "collapse_metrics": {
+      "status": "SCAFFOLDED",
+      "file": "pvr_ec_router.py routing_metrics dict",
+      "notes": "dead_expert_count, load_imbalance tracked; full collapse detection pending"
+    },
+    "request_microbatching": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 8 - requires scheduler infrastructure"
+    },
+    "grouped_gemm": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Tier 2 - requires triton/cutlass kernels"
+    },
+    "block_sparse": {
+      "status": "FUTURE_WORK",
+      "notes": "Tier 3 - MegaBlocks-style, not in MVP scope"
+    },
+    "cuda_graph": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 8E - requires shape-stable execution"
+    },
+    "onnx_export": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 9 - scaffold only in MVP"
+    },
+    "quantization": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 11 - scaffold only, BF16 baseline first"
+    },
+    "scheduler_backpressure": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 8B - online/offline/background scheduling"
+    },
+    "background_artifact_queue": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 10 - two-lane runtime skeleton"
+    },
+    "verifier_batching": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 10C"
+    },
+    "memory_pool_management": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 8C - static buffer preallocation"
+    },
+    "route_cache": {
+      "status": "NOT_IMPLEMENTED",
+      "notes": "Phase 8H"
+    },
+    "multi_gpu_expert_parallelism": {
+      "status": "FUTURE_WORK",
+      "notes": "Not in MVP scope"
+    }
+  },
+  "docker_gpu_status": "DOCKER_DAEMON_NOT_RUNNING",
+  "docker_gpu_note": "Previously validated (RTX 4080 SUPER, CUDA 12.1, torch 2.2.0). Docker Desktop not started this session.",
+  "next_commands": [
+    "Start Docker Desktop",
+    "docker run --rm --gpus all -v \"${PWD}:/workspace\" -w /workspace sparse-loop-moe-gpu python -m pytest sparse_loop_moe/tests/test_pvr_ec.py -v",
+    "docker run --rm --gpus all -v \"${PWD}:/workspace\" -w /workspace sparse-loop-moe-gpu python -X utf8 evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 1000 --device cuda --amp --models fixed_moe,adaptive_moe,pvr_ec --profile-compute"
+  ]
+}

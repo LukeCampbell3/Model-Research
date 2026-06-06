@@ -1,0 +1,23 @@
+{
+  "status": "PVR_EC_OWNERSHIP_MAP_REFRESH_READY",
+  "prototype_owners": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    3
+  ],
+  "owner_change_count": 0,
+  "total_evaluations": 0
+}

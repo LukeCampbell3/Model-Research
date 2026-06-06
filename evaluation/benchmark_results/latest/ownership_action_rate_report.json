@@ -1,0 +1,13 @@
+{
+  "owner_change_rate": 0.0,
+  "owner_changed_success_rate": 0.0,
+  "owner_change_count": 0,
+  "total_evaluations": 100,
+  "loss_when_owner_changed": 0.0,
+  "loss_when_owner_unchanged": 0.0,
+  "oracle_gap_when_owner_changed": 0.0,
+  "oracle_gap_when_owner_unchanged": 0.0,
+  "target_owner_change_band": "2%-8% (early calibration)",
+  "status": "PVR_EC_OWNERSHIP_MAP_ACTS_TOO_RARELY",
+  "recommended_bias_adjustment": "increase_ownership_weight"
+}

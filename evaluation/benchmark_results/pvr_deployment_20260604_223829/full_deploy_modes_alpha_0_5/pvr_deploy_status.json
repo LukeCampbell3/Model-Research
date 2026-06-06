@@ -1,0 +1,11 @@
+{
+  "status": "PVR_EC_READY_FOR_LONGER_CAPABILITY_RUN",
+  "statuses": [
+    "PVR_EC_DEPLOY_TOP1_IMPLEMENTED",
+    "PVR_EC_DEPLOY_TOP2_IMPLEMENTED",
+    "PVR_EC_DEPLOY_BUCKETED_IMPLEMENTED",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "runtime_branching_enabled": false,
+  "branch_tickets_enabled": false
+}

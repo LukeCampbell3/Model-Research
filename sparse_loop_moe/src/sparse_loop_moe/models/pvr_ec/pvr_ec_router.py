@@ -284,6 +284,39 @@ class PVRECRouter(nn.Module):
             selected_mask=selected_mask,
         )
 
+    def deploy_topk(self, x: torch.Tensor, k: int = 2) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Tensor-only deployment routing.
+
+        Returns:
+            top_ids: [N, k]
+            top_weights: [N, k]
+            entropy: [N]
+        """
+
+        c = self.config
+        z = self.route_proj(x)
+        proto_dist = torch.cdist(z.unsqueeze(0), self.prototypes.unsqueeze(0)).squeeze(0)
+        nearest_proto_ids = proto_dist.argmin(dim=-1)
+        candidate_mask = self.proto_expert_compat[nearest_proto_ids].bool()
+        router_logits = self.gate(z)
+        required = min(k, c.num_experts)
+        candidate_count = candidate_mask.sum(dim=-1)
+        missing = (required - candidate_count).clamp(min=0)
+        fallback_scores = router_logits.masked_fill(candidate_mask, -float("inf"))
+        fallback_ids = fallback_scores.topk(required, dim=-1).indices
+        rank = torch.arange(required, device=x.device).unsqueeze(0)
+        fallback_keep = rank < missing.unsqueeze(1)
+        fallback_mask = torch.zeros_like(candidate_mask)
+        fallback_mask.scatter_(1, fallback_ids, fallback_keep)
+        candidate_mask = candidate_mask | fallback_mask
+
+        logits = router_logits + self.proto_bias[nearest_proto_ids] + self.load_bias.unsqueeze(0)
+        logits = logits.masked_fill(candidate_mask == 0, -float("inf"))
+        probs = F.softmax(logits, dim=-1)
+        top_weights, top_ids = probs.topk(required, dim=-1)
+        entropy = -(probs * torch.log(probs + 1e-8)).sum(dim=-1)
+        return top_ids, top_weights, entropy
+
     def _fixed_top2_assignments(
         self,
         probs: torch.Tensor,

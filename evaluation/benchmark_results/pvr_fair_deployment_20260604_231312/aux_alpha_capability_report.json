@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-05T03:11:23.895509",
+    "run_id": "algo_20260605_031003_benchmark-lite",
+    "git_commit": "7ad729dcda12a77e6d5bb30ac7fef9640c5f22b0",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --train-steps 200 --sample-limit 512 --families clrs,listops,scan,dyck --device cuda --amp --seed 42 --models fixed_moe_vectorized,fixed_moe_looped_reference,pvr_ec_deploy_top1,pvr_ec_deploy_top2,pvr_ec_deploy_bucketed --pvr-expert-type delta_rank_small --pvr-aux-alpha 0.5",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "fixed_moe_looped_reference",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_deploy_top2",
+      "pvr_ec_deploy_bucketed"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 200,
+    "sample_limit": 512,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "AUX_ALPHA_SWEEP_RECORDED",
+  "alphas": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "rows": [
+    {
+      "alpha": 0.0,
+      "run_id": "algo_20260605_031221_benchmark-lite",
+      "batch_size": 32,
+      "sequence_length": 64,
+      "loss": 5.567208766937256,
+      "accuracy": 0.00439453125,
+      "p50_latency_ms": 5.587455987930298,
+      "p95_latency_ms": 6.384070205688476,
+      "mean_latency_ms": 5.727351951599121,
+      "quality_per_ms": 0.0007672884933800887,
+      "quality_per_memory_mb": 1.0762164534362993e-05,
+      "max_memory_allocated_mb": 408.33154296875,
+      "speedup_vs_fixed_moe_vectorized": 2.2836382572440574
+    },
+    {
+      "alpha": 0.25,
+      "run_id": "algo_20260605_031225_benchmark-lite",
+      "batch_size": 32,
+      "sequence_length": 64,
+      "loss": 5.567197322845459,
+      "accuracy": 0.00439453125,
+      "p50_latency_ms": 5.806575775146484,
+      "p95_latency_ms": 6.2460143089294435,
+      "mean_latency_ms": 5.890276765823364,
+      "quality_per_ms": 0.0007460653250621436,
+      "quality_per_memory_mb": 1.0762164534362993e-05,
+      "max_memory_allocated_mb": 408.33154296875,
+      "speedup_vs_fixed_moe_vectorized": 2.2116844596689478
+    },
+    {
+      "alpha": 0.5,
+      "run_id": "algo_20260605_031228_benchmark-lite",
+      "batch_size": 32,
+      "sequence_length": 64,
+      "loss": 5.5671892166137695,
+      "accuracy": 0.00439453125,
+      "p50_latency_ms": 5.3411359786987305,
+      "p95_latency_ms": 5.698412656784058,
+      "mean_latency_ms": 5.395711994171142,
+      "quality_per_ms": 0.0008144488169026268,
+      "quality_per_memory_mb": 1.0762164534362993e-05,
+      "max_memory_allocated_mb": 408.33154296875,
+      "speedup_vs_fixed_moe_vectorized": 2.4328551197891075
+    },
+    {
+      "alpha": 1.0,
+      "run_id": "algo_20260605_031231_benchmark-lite",
+      "batch_size": 32,
+      "sequence_length": 64,
+      "loss": 5.567192554473877,
+      "accuracy": 0.00439453125,
+      "p50_latency_ms": 5.280272006988525,
+      "p95_latency_ms": 5.743251299858093,
+      "mean_latency_ms": 5.357959961891174,
+      "quality_per_ms": 0.0008201873999164568,
+      "quality_per_memory_mb": 1.0762164534362993e-05,
+      "max_memory_allocated_mb": 408.33154296875,
+      "speedup_vs_fixed_moe_vectorized": 2.438914841342174
+    }
+  ],
+  "best_loss_alpha": 0.5,
+  "best_quality_per_ms_alpha": 1.0,
+  "interpretation": "inference-only random-target alpha sweep; use longer capability loss/accuracy for promotion evidence"
+}

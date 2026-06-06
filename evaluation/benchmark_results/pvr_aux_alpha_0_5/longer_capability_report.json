@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-05T03:12:29.689469",
+    "run_id": "algo_20260605_031228_benchmark-lite",
+    "git_commit": "7ad729dcda12a77e6d5bb30ac7fef9640c5f22b0",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --benchmark-inference-only --mode benchmark-lite --scale small --device cuda --amp --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top2 --warmup-steps 5 --timed-steps 20 --batch-sizes 32 --sequence-lengths 64 --pvr-expert-type delta_rank_small --pvr-aux-alpha 0.5",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top2"
+    ],
+    "batch_sizes": [
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 200,
+    "sample_limit": null,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PENDING_LONGER_CAPABILITY_RUN",
+  "minimum_required": {
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "train_steps": 200,
+    "sample_limit": 512,
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "rows": []
+}

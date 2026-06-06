@@ -42,6 +42,13 @@ class PVRECModelConfig:
     branch_ticket_shadow_mode: bool = True
     emit_branch_tickets_during_training: bool = False
     max_shadow_branch_tickets: int = 64
+    pvr_deploy_mode: str = "off"
+    pvr_aux_alpha: float = 0.5
+    profile: bool = False
+    collect_debug: bool = False
+    emit_branch_tickets: bool = False
+    mergeability_mode: str = "disabled"
+    runtime_branching: bool = False
 
 
 class PVRECBlock(nn.Module):
@@ -74,6 +81,13 @@ class PVRECBlock(nn.Module):
             branch_ticket_shadow_mode=config.branch_ticket_shadow_mode,
             emit_branch_tickets_during_training=config.emit_branch_tickets_during_training,
             max_shadow_branch_tickets=config.max_shadow_branch_tickets,
+            pvr_deploy_mode=config.pvr_deploy_mode,
+            pvr_aux_alpha=config.pvr_aux_alpha,
+            profile=config.profile,
+            collect_debug=config.collect_debug,
+            emit_branch_tickets=config.emit_branch_tickets,
+            mergeability_mode=config.mergeability_mode,
+            runtime_branching=config.runtime_branching,
         )
 
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, dict]:

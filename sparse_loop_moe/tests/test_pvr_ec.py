@@ -14,8 +14,10 @@ Validates:
 """
 
 import sys
+import inspect
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "evaluation"))
 
 import torch
 import pytest
@@ -38,6 +40,7 @@ from sparse_loop_moe.models.pvr_ec.pvr_ec_router import (
 )
 from sparse_loop_moe.models.pvr_ec.pvr_ec_moe import PVRECMoEFFN
 from sparse_loop_moe.models.pvr_ec.pvr_ec_model import PVRECModel, PVRECModelConfig
+from sparse_loop_moe.models.moe_ffn import MoEFFN, VectorizedMoEFFN
 
 
 @pytest.fixture
@@ -398,6 +401,51 @@ class TestBaselinePreservation:
         out = model(torch.randint(0, 128, (2, 16)), torch.randint(0, 128, (2, 16)))
         assert "logits" in out and "loss" in out
 
+    def test_fixed_moe_looped_reference_still_works(self):
+        from sparse_loop_moe.models.full_model import SparseLoopMoEModel, SparseLoopMoEConfig
+        config = SparseLoopMoEConfig(
+            vocab_size=128, d_model=64, n_heads=2, n_layers=2, d_ff=128,
+            num_experts=4, max_k=2, max_loops=1, max_seq_len=32,
+            use_adaptive_router=False, use_probes=False, use_reflection=False,
+            use_loops=False, use_shared_expert=True, vectorized_moe=False,
+        )
+        model = SparseLoopMoEModel(config)
+        out = model(torch.randint(0, 128, (2, 16)), torch.randint(0, 128, (2, 16)))
+        assert "logits" in out and "loss" in out
+
+    def test_fixed_moe_vectorized_matches_looped_reference(self):
+        torch.manual_seed(123)
+        looped = MoEFFN(
+            d_model=32, d_ff=64, num_experts=4, top_k=2,
+            use_shared_expert=True, dropout=0.0,
+        )
+        vectorized = VectorizedMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, top_k=2,
+            use_shared_expert=True, dropout=0.0,
+        )
+        vectorized.load_state_dict(looped.state_dict())
+        looped.eval()
+        vectorized.eval()
+        x = torch.randn(3, 7, 32)
+        looped_out, looped_aux = looped(x, fixed_k=2)
+        vectorized_out, vectorized_aux = vectorized(x, fixed_k=2)
+        assert torch.allclose(vectorized_out, looped_out, atol=1e-5, rtol=1e-5)
+        assert torch.allclose(
+            vectorized_aux["load_balance_loss"],
+            looped_aux["load_balance_loss"],
+            atol=1e-6,
+        )
+
+    def test_fixed_moe_vectorized_is_marked_fully_vectorized(self):
+        model = VectorizedMoEFFN(d_model=32, d_ff=64, num_experts=4, top_k=2)
+        assert model.expert_execution_mode == "FULLY_VECTORIZED"
+
+    def test_benchmark_registers_fair_fixed_moe_variants(self):
+        from run_algorithmic_benchmarks import MODELS
+        assert "fixed_moe_vectorized" in MODELS
+        assert "fixed_moe_looped_reference" in MODELS
+        assert MODELS["fixed_moe_vectorized"]["overrides"]["vectorized_moe"] is True
+
 
 class TestHybridRouter:
     def test_hybrid_k_is_allowed_and_top1_covered(self):
@@ -582,6 +630,150 @@ class TestMergeabilityAndTickets:
         assert "PVR_EC_ASSIGNMENT_BUDGET_DRIFT" in dispatch["statuses"]
         assert branch["branch_ticket_count"] == 3
         assert branch["shadow_only"] is True
+
+
+class TestPVRECDeployment:
+    def test_deploy_top1_forward_works(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="top1",
+        )
+        x = torch.randn(2, 8, 32)
+        out, aux = model(x)
+        assert out.shape == x.shape
+        assert aux["deploy_mode"] == "top1"
+        assert aux["branch_tickets"] == []
+
+    def test_deploy_top2_forward_works_and_fixed_k(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="top2",
+        )
+        out, aux = model(torch.randn(2, 8, 32))
+        assert out.shape == (2, 8, 32)
+        assert aux["routing_metrics"]["actual_avg_k"].item() == pytest.approx(2.0)
+        assert aux["expert_execution_mode"] == "FULLY_VECTORIZED"
+
+    def test_deploy_bucketed_forward_works(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="bucketed",
+        )
+        out, aux = model(torch.randn(2, 8, 32))
+        assert out.shape == (2, 8, 32)
+        assert aux["runtime_branching_enabled"] is False
+
+    def test_deploy_dense_masked_control_forward_works(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="dense_masked_control",
+        )
+        out, aux = model(torch.randn(2, 8, 32))
+        assert out.shape == (2, 8, 32)
+        assert aux["branch_tickets_enabled"] is False
+
+    def test_aux_alpha_changes_output(self):
+        torch.manual_seed(7)
+        base = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="top2", pvr_aux_alpha=0.0,
+        )
+        other = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="top2", pvr_aux_alpha=1.0,
+        )
+        other.load_state_dict(base.state_dict())
+        x = torch.randn(2, 8, 32)
+        out0, _ = base(x)
+        out1, _ = other(x)
+        assert not torch.allclose(out0, out1)
+
+    def test_vectorized_expert_execution_preserves_shape(self):
+        model = PVRECMoEFFN(
+            d_model=32, d_ff=64, num_experts=4, num_prototypes=8,
+            pvr_deploy_mode="top2",
+        )
+        flat = torch.randn(16, 32)
+        ids = torch.randint(0, 4, (16, 2))
+        out = model._vectorized_expert_deltas(flat, ids)
+        assert out.shape == (16, 2, 32)
+
+    def test_deploy_forward_static_hot_path_rules(self):
+        source = inspect.getsource(PVRECMoEFFN._deploy_forward)
+        assert ".cpu(" not in source
+        assert "synchronize" not in source
+        assert ".item(" not in source
+
+    def test_pvr_deployment_report_is_written(self, tmp_path):
+        from run_algorithmic_benchmarks import AlgorithmicBenchmarkRunner
+
+        runner = AlgorithmicBenchmarkRunner(
+            mode="smoke",
+            models=["fixed_moe", "pvr_ec_deploy_top2"],
+            benchmark_inference_only=True,
+            batch_sizes=[1],
+            sequence_lengths=[16],
+            warmup_steps=1,
+            timed_steps=1,
+        )
+        runner.output_dir = tmp_path
+        rows = [
+            {
+                "model": "fixed_moe", "deploy_mode": "off", "params": 1,
+                "active_params_estimate": 1, "batch_size": 1, "sequence_length": 16,
+                "loss": 1.0, "accuracy": 0.1, "p50_latency_ms": 1.0,
+                "p95_latency_ms": 1.0, "mean_latency_ms": 1.0,
+                "tokens_per_second": 16.0, "samples_per_second": 1.0,
+                "quality_per_ms": 0.1, "quality_per_token_second": 1.6,
+                "memory_allocated_mb": 1.0, "max_memory_allocated_mb": 2.0,
+                "expert_execution_mode": "LOOPED", "branch_tickets_enabled": False,
+                "mergeability_mode": "disabled", "runtime_branching_enabled": False,
+            },
+            {
+                "model": "fixed_moe_vectorized", "deploy_mode": "off", "params": 1,
+                "active_params_estimate": 1, "batch_size": 1, "sequence_length": 16,
+                "loss": 1.0, "accuracy": 0.1, "p50_latency_ms": 0.8,
+                "p95_latency_ms": 0.8, "mean_latency_ms": 0.8,
+                "tokens_per_second": 20.0, "samples_per_second": 1.25,
+                "quality_per_ms": 0.125, "quality_per_token_second": 2.0,
+                "memory_allocated_mb": 1.0, "max_memory_allocated_mb": 2.0,
+                "expert_execution_mode": "FULLY_VECTORIZED", "branch_tickets_enabled": False,
+                "mergeability_mode": "disabled", "runtime_branching_enabled": False,
+                "quality_per_memory_mb": 0.05, "latency_per_memory_mb": 0.4,
+            },
+            {
+                "model": "pvr_ec_deploy_top2", "deploy_mode": "top2", "params": 1,
+                "active_params_estimate": 1, "batch_size": 1, "sequence_length": 16,
+                "loss": 1.1, "accuracy": 0.1, "p50_latency_ms": 1.2,
+                "p95_latency_ms": 1.2, "mean_latency_ms": 1.2,
+                "tokens_per_second": 13.3, "samples_per_second": 0.8,
+                "quality_per_ms": 0.083, "quality_per_token_second": 1.3,
+                "memory_allocated_mb": 1.0, "max_memory_allocated_mb": 2.0,
+                "expert_execution_mode": "FULLY_VECTORIZED", "branch_tickets_enabled": False,
+                "mergeability_mode": "disabled", "runtime_branching_enabled": False,
+                "quality_per_memory_mb": 0.05, "latency_per_memory_mb": 0.6,
+            },
+        ]
+        runner._write_deployment_reports(rows)
+        expected = {
+            "pvr_deployment_report.json",
+            "pvr_deployment_report.md",
+            "pvr_inference_latency_report.json",
+            "pvr_hot_path_profile.json",
+            "pvr_deploy_comparison.csv",
+            "pvr_deploy_status.json",
+            "fair_deployment_comparison_report.json",
+            "fair_deployment_comparison_report.md",
+            "fixed_moe_vectorization_report.json",
+            "inference_latency_matrix.csv",
+            "inference_latency_matrix.json",
+            "memory_efficiency_report.json",
+            "aux_alpha_capability_report.json",
+            "pvr_deploy_go_no_go.json",
+            "longer_capability_report.json",
+        }
+        for name in expected:
+            assert (tmp_path / name).exists()
 
 
 if __name__ == "__main__":

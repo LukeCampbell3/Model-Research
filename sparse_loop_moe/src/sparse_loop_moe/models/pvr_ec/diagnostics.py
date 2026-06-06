@@ -24,6 +24,14 @@ EXECUTION_MODES = {
     "hybrid_expert_choice_bucketed",
 }
 
+DEPLOY_MODES = {
+    "off",
+    "top1",
+    "top2",
+    "bucketed",
+    "dense_masked_control",
+}
+
 EXPERT_TYPES = {
     "shared_base_only",
     "delta_rank_small",
@@ -62,6 +70,22 @@ PVR_EC_STATUSES = (
     "PVR_EC_MERGEABILITY_CALIBRATED",
     "PVR_EC_MERGEABILITY_TOO_PERMISSIVE",
     "PVR_EC_MERGEABILITY_TOO_CONSERVATIVE",
+    # Ownership map statuses
+    "PVR_EC_OWNERSHIP_MAP_ACTS_TOO_RARELY",
+    "PVR_EC_CANDIDATE_OWNER_RECALL_LOW",
+    "PVR_EC_CANDIDATE_OWNER_RECALL_IMPROVED",
+    "PVR_EC_OWNERSHIP_BIAS_UNDERCALIBRATED",
+    "PVR_EC_OWNERSHIP_BIAS_CALIBRATED",
+    "PVR_EC_OWNERSHIP_BIAS_TOO_AGGRESSIVE",
+    "PVR_EC_OWNERSHIP_SEMANTIC_OVERRIDE_RISK",
+    "PVR_EC_OWNERSHIP_PROMOTION_GATE_NOT_CLEAN",
+    "PVR_EC_OWNERSHIP_PROMOTION_GATE_CLEAN",
+    "PVR_EC_OWNERSHIP_REPEATED_SIGNAL_CONFIRMED",
+    "PVR_EC_OWNERSHIP_REPEATED_SIGNAL_FAILED",
+    "PVR_EC_OWNERSHIP_MAP_REFRESH_READY",
+    "PVR_EC_OWNERSHIP_MAP_CANARY_READY",
+    "PVR_EC_OWNERSHIP_MAP_DEPLOY_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
 )
 
 
@@ -317,6 +341,7 @@ def empty_report(status: str = "PARTIAL_PVR_EC_DIAGNOSTIC_IMPLEMENTATION") -> di
         "status": status,
         "statuses": list(PVR_EC_STATUSES),
         "execution_modes": sorted(EXECUTION_MODES),
+        "deploy_modes": sorted(DEPLOY_MODES),
         "expert_types": sorted(EXPERT_TYPES),
         "hard_runtime_branching": "disabled",
         "branch_tickets": "shadow_only",

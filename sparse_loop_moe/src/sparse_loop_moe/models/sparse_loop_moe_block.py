@@ -25,7 +25,7 @@ import torch.nn.functional as F
 from sparse_loop_moe.core.cognitive_state import CognitiveState
 from sparse_loop_moe.core.cognitive_kernel import CognitiveKernel
 from sparse_loop_moe.core.types import LoopStats, ProbeSignals, ReflectionAction
-from sparse_loop_moe.models.moe_ffn import MoEFFN, Expert
+from sparse_loop_moe.models.moe_ffn import MoEFFN, VectorizedMoEFFN, Expert
 from sparse_loop_moe.models.routers import AdaptiveWidthRouter, FixedTopKRouter
 from sparse_loop_moe.models.probe_heads import ProbeHeads
 from sparse_loop_moe.models.reflection_controller import ReflectionController
@@ -64,6 +64,7 @@ class SparseLoopMoEBlock(nn.Module):
         use_probes: bool = True,
         use_reflection: bool = True,
         use_shared_expert: bool = True,
+        vectorized_moe: bool = False,
         dropout: float = 0.1,
     ):
         super().__init__()
@@ -84,7 +85,8 @@ class SparseLoopMoEBlock(nn.Module):
 
         # MoE FFN
         self.moe_ln = nn.LayerNorm(d_model)
-        self.moe_ffn = MoEFFN(
+        moe_cls = VectorizedMoEFFN if vectorized_moe else MoEFFN
+        self.moe_ffn = moe_cls(
             d_model=d_model,
             d_ff=d_ff,
             num_experts=num_experts,

@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-05T03:14:13.423520",
+    "run_id": "algo_20260605_031404_benchmark-lite",
+    "git_commit": "7ad729dcda12a77e6d5bb30ac7fef9640c5f22b0",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --benchmark-inference-only --mode benchmark-lite --scale small --device cuda --amp --seed 42 --models fixed_moe_looped_reference,fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_deploy_top2,pvr_ec_deploy_bucketed,pvr_ec_deploy_dense_masked_control --warmup-steps 3 --timed-steps 10 --batch-sizes 1,8,32,64 --sequence-lengths 32,64,128 --pvr-expert-type delta_rank_small --pvr-aux-alpha 0.5 --profile-deploy",
+    "model_variants": [
+      "fixed_moe_looped_reference",
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_deploy_top2",
+      "pvr_ec_deploy_bucketed",
+      "pvr_ec_deploy_dense_masked_control"
+    ],
+    "batch_sizes": [
+      1,
+      8,
+      32,
+      64
+    ],
+    "sequence_lengths": [
+      32,
+      64,
+      128
+    ],
+    "train_steps": 200,
+    "sample_limit": null,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "rows": [
+    {
+      "batch_size": 1,
+      "sequence_length": 32,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 10.674070453643798,
+      "vectorized_mean_latency_ms": 3.5539360284805297,
+      "speedup_vs_looped_reference": 3.0034503626694296,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 1,
+      "sequence_length": 64,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 10.674057674407958,
+      "vectorized_mean_latency_ms": 3.5860448122024535,
+      "speedup_vs_looped_reference": 2.9765544585741623,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 1,
+      "sequence_length": 128,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.344883251190186,
+      "vectorized_mean_latency_ms": 3.4642752170562745,
+      "speedup_vs_looped_reference": 3.2748215832662284,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 8,
+      "sequence_length": 32,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 12.592246341705323,
+      "vectorized_mean_latency_ms": 3.8700384140014648,
+      "speedup_vs_looped_reference": 3.2537781268908503,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 8,
+      "sequence_length": 64,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.37601613998413,
+      "vectorized_mean_latency_ms": 5.237427234649658,
+      "speedup_vs_looped_reference": 2.17206189801033,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 8,
+      "sequence_length": 128,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.445897483825684,
+      "vectorized_mean_latency_ms": 7.9222334861755375,
+      "speedup_vs_looped_reference": 1.444781639394877,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 32,
+      "sequence_length": 32,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.338927936553954,
+      "vectorized_mean_latency_ms": 7.908601570129394,
+      "speedup_vs_looped_reference": 1.4337462617134265,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 32,
+      "sequence_length": 64,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.353990459442139,
+      "vectorized_mean_latency_ms": 13.083939266204833,
+      "speedup_vs_looped_reference": 0.8677807370115921,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 32,
+      "sequence_length": 128,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.212547302246094,
+      "vectorized_mean_latency_ms": 23.568355751037597,
+      "speedup_vs_looped_reference": 0.4757458441602343,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 64,
+      "sequence_length": 32,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.288851165771485,
+      "vectorized_mean_latency_ms": 13.077315330505371,
+      "speedup_vs_looped_reference": 0.8632391955432972,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 64,
+      "sequence_length": 64,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.254790592193604,
+      "vectorized_mean_latency_ms": 23.381305503845216,
+      "speedup_vs_looped_reference": 0.48135851911017874,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    },
+    {
+      "batch_size": 64,
+      "sequence_length": 128,
+      "params_match_looped_reference": true,
+      "looped_mean_latency_ms": 11.66006088256836,
+      "vectorized_mean_latency_ms": 44.0633056640625,
+      "speedup_vs_looped_reference": 0.2646206567311214,
+      "looped_execution_mode": "LOOPED",
+      "vectorized_execution_mode": "FULLY_VECTORIZED"
+    }
+  ]
+}

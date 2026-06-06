@@ -42,6 +42,7 @@ class SparseLoopMoEConfig:
     use_reflection: bool = True
     use_shared_expert: bool = True
     use_loops: bool = True
+    vectorized_moe: bool = False
 
     # Thresholds
     delta_threshold: float = 0.01
@@ -95,6 +96,7 @@ class SparseLoopMoEModel(nn.Module):
                     use_probes=c.use_probes,
                     use_reflection=c.use_reflection,
                     use_shared_expert=c.use_shared_expert,
+                    vectorized_moe=c.vectorized_moe,
                     dropout=c.dropout,
                 )
                 for _ in range(c.n_layers)

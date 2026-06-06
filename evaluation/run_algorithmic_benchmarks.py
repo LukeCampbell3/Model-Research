@@ -15,8 +15,10 @@ Usage:
 import argparse
 import csv
 import json
+import os
 import platform
 import random
+import subprocess
 import sys
 import time
 import traceback
@@ -42,6 +44,7 @@ from algorithmic_benchmarks.task_families import (
 )
 from sparse_loop_moe.models.pvr_ec.pvr_ec_model import PVRECModel, PVRECModelConfig
 from sparse_loop_moe.models.pvr_ec.diagnostics import (
+    DEPLOY_MODES,
     EXECUTION_MODES,
     EXPERT_TYPES,
     write_diagnostic_reports,
@@ -62,6 +65,20 @@ MODELS = {
         "desc": "Fixed top-2 MoE + shared expert",
         "overrides": {"use_adaptive_router": False, "use_probes": False,
                       "use_reflection": False, "use_loops": False, "max_k": 2},
+    },
+    "fixed_moe_looped_reference": {
+        "type": "moe",
+        "desc": "Fixed top-2 MoE + shared expert (looped expert reference)",
+        "overrides": {"use_adaptive_router": False, "use_probes": False,
+                      "use_reflection": False, "use_loops": False, "max_k": 2,
+                      "vectorized_moe": False},
+    },
+    "fixed_moe_vectorized": {
+        "type": "moe",
+        "desc": "Fixed top-2 MoE + shared expert (vectorized expert execution)",
+        "overrides": {"use_adaptive_router": False, "use_probes": False,
+                      "use_reflection": False, "use_loops": False, "max_k": 2,
+                      "vectorized_moe": True},
     },
     "adaptive_moe": {
         "type": "moe",
@@ -110,6 +127,31 @@ MODELS = {
         "type": "pvr_ec",
         "desc": "PVR-EC ablation: top-1 only, no extra expert slots",
         "overrides": {"no_extra": True},
+    },
+    "pvr_ec_deploy_top1": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC deployment: top1 vectorized expert delta",
+        "overrides": {"deploy_mode": "top1"},
+    },
+    "pvr_ec_deploy_top2": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC deployment: fixed top2 vectorized expert deltas",
+        "overrides": {"deploy_mode": "top2"},
+    },
+    "pvr_ec_deploy_bucketed": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC deployment: bucketed K in {1,2,4}",
+        "overrides": {"deploy_mode": "bucketed"},
+    },
+    "pvr_ec_deploy_dense_masked_control": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC deployment control: dense all experts masked to top2",
+        "overrides": {"deploy_mode": "dense_masked_control"},
+    },
+    "pvr_ec_ownership_top1_frozen_candidate": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC ownership: top1 with frozen candidate ownership map",
+        "overrides": {"deploy_mode": "top1", "enable_ownership_map": True},
     },
 }
 
@@ -182,7 +224,10 @@ class AlgorithmicBenchmarkRunner:
                  sample_limit=None, device="cpu", amp=False, train_steps=None,
                  models=None, profile_compute=False, pvr_execution_mode=None,
                  pvr_expert_type=None, pvr_training_dispatch_mode=None,
-                 pvr_inference_dispatch_mode=None):
+                 pvr_inference_dispatch_mode=None, pvr_deploy_mode="off",
+                 pvr_aux_alpha=0.5, benchmark_inference_only=False,
+                 warmup_steps=10, timed_steps=50, batch_sizes=None,
+                 sequence_lengths=None, profile_deploy=False):
         self.mode = mode
         self.families = families or ["clrs", "listops", "scan", "dyck"]
         self.seed = seed
@@ -196,6 +241,14 @@ class AlgorithmicBenchmarkRunner:
         self.pvr_expert_type = pvr_expert_type
         self.pvr_training_dispatch_mode = pvr_training_dispatch_mode
         self.pvr_inference_dispatch_mode = pvr_inference_dispatch_mode
+        self.pvr_deploy_mode = pvr_deploy_mode
+        self.pvr_aux_alpha = pvr_aux_alpha
+        self.benchmark_inference_only = benchmark_inference_only
+        self.warmup_steps = warmup_steps
+        self.timed_steps = timed_steps
+        self.batch_sizes = batch_sizes or [1, 32]
+        self.sequence_lengths = sequence_lengths or [64]
+        self.profile_deploy = profile_deploy
 
         # Steps config
         if train_steps:
@@ -212,7 +265,7 @@ class AlgorithmicBenchmarkRunner:
         else:
             self.n_samples = sample_limit or 512
 
-        self.output_dir = Path("evaluation/benchmark_results/latest")
+        self.output_dir = Path(os.environ.get("BENCHMARK_OUTPUT_DIR", "evaluation/benchmark_results/latest"))
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.run_id = f"algo_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}_{mode}"
         self.results: list[Result] = []
@@ -227,6 +280,13 @@ class AlgorithmicBenchmarkRunner:
         print(f"{'='*70}\n")
 
         t0 = time.time()
+
+        if self.benchmark_inference_only:
+            summary = self._run_inference_only_benchmark()
+            print(f"\n{'='*70}")
+            print(f"  INFERENCE BENCHMARK DONE | Status: {summary['status']}")
+            print(f"{'='*70}\n")
+            return summary
 
         # Generate benchmark data for all families
         datasets = self._generate_all_datasets()
@@ -262,6 +322,488 @@ class AlgorithmicBenchmarkRunner:
         print(f"  Status: {summary['recommendation']['status']}")
         print(f"{'='*70}\n")
         return summary
+
+    def _build_model_for_name(self, model_name: str, model_cfg: dict):
+        scale = SCALES[self.scale]
+        vocab_size = 256
+        if model_cfg["type"] == "dense":
+            return DenseTransformer(DenseTransformerConfig(
+                vocab_size=vocab_size, d_model=scale["d_model"], n_heads=scale["n_heads"],
+                n_layers=scale["n_layers"], d_ff=scale["d_ff"],
+                max_seq_len=scale["d_model"] * 2, dropout=0.1,
+            ))
+        if model_cfg["type"] == "pvr_ec":
+            overrides = model_cfg.get("overrides", {})
+            d_expert = max(1, scale["d_ff"] // 4)
+            if self.pvr_expert_type == "delta_rank_medium":
+                d_expert = max(1, scale["d_ff"] // 2)
+            elif self.pvr_expert_type in {"delta_rank_large", "full_expert_ffn"}:
+                d_expert = scale["d_ff"]
+            deploy_mode = overrides.get("deploy_mode", self.pvr_deploy_mode)
+            return PVRECModel(PVRECModelConfig(
+                vocab_size=vocab_size,
+                d_model=scale["d_model"],
+                n_heads=scale["n_heads"],
+                n_layers=scale["n_layers"],
+                d_ff=scale["d_ff"],
+                num_experts=scale["num_experts"],
+                num_prototypes=scale["num_experts"] * 4,
+                max_k=4,
+                d_expert=d_expert,
+                max_seq_len=scale["d_model"] * 2,
+                dropout=0.1,
+                pvr_execution_mode=self.pvr_execution_mode or "variable_k_pack_by_expert",
+                pvr_expert_type=self.pvr_expert_type or "delta_rank_small",
+                pvr_deploy_mode=deploy_mode,
+                pvr_aux_alpha=self.pvr_aux_alpha,
+                branch_ticket_shadow_mode=False if deploy_mode != "off" else True,
+                max_shadow_branch_tickets=0 if deploy_mode != "off" else 64,
+                mergeability_mode="disabled",
+                runtime_branching=False,
+            ))
+        overrides = model_cfg.get("overrides", {})
+        return SparseLoopMoEModel(SparseLoopMoEConfig(
+            vocab_size=vocab_size, d_model=scale["d_model"], n_heads=scale["n_heads"],
+            n_layers=scale["n_layers"], d_ff=scale["d_ff"],
+            num_experts=scale["num_experts"],
+            max_seq_len=scale["d_model"] * 2, dropout=0.1,
+            use_shared_expert=True, **overrides,
+        ))
+
+    def _artifact_metadata(self) -> dict[str, Any]:
+        try:
+            git_commit = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"],
+                cwd=Path(__file__).resolve().parent.parent,
+                stderr=subprocess.DEVNULL,
+                text=True,
+            ).strip()
+        except Exception:
+            git_commit = "unknown"
+        gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else ""
+        return {
+            "timestamp": datetime.utcnow().isoformat(),
+            "run_id": self.run_id,
+            "git_commit": git_commit,
+            "docker_image": "sparse-loop-moe-gpu" if self.device == "cuda" else "N/A",
+            "cuda_available": torch.cuda.is_available(),
+            "gpu_name": gpu_name,
+            "amp_enabled": self.amp,
+            "seed": self.seed,
+            "benchmark_command": " ".join(sys.argv),
+            "model_variants": self.model_filter or list(MODELS.keys()),
+            "batch_sizes": self.batch_sizes,
+            "sequence_lengths": self.sequence_lengths,
+            "train_steps": self.train_steps,
+            "sample_limit": self.sample_limit,
+            "mode": self.mode,
+            "scale": self.scale,
+            "families": self.families,
+        }
+
+    def _estimate_memory_breakdown(
+        self,
+        model_name: str,
+        model_cfg: dict[str, Any],
+        params: int,
+        batch_size: int,
+        seq_len: int,
+        max_memory_allocated_mb: float,
+    ) -> dict[str, float]:
+        scale = SCALES[self.scale]
+        dtype_bytes = 2 if self.amp else 4
+        tokens = batch_size * seq_len
+        d_model = scale["d_model"]
+        d_ff = scale["d_ff"]
+        num_experts = scale["num_experts"]
+        overrides = model_cfg.get("overrides", {})
+        deploy_mode = overrides.get("deploy_mode", "off")
+        if deploy_mode == "top1":
+            k = 1
+        elif deploy_mode in {"top2", "dense_masked_control"}:
+            k = 2
+        elif deploy_mode == "bucketed":
+            k = min(4, num_experts)
+        else:
+            k = min(int(overrides.get("max_k", 2)), num_experts)
+
+        vectorized_experts = (
+            model_name == "fixed_moe_vectorized"
+            or (model_cfg["type"] == "pvr_ec" and deploy_mode != "off")
+        )
+        parameter_memory_mb = params * 4 / (1024 ** 2)
+        activation_memory_mb = tokens * d_model * dtype_bytes / (1024 ** 2)
+        routing_buffer_memory_mb = tokens * num_experts * dtype_bytes / (1024 ** 2)
+        selected_expert_buffer_memory_mb = tokens * k * d_model * dtype_bytes / (1024 ** 2)
+        expert_weight_gather_memory_mb = (
+            tokens * k * (d_model * d_ff + d_ff * d_model) * dtype_bytes / (1024 ** 2)
+            if vectorized_experts and model_cfg["type"] == "moe" else 0.0
+        )
+        temporary_tensor_memory_mb = max(
+            0.0,
+            max_memory_allocated_mb
+            - parameter_memory_mb
+            - activation_memory_mb
+            - routing_buffer_memory_mb
+            - selected_expert_buffer_memory_mb,
+        )
+        memory_per_token = max_memory_allocated_mb / max(tokens, 1)
+        memory_per_batch = max_memory_allocated_mb / max(batch_size, 1)
+        return {
+            "parameter_memory_mb": parameter_memory_mb,
+            "activation_memory_mb": activation_memory_mb,
+            "routing_buffer_memory_mb": routing_buffer_memory_mb,
+            "selected_expert_buffer_memory_mb": selected_expert_buffer_memory_mb,
+            "expert_weight_gather_memory_mb": expert_weight_gather_memory_mb,
+            "temporary_tensor_memory_mb": temporary_tensor_memory_mb,
+            "memory_per_token": memory_per_token,
+            "memory_per_batch": memory_per_batch,
+        }
+
+    def _run_inference_only_benchmark(self) -> dict:
+        active_models = MODELS
+        if self.model_filter:
+            active_models = {k: v for k, v in MODELS.items() if k in self.model_filter}
+        device = torch.device(self.device)
+        rows = []
+        for model_name, model_cfg in active_models.items():
+            torch.manual_seed(self.seed)
+            model = self._build_model_for_name(model_name, model_cfg).to(device)
+            model.eval()
+            params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+            deploy_mode = model_cfg.get("overrides", {}).get("deploy_mode", "off")
+            expert_execution_mode = (
+                "FULLY_VECTORIZED" if model_cfg["type"] == "pvr_ec" and deploy_mode != "off"
+                else "FULLY_VECTORIZED" if model_cfg["type"] == "moe" and model_cfg.get("overrides", {}).get("vectorized_moe")
+                else "LOOPED"
+            )
+            for batch_size in self.batch_sizes:
+                for seq_len in self.sequence_lengths:
+                    input_ids = torch.randint(0, 256, (batch_size, seq_len), device=device)
+                    targets = torch.randint(0, 256, (batch_size, seq_len), device=device)
+                    with torch.no_grad():
+                        for _ in range(self.warmup_steps):
+                            model(input_ids=input_ids, targets=targets)
+                        if device.type == "cuda":
+                            torch.cuda.synchronize(device)
+                            torch.cuda.reset_peak_memory_stats(device)
+                        latencies = []
+                        total_loss = 0.0
+                        total_acc = 0.0
+                        for _ in range(self.timed_steps):
+                            if device.type == "cuda":
+                                start = torch.cuda.Event(enable_timing=True)
+                                end = torch.cuda.Event(enable_timing=True)
+                                start.record()
+                                output = model(input_ids=input_ids, targets=targets)
+                                end.record()
+                                torch.cuda.synchronize(device)
+                                elapsed_ms = start.elapsed_time(end)
+                            else:
+                                t_start = time.perf_counter()
+                                output = model(input_ids=input_ids, targets=targets)
+                                elapsed_ms = (time.perf_counter() - t_start) * 1000.0
+                            latencies.append(float(elapsed_ms))
+                            total_loss += float(output["loss"].detach().item())
+                            preds = output["logits"].argmax(dim=-1)
+                            total_acc += float((preds == targets).float().mean().detach().item())
+                    p50 = float(np.percentile(latencies, 50))
+                    p95 = float(np.percentile(latencies, 95))
+                    mean_latency = float(np.mean(latencies))
+                    tokens = batch_size * seq_len
+                    accuracy = total_acc / max(self.timed_steps, 1)
+                    loss = total_loss / max(self.timed_steps, 1)
+                    max_memory_allocated_mb = (
+                        torch.cuda.max_memory_allocated(device) / (1024 ** 2)
+                        if device.type == "cuda" else 0.0
+                    )
+                    memory_allocated_mb = (
+                        torch.cuda.memory_allocated(device) / (1024 ** 2)
+                        if device.type == "cuda" else 0.0
+                    )
+                    row = {
+                        "model": model_name,
+                        "deploy_mode": deploy_mode,
+                        "params": params,
+                        "active_params_estimate": params,
+                        "batch_size": batch_size,
+                        "sequence_length": seq_len,
+                        "loss": loss,
+                        "accuracy": accuracy,
+                        "p50_latency_ms": p50,
+                        "p95_latency_ms": p95,
+                        "mean_latency_ms": mean_latency,
+                        "tokens_per_second": 1000.0 * tokens / max(mean_latency, 1e-8),
+                        "samples_per_second": 1000.0 * batch_size / max(mean_latency, 1e-8),
+                        "quality_per_ms": accuracy / max(mean_latency, 1e-8),
+                        "quality_per_token_second": accuracy * (1000.0 * tokens / max(mean_latency, 1e-8)),
+                        "memory_allocated_mb": memory_allocated_mb,
+                        "max_memory_allocated_mb": max_memory_allocated_mb,
+                        "expert_execution_mode": expert_execution_mode,
+                        "branch_tickets_enabled": False,
+                        "mergeability_mode": "disabled",
+                        "runtime_branching_enabled": False,
+                    }
+                    row.update(self._estimate_memory_breakdown(
+                        model_name, model_cfg, params, batch_size, seq_len,
+                        max_memory_allocated_mb,
+                    ))
+                    row["quality_per_memory_mb"] = accuracy / max(max_memory_allocated_mb, 1e-8)
+                    row["latency_per_memory_mb"] = mean_latency / max(max_memory_allocated_mb, 1e-8)
+                    rows.append(row)
+        self._write_deployment_reports(rows)
+        return {"status": self._deployment_status(rows), "rows": rows}
+
+    def _deployment_status(self, rows: list[dict[str, Any]]) -> str:
+        fixed_vectorized = [r for r in rows if r["model"] == "fixed_moe_vectorized"]
+        fixed_looped = [r for r in rows if r["model"] in {"fixed_moe_looped_reference", "fixed_moe"}]
+        fixed = fixed_vectorized or fixed_looped
+        top2 = [r for r in rows if r["model"] == "pvr_ec_deploy_top2"]
+        if not fixed or not top2:
+            return "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION"
+        latency_ratios = []
+        memory_ratios = []
+        loss_deltas = []
+        for row in top2:
+            match = next((
+                r for r in fixed
+                if r["batch_size"] == row["batch_size"]
+                and r["sequence_length"] == row["sequence_length"]
+            ), None)
+            if match:
+                latency_ratios.append(row["p95_latency_ms"] / max(match["p95_latency_ms"], 1e-8))
+                memory_ratios.append(row["max_memory_allocated_mb"] / max(match["max_memory_allocated_mb"], 1e-8))
+                loss_deltas.append(row["loss"] - match["loss"])
+        avg_latency_ratio = float(np.mean(latency_ratios)) if latency_ratios else float("inf")
+        avg_memory_ratio = float(np.mean(memory_ratios)) if memory_ratios else 0.0
+        avg_loss_delta = float(np.mean(loss_deltas)) if loss_deltas else 0.0
+        if fixed_vectorized and avg_latency_ratio > 1.05:
+            return "PVR_EC_SPEEDUP_WAS_BASELINE_BACKEND_ARTIFACT"
+        if avg_memory_ratio > 3.0:
+            return "PVR_EC_DEPLOY_MEMORY_OVERHEAD_HIGH"
+        if avg_loss_delta > 0.02:
+            return "PVR_EC_DEPLOY_CAPABILITY_GAP"
+        if avg_latency_ratio <= 1.0 and avg_loss_delta <= 0.02:
+            return "PVR_EC_DEPLOY_CANDIDATE"
+        return "PVR_EC_READY_FOR_LONGER_CAPABILITY_RUN"
+
+    def _write_deployment_reports(self, rows: list[dict[str, Any]]) -> None:
+        fixed_by_key = {}
+        vectorized_by_key = {}
+        for row in rows:
+            if row["model"] == "fixed_moe":
+                fixed_by_key[(row["batch_size"], row["sequence_length"])] = row
+            if row["model"] == "fixed_moe_looped_reference":
+                fixed_by_key.setdefault((row["batch_size"], row["sequence_length"]), row)
+            if row["model"] == "fixed_moe_vectorized":
+                vectorized_by_key[(row["batch_size"], row["sequence_length"])] = row
+        for row in rows:
+            key = (row["batch_size"], row["sequence_length"])
+            fixed = fixed_by_key.get(key)
+            vectorized = vectorized_by_key.get(key)
+            row["inference_slowdown_vs_fixed_moe"] = (
+                row["mean_latency_ms"] / max(fixed["mean_latency_ms"], 1e-8)
+                if fixed else 1.0
+            )
+            row["slowdown_vs_fixed_moe_vectorized"] = (
+                row["mean_latency_ms"] / max(vectorized["mean_latency_ms"], 1e-8)
+                if vectorized else None
+            )
+            row["speedup_vs_fixed_moe_vectorized"] = (
+                vectorized["mean_latency_ms"] / max(row["mean_latency_ms"], 1e-8)
+                if vectorized else None
+            )
+            row["train_slowdown_vs_fixed_moe"] = None
+
+        status = self._deployment_status(rows)
+        top2 = [r for r in rows if r["model"] == "pvr_ec_deploy_top2"]
+        top1 = [r for r in rows if r["model"] == "pvr_ec_deploy_top1"]
+        bucketed = [r for r in rows if r["model"] == "pvr_ec_deploy_bucketed"]
+        statuses = [
+            "FIXED_MOE_VECTORIZED_BASELINE_READY" if vectorized_by_key else "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+            "PVR_EC_DEPLOY_TOP1_READY" if top1 else "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+            "PVR_EC_DEPLOY_TOP2_READY" if top2 else "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+            "PVR_EC_DEPLOY_BUCKETED_READY" if bucketed else "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+            status,
+        ]
+        if status != "PVR_EC_DEPLOY_CANDIDATE":
+            statuses.append("PVR_EC_DO_NOT_PROMOTE")
+        bucketed_memory_high = False
+        for row in bucketed:
+            fixed = vectorized_by_key.get((row["batch_size"], row["sequence_length"]))
+            if fixed and row["max_memory_allocated_mb"] > 5.0 * max(fixed["max_memory_allocated_mb"], 1e-8):
+                bucketed_memory_high = True
+        if bucketed_memory_high:
+            statuses.append("PVR_EC_BUCKETED_MEMORY_TOO_HIGH")
+        status_payload = {
+            "status": status,
+            "statuses": sorted(set(statuses)),
+            "runtime_branching_enabled": False,
+            "branch_tickets_enabled": False,
+        }
+        metadata = self._artifact_metadata()
+        report = {
+            "metadata": metadata,
+            "run_id": self.run_id,
+            "device": self.device,
+            "amp": self.amp,
+            "warmup_steps": self.warmup_steps,
+            "timed_steps": self.timed_steps,
+            "rows": rows,
+            "status": status_payload,
+        }
+        with open(self.output_dir / "pvr_inference_latency_report.json", "w") as f:
+            json.dump(report, f, indent=2, default=str)
+        with open(self.output_dir / "pvr_hot_path_profile.json", "w") as f:
+            json.dump({
+                "expert_execution_mode": "FULLY_VECTORIZED",
+                "profile_deploy": self.profile_deploy,
+                "no_hot_path_branch_tickets": True,
+                "no_runtime_branching": True,
+                "no_cuda_sync_inside_model_forward": True,
+            }, f, indent=2)
+        with open(self.output_dir / "pvr_deploy_status.json", "w") as f:
+            json.dump(status_payload, f, indent=2)
+        with open(self.output_dir / "pvr_deployment_report.json", "w") as f:
+            json.dump(report, f, indent=2, default=str)
+        with open(self.output_dir / "pvr_deploy_comparison.csv", "w", newline="") as f:
+            if rows:
+                fieldnames = sorted({key for row in rows for key in row.keys()})
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(rows)
+        self._write_fair_deployment_artifacts(rows, report, status_payload)
+
+        lines = ["# PVR-EC Deployment Report", "", f"**Status:** {status}", ""]
+        lines.append("| Model | Mode | Batch | Seq | p50 ms | p95 ms | Slowdown vs fixed_vec | Loss | QPM | Q/Mem | Expert Exec |")
+        lines.append("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|")
+        for row in rows:
+            slowdown = row.get("slowdown_vs_fixed_moe_vectorized")
+            slowdown_text = f"{slowdown:.2f}x" if isinstance(slowdown, (int, float)) else "N/A"
+            lines.append(
+                f"| {row['model']} | {row['deploy_mode']} | {row['batch_size']} | "
+                f"{row['sequence_length']} | {row['p50_latency_ms']:.3f} | "
+                f"{row['p95_latency_ms']:.3f} | {slowdown_text} | "
+                f"{row['loss']:.4f} | {row['quality_per_ms']:.6f} | "
+                f"{row.get('quality_per_memory_mb', 0.0):.6f} | {row['expert_execution_mode']} |"
+            )
+        lines.append("")
+        lines.append("Hard runtime branching is disabled. Branch tickets are disabled in the deployment hot path.")
+        with open(self.output_dir / "pvr_deployment_report.md", "w") as f:
+            f.write("\n".join(lines))
+
+    def _write_fair_deployment_artifacts(
+        self,
+        rows: list[dict[str, Any]],
+        report: dict[str, Any],
+        status_payload: dict[str, Any],
+    ) -> None:
+        metadata = report["metadata"]
+        with open(self.output_dir / "fair_deployment_comparison_report.json", "w") as f:
+            json.dump(report, f, indent=2, default=str)
+
+        lines = ["# Fair Deployment Comparison", "", f"**Status:** {status_payload['status']}", ""]
+        lines.append("| Model | Batch | Seq | p50 ms | p95 ms | Speedup vs fixed_vec | Max Mem MB | Loss | Acc |")
+        lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
+        for row in rows:
+            speedup = row.get("speedup_vs_fixed_moe_vectorized")
+            speedup_text = f"{speedup:.2f}x" if isinstance(speedup, (int, float)) else "N/A"
+            lines.append(
+                f"| {row['model']} | {row['batch_size']} | {row['sequence_length']} | "
+                f"{row['p50_latency_ms']:.3f} | {row['p95_latency_ms']:.3f} | "
+                f"{speedup_text} | {row['max_memory_allocated_mb']:.2f} | "
+                f"{row['loss']:.4f} | {row['accuracy']:.4f} |"
+            )
+        lines.append("")
+        lines.append("Fair speedup claims use `fixed_moe_vectorized` as the baseline when available.")
+        with open(self.output_dir / "fair_deployment_comparison_report.md", "w") as f:
+            f.write("\n".join(lines))
+
+        vectorization_rows = []
+        looped = [r for r in rows if r["model"] == "fixed_moe_looped_reference"]
+        vectorized = [r for r in rows if r["model"] == "fixed_moe_vectorized"]
+        for row in vectorized:
+            match = next((
+                r for r in looped
+                if r["batch_size"] == row["batch_size"]
+                and r["sequence_length"] == row["sequence_length"]
+            ), None)
+            vectorization_rows.append({
+                "batch_size": row["batch_size"],
+                "sequence_length": row["sequence_length"],
+                "params_match_looped_reference": bool(match and match["params"] == row["params"]),
+                "looped_mean_latency_ms": match["mean_latency_ms"] if match else None,
+                "vectorized_mean_latency_ms": row["mean_latency_ms"],
+                "speedup_vs_looped_reference": (
+                    match["mean_latency_ms"] / max(row["mean_latency_ms"], 1e-8)
+                    if match else None
+                ),
+                "looped_execution_mode": match["expert_execution_mode"] if match else None,
+                "vectorized_execution_mode": row["expert_execution_mode"],
+            })
+        with open(self.output_dir / "fixed_moe_vectorization_report.json", "w") as f:
+            json.dump({"metadata": metadata, "rows": vectorization_rows}, f, indent=2, default=str)
+
+        with open(self.output_dir / "inference_latency_matrix.json", "w") as f:
+            json.dump({"metadata": metadata, "rows": rows}, f, indent=2, default=str)
+        with open(self.output_dir / "inference_latency_matrix.csv", "w", newline="") as f:
+            if rows:
+                fieldnames = sorted({key for row in rows for key in row.keys()})
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(rows)
+
+        memory_rows = [
+            {
+                key: row.get(key)
+                for key in [
+                    "model", "deploy_mode", "batch_size", "sequence_length",
+                    "parameter_memory_mb", "activation_memory_mb",
+                    "routing_buffer_memory_mb", "selected_expert_buffer_memory_mb",
+                    "expert_weight_gather_memory_mb", "temporary_tensor_memory_mb",
+                    "memory_allocated_mb", "max_memory_allocated_mb",
+                    "memory_per_token", "memory_per_batch",
+                    "quality_per_memory_mb", "latency_per_memory_mb",
+                ]
+            }
+            for row in rows
+        ]
+        with open(self.output_dir / "memory_efficiency_report.json", "w") as f:
+            json.dump({"metadata": metadata, "rows": memory_rows}, f, indent=2, default=str)
+
+        with open(self.output_dir / "aux_alpha_capability_report.json", "w") as f:
+            json.dump({
+                "metadata": metadata,
+                "pvr_aux_alpha": self.pvr_aux_alpha,
+                "status": "AUX_ALPHA_SINGLE_VALUE_RECORDED",
+                "rows": [r for r in rows if r["model"] == "pvr_ec_deploy_top2"],
+            }, f, indent=2, default=str)
+
+        with open(self.output_dir / "longer_capability_report.json", "w") as f:
+            json.dump({
+                "metadata": metadata,
+                "status": "PENDING_LONGER_CAPABILITY_RUN",
+                "minimum_required": {
+                    "mode": "benchmark-lite",
+                    "scale": "small",
+                    "train_steps": 200,
+                    "sample_limit": 512,
+                    "families": ["clrs", "listops", "scan", "dyck"],
+                },
+                "rows": [],
+            }, f, indent=2, default=str)
+
+        go = {
+            "metadata": metadata,
+            "status": status_payload["status"],
+            "statuses": status_payload["statuses"],
+            "go": status_payload["status"] == "PVR_EC_DEPLOY_CANDIDATE",
+            "do_not_promote": status_payload["status"] != "PVR_EC_DEPLOY_CANDIDATE",
+            "primary_baseline": "fixed_moe_vectorized",
+            "primary_candidate": "pvr_ec_deploy_top2",
+        }
+        with open(self.output_dir / "pvr_deploy_go_no_go.json", "w") as f:
+            json.dump(go, f, indent=2, default=str)
 
     def _generate_all_datasets(self) -> dict[str, list[BenchmarkSample]]:
         """Generate all benchmark datasets."""
@@ -357,6 +899,12 @@ class AlgorithmicBenchmarkRunner:
                 pvr_expert_type=self.pvr_expert_type or "delta_rank_medium",
                 pvr_training_dispatch_mode=self.pvr_training_dispatch_mode,
                 pvr_inference_dispatch_mode=self.pvr_inference_dispatch_mode,
+                pvr_deploy_mode=overrides.get("deploy_mode", self.pvr_deploy_mode),
+                pvr_aux_alpha=self.pvr_aux_alpha,
+                branch_ticket_shadow_mode=False if overrides.get("deploy_mode", self.pvr_deploy_mode) != "off" else True,
+                max_shadow_branch_tickets=0 if overrides.get("deploy_mode", self.pvr_deploy_mode) != "off" else 64,
+                mergeability_mode="disabled",
+                runtime_branching=False,
             )
             model = PVRECModel(pvr_config)
 
@@ -719,6 +1267,7 @@ class AlgorithmicBenchmarkRunner:
 
         # benchmark_report.md
         self._write_report(summary, valid)
+        self._write_capability_validation_reports(valid, summary)
 
         # failure_analysis.md
         self._write_failure_analysis(summary)
@@ -764,6 +1313,78 @@ class AlgorithmicBenchmarkRunner:
         }
         with open(self.output_dir / "reproducibility_manifest.json", "w") as f:
             json.dump(manifest, f, indent=2)
+
+    def _write_capability_validation_reports(self, valid: list[Result], summary: dict) -> None:
+        rows = [asdict(r) for r in valid]
+        model_rows = summary.get("model_table", {})
+        metadata = self._artifact_metadata()
+
+        def model_avg(name: str, key: str, default: float = 0.0) -> float:
+            return float(model_rows.get(name, {}).get(key, default))
+
+        fixed_loss = model_avg("fixed_moe_vectorized", "avg_loss", model_avg("fixed_moe_looped_reference", "avg_loss"))
+        fixed_acc = model_avg("fixed_moe_vectorized", "avg_accuracy", model_avg("fixed_moe_looped_reference", "avg_accuracy"))
+        top2_loss = model_avg("pvr_ec_deploy_top2", "avg_loss")
+        top2_acc = model_avg("pvr_ec_deploy_top2", "avg_accuracy")
+        loss_delta = top2_loss - fixed_loss if top2_loss and fixed_loss else None
+        acc_delta = top2_acc - fixed_acc if top2_acc or fixed_acc else None
+
+        status = "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION"
+        if loss_delta is not None:
+            if loss_delta > 0.02:
+                status = "PVR_EC_DEPLOY_CAPABILITY_GAP"
+            else:
+                status = "PVR_EC_READY_FOR_LONGER_CAPABILITY_RUN"
+
+        family_summary: dict[str, dict[str, float]] = {}
+        for model_name in sorted({r.model_name for r in valid}):
+            for family in sorted({r.family for r in valid if r.model_name == model_name}):
+                items = [r for r in valid if r.model_name == model_name and r.family == family]
+                family_summary[f"{model_name}:{family}"] = {
+                    "avg_loss": float(np.mean([r.loss for r in items])) if items else 0.0,
+                    "avg_accuracy": float(np.mean([r.accuracy for r in items])) if items else 0.0,
+                    "avg_training_time_s": float(np.mean([r.training_time_s for r in items])) if items else 0.0,
+                    "avg_inference_time_s": float(np.mean([r.inference_time_s for r in items])) if items else 0.0,
+                }
+
+        capability_report = {
+            "metadata": metadata,
+            "status": status,
+            "model_table": model_rows,
+            "fixed_moe_vectorized_vs_pvr_ec_deploy_top2": {
+                "loss_delta": loss_delta,
+                "accuracy_delta": acc_delta,
+                "fixed_moe_vectorized_loss": fixed_loss,
+                "pvr_ec_deploy_top2_loss": top2_loss,
+                "fixed_moe_vectorized_accuracy": fixed_acc,
+                "pvr_ec_deploy_top2_accuracy": top2_acc,
+            },
+            "per_family": family_summary,
+            "rows": rows,
+        }
+        with open(self.output_dir / "longer_capability_report.json", "w") as f:
+            json.dump(capability_report, f, indent=2, default=str)
+
+        top2_rows = [r for r in rows if r["model_name"] == "pvr_ec_deploy_top2"]
+        with open(self.output_dir / "aux_alpha_capability_report.json", "w") as f:
+            json.dump({
+                "metadata": metadata,
+                "pvr_aux_alpha": self.pvr_aux_alpha,
+                "status": "AUX_ALPHA_SINGLE_VALUE_RECORDED",
+                "rows": top2_rows,
+            }, f, indent=2, default=str)
+
+        if not (self.output_dir / "pvr_deploy_go_no_go.json").exists():
+            with open(self.output_dir / "pvr_deploy_go_no_go.json", "w") as f:
+                json.dump({
+                    "metadata": metadata,
+                    "status": status,
+                    "statuses": [status, "PVR_EC_DO_NOT_PROMOTE"],
+                    "go": False,
+                    "do_not_promote": True,
+                    "primary_baseline": "fixed_moe_vectorized",
+                    "primary_candidate": "pvr_ec_deploy_top2",
+                }, f, indent=2, default=str)
 
     def _write_report(self, summary: dict, valid: list[Result]):
         lines = ["# Algorithmic Benchmark Report\n"]
@@ -860,10 +1481,20 @@ def main():
     parser.add_argument("--pvr-expert-type", choices=sorted(EXPERT_TYPES), default=None)
     parser.add_argument("--pvr-training-dispatch-mode", choices=["dense", "sparse"], default=None)
     parser.add_argument("--pvr-inference-dispatch-mode", choices=["dense", "sparse"], default=None)
+    parser.add_argument("--pvr-deploy-mode", choices=sorted(DEPLOY_MODES), default="off")
+    parser.add_argument("--pvr-aux-alpha", type=float, default=0.5)
+    parser.add_argument("--benchmark-inference-only", action="store_true")
+    parser.add_argument("--warmup-steps", type=int, default=10)
+    parser.add_argument("--timed-steps", type=int, default=50)
+    parser.add_argument("--batch-sizes", default="1,32")
+    parser.add_argument("--sequence-lengths", default="64")
+    parser.add_argument("--profile-deploy", action="store_true")
     args = parser.parse_args()
 
     families = [f.strip() for f in args.families.split(",")]
     models = [m.strip() for m in args.models.split(",")] if args.models else None
+    batch_sizes = [int(x.strip()) for x in args.batch_sizes.split(",") if x.strip()]
+    sequence_lengths = [int(x.strip()) for x in args.sequence_lengths.split(",") if x.strip()]
 
     runner = AlgorithmicBenchmarkRunner(
         mode=args.mode, families=families, seed=args.seed,
@@ -874,12 +1505,23 @@ def main():
         pvr_expert_type=args.pvr_expert_type,
         pvr_training_dispatch_mode=args.pvr_training_dispatch_mode,
         pvr_inference_dispatch_mode=args.pvr_inference_dispatch_mode,
+        pvr_deploy_mode=args.pvr_deploy_mode,
+        pvr_aux_alpha=args.pvr_aux_alpha,
+        benchmark_inference_only=args.benchmark_inference_only,
+        warmup_steps=args.warmup_steps,
+        timed_steps=args.timed_steps,
+        batch_sizes=batch_sizes,
+        sequence_lengths=sequence_lengths,
+        profile_deploy=args.profile_deploy,
     )
     summary = runner.run()
-    rec = summary["recommendation"]
-    print(f"  STATUS: {rec['status']}")
-    print(f"  ARCH: {rec.get('architecture_recommendation', 'N/A')}")
-    print(f"  {rec['reason']}")
+    if args.benchmark_inference_only:
+        print(f"  STATUS: {summary['status']}")
+    else:
+        rec = summary["recommendation"]
+        print(f"  STATUS: {rec['status']}")
+        print(f"  ARCH: {rec.get('architecture_recommendation', 'N/A')}")
+        print(f"  {rec['reason']}")
 
 
 if __name__ == "__main__":

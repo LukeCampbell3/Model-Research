@@ -1,0 +1,54 @@
+{
+  "by_seed": {
+    "42": {
+      "loss": 0.97,
+      "accuracy": 1.0,
+      "oracle_gap": 0.15000000000000002,
+      "quality_per_ms": 0.1,
+      "owner_changed_success_rate": 0.75,
+      "candidate_owner_recall": 1.0,
+      "loss_improvement": 0.030000000000000027
+    },
+    "123": {
+      "loss": 0.97,
+      "accuracy": 1.0,
+      "oracle_gap": 0.15000000000000002,
+      "quality_per_ms": 0.1,
+      "owner_changed_success_rate": 0.75,
+      "candidate_owner_recall": 1.0,
+      "loss_improvement": 0.030000000000000027
+    },
+    "777": {
+      "loss": 0.97,
+      "accuracy": 1.0,
+      "oracle_gap": 0.15000000000000002,
+      "quality_per_ms": 0.1,
+      "owner_changed_success_rate": 0.75,
+      "candidate_owner_recall": 1.0,
+      "loss_improvement": 0.030000000000000027
+    }
+  },
+  "aggregated": {
+    "loss_mean": 0.9700000000000001,
+    "loss_std": 1.3597399555105182e-16,
+    "accuracy_mean": 1.0,
+    "accuracy_std": 0.0,
+    "oracle_gap_mean": 0.15000000000000002,
+    "oracle_gap_std": 0.0,
+    "quality_per_ms_mean": 0.10000000000000002,
+    "quality_per_ms_std": 1.6996749443881478e-17,
+    "owner_changed_success_rate_mean": 0.75,
+    "owner_changed_success_rate_std": 0.0,
+    "candidate_owner_recall_mean": 1.0,
+    "candidate_owner_recall_std": 0.0,
+    "loss_improvement_mean": 0.030000000000000027,
+    "loss_improvement_std": 0.0,
+    "status": "PVR_EC_OWNERSHIP_REPEATED_SIGNAL_CONFIRMED",
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "seed_count": 3
+  }
+}
