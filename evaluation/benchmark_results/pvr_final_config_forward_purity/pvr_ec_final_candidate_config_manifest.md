@@ -1,0 +1,127 @@
+# PVR-EC Final Candidate Config Manifest
+
+**Status:** PVR_EC_REPRODUCIBILITY_MANIFEST_COMPLETE
+
+**Statuses:** PVR_EC_FINAL_CONFIG_FROZEN, PVR_EC_REPRODUCIBILITY_MANIFEST_COMPLETE, PVR_EC_DO_NOT_PROMOTE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T17:34:03.911052",
+    "run_id": "algo_20260607_173357_inference-only",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode inference-only --scale small --device cuda --amp --models pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-final-config-manifest --run-forward-purity-gate --output-dir evaluation/benchmark_results/pvr_final_config_forward_purity",
+    "model_variants": [
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "inference-only",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_REPRODUCIBILITY_MANIFEST_COMPLETE",
+  "statuses": [
+    "PVR_EC_FINAL_CONFIG_FROZEN",
+    "PVR_EC_REPRODUCIBILITY_MANIFEST_COMPLETE",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "model_name": "pvr_ec_ownership_top1_final_candidate_v1",
+  "config_name": "pvr_ec_ownership_top1_final_candidate_v1",
+  "router_mode": "ownership_top1",
+  "ownership_map_mode": "frozen",
+  "expert_delta_scale_schedule": "warmup_hold_1_to_8",
+  "sparse_aux_loss": "sparse_ce_0_05",
+  "sparse_aux_loss_variant": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+  "logit_norm_penalty": "light",
+  "temperature_regularization": "disabled",
+  "owners_per_token_expected": 1.0,
+  "Top2_expected": 0,
+  "Top4_expected": 0,
+  "source_commit_hash_if_available": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+  "docker_image": "sparse-loop-moe-gpu",
+  "docker_image_id_or_digest": "unknown",
+  "device": "cuda",
+  "AMP": true,
+  "dataset_seed": 42,
+  "data_split_hash": "dc4f6111bacc8c211be6ad7cad2603088acdaa9bfa138f1416f483cc3115d212",
+  "model_init_seed": 42,
+  "ownership_map_hash": "480fa3dcaf94279c2dd4dcdd41422dd7fffe1e0e2f2599d15251a92a4c13fc60",
+  "prototype_table_hash": "9650902f38da6ca55aaa78c002767f116f90376b5b300cac9867f0623fac40f3",
+  "compatible_mask_hash": "612bf7a43902cf1c6c7851ecc1286a442408b9969aea72a8779b594cfbc18d7b",
+  "config_hash": "fefd6fb2ce9cdf9f999725ad65888887c55108dcdb29277ac1c2d6edbac52ca7",
+  "json_config_sha256": "bef67e1f5e462d932556489bb1e84b736404f95d1bc0acb83d23f97f954e9fae",
+  "yaml_config_sha256": "36c35452dd5bfbefe37a68ba1e5a07512fe2df6f39169a6f3169563fc420f923",
+  "all_CLI_flags_used": [
+    "--mode",
+    "inference-only",
+    "--scale",
+    "small",
+    "--device",
+    "cuda",
+    "--amp",
+    "--models",
+    "pvr_ec_ownership_top1_final_candidate_v1",
+    "--enable-ownership-map",
+    "--ownership-map-mode",
+    "frozen",
+    "--run-final-config-manifest",
+    "--run-forward-purity-gate",
+    "--output-dir",
+    "evaluation/benchmark_results/pvr_final_config_forward_purity"
+  ],
+  "row_hash": "563dbcc2b4f7e0668d52be1fc8a967745e453ba4cab4a26f135838c3a1c79dc4",
+  "frozen_config": {
+    "config_name": "pvr_ec_ownership_top1_final_candidate_v1",
+    "model_name": "pvr_ec_ownership_top1_final_candidate_v1",
+    "base_model": "pvr_ec_ownership_top1_best_sparse_logit_repair",
+    "ownership_mode": "top1",
+    "owners_per_token": 1.0,
+    "top2_execution": "disabled",
+    "top4_execution": "disabled",
+    "expert_delta_scale_schedule": "warmup_hold_1_to_8",
+    "pvr_expert_delta_scale_schedule": "warmup_hold",
+    "pvr_expert_delta_scale_start": 1.0,
+    "pvr_expert_delta_scale_end": 8.0,
+    "pvr_expert_type": "delta_rank_64",
+    "sparse_aux_loss": "sparse_ce_0_05",
+    "sparse_aux_loss_variant": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+    "sparse_aux_scope": "aux_all_tokens",
+    "logit_norm_penalty": "light",
+    "temperature_regularization": "disabled",
+    "ownership_map_mode": "frozen",
+    "routing": "tensor_only_hot_path",
+    "oracle_owner": "disabled",
+    "forced_action": "disabled",
+    "replay_in_forward": "disabled",
+    "file_writes_in_forward": "disabled",
+    "cpu_gpu_transfer_in_forward": "disabled",
+    "production_topk_execution": 1,
+    "notes": "Frozen final candidate v1. Do not mutate; create v1_1 for any selected calibration variant."
+  }
+}
+```

@@ -1,0 +1,490 @@
+# PVR-EC Nonlinear Overfit Report
+
+**Status:** PVR_EC_NONLINEAR_OVERFIT_FAILED
+
+**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_FIXED_OWNER_PARITY_FAILED, PVR_EC_LEARNED_OWNER_PARITY_FAILED, PVR_EC_LOSS_SCHEDULE_BLOCKER, PVR_EC_NONLINEAR_OVERFIT_FAILED, PVR_EC_NONLINEAR_OVERFIT_READY, PVR_EC_PARITY_OVERFIT_FAILED, PVR_EC_ROUND_ROBIN_PARITY_FAILED
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T20:17:42.750300",
+    "run_id": "algo_20260607_201742_pvr-overfit-sanity",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "model_variants": [
+      "pvr_full",
+      "pvr_full_scale_schedule_1_to_4"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "pvr-nonlinear-overfit",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "pvr_overfit_tasks": [
+      "toy_identity"
+    ],
+    "pvr_overfit_steps": 2,
+    "pvr_overfit_batch_size": 2,
+    "failures": []
+  },
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+    "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
+    "PVR_EC_LOSS_SCHEDULE_BLOCKER",
+    "PVR_EC_NONLINEAR_OVERFIT_FAILED",
+    "PVR_EC_NONLINEAR_OVERFIT_READY",
+    "PVR_EC_PARITY_OVERFIT_FAILED",
+    "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
+  ],
+  "promotion_ready": false,
+  "analysis": {
+    "overall_status": "PVR_EC_NONLINEAR_OVERFIT_FAILED",
+    "statuses": [
+      "PVR_EC_DO_NOT_PROMOTE",
+      "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+      "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
+      "PVR_EC_LOSS_SCHEDULE_BLOCKER",
+      "PVR_EC_NONLINEAR_OVERFIT_FAILED",
+      "PVR_EC_NONLINEAR_OVERFIT_READY",
+      "PVR_EC_PARITY_OVERFIT_FAILED",
+      "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
+    ],
+    "controls_pass": true,
+    "fixed_owner_parity": false,
+    "round_robin_parity": false,
+    "uniform_owner_parity": false,
+    "learned_owner_parity": false,
+    "sparse_only_parity": false,
+    "shared_only_parity": false,
+    "dense_parity": false,
+    "fixed_moe_parity": false,
+    "micro_ffn_parity": false,
+    "best_expert_delta_scale": null,
+    "best_expert_delta_scale_accuracy": 0.0,
+    "dominant_failure_mode": "loss_schedule_or_target_blocker",
+    "recommended_repair": "verify_parity_target_and_loss_construction",
+    "parity_results_by_model": {
+      "pvr_full": {},
+      "pvr_full_scale_schedule_1_to_4": {}
+    },
+    "nonlinear_results_by_model": {
+      "pvr_full": {},
+      "pvr_full_scale_schedule_1_to_4": {}
+    }
+  },
+  "status": "PVR_EC_NONLINEAR_OVERFIT_FAILED",
+  "best_model_by_parity_loss": "none",
+  "best_model_by_parity_accuracy": "none",
+  "whether_fixed_owner_passed": false,
+  "whether_round_robin_passed": false,
+  "whether_learned_owner_passed": false,
+  "whether_sparse_only_passed": false,
+  "whether_shared_only_passed": false,
+  "dominant_failure_mode": "loss_schedule_or_target_blocker",
+  "recommended_repair": "verify_parity_target_and_loss_construction",
+  "rows": [
+    {
+      "model": "pvr_full",
+      "task": "toy_identity",
+      "initial_train_loss": 4.999621868133545,
+      "final_train_loss": 4.838598251342773,
+      "loss_reduction_pct": 0.032207159068788675,
+      "steps_to_90pct_loss_reduction": null,
+      "final_train_accuracy": 1.0,
+      "overfit_success": true,
+      "train_loss_curve": [
+        4.996732711791992,
+        4.838598251342773
+      ],
+      "train_accuracy_curve": [
+        0.84375,
+        1.0
+      ],
+      "expert_delta_scale_curve": [
+        1.0,
+        1.0
+      ],
+      "schedule_step_metrics": [
+        {
+          "step": 0,
+          "expert_delta_scale_t": 1.0,
+          "train_loss": 4.996732711791992,
+          "eval_loss": 4.996732711791992,
+          "accuracy": 0.84375,
+          "shared_output_norm": 0.1661963239312172,
+          "sparse_output_norm": 3.634090781211853,
+          "expert_delta_contribution_pct": 0.9562674294512387,
+          "expert_grad_norm": 0.044243463191378396,
+          "shared_grad_norm": 0.04920694761676714,
+          "expert_grad_to_shared_grad_ratio": 0.8991304141836782,
+          "logit_norm": 2.645017147064209,
+          "prediction_entropy": 5.531331539154053,
+          "confidence_when_correct": 0.007146291900426149,
+          "confidence_when_wrong": 0.006187121383845806,
+          "ece": 0.838687002658844,
+          "calibration_proxy": 0.838687002658844,
+          "loss_accuracy_disagreement": 0.7807394862174988,
+          "latency_ms": 13.804435729980469
+        },
+        {
+          "step": 1,
+          "expert_delta_scale_t": 1.0,
+          "train_loss": 4.838598251342773,
+          "eval_loss": 4.838598251342773,
+          "accuracy": 1.0,
+          "shared_output_norm": 0.16426925361156464,
+          "sparse_output_norm": 3.505049467086792,
+          "expert_delta_contribution_pct": 0.9552316748379109,
+          "expert_grad_norm": 0.05027881366549991,
+          "shared_grad_norm": 0.05555766215547919,
+          "expert_grad_to_shared_grad_ratio": 0.9049843300604277,
+          "logit_norm": 2.640444278717041,
+          "prediction_entropy": 5.531085968017578,
+          "confidence_when_correct": 0.008007027208805084,
+          "confidence_when_wrong": 0.0,
+          "ece": 0.9919930100440979,
+          "calibration_proxy": 0.9919930100440979,
+          "loss_accuracy_disagreement": 0.0,
+          "latency_ms": 4.010677337646484
+        }
+      ],
+      "gradient_metrics": {
+        "shared_gradient_norm": 0.05555766215547919,
+        "expert_gradient_norm_mean": 0.05027881366549991,
+        "expert_gradient_norm_max": 0.0646685094689019,
+        "expert_gradient_norm_min": 0.043217366677708924,
+        "expert_gradient_norm_by_expert": {
+          "0": 0.0646685094689019,
+          "1": 0.043217366677708924,
+          "2": 0.04354931920534,
+          "3": 0.04968005931004882
+        },
+        "router_gradient_norm": 0.00208123802440241,
+        "prototype_gradient_norm": 0.0,
+        "ownership_bias_gradient_norm_if_trainable": 0.0,
+        "expert_grad_to_shared_grad_ratio": 0.9049843300604277,
+        "dead_gradient_expert_count": 0,
+        "zero_gradient_expert_count": 0,
+        "expert_gradient_cv": 0.1729813718526745,
+        "expert_gradient_cosine_similarity": -0.03016696870326996
+      },
+      "optimizer_metrics": {
+        "parameter_requires_grad_by_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_in_optimizer_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_update_norm_by_group": {
+          "other": 0.09421771289780737,
+          "shared": 0.10014902691667278,
+          "expert": 0.09438516350928694,
+          "router": 0.06373248947784305
+        },
+        "expert_parameter_update_norm": 0.09438516350928694,
+        "shared_parameter_update_norm": 0.10014902691667278,
+        "router_parameter_update_norm": 0.06373248947784305,
+        "prototype_parameter_update_norm": 0.0,
+        "ownership_parameter_update_norm": 0.0
+      },
+      "contribution_metrics": {
+        "shared_output_norm": 0.16426925361156464,
+        "sparse_output_norm": 3.505049467086792,
+        "expert_delta_output_norm_mean": 3.505049467086792,
+        "expert_delta_output_norm_by_expert": {},
+        "combined_output_norm": null,
+        "shared_sparse_ratio": 0.04693855904042721,
+        "expert_delta_contribution_pct": 0.9552316748379109,
+        "expert_delta_to_shared_ratio": 21.337221604323616,
+        "expert_output_diversity": null,
+        "expert_output_correlation": null
+      },
+      "loss_target_sanity": {
+        "target_shape": [
+          2,
+          16
+        ],
+        "logit_shape": [
+          2,
+          16,
+          256
+        ],
+        "loss_function": "cross_entropy",
+        "ignore_index": null,
+        "num_classes": 256,
+        "target_value_range": [
+          19,
+          255
+        ],
+        "class_distribution": {
+          "19": 1,
+          "38": 1,
+          "41": 2,
+          "53": 1,
+          "59": 1,
+          "60": 1,
+          "61": 2,
+          "63": 2,
+          "84": 1,
+          "90": 1,
+          "91": 1,
+          "97": 1,
+          "132": 1,
+          "137": 1,
+          "156": 1,
+          "166": 1,
+          "172": 1,
+          "184": 1,
+          "196": 1,
+          "207": 1,
+          "211": 1,
+          "213": 1,
+          "218": 1,
+          "228": 1,
+          "239": 1,
+          "240": 1,
+          "247": 1,
+          "251": 1,
+          "255": 1
+        },
+        "baseline_random_loss": 4.999621868133545,
+        "expected_random_loss": 5.545177444479562,
+        "accuracy_definition": "mean argmax token accuracy over all positions"
+      },
+      "debug_owner_mode": "",
+      "debug_force_expert_id": null,
+      "pvr_shared_scale": 1.0,
+      "pvr_expert_delta_scale": 1.0,
+      "pvr_expert_delta_scale_schedule": "constant",
+      "pvr_expert_delta_scale_start": 1.0,
+      "pvr_expert_delta_scale_end": 1.0,
+      "pvr_expert_delta_scale_decay": null,
+      "scale_schedule_name": "constant",
+      "parity_class_balance": {
+        "balanced": true,
+        "note": "non-parity task"
+      }
+    },
+    {
+      "model": "pvr_full_scale_schedule_1_to_4",
+      "task": "toy_identity",
+      "initial_train_loss": 4.987950325012207,
+      "final_train_loss": 4.8224639892578125,
+      "loss_reduction_pct": 0.033177222099538356,
+      "steps_to_90pct_loss_reduction": null,
+      "final_train_accuracy": 1.0,
+      "overfit_success": true,
+      "train_loss_curve": [
+        4.988267421722412,
+        4.8224639892578125
+      ],
+      "train_accuracy_curve": [
+        0.84375,
+        1.0
+      ],
+      "expert_delta_scale_curve": [
+        4.0,
+        4.0
+      ],
+      "schedule_step_metrics": [
+        {
+          "step": 0,
+          "expert_delta_scale_t": 4.0,
+          "train_loss": 4.988267421722412,
+          "eval_loss": 4.988267421722412,
+          "accuracy": 0.84375,
+          "shared_output_norm": 0.1657174527645111,
+          "sparse_output_norm": 14.28962755203247,
+          "expert_delta_contribution_pct": 0.9885359046975691,
+          "expert_grad_norm": 0.04795255823046318,
+          "shared_grad_norm": 0.013333521579625085,
+          "expert_grad_to_shared_grad_ratio": 3.5963910917382353,
+          "logit_norm": 2.6524550914764404,
+          "prediction_entropy": 5.531264781951904,
+          "confidence_when_correct": 0.007211705669760704,
+          "confidence_when_wrong": 0.006153425667434931,
+          "ece": 0.8386266827583313,
+          "calibration_proxy": 0.8386266827583313,
+          "loss_accuracy_disagreement": 0.7794167846441269,
+          "latency_ms": 16.690492630004883
+        },
+        {
+          "step": 1,
+          "expert_delta_scale_t": 4.0,
+          "train_loss": 4.8224639892578125,
+          "eval_loss": 4.8224639892578125,
+          "accuracy": 1.0,
+          "shared_output_norm": 0.16599325090646744,
+          "sparse_output_norm": 13.383234024047852,
+          "expert_delta_contribution_pct": 0.9877488769257488,
+          "expert_grad_norm": 0.05257111979153706,
+          "shared_grad_norm": 0.015383139805635437,
+          "expert_grad_to_shared_grad_ratio": 3.4174505631339467,
+          "logit_norm": 2.668553352355957,
+          "prediction_entropy": 5.530787944793701,
+          "confidence_when_correct": 0.00813831016421318,
+          "confidence_when_wrong": 0.0,
+          "ece": 0.9918616414070129,
+          "calibration_proxy": 0.9918616414070129,
+          "loss_accuracy_disagreement": 0.0,
+          "latency_ms": 0.0
+        }
+      ],
+      "gradient_metrics": {
+        "shared_gradient_norm": 0.015383139805635437,
+        "expert_gradient_norm_mean": 0.05257111979153706,
+        "expert_gradient_norm_max": 0.06279058981454,
+        "expert_gradient_norm_min": 0.04800290730781853,
+        "expert_gradient_norm_by_expert": {
+          "0": 0.04800290730781853,
+          "1": 0.048777383140986785,
+          "2": 0.06279058981454,
+          "3": 0.050713598902802914
+        },
+        "router_gradient_norm": 0.0005899048167824125,
+        "prototype_gradient_norm": 0.0,
+        "ownership_bias_gradient_norm_if_trainable": 0.0,
+        "expert_grad_to_shared_grad_ratio": 3.4174505631339467,
+        "dead_gradient_expert_count": 0,
+        "zero_gradient_expert_count": 0,
+        "expert_gradient_cv": 0.11379334574702235,
+        "expert_gradient_cosine_similarity": 0.03827350214123726
+      },
+      "optimizer_metrics": {
+        "parameter_requires_grad_by_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_in_optimizer_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_update_norm_by_group": {
+          "other": 0.09420390529558062,
+          "shared": 0.10011071820432942,
+          "expert": 0.1078358794329688,
+          "router": 0.063008998404257
+        },
+        "expert_parameter_update_norm": 0.1078358794329688,
+        "shared_parameter_update_norm": 0.10011071820432942,
+        "router_parameter_update_norm": 0.063008998404257,
+        "prototype_parameter_update_norm": 0.0,
+        "ownership_parameter_update_norm": 0.0
+      },
+      "contribution_metrics": {
+        "shared_output_norm": 0.16599325090646744,
+        "sparse_output_norm": 13.383234024047852,
+        "expert_delta_output_norm_mean": 13.383234024047852,
+        "expert_delta_output_norm_by_expert": {},
+        "combined_output_norm": null,
+        "shared_sparse_ratio": 0.01240476407110691,
+        "expert_delta_contribution_pct": 0.9877488769257488,
+        "expert_delta_to_shared_ratio": 80.62516970397147,
+        "expert_output_diversity": null,
+        "expert_output_correlation": null
+      },
+      "loss_target_sanity": {
+        "target_shape": [
+          2,
+          16
+        ],
+        "logit_shape": [
+          2,
+          16,
+          256
+        ],
+        "loss_function": "cross_entropy",
+        "ignore_index": null,
+        "num_classes": 256,
+        "target_value_range": [
+          19,
+          255
+        ],
+        "class_distribution": {
+          "19": 1,
+          "38": 1,
+          "41": 2,
+          "53": 1,
+          "59": 1,
+          "60": 1,
+          "61": 2,
+          "63": 2,
+          "84": 1,
+          "90": 1,
+          "91": 1,
+          "97": 1,
+          "132": 1,
+          "137": 1,
+          "156": 1,
+          "166": 1,
+          "172": 1,
+          "184": 1,
+          "196": 1,
+          "207": 1,
+          "211": 1,
+          "213": 1,
+          "218": 1,
+          "228": 1,
+          "239": 1,
+          "240": 1,
+          "247": 1,
+          "251": 1,
+          "255": 1
+        },
+        "baseline_random_loss": 4.987950325012207,
+        "expected_random_loss": 5.545177444479562,
+        "accuracy_definition": "mean argmax token accuracy over all positions"
+      },
+      "debug_owner_mode": "",
+      "debug_force_expert_id": null,
+      "pvr_shared_scale": 1.0,
+      "pvr_expert_delta_scale": 1.0,
+      "pvr_expert_delta_scale_schedule": "warmup_hold",
+      "pvr_expert_delta_scale_start": 1.0,
+      "pvr_expert_delta_scale_end": 4.0,
+      "pvr_expert_delta_scale_decay": null,
+      "scale_schedule_name": "warmup_hold_1_to_4",
+      "parity_class_balance": {
+        "balanced": true,
+        "note": "non-parity task"
+      }
+    }
+  ],
+  "failures": []
+}
+```

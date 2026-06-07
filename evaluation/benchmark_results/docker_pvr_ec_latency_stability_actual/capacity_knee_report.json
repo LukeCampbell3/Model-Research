@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:57:26.691549",
+    "run_id": "algo_20260606_185724_inference-only",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode inference-only --scale tiny --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_full_expert_ffn_control --run-latency-stability-diagnostic --batch-size-list 1,8 --seq-len-list 16,64 --warmup-steps 3 --timed-steps 10 --output-dir evaluation/benchmark_results/docker_pvr_ec_latency_stability_actual",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      8
+    ],
+    "sequence_lengths": [
+      16,
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "inference-only",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+  "statuses": [
+    "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+    "PVR_EC_DISTILLATION_BLOCKED",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "best_capacity_variant": "pvr_ec_ownership_top1_full_expert_ffn_control",
+  "best_capacity_metrics": {
+    "capacity_variant": "full_expert_ffn",
+    "expert_architecture_id": "full_expert_ffn",
+    "params_total": 235266,
+    "params_active_estimate": 135810,
+    "avg_loss": 5.528628468513489,
+    "avg_accuracy": 0.0009765625,
+    "latency_p50": 9.644951499808485,
+    "latency_p95": 11.288897162535248,
+    "quality_per_ms": 3.786352204104371e-05,
+    "quality_per_active_param": 7.190652382004271e-09,
+    "owners_per_token": 1.0,
+    "expert_capacity_failure_rate": null,
+    "shared_vs_sparse_contribution": null,
+    "owner_change_rate": null,
+    "owner_changed_success_rate": null
+  },
+  "full_ffn_signal_real": false,
+  "model_averages": {
+    "pvr_ec_ownership_top1_delta_medium": {
+      "capacity_variant": "delta_medium",
+      "expert_architecture_id": "delta_rank_32",
+      "params_total": 136194,
+      "params_active_estimate": 111042,
+      "avg_loss": 5.559172987937927,
+      "avg_accuracy": 0.001953125,
+      "latency_p50": 4.471528875114927,
+      "latency_p95": 5.7241903125827776,
+      "quality_per_ms": 0.0005149501446499484,
+      "quality_per_active_param": 1.7589065398677977e-08,
+      "owners_per_token": 1.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_full_expert_ffn_control": {
+      "capacity_variant": "full_expert_ffn",
+      "expert_architecture_id": "full_expert_ffn",
+      "params_total": 235266,
+      "params_active_estimate": 135810,
+      "avg_loss": 5.528628468513489,
+      "avg_accuracy": 0.0009765625,
+      "latency_p50": 9.644951499808485,
+      "latency_p95": 11.288897162535248,
+      "quality_per_ms": 3.786352204104371e-05,
+      "quality_per_active_param": 7.190652382004271e-09,
+      "owners_per_token": 1.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "fixed_moe_vectorized": {
+      "capacity_variant": "",
+      "expert_architecture_id": "",
+      "params_total": 260932,
+      "params_active_estimate": 260932,
+      "avg_loss": 5.55166482925415,
+      "avg_accuracy": 0.0,
+      "latency_p50": 24.70420575002663,
+      "latency_p95": 27.21417094986691,
+      "quality_per_ms": 0.0,
+      "quality_per_active_param": 0.0,
+      "owners_per_token": null,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    }
+  }
+}

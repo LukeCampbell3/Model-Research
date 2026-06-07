@@ -21,6 +21,7 @@ import torch.nn.functional as F
 from sparse_loop_moe.models.pvr_ec.diagnostics import (
     DEPLOY_MODES,
     EXECUTION_MODES,
+    ExpertDeltaScaleSchedule,
     EXPERT_TYPES,
     MergeabilityState,
     choose_merge_type,
@@ -63,21 +64,55 @@ class PVRECMetrics:
     optimizer_time_ms: float = 0.0
 
 
-class ExpertDelta(nn.Module):
-    """Lightweight expert delta module.
-
-    A small FFN that produces a specialized correction to the shared base output.
-    Uses smaller hidden dimension than the shared base for efficiency.
-    """
+class LowRankExpertDelta(nn.Module):
+    """Low-rank residual expert delta."""
 
     def __init__(self, d_model: int, d_expert: int, dropout: float = 0.1):
         super().__init__()
+        self.expert_architecture_id = f"delta_rank_{d_expert}"
+        self.expert_inner_dim = d_expert
+        self.delta_rank = d_expert
+        self.w1 = nn.Linear(d_model, d_expert)
+        self.w2 = nn.Linear(d_expert, d_model)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return x + self.w2(self.dropout(F.gelu(self.w1(x))))
+
+
+class MicroFFNExpertDelta(nn.Module):
+    """Residual micro-FFN expert delta."""
+
+    def __init__(self, d_model: int, d_expert: int, dropout: float = 0.1):
+        super().__init__()
+        self.expert_architecture_id = f"micro_ffn_{d_expert}"
+        self.expert_inner_dim = d_expert
+        self.delta_rank = 0
+        self.w1 = nn.Linear(d_model, d_expert)
+        self.w2 = nn.Linear(d_expert, d_model)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return x + self.w2(self.dropout(F.gelu(self.w1(x))))
+
+
+class FullExpertFFN(nn.Module):
+    """Full non-residual FFN expert control comparable to fixed MoE experts."""
+
+    def __init__(self, d_model: int, d_expert: int, dropout: float = 0.1):
+        super().__init__()
+        self.expert_architecture_id = "full_expert_ffn"
+        self.expert_inner_dim = d_expert
+        self.delta_rank = 0
         self.w1 = nn.Linear(d_model, d_expert)
         self.w2 = nn.Linear(d_expert, d_model)
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.w2(self.dropout(F.gelu(self.w1(x))))
+
+
+ExpertDelta = MicroFFNExpertDelta
 
 
 class PVRECMoEFFN(nn.Module):
@@ -116,6 +151,16 @@ class PVRECMoEFFN(nn.Module):
         max_shadow_branch_tickets: int = 64,
         pvr_deploy_mode: str = "off",
         pvr_aux_alpha: float = 0.5,
+        pvr_shared_scale: float = 1.0,
+        pvr_expert_delta_scale: float = 1.0,
+        pvr_expert_delta_scale_schedule: str = "constant",
+        pvr_expert_delta_scale_start: Optional[float] = None,
+        pvr_expert_delta_scale_end: Optional[float] = None,
+        pvr_expert_delta_scale_warmup_steps: int = 0,
+        pvr_expert_delta_scale_hold_steps: int = 0,
+        pvr_expert_delta_scale_decay: Optional[float] = None,
+        pvr_debug_force_expert_id: Optional[int] = None,
+        pvr_debug_owner_mode: str = "",
         profile: bool = False,
         collect_debug: bool = False,
         emit_branch_tickets: bool = False,
@@ -131,11 +176,25 @@ class PVRECMoEFFN(nn.Module):
             raise ValueError(f"Unknown PVR-EC deploy mode: {pvr_deploy_mode}")
         self.d_model = d_model
         self.num_experts = num_experts
-        self.d_expert = d_expert
         self.execution_mode = execution_mode
         self.expert_type = expert_type
         self.pvr_deploy_mode = pvr_deploy_mode
         self.pvr_aux_alpha = pvr_aux_alpha
+        self.pvr_shared_scale = float(pvr_shared_scale)
+        self.pvr_expert_delta_scale = float(pvr_expert_delta_scale)
+        schedule_start = self.pvr_expert_delta_scale if pvr_expert_delta_scale_start is None else float(pvr_expert_delta_scale_start)
+        schedule_end = self.pvr_expert_delta_scale if pvr_expert_delta_scale_end is None else float(pvr_expert_delta_scale_end)
+        self.pvr_expert_delta_scale_schedule = ExpertDeltaScaleSchedule(
+            schedule=pvr_expert_delta_scale_schedule,
+            start=schedule_start,
+            end=schedule_end,
+            warmup_steps=pvr_expert_delta_scale_warmup_steps,
+            hold_steps=pvr_expert_delta_scale_hold_steps,
+            decay=pvr_expert_delta_scale_decay,
+        )
+        self.pvr_expert_delta_scale_t = self.pvr_expert_delta_scale_schedule.value(0)
+        self.pvr_debug_force_expert_id = pvr_debug_force_expert_id
+        self.pvr_debug_owner_mode = pvr_debug_owner_mode
         self.profile = profile
         self.collect_debug = collect_debug
         self.emit_branch_tickets = emit_branch_tickets
@@ -147,15 +206,9 @@ class PVRECMoEFFN(nn.Module):
         self.emit_branch_tickets_during_training = emit_branch_tickets_during_training
         self.max_shadow_branch_tickets = max_shadow_branch_tickets
         self.mergeability_state = MergeabilityState()
-        if d_expert is None:
-            if expert_type == "delta_rank_small":
-                d_expert = max(1, d_ff // 4)
-            elif expert_type == "delta_rank_medium":
-                d_expert = max(1, d_ff // 2)
-            elif expert_type in {"delta_rank_large", "full_expert_ffn"}:
-                d_expert = d_ff
-            else:
-                d_expert = max(1, d_ff // 2)
+        d_expert = self._resolve_expert_inner_dim(d_model, d_ff, expert_type, d_expert)
+        self.d_expert = d_expert
+        self.expert_architecture_id = self._architecture_id_for_type(expert_type, d_expert)
 
         # Shared base FFN (always active)
         self.shared_base = nn.Sequential(
@@ -165,9 +218,9 @@ class PVRECMoEFFN(nn.Module):
             nn.Linear(d_ff, d_model),
         )
 
-        # Expert delta modules (lightweight)
+        expert_cls = self._expert_class_for_type(expert_type)
         self.expert_deltas = nn.ModuleList([
-            ExpertDelta(d_model, d_expert, dropout) for _ in range(num_experts)
+            expert_cls(d_model, d_expert, dropout) for _ in range(num_experts)
         ])
 
         # PVR-EC Router
@@ -188,6 +241,64 @@ class PVRECMoEFFN(nn.Module):
 
         # Shared gate (scales shared base contribution)
         self.shared_gate = nn.Linear(d_model, 1)
+
+    def set_training_step(self, step: int) -> float:
+        """Update the active expert delta scale for the current training step."""
+
+        self.pvr_expert_delta_scale_t = self.pvr_expert_delta_scale_schedule.value(step)
+        self.pvr_expert_delta_scale = float(self.pvr_expert_delta_scale_t)
+        return self.pvr_expert_delta_scale_t
+
+    def get_expert_delta_scale(self) -> float:
+        return float(self.pvr_expert_delta_scale_t)
+
+    @staticmethod
+    def _resolve_expert_inner_dim(
+        d_model: int,
+        d_ff: int,
+        expert_type: str,
+        requested: Optional[int],
+    ) -> int:
+        if requested is not None:
+            return max(1, int(requested))
+        rank_map = {
+            "delta_rank_8": 8,
+            "delta_rank_16": 16,
+            "delta_rank_32": 32,
+            "delta_rank_64": 64,
+            "delta_rank_128": 128,
+            "delta_rank_small": max(1, d_model // 4),
+            "delta_rank_medium": max(1, d_model // 2),
+            "delta_rank_large": d_model,
+            "delta_small": max(1, d_model // 4),
+            "delta_medium": max(1, d_model // 2),
+            "delta_large": d_model,
+        }
+        if expert_type in rank_map:
+            return rank_map[expert_type]
+        if expert_type == "micro_ffn_0_25x":
+            return max(1, int(round(d_ff * 0.25)))
+        if expert_type == "micro_ffn_0_5x":
+            return max(1, int(round(d_ff * 0.5)))
+        if expert_type in {"micro_ffn_1_0x", "full_expert_ffn", "full_expert_ffn_control"}:
+            return d_ff
+        return max(1, d_model // 2)
+
+    @staticmethod
+    def _expert_class_for_type(expert_type: str) -> type[nn.Module]:
+        if expert_type in {"full_expert_ffn", "full_expert_ffn_control"}:
+            return FullExpertFFN
+        if expert_type.startswith("micro_ffn_"):
+            return MicroFFNExpertDelta
+        return LowRankExpertDelta
+
+    @staticmethod
+    def _architecture_id_for_type(expert_type: str, d_expert: int) -> str:
+        if expert_type in {"full_expert_ffn", "full_expert_ffn_control"}:
+            return "full_expert_ffn"
+        if expert_type.startswith("micro_ffn_"):
+            return expert_type
+        return f"delta_rank_{d_expert}"
 
     def forward(
         self,
@@ -246,10 +357,17 @@ class PVRECMoEFFN(nn.Module):
                 expert_outputs_for_merge = None
 
         # Step 6: Combine shared + sparse
-        output = shared_weight * shared_out + sparse_out
+        scaled_shared_out = self.pvr_shared_scale * shared_weight * shared_out
+        scale_t = self.get_expert_delta_scale()
+        scaled_sparse_out = scale_t * sparse_out
+        output = scaled_shared_out + scaled_sparse_out
+        shared_norm = scaled_shared_out.detach().float().norm(dim=-1).mean()
+        sparse_norm = scaled_sparse_out.detach().float().norm(dim=-1).mean()
 
         # Unflatten
         output = output.view(batch_size, seq_len, d_model)
+        shared_hidden = scaled_shared_out.view(batch_size, seq_len, d_model)
+        sparse_delta = scaled_sparse_out.view(batch_size, seq_len, d_model)
         timing["forward_total_ms"] = self._elapsed_ms(forward_start, device)
         timing.update(self._derived_timing(timing, N))
         mergeability, branch_tickets = self._shadow_mergeability_and_tickets(
@@ -271,7 +389,21 @@ class PVRECMoEFFN(nn.Module):
             "avg_active_experts": routing.metrics["avg_active_experts"],
             "pvr_execution_mode": mode,
             "pvr_expert_type": self.expert_type,
+            "expert_architecture_id": self.expert_architecture_id,
+            "expert_inner_dim": self.d_expert,
             "routing_metrics": routing.metrics,
+            "contribution_metrics": {
+                "shared_output_norm": shared_norm,
+                "sparse_output_norm": sparse_norm,
+                "shared_sparse_ratio": shared_norm / (sparse_norm + 1e-8),
+                "pvr_shared_scale": float(self.pvr_shared_scale),
+                "pvr_expert_delta_scale": float(scale_t),
+                "pvr_expert_delta_scale_t": float(scale_t),
+                "pvr_expert_delta_scale_schedule": self.pvr_expert_delta_scale_schedule.schedule,
+            },
+            "shared_hidden": shared_hidden,
+            "sparse_delta": sparse_delta,
+            "combined_hidden": output,
             "timing": timing,
             "mergeability": mergeability,
             "branch_tickets": branch_tickets,
@@ -299,10 +431,12 @@ class PVRECMoEFFN(nn.Module):
 
         mode = self.pvr_deploy_mode
         if mode == "top1":
-            top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=1)
+            top_ids, top_weights = self._debug_or_router_top1(flat_x)
             expert_out = self._vectorized_expert_deltas(flat_x, top_ids)
             sparse_out = top_weights[:, :1].unsqueeze(-1).mul(expert_out).sum(dim=1)
             actual_k = 1.0
+            actual_expert_slots = 1.0
+            dense_all_experts_executed = False
         elif mode == "top2":
             top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=2)
             expert_out = self._vectorized_expert_deltas(flat_x, top_ids)
@@ -310,6 +444,8 @@ class PVRECMoEFFN(nn.Module):
             aux = self.pvr_aux_alpha * top_weights[:, 1:2].unsqueeze(-1) * expert_out[:, 1:2]
             sparse_out = (primary + aux).sum(dim=1)
             actual_k = 2.0
+            actual_expert_slots = 2.0
+            dense_all_experts_executed = False
         elif mode == "bucketed":
             top_ids, top_weights, entropy = self.router.deploy_topk(flat_x, k=4)
             k4 = entropy > 0.70
@@ -323,6 +459,8 @@ class PVRECMoEFFN(nn.Module):
             weights = top_weights * keep.to(top_weights.dtype)
             sparse_out = (weights.unsqueeze(-1) * expert_out).sum(dim=1)
             actual_k = keep.to(top_weights.dtype).sum(dim=-1).float().mean()
+            actual_expert_slots = 4.0
+            dense_all_experts_executed = False
         elif mode == "dense_masked_control":
             top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=2)
             all_ids = torch.arange(self.num_experts, device=flat_x.device).unsqueeze(0).expand(flat_x.shape[0], -1)
@@ -331,11 +469,23 @@ class PVRECMoEFFN(nn.Module):
             weights.scatter_(1, top_ids, top_weights)
             sparse_out = (weights.unsqueeze(-1) * expert_out).sum(dim=1)
             actual_k = 2.0
+            actual_expert_slots = float(self.num_experts)
+            dense_all_experts_executed = True
         else:
             raise ValueError(f"Unsupported deploy mode: {mode}")
 
-        output = (shared_out + sparse_out).view(batch_size, seq_len, d_model)
+        scaled_shared_out = self.pvr_shared_scale * shared_out
+        scale_t = self.get_expert_delta_scale()
+        scaled_sparse_out = scale_t * sparse_out
+        output = (scaled_shared_out + scaled_sparse_out).view(batch_size, seq_len, d_model)
+        shared_hidden = scaled_shared_out.view(batch_size, seq_len, d_model)
+        sparse_delta = scaled_sparse_out.view(batch_size, seq_len, d_model)
+        shared_norm = scaled_shared_out.detach().float().norm(dim=-1).mean()
+        sparse_norm = scaled_sparse_out.detach().float().norm(dim=-1).mean()
         avg_k_tensor = torch.as_tensor(actual_k, device=x.device, dtype=x.dtype)
+        expert_slots_tensor = torch.as_tensor(actual_expert_slots, device=x.device, dtype=x.dtype)
+        # Expose primary expert ids for diagnostics (detached, no grad cost)
+        primary_expert_ids_diag = top_ids[:, 0].detach() if top_ids.dim() == 2 else top_ids.detach()
         status = "PVR_EC_DEPLOY_TOP2_IMPLEMENTED"
         if mode == "top1":
             status = "PVR_EC_DEPLOY_TOP1_IMPLEMENTED"
@@ -345,14 +495,24 @@ class PVRECMoEFFN(nn.Module):
             "load_balance_loss": torch.zeros((), device=x.device, dtype=x.dtype),
             "pvr_execution_mode": f"pvr_ec_deploy_{mode}",
             "pvr_expert_type": self.expert_type,
+            "expert_architecture_id": self.expert_architecture_id,
+            "expert_inner_dim": self.d_expert,
             "deploy_mode": mode,
             "expert_execution_mode": "FULLY_VECTORIZED",
             "branch_tickets": [],
             "branch_tickets_enabled": False,
             "runtime_branching_enabled": False,
             "mergeability_mode": self.mergeability_mode,
+            "primary_expert_ids": primary_expert_ids_diag,
             "routing_metrics": {
                 "actual_avg_k": avg_k_tensor,
+                "actual_owner_count_per_token": avg_k_tensor,
+                "actual_experts_executed": expert_slots_tensor,
+                "actual_expert_slots_per_token": expert_slots_tensor,
+                "dense_all_experts_executed": dense_all_experts_executed,
+                "oracle_owner_used": False,
+                "forced_action_path_used": False,
+                "replay_probe_labels_used": False,
                 "target_avg_K": avg_k_tensor,
                 "assignment_budget_drift": 0.0,
                 "expert_utilization": 1.0,
@@ -363,6 +523,18 @@ class PVRECMoEFFN(nn.Module):
                 "num_k4_tokens": 0.0,
                 "assignment_budget_status": "deploy",
             },
+            "contribution_metrics": {
+                "shared_output_norm": shared_norm,
+                "sparse_output_norm": sparse_norm,
+                "shared_sparse_ratio": shared_norm / (sparse_norm + 1e-8),
+                "pvr_shared_scale": float(self.pvr_shared_scale),
+                "pvr_expert_delta_scale": float(scale_t),
+                "pvr_expert_delta_scale_t": float(scale_t),
+                "pvr_expert_delta_scale_schedule": self.pvr_expert_delta_scale_schedule.schedule,
+            },
+            "shared_hidden": shared_hidden,
+            "sparse_delta": sparse_delta,
+            "combined_hidden": output,
             "timing": self._empty_timing(),
             "mergeability": {
                 "mergeability_score_mean": 0.0,
@@ -375,6 +547,19 @@ class PVRECMoEFFN(nn.Module):
             ],
         }
         return output, aux
+
+    def _debug_or_router_top1(self, flat_x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.pvr_debug_force_expert_id is not None:
+            expert_id = int(self.pvr_debug_force_expert_id) % max(self.num_experts, 1)
+            ids = torch.full((flat_x.shape[0], 1), expert_id, device=flat_x.device, dtype=torch.long)
+            weights = torch.ones(flat_x.shape[0], 1, device=flat_x.device, dtype=flat_x.dtype)
+            return ids, weights
+        if self.pvr_debug_owner_mode in {"round_robin", "uniform"}:
+            ids = (torch.arange(flat_x.shape[0], device=flat_x.device) % self.num_experts).view(-1, 1)
+            weights = torch.ones(flat_x.shape[0], 1, device=flat_x.device, dtype=flat_x.dtype)
+            return ids, weights
+        top_ids, top_weights, _ = self.router.deploy_topk(flat_x, k=1)
+        return top_ids, top_weights
 
     def _stacked_expert_weights(self) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         w1 = torch.stack([expert.w1.weight.transpose(0, 1) for expert in self.expert_deltas], dim=0)
@@ -391,7 +576,10 @@ class PVRECMoEFFN(nn.Module):
         selected_b2 = b2[expert_ids]
         hidden = torch.einsum("nh,nkhr->nkr", flat_x, selected_w1) + selected_b1
         hidden = F.gelu(hidden)
-        return torch.einsum("nkr,nkrh->nkh", hidden, selected_w2) + selected_b2
+        out = torch.einsum("nkr,nkrh->nkh", hidden, selected_w2) + selected_b2
+        if self.expert_architecture_id != "full_expert_ffn":
+            out = flat_x.unsqueeze(1) + out
+        return out
 
     def _resolve_execution_mode(self, requested: Optional[str], fixed_k: Optional[int]) -> str:
         if requested:

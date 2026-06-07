@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T19:13:54.050149",
+    "run_id": "algo_20260606_191120_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 96 --train-steps 40 --seed 42 --run-learning-separation-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --shared-scale-sweep 0,0.5,1 --expert-delta-scale-sweep 0.5,1,2 --ownership-schedule-sweep disabled,from_start,delayed_ownership --output-dir evaluation/benchmark_results/docker_pvr_ec_learning_separation_actual",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_learning_full",
+      "pvr_ec_learning_shared_only",
+      "pvr_ec_learning_sparse_only",
+      "pvr_ec_learning_shared_scale_0_5",
+      "pvr_ec_learning_expert_delta_scale_2_0",
+      "pvr_ec_ownership_top1_delta_rank_16",
+      "pvr_ec_ownership_top1_delta_rank_64",
+      "pvr_ec_ownership_top1_micro_ffn_0_5x",
+      "pvr_ec_ownership_top1_delayed_candidate"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 40,
+    "sample_limit": 96,
+    "mode": "benchmark-lite",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PENDING_PVR_EC_CAPACITY_FAIRNESS_AUDIT",
+  "statuses": [
+    "PVR_EC_FULL_EXPERT_CONTROL_ALIAS_DETECTED",
+    "PVR_EC_CAPACITY_LADDER_INVALID",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "full_expert_ffn_control_aliases_detected": false,
+  "rows": [
+    {
+      "model_name": "fixed_moe_vectorized",
+      "expert_type": "",
+      "expert_architecture_id": "",
+      "hidden_dim": 0,
+      "expert_inner_dim": 0,
+      "delta_rank": 0,
+      "num_experts": 0,
+      "params_total": 260932,
+      "params_active_estimate": 260932,
+      "params_per_expert": 0,
+      "shared_params": 0,
+      "routed_expert_params": 0,
+      "module_class_names": "",
+      "module_fingerprint": "",
+      "aliases_detected": false,
+      "same_as_variant": null
+    },
+    {
+      "model_name": "pvr_ec_ownership_top1_delayed_candidate",
+      "expert_type": "delta_rank_64",
+      "expert_architecture_id": "delta_rank_64",
+      "hidden_dim": 64,
+      "expert_inner_dim": 64,
+      "delta_rank": 64,
+      "num_experts": 4,
+      "params_total": 169218,
+      "params_active_estimate": 119298,
+      "params_per_expert": 8320,
+      "shared_params": 33282,
+      "routed_expert_params": 66560,
+      "module_class_names": "LowRankExpertDelta",
+      "module_fingerprint": "55c18e5cf1a855b7",
+      "aliases_detected": true,
+      "same_as_variant": "pvr_ec_ownership_top1_delta_rank_64"
+    },
+    {
+      "model_name": "pvr_ec_ownership_top1_delta_rank_16",
+      "expert_type": "delta_rank_16",
+      "expert_architecture_id": "delta_rank_16",
+      "hidden_dim": 16,
+      "expert_inner_dim": 16,
+      "delta_rank": 16,
+      "num_experts": 4,
+      "params_total": 119682,
+      "params_active_estimate": 106914,
+      "params_per_expert": 2128,
+      "shared_params": 33282,
+      "routed_expert_params": 17024,
+      "module_class_names": "LowRankExpertDelta",
+      "module_fingerprint": "fc9435dc853bb6f6",
+      "aliases_detected": false,
+      "same_as_variant": null
+    },
+    {
+      "model_name": "pvr_ec_ownership_top1_delta_rank_64",
+      "expert_type": "delta_rank_64",
+      "expert_architecture_id": "delta_rank_64",
+      "hidden_dim": 64,
+      "expert_inner_dim": 64,
+      "delta_rank": 64,
+      "num_experts": 4,
+      "params_total": 169218,
+      "params_active_estimate": 119298,
+      "params_per_expert": 8320,
+      "shared_params": 33282,
+      "routed_expert_params": 66560,
+      "module_class_names": "LowRankExpertDelta",
+      "module_fingerprint": "55c18e5cf1a855b7",
+      "aliases_detected": true,
+      "same_as_variant": "pvr_ec_ownership_top1_delayed_candidate"
+    },
+    {
+      "model_name": "pvr_ec_ownership_top1_micro_ffn_0_5x",
+      "expert_type": "micro_ffn_0_5x",
+      "expert_architecture_id": "micro_ffn_0_5x",
+      "hidden_dim": 64,
+      "expert_inner_dim": 64,
+      "delta_rank": 0,
+      "num_experts": 4,
+      "params_total": 169218,
+      "params_active_estimate": 119298,
+      "params_per_expert": 8320,
+      "shared_params": 33282,
+      "routed_expert_params": 66560,
+      "module_class_names": "MicroFFNExpertDelta",
+      "module_fingerprint": "4cbb18f414177285",
+      "aliases_detected": false,
+      "same_as_variant": null
+    }
+  ]
+}

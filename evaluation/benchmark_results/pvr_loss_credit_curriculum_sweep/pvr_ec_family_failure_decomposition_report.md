@@ -1,0 +1,168 @@
+# PVR-EC Family Failure Decomposition Report
+
+**Status:** PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER
+
+**Statuses:** PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED, PVR_EC_BENCHMARK_TRANSFER_BLOCKER, PVR_EC_DO_NOT_PROMOTE, PVR_EC_DYCK_FINAL_STATE_BLOCKER, PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER, PVR_EC_LISTOPS_TRANSFER_BLOCKER, PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK, PVR_EC_SCAN_TRANSFER_BLOCKER, PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T02:35:06.444826",
+    "run_id": "algo_20260607_023435_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-loss-credit-repair-sweep --loss-credit-variants baseline_loss,final_token_weight_2x,final_token_weight_4x,decision_token_weight_2x,decision_token_weight_4x,sequence_accuracy_proxy_weight,family_balanced_loss,listops_weight_2x,scan_weight_2x,dyck_weight_2x,listops_scan_weight_2x --run-curriculum-repair-sweep --curriculum-variants baseline_curriculum,easy_to_hard_length_curriculum,easy_to_hard_depth_curriculum,family_balanced_curriculum,listops_scan_focused_curriculum --output-dir evaluation/benchmark_results/pvr_loss_credit_curriculum_sweep",
+    "model_variants": [
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER",
+  "statuses": [
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_DYCK_FINAL_STATE_BLOCKER",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_LISTOPS_TRANSFER_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCAN_TRANSFER_BLOCKER",
+    "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER"
+  ],
+  "promotion_ready": false,
+  "by_family": {
+    "clrs_style": {
+      "baseline_loss": null,
+      "pvr_loss": null,
+      "scaled_pvr_loss": 0.29691687412559986,
+      "baseline_accuracy": null,
+      "pvr_accuracy": null,
+      "scaled_pvr_accuracy": 0.11316433984218958,
+      "residual_help_rate": 0.8264945422609647,
+      "residual_harm_rate": 0.17344332796831927,
+      "decision_token_help_rate": 0.8264945422609647,
+      "final_state_help_rate": 0.8264945422609647,
+      "owner_entropy": 0.0,
+      "prototype_entropy": 0.0,
+      "expert_contribution_pct": 0.9216747024683851,
+      "calibration_proxy": 0.07585505674053726,
+      "top_error_modes": [
+        "low_sequence_accuracy",
+        "decision_credit_or_aggregation"
+      ]
+    },
+    "dyck": {
+      "baseline_loss": null,
+      "pvr_loss": null,
+      "scaled_pvr_loss": 0.34985795958588517,
+      "baseline_accuracy": null,
+      "pvr_accuracy": null,
+      "scaled_pvr_accuracy": 0.007735737371833997,
+      "residual_help_rate": 0.617033274223407,
+      "residual_harm_rate": 0.3824177350228032,
+      "decision_token_help_rate": 0.617033274223407,
+      "final_state_help_rate": 0.617033274223407,
+      "owner_entropy": 0.0,
+      "prototype_entropy": 0.0,
+      "expert_contribution_pct": 0.9213600238542581,
+      "calibration_proxy": 0.10213169811900635,
+      "top_error_modes": [
+        "low_sequence_accuracy",
+        "decision_credit_or_aggregation"
+      ]
+    },
+    "listops": {
+      "baseline_loss": null,
+      "pvr_loss": null,
+      "scaled_pvr_loss": 1.6250091530382633,
+      "baseline_accuracy": null,
+      "pvr_accuracy": null,
+      "scaled_pvr_accuracy": 0.09487165084536314,
+      "residual_help_rate": 0.5817891173064709,
+      "residual_harm_rate": 0.4180718418210745,
+      "decision_token_help_rate": 0.5959620401263237,
+      "final_state_help_rate": 0.5959620401263237,
+      "owner_entropy": 0.0,
+      "prototype_entropy": 0.0,
+      "expert_contribution_pct": 0.9305554067294683,
+      "calibration_proxy": 0.046947820900879726,
+      "top_error_modes": [
+        "low_sequence_accuracy",
+        "decision_credit_or_aggregation"
+      ]
+    },
+    "scan_style": {
+      "baseline_loss": null,
+      "pvr_loss": null,
+      "scaled_pvr_loss": 0.24619679944589734,
+      "baseline_accuracy": null,
+      "pvr_accuracy": null,
+      "scaled_pvr_accuracy": 0.01726854679620559,
+      "residual_help_rate": 0.4335414683446288,
+      "residual_harm_rate": 0.5661997655406594,
+      "decision_token_help_rate": 0.4335414683446288,
+      "final_state_help_rate": 0.4335414683446288,
+      "owner_entropy": 0.0,
+      "prototype_entropy": 0.0,
+      "expert_contribution_pct": 0.920954350327362,
+      "calibration_proxy": 0.09508745422584278,
+      "top_error_modes": [
+        "low_sequence_accuracy",
+        "decision_credit_or_aggregation"
+      ]
+    }
+  },
+  "listops_decomposition": {
+    "nesting_depth_bucket": "mixed",
+    "operator_type": "mixed",
+    "sequence_length_bucket": "mixed",
+    "final_answer_position": "final",
+    "operator_close_position": "diagnostic",
+    "depth_generalization_error": "not_isolated",
+    "final_answer_error": "low_accuracy"
+  },
+  "scan_decomposition": {
+    "command_length_bucket": "mixed",
+    "action_length_bucket": "mixed",
+    "composition_type": "mixed",
+    "primitive_mapping_error": "not_isolated",
+    "length_generalization_error": "low_accuracy",
+    "repetition_error": "not_isolated",
+    "composition_boundary_error": "not_isolated"
+  },
+  "dyck_decomposition": {
+    "stack_depth_bucket": "mixed",
+    "closing_token_error": "low_accuracy",
+    "completion_position_error": "low_accuracy",
+    "validity_error": "not_isolated",
+    "final_state_error": "low_accuracy"
+  }
+}
+```

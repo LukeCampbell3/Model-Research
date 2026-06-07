@@ -34,13 +34,100 @@ DEPLOY_MODES = {
 
 EXPERT_TYPES = {
     "shared_base_only",
+    "delta_rank_8",
+    "delta_rank_16",
+    "delta_rank_32",
+    "delta_rank_64",
+    "delta_rank_128",
     "delta_rank_small",
     "delta_rank_medium",
     "delta_rank_large",
+    "delta_small",
+    "delta_medium",
+    "delta_large",
+    "micro_ffn_0_25x",
+    "micro_ffn_0_5x",
+    "micro_ffn_1_0x",
     "full_expert_ffn",
+    "full_expert_ffn_control",
 }
 
 K_ALLOWED = (1, 2, 4)
+
+EXPERT_DELTA_SCALE_SCHEDULES = {
+    "constant",
+    "linear_warmup",
+    "cosine_warmup",
+    "warmup_hold",
+    "warmup_hold_decay",
+}
+
+
+@dataclass
+class ExpertDeltaScaleSchedule:
+    """Step-indexed scale for routed expert deltas only."""
+
+    schedule: str = "constant"
+    start: float = 1.0
+    end: float = 1.0
+    warmup_steps: int = 0
+    hold_steps: int = 0
+    decay: float | None = None
+
+    def __post_init__(self) -> None:
+        if self.schedule not in EXPERT_DELTA_SCALE_SCHEDULES:
+            raise ValueError(f"Unknown expert delta scale schedule: {self.schedule}")
+        self.start = float(self.start)
+        self.end = float(self.end)
+        self.warmup_steps = max(0, int(self.warmup_steps))
+        self.hold_steps = max(0, int(self.hold_steps))
+        self.decay = None if self.decay is None else float(self.decay)
+
+    def value(self, step: int) -> float:
+        step = max(0, int(step))
+        if self.schedule == "constant":
+            return self.end
+        if self.schedule in {"linear_warmup", "cosine_warmup"}:
+            return self._warmup_value(step)
+        if self.schedule == "warmup_hold":
+            return self._warmup_hold_value(step)
+        if self.schedule == "warmup_hold_decay":
+            return self._warmup_hold_decay_value(step)
+        return self.end
+
+    def _warmup_value(self, step: int) -> float:
+        if self.warmup_steps <= 0:
+            return self.end
+        progress = min(1.0, step / max(float(self.warmup_steps), 1.0))
+        if self.schedule == "cosine_warmup":
+            progress = 0.5 - 0.5 * math.cos(math.pi * progress)
+        return self.start + (self.end - self.start) * progress
+
+    def _warmup_hold_value(self, step: int) -> float:
+        if step < self.warmup_steps:
+            return self._warmup_value(step)
+        return self.end
+
+    def _warmup_hold_decay_value(self, step: int) -> float:
+        if step < self.warmup_steps:
+            return self._warmup_value(step)
+        hold_end = self.warmup_steps + self.hold_steps
+        if step < hold_end:
+            return self.end
+        target = self.end if self.decay is None else self.decay
+        decay_span = max(1, self.warmup_steps)
+        progress = min(1.0, (step - hold_end) / float(decay_span))
+        return self.end + (target - self.end) * progress
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schedule": self.schedule,
+            "start": self.start,
+            "end": self.end,
+            "warmup_steps": self.warmup_steps,
+            "hold_steps": self.hold_steps,
+            "decay": self.decay,
+        }
 
 PVR_EC_STATUSES = (
     "PVR_EC_SPARSE_DISPATCH_BOTTLENECK",
@@ -85,6 +172,174 @@ PVR_EC_STATUSES = (
     "PVR_EC_OWNERSHIP_MAP_REFRESH_READY",
     "PVR_EC_OWNERSHIP_MAP_CANARY_READY",
     "PVR_EC_OWNERSHIP_MAP_DEPLOY_READY",
+    "PVR_EC_REAL_OWNER_ACTION_PROVEN",
+    "PVR_EC_OWNER_CHANGES_HELPFUL",
+    "PVR_EC_EXPERT_CAPACITY_FAILURE_CONFIRMED",
+    "PVR_EC_CAPACITY_CONTROL_RESULT_SUSPICIOUS_BUT_PROMISING",
+    "PVR_EC_REAL_CAPABILITY_IMPROVEMENT_NOT_PROVEN",
+    "PVR_EC_REAL_TRACE_PROMOTION_GATE_NOT_CLEAN",
+    "PVR_EC_CAPACITY_FAIRNESS_AUDIT_READY",
+    "PVR_EC_CAPACITY_FAIRNESS_AUDIT_BLOCKED",
+    "PVR_EC_TOP1_OWNER_ASSERTION_PASSED",
+    "PVR_EC_TOP1_OWNER_ASSERTION_FAILED",
+    "PVR_EC_DISTILLATION_COMPRESSION_PENDING",
+    "PVR_EC_FULL_EXPERT_CONTROL_ALIAS_DETECTED",
+    "PVR_EC_FULL_EXPERT_CONTROL_DISTINCT",
+    "PVR_EC_CAPACITY_LADDER_VALID",
+    "PVR_EC_CAPACITY_LADDER_INVALID",
+    "PVR_EC_REAL_FULL_EXPERT_CAPACITY_SIGNAL",
+    "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+    "PVR_EC_CAPACITY_KNEE_FOUND",
+    "PVR_EC_MICRO_FFN_CAPACITY_PROMISING",
+    "PVR_EC_DELTA_CAPACITY_INSUFFICIENT",
+    "PVR_EC_DISTILLATION_READY",
+    "PVR_EC_DISTILLATION_BLOCKED",
+    # Root-cause diagnostic loop statuses
+    "PVR_EC_TRAINING_DYNAMICS_BLOCKER",
+    "PVR_EC_OWNERSHIP_INTEGRATION_BLOCKER",
+    "PVR_EC_SHARED_BASE_ABSORPTION_BLOCKER",
+    "PVR_EC_EXPERT_DELTA_LOSS_CALIBRATION_BLOCKER",
+    "PVR_EC_TASK_FIT_OR_LOSS_SCHEDULE_BLOCKER",
+    "PVR_EC_LATENCY_VARIANCE_BLOCKER",
+    "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE",
+    "PVR_EC_LEARNING_SEPARATION_DIAGNOSTIC_READY",
+    "PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER",
+    "PVR_EC_SHARED_SPARSE_SEPARATION_OBSERVED",
+    "PVR_EC_OVERFIT_SANITY_READY",
+    "PVR_EC_OVERFIT_SANITY_PASSED",
+    "PVR_EC_OVERFIT_SANITY_FAILED",
+    "PVR_EC_ROUTED_EXPERT_GRADIENTS_PRESENT",
+    "PVR_EC_ROUTED_EXPERT_GRADIENTS_MISSING",
+    "PVR_EC_ROUTED_EXPERT_GRADIENTS_TOO_WEAK",
+    "PVR_EC_ROUTED_EXPERT_OUTPUT_PRESENT",
+    "PVR_EC_ROUTED_EXPERT_OUTPUT_TOO_SMALL",
+    "PVR_EC_ROUTED_EXPERT_OUTPUT_ZERO",
+    "PVR_EC_SHARED_BASE_ABSORPTION_CONFIRMED",
+    "PVR_EC_SHARED_BASE_ABSORPTION_RULED_OUT",
+    "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
+    "PVR_EC_EXPERT_SCALE_REPAIRED",
+    "PVR_EC_EXPERT_DELTA_SCALE_SCHEDULE_IMPLEMENTED",
+    "PVR_EC_EXPERT_DELTA_SCALE_SCHEDULE_HELPFUL",
+    "PVR_EC_EXPERT_DELTA_SCALE_SCHEDULE_HARMFUL",
+    "PVR_EC_BENCHMARK_CAPABILITY_IMPROVED",
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_RESIDUAL_MISALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCALE_OVERAMPLIFIES_BENCHMARK_NOISE",
+    "PVR_EC_SCALE_HELPFUL_BY_FAMILY",
+    "PVR_EC_SCALE_HARMFUL_BY_FAMILY",
+    "PVR_EC_TASK_FAMILY_CONDITIONED_SCALE_NEEDED",
+    "PVR_EC_PROTOTYPE_CONDITIONED_SCALE_NEEDED",
+    "PVR_EC_OWNER_CONDITIONED_SCALE_NEEDED",
+    "PVR_EC_ROUTE_STABILITY_BLOCKER",
+    "PVR_EC_BENCHMARK_TRANSFER_REPAIRED",
+    "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER",
+    "PVR_EC_LOCAL_RESIDUAL_GLOBAL_TRANSFER_FAILURE",
+    "PVR_EC_DECISION_TOKEN_CREDIT_FAILURE",
+    "PVR_EC_SEQUENCE_AGGREGATION_BLOCKER",
+    "PVR_EC_OUTPUT_READOUT_BLOCKER",
+    "PVR_EC_LISTOPS_TRANSFER_BLOCKER",
+    "PVR_EC_SCAN_TRANSFER_BLOCKER",
+    "PVR_EC_DYCK_FINAL_STATE_BLOCKER",
+    "PVR_EC_FINAL_POSITION_WEIGHTING_HELPFUL",
+    "PVR_EC_DECISION_TOKEN_WEIGHTING_HELPFUL",
+    "PVR_EC_FAMILY_WEIGHTING_HELPFUL",
+    "PVR_EC_CURRICULUM_REPAIR_HELPFUL",
+    "PVR_EC_SEGMENT_LEVEL_EXPERT_SIGNAL_NEEDED",
+    "PVR_EC_READOUT_REPAIR_HELPFUL",
+    "PVR_EC_TASK_TRANSFER_REPAIRED",
+    "PVR_EC_SPARSE_LOGIT_DIRECTION_BLOCKER",
+    "PVR_EC_SPARSE_LOGIT_DIRECTION_DIAGNOSTIC_READY",
+    "PVR_EC_SPARSE_LOGIT_DIRECTION_MISALIGNED",
+    "PVR_EC_SPARSE_LOGIT_DIRECTION_ALIGNED",
+    "PVR_EC_INCORRECT_LOGIT_OVERAMPLIFICATION",
+    "PVR_EC_CORRECT_LOGIT_UNDERAMPLIFICATION",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_IMPLEMENTED",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_HELPFUL",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_HARMFUL",
+    "PVR_EC_MARGIN_ALIGNMENT_LOSS_HELPFUL",
+    "PVR_EC_INCORRECT_LOGIT_SUPPRESSION_HELPFUL",
+    "PVR_EC_BENCHMARK_TRANSFER_REPAIRED_PARTIAL",
+    "PVR_EC_INCORRECT_LOGIT_OVERAMPLIFICATION_REDUCED_NOT_SOLVED",
+    "PVR_EC_PROMISING_NEEDS_CALIBRATION_REPAIR",
+    "PVR_EC_CALIBRATION_CONSTRAINED_AUX_SWEEP_READY",
+    "PVR_EC_CALIBRATION_CONSTRAINED_AUX_HELPFUL",
+    "PVR_EC_SPARSE_CE_WARMUP_DECAY_HELPFUL",
+    "PVR_EC_NEAR_FIXED_MOE_CAPABILITY",
+    "PVR_EC_PROMISING_NEEDS_MULTI_SEED_CONFIRMATION",
+    "PVR_EC_FINAL_CONFIG_FROZEN",
+    "PVR_EC_REPRODUCIBILITY_MANIFEST_COMPLETE",
+    "PVR_EC_FORWARD_PURITY_PASSED",
+    "PVR_EC_FORWARD_PURITY_FAILED",
+    "PVR_EC_MULTI_SEED_CONFIRMED",
+    "PVR_EC_REPEATABILITY_BLOCKED",
+    "PVR_EC_REPEATABILITY_COLLAPSE_ANALYZED",
+    "PVR_EC_REPEATABILITY_COLLAPSE_REPAIRED",
+    "PVR_EC_FAMILY_COLLAPSE_SEED_ISOLATED",
+    "PVR_EC_FAMILY_COLLAPSE_REPAIRED",
+    "PVR_EC_FAMILY_COLLAPSE_REMAINS",
+    "PVR_EC_QPM_SHAPE_REGRESSION_ANALYZED",
+    "PVR_EC_QPM_SHAPE_REGRESSION_REPAIRED",
+    "PVR_EC_MEMORY_SHAPE_REGRESSION_ANALYZED",
+    "PVR_EC_MEMORY_SHAPE_REGRESSION_REPAIRED",
+    "PVR_EC_CALIBRATION_REPAIR_ATTEMPTED",
+    "PVR_EC_CALIBRATION_REPAIRED",
+    "PVR_EC_INCORRECT_LOGIT_OVERAMP_REDUCED",
+    "PVR_EC_INCORRECT_LOGIT_OVERAMP_REMAINS",
+    "PVR_EC_LONGER_TRAINING_CONFIRMED",
+    "PVR_EC_LONGER_TRAINING_HELPFUL",
+    "PVR_EC_LONG_TRAINING_INSTABILITY",
+    "PVR_EC_SCALING_GAP_REMAINS",
+    "PVR_EC_MATCHED_STEP_CONFIRMED",
+    "PVR_EC_MATCHED_WALL_CLOCK_CONFIRMED",
+    "PVR_EC_MATCHED_WALL_CLOCK_BLOCKED",
+    "PVR_EC_CALIBRATION_CONSTRAINED_CONFIRMED",
+    "PVR_EC_CALIBRATION_BLOCKED",
+    "PVR_EC_FINAL_CANDIDATE_VARIANT_SELECTED",
+    "PVR_EC_FINAL_CANDIDATE_REVALIDATION_REQUIRED",
+    "PVR_EC_FAMILY_REGRESSION_PASSED",
+    "PVR_EC_FAMILY_REGRESSION_BLOCKED",
+    "PVR_EC_QUALITY_PER_MS_CONFIRMED",
+    "PVR_EC_QUALITY_PER_MS_BLOCKED",
+    "PVR_EC_RELIABILITY_PROXY_PASSED",
+    "PVR_EC_RELIABILITY_BLOCKED",
+    "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
+    "PVR_EC_PROMISING_NEEDS_MORE_EVIDENCE",
+    "PVR_EC_MATCHED_WALL_CLOCK_BLOCKED",
+    "PARTIAL_PVR_EC_FINAL_DEPLOYMENT_GATE",
+    "PVR_EC_CALIBRATION_REGRESSION",
+    "PVR_EC_LATENCY_REGRESSION",
+    "PARTIAL_PVR_EC_SPARSE_LOGIT_DIRECTION_REPAIR",
+    "PVR_EC_EXPERT_INIT_BLOCKER",
+    "PVR_EC_EXPERT_INIT_REPAIRED",
+    "PVR_EC_OPTIMIZER_GROUP_BLOCKER",
+    "PVR_EC_OPTIMIZER_GROUP_REPAIRED",
+    "PVR_EC_LOSS_TARGET_SANITY_FAILED",
+    "PVR_EC_LOSS_TARGET_SANITY_PASSED",
+    "PVR_EC_ROUTED_EXPERT_CONTRIBUTION_REPAIRED",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+    # Nonlinear overfit diagnostic statuses
+    "PVR_EC_NONLINEAR_OVERFIT_READY",
+    "PVR_EC_NONLINEAR_OVERFIT_PASSED",
+    "PVR_EC_NONLINEAR_OVERFIT_FAILED",
+    "PVR_EC_PARITY_OVERFIT_PASSED",
+    "PVR_EC_PARITY_OVERFIT_FAILED",
+    "PVR_EC_FIXED_OWNER_PARITY_PASSED",
+    "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+    "PVR_EC_ROUND_ROBIN_PARITY_PASSED",
+    "PVR_EC_ROUND_ROBIN_PARITY_FAILED",
+    "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
+    "PVR_EC_ROUTER_OR_OWNERSHIP_TRAINING_BLOCKER",
+    "PVR_EC_EXPERT_NONLINEAR_CAPACITY_BLOCKER",
+    "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
+    "PVR_EC_EXPERT_INIT_BLOCKER",
+    "PVR_EC_LOSS_SCHEDULE_BLOCKER",
+    "PVR_EC_NONLINEAR_REPAIR_APPLIED",
+    "PVR_EC_NONLINEAR_REPAIR_CONFIRMED",
     "PVR_EC_DO_NOT_PROMOTE",
 )
 

@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-07T02:35:48.876480",
+    "run_id": "algo_20260607_023517_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-segment-residual-diagnostic --output-dir evaluation/benchmark_results/pvr_segment_residual_diagnostic",
+    "model_variants": [
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER",
+  "statuses": [
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_DYCK_FINAL_STATE_BLOCKER",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_LISTOPS_TRANSFER_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCAN_TRANSFER_BLOCKER",
+    "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER"
+  ],
+  "promotion_ready": false,
+  "diagnostic_only": true,
+  "variants": [],
+  "best_curriculum_repair": "baseline_curriculum",
+  "metrics": {
+    "avg_loss": 0.4634836475209644,
+    "avg_accuracy": 0.06054665483850138,
+    "decision_token_loss": -0.6754103793452184,
+    "final_token_accuracy": 0.057418601710802854,
+    "token_to_sequence_transfer_ratio": 0.06254859396826354,
+    "calibration_proxy": 0.08361889739760216,
+    "latency_p50": 0.6111965477466583,
+    "latency_p95": 0.6111965477466583
+  }
+}

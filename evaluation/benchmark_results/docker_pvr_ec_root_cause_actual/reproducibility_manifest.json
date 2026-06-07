@@ -1,0 +1,36 @@
+{
+  "run_id": "algo_20260606_185440_benchmark-lite",
+  "timestamp": "2026-06-06T18:57:09.670727",
+  "docker_image": "N/A",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 128 --train-steps 50 --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen_candidate --run-root-baseline-matrix --run-training-dynamics-diagnostic --run-ownership-integration-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --output-dir evaluation/benchmark_results/docker_pvr_ec_root_cause_actual",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": false,
+  "device_used": "cpu",
+  "gpu_name": "",
+  "peak_gpu_memory_mb": 0.0,
+  "amp_enabled": false,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "tiny",
+  "train_steps": 50,
+  "n_samples": 128,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 149.158052444458,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_deploy_top1",
+    "pvr_ec_ownership_top1_delta_large",
+    "pvr_ec_ownership_top1_full_expert_ffn_control",
+    "fixed_moe_vectorized",
+    "pvr_ec_ownership_top1_delta_medium"
+  ]
+}

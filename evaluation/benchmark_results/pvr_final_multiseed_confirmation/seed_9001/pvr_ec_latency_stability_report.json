@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-07T17:47:58.779468",
+    "run_id": "algo_20260607_174539_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 9001,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed-list 42,123,777,2026,9001 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-multiseed-confirmation-gate --output-dir evaluation/benchmark_results/pvr_final_multiseed_confirmation",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "root_cause_flags": {
+      "run_multiseed_confirmation_gate": true
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [
+        500
+      ],
+      "seed_list": [
+        9001
+      ],
+      "batch_size_list": [
+        1,
+        32
+      ],
+      "seq_len_list": [
+        64
+      ],
+      "max_train_seconds": null
+    },
+    "source": "trained_benchmark"
+  },
+  "status": "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+  "statuses": [
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "by_model": {
+    "fixed_moe_vectorized": {
+      "count": 8,
+      "avg_loss": 0.43374132679309696,
+      "avg_accuracy": 0.09587818742185332,
+      "avg_train_loss": 0.21663734316825867,
+      "latency_p50_ms": 993.6436712741852,
+      "latency_p95_ms": 993.6436712741852,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_deploy_top1": {
+      "count": 8,
+      "avg_loss": 0.4438076243192578,
+      "avg_accuracy": 0.06402724071900946,
+      "avg_train_loss": 0.23128104209899902,
+      "latency_p50_ms": 709.1706991195679,
+      "latency_p95_ms": 709.1706991195679,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1": {
+      "count": 8,
+      "avg_loss": 0.37685146322473884,
+      "avg_accuracy": 0.335971191900745,
+      "avg_train_loss": 0.18353383243083954,
+      "latency_p50_ms": 621.0225522518158,
+      "latency_p95_ms": 621.0225522518158,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    }
+  },
+  "latency_p95_p50_ratio_reported": true,
+  "max_latency_p95_p50_ratio": 1.0,
+  "rows": [
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1087.25905418396,
+      "latency_p95_ms": 1087.25905418396,
+      "latency_p99_ms": 1087.25905418396,
+      "latency_max_ms": 1087.25905418396,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1079.4761180877686,
+      "latency_p95_ms": 1079.4761180877686,
+      "latency_p99_ms": 1079.4761180877686,
+      "latency_max_ms": 1079.4761180877686,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1110.1083755493164,
+      "latency_p95_ms": 1110.1083755493164,
+      "latency_p99_ms": 1110.1083755493164,
+      "latency_max_ms": 1110.1083755493164,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1135.2543830871582,
+      "latency_p95_ms": 1135.2543830871582,
+      "latency_p99_ms": 1135.2543830871582,
+      "latency_max_ms": 1135.2543830871582,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1100.6555557250977,
+      "latency_p95_ms": 1100.6555557250977,
+      "latency_p99_ms": 1100.6555557250977,
+      "latency_max_ms": 1100.6555557250977,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 552.5805950164795,
+      "latency_p95_ms": 552.5805950164795,
+      "latency_p99_ms": 552.5805950164795,
+      "latency_max_ms": 552.5805950164795,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1077.1021842956543,
+      "latency_p95_ms": 1077.1021842956543,
+      "latency_p99_ms": 1077.1021842956543,
+      "latency_max_ms": 1077.1021842956543,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 806.7131042480469,
+      "latency_p95_ms": 806.7131042480469,
+      "latency_p99_ms": 806.7131042480469,
+      "latency_max_ms": 806.7131042480469,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 777.2784233093262,
+      "latency_p95_ms": 777.2784233093262,
+      "latency_p99_ms": 777.2784233093262,
+      "latency_max_ms": 777.2784233093262,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 778.7246704101562,
+      "latency_p95_ms": 778.7246704101562,
+      "latency_p99_ms": 778.7246704101562,
+      "latency_max_ms": 778.7246704101562,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 823.7230777740479,
+      "latency_p95_ms": 823.7230777740479,
+      "latency_p99_ms": 823.7230777740479,
+      "latency_max_ms": 823.7230777740479,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 815.0463104248047,
+      "latency_p95_ms": 815.0463104248047,
+      "latency_p99_ms": 815.0463104248047,
+      "latency_max_ms": 815.0463104248047,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 766.2208080291748,
+      "latency_p95_ms": 766.2208080291748,
+      "latency_p99_ms": 766.2208080291748,
+      "latency_max_ms": 766.2208080291748,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 381.4053535461426,
+      "latency_p95_ms": 381.4053535461426,
+      "latency_p99_ms": 381.4053535461426,
+      "latency_max_ms": 381.4053535461426,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 753.0748844146729,
+      "latency_p95_ms": 753.0748844146729,
+      "latency_p99_ms": 753.0748844146729,
+      "latency_max_ms": 753.0748844146729,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 577.8920650482178,
+      "latency_p95_ms": 577.8920650482178,
+      "latency_p99_ms": 577.8920650482178,
+      "latency_max_ms": 577.8920650482178,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 687.7148151397705,
+      "latency_p95_ms": 687.7148151397705,
+      "latency_p99_ms": 687.7148151397705,
+      "latency_max_ms": 687.7148151397705,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 684.7267150878906,
+      "latency_p95_ms": 684.7267150878906,
+      "latency_p99_ms": 684.7267150878906,
+      "latency_max_ms": 684.7267150878906,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 692.2388076782227,
+      "latency_p95_ms": 692.2388076782227,
+      "latency_p99_ms": 692.2388076782227,
+      "latency_max_ms": 692.2388076782227,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 695.5881118774414,
+      "latency_p95_ms": 695.5881118774414,
+      "latency_p99_ms": 695.5881118774414,
+      "latency_max_ms": 695.5881118774414,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 686.5618228912354,
+      "latency_p95_ms": 686.5618228912354,
+      "latency_p99_ms": 686.5618228912354,
+      "latency_max_ms": 686.5618228912354,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 348.2954502105713,
+      "latency_p95_ms": 348.2954502105713,
+      "latency_p99_ms": 348.2954502105713,
+      "latency_max_ms": 348.2954502105713,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 661.8869304656982,
+      "latency_p95_ms": 661.8869304656982,
+      "latency_p99_ms": 661.8869304656982,
+      "latency_max_ms": 661.8869304656982,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 511.1677646636963,
+      "latency_p95_ms": 511.1677646636963,
+      "latency_p99_ms": 511.1677646636963,
+      "latency_max_ms": 511.1677646636963,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    }
+  ]
+}

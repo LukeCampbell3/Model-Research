@@ -1,0 +1,236 @@
+# PVR-EC Overfit After Repair Report
+
+**Status:** PVR_EC_OVERFIT_SANITY_FAILED
+
+**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_LOSS_TARGET_SANITY_PASSED, PVR_EC_OVERFIT_SANITY_FAILED, PVR_EC_OVERFIT_SANITY_READY, PVR_EC_ROUTED_EXPERT_GRADIENTS_PRESENT, PVR_EC_ROUTED_EXPERT_OUTPUT_PRESENT
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T20:17:42.320290",
+    "run_id": "algo_20260607_201738_pvr-overfit-sanity",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "model_variants": [
+      "pvr_full"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "pvr-overfit-sanity",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "pvr_overfit_tasks": [
+      "toy_identity"
+    ],
+    "pvr_overfit_steps": 1,
+    "pvr_overfit_batch_size": 2,
+    "pvr_overfit_single_batch": true,
+    "failures": []
+  },
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_LOSS_TARGET_SANITY_PASSED",
+    "PVR_EC_OVERFIT_SANITY_FAILED",
+    "PVR_EC_OVERFIT_SANITY_READY",
+    "PVR_EC_ROUTED_EXPERT_GRADIENTS_PRESENT",
+    "PVR_EC_ROUTED_EXPERT_OUTPUT_PRESENT"
+  ],
+  "promotion_ready": false,
+  "rows": [
+    {
+      "model": "pvr_full",
+      "task": "toy_identity",
+      "initial_train_loss": 4.999621868133545,
+      "final_train_loss": 4.996732711791992,
+      "loss_reduction_pct": 0.0005778749708988116,
+      "steps_to_90pct_loss_reduction": null,
+      "final_train_accuracy": 0.84375,
+      "overfit_success": false,
+      "train_loss_curve": [
+        4.996732711791992
+      ],
+      "train_accuracy_curve": [
+        0.84375
+      ],
+      "expert_delta_scale_curve": [
+        1.0
+      ],
+      "schedule_step_metrics": [
+        {
+          "step": 0,
+          "expert_delta_scale_t": 1.0,
+          "train_loss": 4.996732711791992,
+          "eval_loss": 4.996732711791992,
+          "accuracy": 0.84375,
+          "shared_output_norm": 0.1661963239312172,
+          "sparse_output_norm": 3.634090781211853,
+          "expert_delta_contribution_pct": 0.9562674294512387,
+          "expert_grad_norm": 0.04424346354062436,
+          "shared_grad_norm": 0.04920694761676714,
+          "expert_grad_to_shared_grad_ratio": 0.8991304212811713,
+          "logit_norm": 2.645017147064209,
+          "prediction_entropy": 5.531331539154053,
+          "confidence_when_correct": 0.007146291900426149,
+          "confidence_when_wrong": 0.006187121383845806,
+          "ece": 0.838687002658844,
+          "calibration_proxy": 0.838687002658844,
+          "loss_accuracy_disagreement": 0.7807394862174988,
+          "latency_ms": 15.906572341918945
+        }
+      ],
+      "gradient_metrics": {
+        "shared_gradient_norm": 0.04920694761676714,
+        "expert_gradient_norm_mean": 0.04424346354062436,
+        "expert_gradient_norm_max": 0.0778251236770302,
+        "expert_gradient_norm_min": 0.017712350469082594,
+        "expert_gradient_norm_by_expert": {
+          "0": 0.0778251236770302,
+          "1": 0.05460728530306369,
+          "2": 0.026829094713320956,
+          "3": 0.017712350469082594
+        },
+        "router_gradient_norm": 0.002486630924977362,
+        "prototype_gradient_norm": 0.0,
+        "ownership_bias_gradient_norm_if_trainable": 0.0,
+        "expert_grad_to_shared_grad_ratio": 0.8991304212811713,
+        "dead_gradient_expert_count": 0,
+        "zero_gradient_expert_count": 0,
+        "expert_gradient_cv": 0.5351400377490665,
+        "expert_gradient_cosine_similarity": 0.10142958164215088
+      },
+      "optimizer_metrics": {
+        "parameter_requires_grad_by_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_in_optimizer_group": {
+          "other": 20,
+          "shared": 12,
+          "expert": 32,
+          "router": 8
+        },
+        "parameter_update_norm_by_group": {
+          "other": 0.09421771289780737,
+          "shared": 0.10014902691667278,
+          "expert": 0.09438516304362565,
+          "router": 0.06373248947784305
+        },
+        "expert_parameter_update_norm": 0.09438516304362565,
+        "shared_parameter_update_norm": 0.10014902691667278,
+        "router_parameter_update_norm": 0.06373248947784305,
+        "prototype_parameter_update_norm": 0.0,
+        "ownership_parameter_update_norm": 0.0
+      },
+      "contribution_metrics": {
+        "shared_output_norm": 0.1661963239312172,
+        "sparse_output_norm": 3.634090781211853,
+        "expert_delta_output_norm_mean": 3.634090781211853,
+        "expert_delta_output_norm_by_expert": {},
+        "combined_output_norm": null,
+        "shared_sparse_ratio": 0.04573814570903778,
+        "expert_delta_contribution_pct": 0.9562674294512387,
+        "expert_delta_to_shared_ratio": 21.86625248531896,
+        "expert_output_diversity": null,
+        "expert_output_correlation": null
+      },
+      "loss_target_sanity": {
+        "target_shape": [
+          2,
+          16
+        ],
+        "logit_shape": [
+          2,
+          16,
+          256
+        ],
+        "loss_function": "cross_entropy",
+        "ignore_index": null,
+        "num_classes": 256,
+        "target_value_range": [
+          19,
+          255
+        ],
+        "class_distribution": {
+          "19": 1,
+          "38": 1,
+          "41": 2,
+          "53": 1,
+          "59": 1,
+          "60": 1,
+          "61": 2,
+          "63": 2,
+          "84": 1,
+          "90": 1,
+          "91": 1,
+          "97": 1,
+          "132": 1,
+          "137": 1,
+          "156": 1,
+          "166": 1,
+          "172": 1,
+          "184": 1,
+          "196": 1,
+          "207": 1,
+          "211": 1,
+          "213": 1,
+          "218": 1,
+          "228": 1,
+          "239": 1,
+          "240": 1,
+          "247": 1,
+          "251": 1,
+          "255": 1
+        },
+        "baseline_random_loss": 4.999621868133545,
+        "expected_random_loss": 5.545177444479562,
+        "accuracy_definition": "mean argmax token accuracy over all positions"
+      },
+      "debug_owner_mode": "",
+      "debug_force_expert_id": null,
+      "pvr_shared_scale": 1.0,
+      "pvr_expert_delta_scale": 1.0,
+      "pvr_expert_delta_scale_schedule": "constant",
+      "pvr_expert_delta_scale_start": 1.0,
+      "pvr_expert_delta_scale_end": 1.0,
+      "pvr_expert_delta_scale_decay": null,
+      "scale_schedule_name": "constant"
+    }
+  ],
+  "model_summary": {
+    "pvr_full": {
+      "avg_final_train_loss": 4.996732711791992,
+      "avg_final_train_accuracy": 0.84375,
+      "avg_loss_reduction_pct": 0.0005778749708988116,
+      "overfit_success_rate": 0.0
+    }
+  },
+  "status": "PVR_EC_OVERFIT_SANITY_FAILED",
+  "after_repair_confirmation": false
+}
+```

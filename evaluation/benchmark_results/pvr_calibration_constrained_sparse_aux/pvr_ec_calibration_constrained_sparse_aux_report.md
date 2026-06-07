@@ -1,0 +1,283 @@
+# PVR-EC Calibration-Constrained Sparse Auxiliary Report
+
+**Status:** PVR_EC_CALIBRATION_CONSTRAINED_AUX_HELPFUL
+
+**Statuses:** PVR_EC_BENCHMARK_TRANSFER_REPAIRED_PARTIAL, PVR_EC_CALIBRATION_CONSTRAINED_AUX_HELPFUL, PVR_EC_CALIBRATION_CONSTRAINED_AUX_SWEEP_READY, PVR_EC_CALIBRATION_REGRESSION, PVR_EC_DO_NOT_PROMOTE, PVR_EC_INCORRECT_LOGIT_OVERAMPLIFICATION_REDUCED_NOT_SOLVED, PVR_EC_PROMISING_NEEDS_CALIBRATION_REPAIR, PVR_EC_SPARSE_AUXILIARY_LOSS_HELPFUL
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T14:05:49.030475",
+    "run_id": "algo_20260607_132702_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-calibration-constrained-sparse-aux-sweep --sparse-aux-loss-variants baseline_main_loss,sparse_ce_0_03,sparse_ce_0_05,sparse_ce_0_03_plus_margin_0_03,sparse_ce_0_03_plus_wrong_suppress_0_03,sparse_ce_0_05_plus_wrong_suppress_0_01,sparse_ce_0_05_plus_logit_norm_penalty_light,sparse_ce_0_05_plus_temperature_regularization,sparse_ce_warmup_decay --output-dir evaluation/benchmark_results/pvr_calibration_constrained_sparse_aux",
+    "model_variants": [
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_CALIBRATION_CONSTRAINED_AUX_HELPFUL",
+  "statuses": [
+    "PVR_EC_BENCHMARK_TRANSFER_REPAIRED_PARTIAL",
+    "PVR_EC_CALIBRATION_CONSTRAINED_AUX_HELPFUL",
+    "PVR_EC_CALIBRATION_CONSTRAINED_AUX_SWEEP_READY",
+    "PVR_EC_CALIBRATION_REGRESSION",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_INCORRECT_LOGIT_OVERAMPLIFICATION_REDUCED_NOT_SOLVED",
+    "PVR_EC_PROMISING_NEEDS_CALIBRATION_REPAIR",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_HELPFUL"
+  ],
+  "promotion_ready": false,
+  "reference_variant": "sparse_ce_0_05",
+  "selected_calibration_constrained_variant": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+  "best_raw_capability_variant": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+  "calibration_improved_vs_sparse_ce_0_05": true,
+  "margin_improved_vs_sparse_ce_0_05": true,
+  "reference_metrics": {
+    "avg_loss": 0.40044378609551734,
+    "avg_accuracy": 0.24243722927027295,
+    "calibration_proxy": 0.1299660433042001,
+    "latency_p50": 6.280985236167908,
+    "latency_p95": 6.280985236167908,
+    "correct_class_logit_delta": 4.778455776783327,
+    "incorrect_class_logit_delta_max": 5.837446749210358,
+    "delta_correct_minus_top_wrong": -1.0589909266370037,
+    "residual_help_rate": 0.9835581281222403,
+    "residual_harm_rate": 0.016441862707324617,
+    "token_to_sequence_transfer_ratio": 0.053238774557959744,
+    "scopes": [
+      "aux_all_tokens"
+    ]
+  },
+  "selected_metrics": {
+    "avg_loss": 0.39579605466375745,
+    "avg_accuracy": 0.24730744124607193,
+    "calibration_proxy": 0.12534794079067613,
+    "latency_p50": 3.412294387817383,
+    "latency_p95": 3.412294387817383,
+    "correct_class_logit_delta": 3.831329363398254,
+    "incorrect_class_logit_delta_max": 4.557502192134658,
+    "delta_correct_minus_top_wrong": -0.7261728264857084,
+    "residual_help_rate": 0.9926421120762825,
+    "residual_harm_rate": 0.007354844976362074,
+    "token_to_sequence_transfer_ratio": 0.06976612796858063,
+    "scopes": [
+      "aux_all_tokens"
+    ],
+    "capability_close_to_sparse_ce_0_05": true,
+    "calibration_gain_vs_sparse_ce_0_05": 0.004618102513523986,
+    "margin_gain_vs_sparse_ce_0_05": 0.3328181001512953,
+    "selection_score": 0.273398358967389
+  },
+  "variant_scores": {
+    "baseline_main_loss": {
+      "avg_loss": 0.46348367095924914,
+      "avg_accuracy": 0.06054665483850138,
+      "calibration_proxy": 0.08361890806194867,
+      "latency_p50": 11.274146378040314,
+      "latency_p95": 11.274146378040314,
+      "correct_class_logit_delta": 0.5405222679983126,
+      "incorrect_class_logit_delta_max": 3.2975218265006943,
+      "delta_correct_minus_top_wrong": -2.756999535486102,
+      "residual_help_rate": 0.6453027786531795,
+      "residual_harm_rate": 0.3544546033566197,
+      "token_to_sequence_transfer_ratio": 0.06254858857579991,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": false,
+      "calibration_gain_vs_sparse_ce_0_05": 0.04634713524225144,
+      "margin_gain_vs_sparse_ce_0_05": -1.6980086088490984,
+      "selection_score": -1.0617268628213292
+    },
+    "sparse_ce_0_03": {
+      "avg_loss": 0.4129659630901491,
+      "avg_accuracy": 0.17268744165371785,
+      "calibration_proxy": 0.08300109497889069,
+      "latency_p50": 0.8623758256435394,
+      "latency_p95": 0.8623758256435394,
+      "correct_class_logit_delta": 4.751050407377383,
+      "incorrect_class_logit_delta_max": 6.555230253686508,
+      "delta_correct_minus_top_wrong": -1.8041798865112166,
+      "residual_help_rate": 0.9830370093695819,
+      "residual_harm_rate": 0.01695336303419026,
+      "token_to_sequence_transfer_ratio": 0.04880798815517225,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": false,
+      "calibration_gain_vs_sparse_ce_0_05": 0.046964948325309425,
+      "margin_gain_vs_sparse_ce_0_05": -0.745188959874213,
+      "selection_score": -0.8511184791467394
+    },
+    "sparse_ce_0_03_plus_margin_0_03": {
+      "avg_loss": 0.4201112611529728,
+      "avg_accuracy": 0.20060030496405545,
+      "calibration_proxy": 0.12952225418349628,
+      "latency_p50": 5.1614686250686646,
+      "latency_p95": 5.1614686250686646,
+      "correct_class_logit_delta": 3.086610708046161,
+      "incorrect_class_logit_delta_max": 4.901729219282667,
+      "delta_correct_minus_top_wrong": -1.815118497858445,
+      "residual_help_rate": 0.8548168218694627,
+      "residual_harm_rate": 0.14505339008731727,
+      "token_to_sequence_transfer_ratio": 0.21126625961553988,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": false,
+      "calibration_gain_vs_sparse_ce_0_05": 0.0004437891207038358,
+      "margin_gain_vs_sparse_ce_0_05": -0.7561275712214413,
+      "selection_score": -0.8541584240688898
+    },
+    "sparse_ce_0_03_plus_wrong_suppress_0_03": {
+      "avg_loss": 0.41126188018824905,
+      "avg_accuracy": 0.17590030562267703,
+      "calibration_proxy": 0.07712447755124434,
+      "latency_p50": 11.830267459154129,
+      "latency_p95": 11.830267459154129,
+      "correct_class_logit_delta": 1.3084078870403268,
+      "incorrect_class_logit_delta_max": 2.443597201878826,
+      "delta_correct_minus_top_wrong": -1.135189335948477,
+      "residual_help_rate": 0.8466523257084191,
+      "residual_harm_rate": 0.15333802619716153,
+      "token_to_sequence_transfer_ratio": 0.17117276019202374,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": false,
+      "calibration_gain_vs_sparse_ce_0_05": 0.052841565752955774,
+      "margin_gain_vs_sparse_ce_0_05": -0.07619840931147337,
+      "selection_score": -0.8098136960339201
+    },
+    "sparse_ce_0_05": {
+      "avg_loss": 0.40044378609551734,
+      "avg_accuracy": 0.24243722927027295,
+      "calibration_proxy": 0.1299660433042001,
+      "latency_p50": 6.280985236167908,
+      "latency_p95": 6.280985236167908,
+      "correct_class_logit_delta": 4.778455776783327,
+      "incorrect_class_logit_delta_max": 5.837446749210358,
+      "delta_correct_minus_top_wrong": -1.0589909266370037,
+      "residual_help_rate": 0.9835581281222403,
+      "residual_harm_rate": 0.016441862707324617,
+      "token_to_sequence_transfer_ratio": 0.053238774557959744,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": true,
+      "calibration_gain_vs_sparse_ce_0_05": 0.0,
+      "margin_gain_vs_sparse_ce_0_05": 0.0,
+      "selection_score": 0.24493045929550336
+    },
+    "sparse_ce_0_05_plus_logit_norm_penalty_light": {
+      "avg_loss": 0.39579605466375745,
+      "avg_accuracy": 0.24730744124607193,
+      "calibration_proxy": 0.12534794079067613,
+      "latency_p50": 3.412294387817383,
+      "latency_p95": 3.412294387817383,
+      "correct_class_logit_delta": 3.831329363398254,
+      "incorrect_class_logit_delta_max": 4.557502192134658,
+      "delta_correct_minus_top_wrong": -0.7261728264857084,
+      "residual_help_rate": 0.9926421120762825,
+      "residual_harm_rate": 0.007354844976362074,
+      "token_to_sequence_transfer_ratio": 0.06976612796858063,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": true,
+      "calibration_gain_vs_sparse_ce_0_05": 0.004618102513523986,
+      "margin_gain_vs_sparse_ce_0_05": 0.3328181001512953,
+      "selection_score": 0.273398358967389
+    },
+    "sparse_ce_0_05_plus_temperature_regularization": {
+      "avg_loss": 0.4005933780378351,
+      "avg_accuracy": 0.24746650398247153,
+      "calibration_proxy": 0.13705905523070358,
+      "latency_p50": 12.535113662481308,
+      "latency_p95": 12.535113662481308,
+      "correct_class_logit_delta": 4.507925346493721,
+      "incorrect_class_logit_delta_max": 5.291549934695164,
+      "delta_correct_minus_top_wrong": -0.7836245745420456,
+      "residual_help_rate": 0.9890303430147469,
+      "residual_harm_rate": 0.01096728133961733,
+      "token_to_sequence_transfer_ratio": 0.061574343784090886,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": true,
+      "calibration_gain_vs_sparse_ce_0_05": -0.0070930119265034675,
+      "margin_gain_vs_sparse_ce_0_05": 0.2753663520949581,
+      "selection_score": 0.2600319537068803
+    },
+    "sparse_ce_0_05_plus_wrong_suppress_0_01": {
+      "avg_loss": 0.3987135972129181,
+      "avg_accuracy": 0.23800205349819248,
+      "calibration_proxy": 0.11921025050189017,
+      "latency_p50": 10.585451424121857,
+      "latency_p95": 10.585451424121857,
+      "correct_class_logit_delta": 3.012193638210495,
+      "incorrect_class_logit_delta_max": 4.18549459738036,
+      "delta_correct_minus_top_wrong": -1.1733010142731168,
+      "residual_help_rate": 0.948690461460501,
+      "residual_harm_rate": 0.05128851737299556,
+      "token_to_sequence_transfer_ratio": 0.09502173938163794,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": true,
+      "calibration_gain_vs_sparse_ce_0_05": 0.01075579280230994,
+      "margin_gain_vs_sparse_ce_0_05": -0.11431008763611317,
+      "selection_score": 0.24188786442537144
+    },
+    "sparse_ce_warmup_decay": {
+      "avg_loss": 0.4111922134179622,
+      "avg_accuracy": 0.17931110841711173,
+      "calibration_proxy": 0.07942696988980065,
+      "latency_p50": 8.838005423545837,
+      "latency_p95": 8.838005423545837,
+      "correct_class_logit_delta": 4.615561223899325,
+      "incorrect_class_logit_delta_max": 6.185299690812826,
+      "delta_correct_minus_top_wrong": -1.5697384343172112,
+      "residual_help_rate": 0.9790616878308356,
+      "residual_harm_rate": 0.020930312851305644,
+      "token_to_sequence_transfer_ratio": 0.040350659648100196,
+      "scopes": [
+        "aux_all_tokens"
+      ],
+      "capability_close_to_sparse_ce_0_05": false,
+      "calibration_gain_vs_sparse_ce_0_05": 0.05053907341439946,
+      "margin_gain_vs_sparse_ce_0_05": -0.5107475076802075,
+      "selection_score": -0.8292119275569134
+    }
+  }
+}
+```

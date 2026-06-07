@@ -1,0 +1,267 @@
+# PVR-EC Conditional Scale Oracle Report
+
+**Status:** PVR_EC_BENCHMARK_TRANSFER_BLOCKER
+
+**Statuses:** PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED, PVR_EC_BENCHMARK_TRANSFER_BLOCKER, PVR_EC_DO_NOT_PROMOTE, PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER, PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK, PVR_EC_SCALE_HELPFUL_BY_FAMILY, PVR_EC_SCALE_OVERAMPLIFIES_BENCHMARK_NOISE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T02:04:46.576773",
+    "run_id": "algo_20260607_020346_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_deploy_top1,pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-residual-alignment-diagnostic --output-dir evaluation/benchmark_results/pvr_residual_alignment",
+    "model_variants": [
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+  "statuses": [
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCALE_HELPFUL_BY_FAMILY",
+    "PVR_EC_SCALE_OVERAMPLIFIES_BENCHMARK_NOISE"
+  ],
+  "promotion_ready": false,
+  "diagnostic_only": true,
+  "conditional_scale_modes": [],
+  "best_scale_by_family": {
+    "clrs_style": {
+      "model": "pvr_ec_deploy_top1",
+      "scale": "constant_1",
+      "loss": 0.26753168646246195,
+      "accuracy": 0.1713499366157629,
+      "quality_per_ms": 0.1713499366157629,
+      "residual_help_rate": 0.6821126093467077,
+      "residual_harm_rate": 0.3175452155992389,
+      "expert_delta_contribution_pct": 0.8638735898195365,
+      "shared_sparse_ratio": 0.19290215064150593,
+      "logit_norm": 38.58030557632446,
+      "prediction_entropy": 3.1717694799105325,
+      "ECE_proxy": 0.06509699647013359,
+      "owner_stability": 1.0,
+      "prototype_owner_entropy": 0.0
+    },
+    "dyck": {
+      "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+      "scale": "warmup_hold_1_to_8",
+      "loss": 0.34985795958588517,
+      "accuracy": 0.007735737371833997,
+      "quality_per_ms": 0.007735737371833997,
+      "residual_help_rate": 0.617033274223407,
+      "residual_harm_rate": 0.3824177350228032,
+      "expert_delta_contribution_pct": 0.9213600238542581,
+      "shared_sparse_ratio": 0.11626412473075712,
+      "logit_norm": 17.142101327578224,
+      "prediction_entropy": 5.081983139117559,
+      "ECE_proxy": 0.10213169811900635,
+      "owner_stability": 1.0,
+      "prototype_owner_entropy": 0.0
+    },
+    "listops": {
+      "model": "pvr_ec_deploy_top1",
+      "scale": "constant_1",
+      "loss": 1.589727409183979,
+      "accuracy": 0.08681121159355165,
+      "quality_per_ms": 0.08681121159355165,
+      "residual_help_rate": 0.7349962778389454,
+      "residual_harm_rate": 0.2647160654887557,
+      "expert_delta_contribution_pct": 0.8614543681820213,
+      "shared_sparse_ratio": 0.1940303894225508,
+      "logit_norm": 33.09664976596832,
+      "prediction_entropy": 4.649444282054901,
+      "ECE_proxy": 0.047960619773984206,
+      "owner_stability": 1.0,
+      "prototype_owner_entropy": 0.0
+    },
+    "scan_style": {
+      "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+      "scale": "warmup_hold_1_to_8",
+      "loss": 0.24619679944589734,
+      "accuracy": 0.01726854679620559,
+      "quality_per_ms": 0.01726854679620559,
+      "residual_help_rate": 0.4335414683446288,
+      "residual_harm_rate": 0.5661997655406594,
+      "expert_delta_contribution_pct": 0.920954350327362,
+      "shared_sparse_ratio": 0.1170818216050975,
+      "logit_norm": 17.200514554977417,
+      "prediction_entropy": 5.044208720326424,
+      "ECE_proxy": 0.09508745422584278,
+      "owner_stability": 1.0,
+      "prototype_owner_entropy": 0.0
+    }
+  },
+  "best_scale_by_prototype": {
+    "diagnostic_bucket_all": {
+      "clrs_style": {
+        "model": "pvr_ec_deploy_top1",
+        "scale": "constant_1",
+        "loss": 0.26753168646246195,
+        "accuracy": 0.1713499366157629,
+        "quality_per_ms": 0.1713499366157629,
+        "residual_help_rate": 0.6821126093467077,
+        "residual_harm_rate": 0.3175452155992389,
+        "expert_delta_contribution_pct": 0.8638735898195365,
+        "shared_sparse_ratio": 0.19290215064150593,
+        "logit_norm": 38.58030557632446,
+        "prediction_entropy": 3.1717694799105325,
+        "ECE_proxy": 0.06509699647013359,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "dyck": {
+        "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+        "scale": "warmup_hold_1_to_8",
+        "loss": 0.34985795958588517,
+        "accuracy": 0.007735737371833997,
+        "quality_per_ms": 0.007735737371833997,
+        "residual_help_rate": 0.617033274223407,
+        "residual_harm_rate": 0.3824177350228032,
+        "expert_delta_contribution_pct": 0.9213600238542581,
+        "shared_sparse_ratio": 0.11626412473075712,
+        "logit_norm": 17.142101327578224,
+        "prediction_entropy": 5.081983139117559,
+        "ECE_proxy": 0.10213169811900635,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "listops": {
+        "model": "pvr_ec_deploy_top1",
+        "scale": "constant_1",
+        "loss": 1.589727409183979,
+        "accuracy": 0.08681121159355165,
+        "quality_per_ms": 0.08681121159355165,
+        "residual_help_rate": 0.7349962778389454,
+        "residual_harm_rate": 0.2647160654887557,
+        "expert_delta_contribution_pct": 0.8614543681820213,
+        "shared_sparse_ratio": 0.1940303894225508,
+        "logit_norm": 33.09664976596832,
+        "prediction_entropy": 4.649444282054901,
+        "ECE_proxy": 0.047960619773984206,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "scan_style": {
+        "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+        "scale": "warmup_hold_1_to_8",
+        "loss": 0.24619679944589734,
+        "accuracy": 0.01726854679620559,
+        "quality_per_ms": 0.01726854679620559,
+        "residual_help_rate": 0.4335414683446288,
+        "residual_harm_rate": 0.5661997655406594,
+        "expert_delta_contribution_pct": 0.920954350327362,
+        "shared_sparse_ratio": 0.1170818216050975,
+        "logit_norm": 17.200514554977417,
+        "prediction_entropy": 5.044208720326424,
+        "ECE_proxy": 0.09508745422584278,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      }
+    }
+  },
+  "best_scale_by_owner": {
+    "diagnostic_owner_all": {
+      "clrs_style": {
+        "model": "pvr_ec_deploy_top1",
+        "scale": "constant_1",
+        "loss": 0.26753168646246195,
+        "accuracy": 0.1713499366157629,
+        "quality_per_ms": 0.1713499366157629,
+        "residual_help_rate": 0.6821126093467077,
+        "residual_harm_rate": 0.3175452155992389,
+        "expert_delta_contribution_pct": 0.8638735898195365,
+        "shared_sparse_ratio": 0.19290215064150593,
+        "logit_norm": 38.58030557632446,
+        "prediction_entropy": 3.1717694799105325,
+        "ECE_proxy": 0.06509699647013359,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "dyck": {
+        "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+        "scale": "warmup_hold_1_to_8",
+        "loss": 0.34985795958588517,
+        "accuracy": 0.007735737371833997,
+        "quality_per_ms": 0.007735737371833997,
+        "residual_help_rate": 0.617033274223407,
+        "residual_harm_rate": 0.3824177350228032,
+        "expert_delta_contribution_pct": 0.9213600238542581,
+        "shared_sparse_ratio": 0.11626412473075712,
+        "logit_norm": 17.142101327578224,
+        "prediction_entropy": 5.081983139117559,
+        "ECE_proxy": 0.10213169811900635,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "listops": {
+        "model": "pvr_ec_deploy_top1",
+        "scale": "constant_1",
+        "loss": 1.589727409183979,
+        "accuracy": 0.08681121159355165,
+        "quality_per_ms": 0.08681121159355165,
+        "residual_help_rate": 0.7349962778389454,
+        "residual_harm_rate": 0.2647160654887557,
+        "expert_delta_contribution_pct": 0.8614543681820213,
+        "shared_sparse_ratio": 0.1940303894225508,
+        "logit_norm": 33.09664976596832,
+        "prediction_entropy": 4.649444282054901,
+        "ECE_proxy": 0.047960619773984206,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      },
+      "scan_style": {
+        "model": "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+        "scale": "warmup_hold_1_to_8",
+        "loss": 0.24619679944589734,
+        "accuracy": 0.01726854679620559,
+        "quality_per_ms": 0.01726854679620559,
+        "residual_help_rate": 0.4335414683446288,
+        "residual_harm_rate": 0.5661997655406594,
+        "expert_delta_contribution_pct": 0.920954350327362,
+        "shared_sparse_ratio": 0.1170818216050975,
+        "logit_norm": 17.200514554977417,
+        "prediction_entropy": 5.044208720326424,
+        "ECE_proxy": 0.09508745422584278,
+        "owner_stability": 1.0,
+        "prototype_owner_entropy": 0.0
+      }
+    }
+  },
+  "conditional_scale_gain_over_global": -0.1623490094595278,
+  "conditional_scale_overfit_risk": "high: oracle selected from validation rows; diagnostic only",
+  "global_best_loss": 0.45097945421002805
+}
+```

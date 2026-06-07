@@ -1,0 +1,94 @@
+# PVR-EC Reliability Proxy Gate Report
+
+**Status:** PVR_EC_RELIABILITY_BLOCKED
+
+**Statuses:** PVR_EC_RELIABILITY_BLOCKED, PVR_EC_DO_NOT_PROMOTE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T18:39:35.216142",
+    "run_id": "algo_20260607_183719_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-reliability-proxy-gate --output-dir evaluation/benchmark_results/pvr_final_reliability_proxy_gate",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_RELIABILITY_BLOCKED",
+  "statuses": [
+    "PVR_EC_RELIABILITY_BLOCKED",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "promotion_ready": false,
+  "passed": false,
+  "high_confidence_failure_rate": 0.0,
+  "confidence_when_correct": 0.25438841247038607,
+  "confidence_when_wrong": 0.11459134357088867,
+  "calibration_proxy": 0.12397832089985202,
+  "ECE_proxy_if_available": 0.12397832089985202,
+  "deploy_top1_calibration_proxy": 0.09130130229226582,
+  "incorrect_logit_overamplification_rate": 0.7793859008233994,
+  "ownership_confidence_calibration": 0.0,
+  "top1_oracle_gap_if_available": null,
+  "fallback_required_rate_shadow_only": 0.0,
+  "verifier_ticket_rate_shadow_only": 0.0,
+  "model_table": {
+    "fixed_moe_vectorized": {
+      "params": 1001092,
+      "avg_accuracy": 0.25859039454829547,
+      "avg_exact_match": 0.00925,
+      "avg_loss": 0.3886002382108321,
+      "avg_qpc": 0.12929519727414773,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_deploy_top1": {
+      "params": 614274,
+      "avg_accuracy": 0.07722057407738125,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.450962777598761,
+      "avg_qpc": 0.07722057407738125,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1": {
+      "params": 482690,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.39578524367728585,
+      "avg_qpc": 0.24662427509545803,
+      "avg_loops": 1.0
+    }
+  }
+}
+```

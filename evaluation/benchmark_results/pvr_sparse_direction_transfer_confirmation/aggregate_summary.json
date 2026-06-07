@@ -1,0 +1,102 @@
+{
+  "run_id": "algo_20260607_032819_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 149.38740062713623,
+  "seed": 42,
+  "train_steps": 500,
+  "n_samples": 1000,
+  "num_models": 4,
+  "num_failures": 0,
+  "total_valid_results": 32,
+  "total_samples": 14500,
+  "families_attempted": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "families_succeeded": [
+    "clrs_style",
+    "listops",
+    "scan_style",
+    "dyck"
+  ],
+  "model_table": {
+    "fixed_moe_vectorized": {
+      "params": 1001092,
+      "avg_accuracy": 0.25857819999606313,
+      "avg_exact_match": 0.00925,
+      "avg_loss": 0.3886076922838887,
+      "avg_qpc": 0.12928909999803156,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_deploy_top1": {
+      "params": 614274,
+      "avg_accuracy": 0.0771500010285979,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.45097945421002805,
+      "avg_qpc": 0.0771500010285979,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8": {
+      "params": 482690,
+      "avg_accuracy": 0.06054665483850138,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.46348366168482846,
+      "avg_qpc": 0.06054665483850138,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_best_sparse_logit_repair": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    }
+  },
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "VALID_ALGORITHMIC_BENCHMARK",
+    "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+    "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+    "adaptive_vs_dense": 0,
+    "adaptive_vs_fixed": 0,
+    "full_vs_adaptive": 0,
+    "fixed_vs_dense": 0,
+    "fixed_qpc": 0,
+    "adaptive_qpc": 0
+  }
+}

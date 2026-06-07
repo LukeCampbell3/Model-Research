@@ -1,0 +1,57 @@
+{
+  "run_id": "algo_20260606_183305_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 1.9447364807128906,
+  "seed": 42,
+  "train_steps": 1,
+  "n_samples": 128,
+  "num_models": 0,
+  "num_failures": 2,
+  "total_valid_results": 0,
+  "total_samples": 0,
+  "families_attempted": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "families_succeeded": [],
+  "model_table": {},
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "INVALID_EVAL_PIPELINE",
+    "reason": "Zero valid results."
+  }
+}

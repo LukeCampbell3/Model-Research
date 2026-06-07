@@ -1,0 +1,9 @@
+# PVR-EC Root Baseline Matrix
+
+**Status:** PVR_EC_ROOT_BASELINE_MATRIX_RECORDED
+
+**Statuses:** PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE, PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+| Model | Count | Loss | Accuracy | p95/p50 |
+|---|---:|---:|---:|---:|
+| pvr_ec_ownership_top1_final_candidate_v1 | 2 | 5.566602945327759 | 0.001953125 | 1.0424072619699025 |

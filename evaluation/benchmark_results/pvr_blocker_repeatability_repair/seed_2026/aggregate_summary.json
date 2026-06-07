@@ -1,0 +1,142 @@
+{
+  "run_id": "algo_20260607_192631_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 307.29851365089417,
+  "seed": 2026,
+  "train_steps": 500,
+  "n_samples": 1000,
+  "num_models": 9,
+  "num_failures": 0,
+  "total_valid_results": 72,
+  "total_samples": 32625,
+  "families_attempted": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "families_succeeded": [
+    "scan_style",
+    "dyck",
+    "clrs_style",
+    "listops"
+  ],
+  "model_table": {
+    "fixed_moe_vectorized": {
+      "params": 1001092,
+      "avg_accuracy": 0.21791622906883187,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4051392263111969,
+      "avg_qpc": 0.10895811453441594,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__final_candidate_v1": {
+      "params": 482690,
+      "avg_accuracy": 0.31330901334752226,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.37423891096841544,
+      "avg_qpc": 0.31330901334752226,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_03_plus_logit_norm_penalty_light": {
+      "params": 482690,
+      "avg_accuracy": 0.2671120354903755,
+      "avg_exact_match": 0.004,
+      "avg_loss": 0.38248463200094795,
+      "avg_qpc": 0.2671120354903755,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_05_plus_logit_norm_penalty_light": {
+      "params": 482690,
+      "avg_accuracy": 0.31330901334752226,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.374238919505539,
+      "avg_qpc": 0.31330901334752226,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_05_plus_logit_norm_penalty_medium": {
+      "params": 482690,
+      "avg_accuracy": 0.3097768216283071,
+      "avg_exact_match": 0.00325,
+      "avg_loss": 0.3745938003218422,
+      "avg_qpc": 0.3097768216283071,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_05_plus_wrong_suppress_0_01_plus_logit_norm_light": {
+      "params": 482690,
+      "avg_accuracy": 0.31887785043492983,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.37055438450382405,
+      "avg_qpc": 0.31887785043492983,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_03_plus_wrong_suppress_0_01_plus_logit_norm_light": {
+      "params": 482690,
+      "avg_accuracy": 0.25592984197369595,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.38660131534561515,
+      "avg_qpc": 0.25592984197369595,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_05_plus_posthoc_temperature_calibration": {
+      "params": 482690,
+      "avg_accuracy": 0.31330901334752226,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.396124194880637,
+      "avg_qpc": 0.31330901334752226,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__sparse_ce_0_03_plus_posthoc_temperature_calibration": {
+      "params": 482690,
+      "avg_accuracy": 0.2671120354903755,
+      "avg_exact_match": 0.004,
+      "avg_loss": 0.40154885357090586,
+      "avg_qpc": 0.2671120354903755,
+      "avg_loops": 1.0
+    }
+  },
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "VALID_ALGORITHMIC_BENCHMARK",
+    "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+    "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+    "adaptive_vs_dense": 0,
+    "adaptive_vs_fixed": 0,
+    "full_vs_adaptive": 0,
+    "fixed_vs_dense": 0,
+    "fixed_qpc": 0,
+    "adaptive_qpc": 0
+  }
+}

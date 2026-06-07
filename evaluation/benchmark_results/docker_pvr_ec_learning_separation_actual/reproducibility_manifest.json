@@ -1,0 +1,41 @@
+{
+  "run_id": "algo_20260606_191120_benchmark-lite",
+  "timestamp": "2026-06-06T19:13:54.417583",
+  "docker_image": "N/A",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 96 --train-steps 40 --seed 42 --run-learning-separation-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --shared-scale-sweep 0,0.5,1 --expert-delta-scale-sweep 0.5,1,2 --ownership-schedule-sweep disabled,from_start,delayed_ownership --output-dir evaluation/benchmark_results/docker_pvr_ec_learning_separation_actual",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": false,
+  "device_used": "cpu",
+  "gpu_name": "",
+  "peak_gpu_memory_mb": 0.0,
+  "amp_enabled": false,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "tiny",
+  "train_steps": 40,
+  "n_samples": 96,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 153.0509159564972,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_ownership_top1_delta_rank_64",
+    "pvr_ec_learning_expert_delta_scale_2_0",
+    "pvr_ec_learning_shared_only",
+    "fixed_moe_vectorized",
+    "pvr_ec_ownership_top1_delta_rank_16",
+    "pvr_ec_ownership_top1_delayed_candidate",
+    "pvr_ec_learning_shared_scale_0_5",
+    "pvr_ec_learning_full",
+    "pvr_ec_learning_sparse_only",
+    "pvr_ec_ownership_top1_micro_ffn_0_5x"
+  ]
+}

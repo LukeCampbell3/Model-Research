@@ -1,0 +1,231 @@
+{
+  "metadata": {
+    "seed_list": [
+      42,
+      123,
+      777
+    ],
+    "train_steps_list": [
+      500,
+      1000,
+      2000
+    ],
+    "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps-list 500,1000,2000 --seed-list 42,123,777 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-longer-training-confirmation-gate --output-dir evaluation/benchmark_results/pvr_final_longer_training_confirmation"
+  },
+  "status": "PVR_EC_LONGER_TRAINING_CONFIRMED",
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_LONGER_TRAINING_CONFIRMED",
+    "PVR_EC_LONGER_TRAINING_HELPFUL",
+    "PVR_EC_SCALING_GAP_REMAINS"
+  ],
+  "promotion_ready": false,
+  "passed": true,
+  "by_train_steps": {
+    "500": {
+      "candidate_loss": {
+        "mean": 0.40553535592173123,
+        "std": 0.012453526480599731,
+        "min": 0.39578524367728585,
+        "max": 0.41956419843093806,
+        "ci95_low": 0.39144286406449985,
+        "ci95_high": 0.4196278477789626
+      },
+      "candidate_accuracy": {
+        "mean": 0.24805263650001821,
+        "std": 0.014861697736159403,
+        "min": 0.23395668899979996,
+        "max": 0.2635769454047967,
+        "ci95_low": 0.23123504233038872,
+        "ci95_high": 0.2648702306696477
+      },
+      "loss_gap_vs_fixed": {
+        "mean": 0.0002931128126672696,
+        "std": 0.010359804577416913,
+        "min": -0.011621351159798565,
+        "max": 0.007177551393397152,
+        "ci95_low": -0.011430109671918931,
+        "ci95_high": 0.012016335297253471
+      },
+      "accuracy_gap_vs_fixed": {
+        "mean": 0.028641752163912283,
+        "std": 0.07090497081559172,
+        "min": -0.012635632722952539,
+        "max": 0.11051481411529449,
+        "ci95_low": -0.05159477565112601,
+        "ci95_high": 0.10887827997895057
+      }
+    },
+    "1000": {
+      "candidate_loss": {
+        "mean": 0.3134072690865852,
+        "std": 0.008878332762251372,
+        "min": 0.30325903320529807,
+        "max": 0.31974026510336745,
+        "ci95_low": 0.30336048977851304,
+        "ci95_high": 0.3234540483946574
+      },
+      "candidate_accuracy": {
+        "mean": 0.5120757158340142,
+        "std": 0.022495308909177083,
+        "min": 0.4869787673654481,
+        "max": 0.5304247336716077,
+        "ci95_low": 0.48661987743174856,
+        "ci95_high": 0.5375315542362799
+      },
+      "loss_gap_vs_fixed": {
+        "mean": -0.006648395501542874,
+        "std": 0.007118586727479566,
+        "min": -0.014861065370496362,
+        "max": -0.0022448784438893754,
+        "ci95_low": -0.014703834709728521,
+        "ci95_high": 0.0014070437066427749
+      },
+      "accuracy_gap_vs_fixed": {
+        "mean": 0.08891838386235414,
+        "std": 0.026042429099134966,
+        "min": 0.06236084860338986,
+        "max": 0.11441316983293759,
+        "ci95_low": 0.059448601098908996,
+        "ci95_high": 0.11838816662579928
+      }
+    },
+    "2000": {
+      "candidate_loss": {
+        "mean": 0.244649234457433,
+        "std": 0.0027225253151849705,
+        "min": 0.24154047189707245,
+        "max": 0.2466083880184063,
+        "ci95_low": 0.24156840703918167,
+        "ci95_high": 0.24773006187568433
+      },
+      "candidate_accuracy": {
+        "mean": 0.8424594583008846,
+        "std": 0.030618594628315156,
+        "min": 0.8151431904364748,
+        "max": 0.875556328547031,
+        "ci95_low": 0.8078112567531877,
+        "ci95_high": 0.8771076598485816
+      },
+      "loss_gap_vs_fixed": {
+        "mean": -0.02468318772217672,
+        "std": 0.006401531613070584,
+        "min": -0.031966571463271976,
+        "max": -0.019948862357220265,
+        "ci95_low": -0.031927202682239836,
+        "ci95_high": -0.017439172762113604
+      },
+      "accuracy_gap_vs_fixed": {
+        "mean": 0.31983349404704176,
+        "std": 0.018475688548317062,
+        "min": 0.3089771509925633,
+        "max": 0.3411662538728514,
+        "ci95_low": 0.29892628428364604,
+        "ci95_high": 0.3407407038104375
+      }
+    }
+  },
+  "records": [
+    {
+      "train_steps": 500,
+      "seed": 42,
+      "fixed_loss": 0.3886076922838887,
+      "fixed_accuracy": 0.25857819999606313,
+      "candidate_loss": 0.39578524367728585,
+      "candidate_accuracy": 0.24662427509545803,
+      "loss_gap_vs_fixed": 0.007177551393397152,
+      "accuracy_gap_vs_fixed": -0.011953924900605095
+    },
+    {
+      "train_steps": 500,
+      "seed": 123,
+      "fixed_loss": 0.4128779768167684,
+      "fixed_accuracy": 0.2465923217227525,
+      "candidate_loss": 0.40125662565696985,
+      "candidate_accuracy": 0.23395668899979996,
+      "loss_gap_vs_fixed": -0.011621351159798565,
+      "accuracy_gap_vs_fixed": -0.012635632722952539
+    },
+    {
+      "train_steps": 500,
+      "seed": 777,
+      "fixed_loss": 0.41424106022653484,
+      "fixed_accuracy": 0.15306213128950222,
+      "candidate_loss": 0.41956419843093806,
+      "candidate_accuracy": 0.2635769454047967,
+      "loss_gap_vs_fixed": 0.005323138204403222,
+      "accuracy_gap_vs_fixed": 0.11051481411529449
+    },
+    {
+      "train_steps": 1000,
+      "seed": 42,
+      "fixed_loss": 0.30550391164918744,
+      "fixed_accuracy": 0.4564627978615968,
+      "candidate_loss": 0.30325903320529807,
+      "candidate_accuracy": 0.5188236464649867,
+      "loss_gap_vs_fixed": -0.0022448784438893754,
+      "accuracy_gap_vs_fixed": 0.06236084860338986
+    },
+    {
+      "train_steps": 1000,
+      "seed": 123,
+      "fixed_loss": 0.33208357432158664,
+      "fixed_accuracy": 0.3969976342147131,
+      "candidate_loss": 0.3172225089510903,
+      "candidate_accuracy": 0.4869787673654481,
+      "loss_gap_vs_fixed": -0.014861065370496362,
+      "accuracy_gap_vs_fixed": 0.08998113315073497
+    },
+    {
+      "train_steps": 1000,
+      "seed": 777,
+      "fixed_loss": 0.32257950779361033,
+      "fixed_accuracy": 0.4160115638386701,
+      "candidate_loss": 0.31974026510336745,
+      "candidate_accuracy": 0.5304247336716077,
+      "loss_gap_vs_fixed": -0.0028392426902428824,
+      "accuracy_gap_vs_fixed": 0.11441316983293759
+    },
+    {
+      "train_steps": 2000,
+      "seed": 42,
+      "fixed_loss": 0.26574770581404056,
+      "fixed_accuracy": 0.5277017049265849,
+      "candidate_loss": 0.2457988434568203,
+      "candidate_accuracy": 0.8366788559191481,
+      "loss_gap_vs_fixed": -0.019948862357220265,
+      "accuracy_gap_vs_fixed": 0.3089771509925633
+    },
+    {
+      "train_steps": 2000,
+      "seed": 123,
+      "fixed_loss": 0.2735070433603444,
+      "fixed_accuracy": 0.5057861131607642,
+      "candidate_loss": 0.24154047189707245,
+      "candidate_accuracy": 0.8151431904364748,
+      "loss_gap_vs_fixed": -0.031966571463271976,
+      "accuracy_gap_vs_fixed": 0.3093570772757106
+    },
+    {
+      "train_steps": 2000,
+      "seed": 777,
+      "fixed_loss": 0.2687425173644442,
+      "fixed_accuracy": 0.5343900746741796,
+      "candidate_loss": 0.2466083880184063,
+      "candidate_accuracy": 0.875556328547031,
+      "loss_gap_vs_fixed": -0.022134129346037923,
+      "accuracy_gap_vs_fixed": 0.3411662538728514
+    }
+  ],
+  "subrun_dirs": [
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_500_seed_42",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_500_seed_123",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_500_seed_777",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_1000_seed_42",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_1000_seed_123",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_1000_seed_777",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_2000_seed_42",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_2000_seed_123",
+    "evaluation/benchmark_results/pvr_final_longer_training_confirmation/steps_2000_seed_777"
+  ]
+}

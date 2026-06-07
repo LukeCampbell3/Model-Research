@@ -1,0 +1,99 @@
+# PVR-EC Benchmark Transfer Repair Report
+
+**Status:** PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED
+
+**Statuses:** PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED, PVR_EC_BENCHMARK_TRANSFER_BLOCKER, PVR_EC_DO_NOT_PROMOTE, PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER, PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK, PVR_EC_SCALE_HELPFUL_BY_FAMILY
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T02:38:37.744118",
+    "run_id": "algo_20260607_023602_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_best_transfer_repair --enable-ownership-map --ownership-map-mode frozen --run-benchmark-transfer-confirmation --output-dir evaluation/benchmark_results/pvr_task_transfer_repair_confirmation",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_best_transfer_repair"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+  "statuses": [
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCALE_HELPFUL_BY_FAMILY"
+  ],
+  "promotion_ready": false,
+  "chosen_minimal_repair": "pvr_ec_ownership_top1_best_transfer_repair",
+  "fixed_moe_vectorized": {
+    "params": 1001092,
+    "avg_accuracy": 0.25857819999606313,
+    "avg_exact_match": 0.00925,
+    "avg_loss": 0.3886076922838887,
+    "avg_qpc": 0.12928909999803156,
+    "avg_loops": 1.0
+  },
+  "pvr_ec_deploy_top1": {
+    "params": 614274,
+    "avg_accuracy": 0.0771500010285979,
+    "avg_exact_match": 0.0,
+    "avg_loss": 0.45097945421002805,
+    "avg_qpc": 0.0771500010285979,
+    "avg_loops": 1.0
+  },
+  "repair": {
+    "params": 482690,
+    "avg_accuracy": 0.06054665483850138,
+    "avg_exact_match": 0.0,
+    "avg_loss": 0.463483668747358,
+    "avg_qpc": 0.06054665483850138,
+    "avg_loops": 1.0
+  },
+  "loss_by_family": {
+    "clrs_style": 0.26753168646246195,
+    "dyck": 0.3498579617589712,
+    "listops": 1.589727409183979,
+    "scan_style": 0.2461968050338328
+  },
+  "accuracy_by_family": {
+    "clrs_style": 0.1713499366157629,
+    "dyck": 0.007735737371833997,
+    "listops": 0.08681121159355165,
+    "scan_style": 0.01726854679620559
+  },
+  "calibration_result": 0.0874728317033405,
+  "latency_result": 0.6746974140405655
+}
+```

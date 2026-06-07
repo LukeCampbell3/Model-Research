@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:57:09.325673",
+    "run_id": "algo_20260606_185440_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 128 --train-steps 50 --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen_candidate --run-root-baseline-matrix --run-training-dynamics-diagnostic --run-ownership-integration-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --output-dir evaluation/benchmark_results/docker_pvr_ec_root_cause_actual",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 50,
+    "sample_limit": 128,
+    "mode": "benchmark-lite",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+  "statuses": [
+    "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+    "PVR_EC_DISTILLATION_BLOCKED",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "best_capacity_variant": "pvr_ec_ownership_top1_delta_large",
+  "best_capacity_metrics": {
+    "capacity_variant": "delta_large",
+    "expert_architecture_id": "delta_rank_64",
+    "params_total": 169218,
+    "params_active_estimate": 119298,
+    "avg_loss": 3.9953610002994537,
+    "avg_accuracy": 0.0,
+    "latency_p50": null,
+    "latency_p95": null,
+    "quality_per_ms": null,
+    "quality_per_active_param": 0.0,
+    "owners_per_token": 1.0,
+    "expert_capacity_failure_rate": null,
+    "shared_vs_sparse_contribution": null,
+    "owner_change_rate": null,
+    "owner_changed_success_rate": null
+  },
+  "full_ffn_signal_real": false,
+  "model_averages": {
+    "pvr_ec_ownership_top1_delta_medium": {
+      "capacity_variant": "delta_medium",
+      "expert_architecture_id": "delta_rank_32",
+      "params_total": 136194,
+      "params_active_estimate": 111042,
+      "avg_loss": 4.0010876059532166,
+      "avg_accuracy": 0.0006459948320413437,
+      "latency_p50": null,
+      "latency_p95": null,
+      "quality_per_ms": null,
+      "quality_per_active_param": 5.817572018167393e-09,
+      "owners_per_token": 1.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_delta_large": {
+      "capacity_variant": "delta_large",
+      "expert_architecture_id": "delta_rank_64",
+      "params_total": 169218,
+      "params_active_estimate": 119298,
+      "avg_loss": 3.9953610002994537,
+      "avg_accuracy": 0.0,
+      "latency_p50": null,
+      "latency_p95": null,
+      "quality_per_ms": null,
+      "quality_per_active_param": 0.0,
+      "owners_per_token": 1.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_full_expert_ffn_control": {
+      "capacity_variant": "full_expert_ffn",
+      "expert_architecture_id": "full_expert_ffn",
+      "params_total": 235266,
+      "params_active_estimate": 135810,
+      "avg_loss": 4.0216119438409805,
+      "avg_accuracy": 0.004554263565891473,
+      "latency_p50": null,
+      "latency_p95": null,
+      "quality_per_ms": null,
+      "quality_per_active_param": 3.353408118615325e-08,
+      "owners_per_token": 1.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "fixed_moe_vectorized": {
+      "capacity_variant": "",
+      "expert_architecture_id": "",
+      "params_total": 260932,
+      "params_active_estimate": 260932,
+      "avg_loss": 3.927697777748108,
+      "avg_accuracy": 0.0009366925064599483,
+      "latency_p50": null,
+      "latency_p95": null,
+      "quality_per_ms": null,
+      "quality_per_active_param": 3.5897954503853433e-09,
+      "owners_per_token": 0.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    }
+  }
+}

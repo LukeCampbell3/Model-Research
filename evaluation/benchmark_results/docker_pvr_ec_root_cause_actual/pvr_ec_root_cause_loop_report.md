@@ -1,0 +1,124 @@
+# PVR-EC Root Cause Loop Report
+
+**Status:** PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER
+
+**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:57:09.527724",
+    "run_id": "algo_20260606_185440_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 128 --train-steps 50 --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen_candidate --run-root-baseline-matrix --run-training-dynamics-diagnostic --run-ownership-integration-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --output-dir evaluation/benchmark_results/docker_pvr_ec_root_cause_actual",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 50,
+    "sample_limit": 128,
+    "mode": "benchmark-lite",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "root_cause_flags": {
+      "run_root_baseline_matrix": true,
+      "run_training_dynamics_diagnostic": true,
+      "run_ownership_integration_diagnostic": true,
+      "run_shared_sparse_ablation": true,
+      "run_loss_calibration_diagnostic": true,
+      "run_task_fit_diagnostic": true,
+      "run_latency_stability_diagnostic": false
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [
+        50
+      ],
+      "seed_list": [
+        42
+      ],
+      "ownership_schedule_sweep": [],
+      "loss_schedule_sweep": [],
+      "task_loss_schedule_sweep": [],
+      "batch_size_list": [
+        1,
+        32
+      ],
+      "seq_len_list": [
+        64
+      ]
+    },
+    "source": "trained_benchmark"
+  },
+  "status": "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "promotion_ready": false,
+  "diagnostic_loop": [
+    {
+      "name": "pvr_ec_root_baseline_matrix",
+      "json": "pvr_ec_root_baseline_matrix.json",
+      "md": "pvr_ec_root_baseline_matrix.md"
+    },
+    {
+      "name": "pvr_ec_training_dynamics_report",
+      "json": "pvr_ec_training_dynamics_report.json",
+      "md": "pvr_ec_training_dynamics_report.md"
+    },
+    {
+      "name": "pvr_ec_ownership_integration_report",
+      "json": "pvr_ec_ownership_integration_report.json",
+      "md": "pvr_ec_ownership_integration_report.md"
+    },
+    {
+      "name": "pvr_ec_shared_sparse_ablation_report",
+      "json": "pvr_ec_shared_sparse_ablation_report.json",
+      "md": "pvr_ec_shared_sparse_ablation_report.md"
+    },
+    {
+      "name": "pvr_ec_loss_calibration_report",
+      "json": "pvr_ec_loss_calibration_report.json",
+      "md": "pvr_ec_loss_calibration_report.md"
+    },
+    {
+      "name": "pvr_ec_task_fit_report",
+      "json": "pvr_ec_task_fit_report.json",
+      "md": "pvr_ec_task_fit_report.md"
+    },
+    {
+      "name": "pvr_ec_latency_stability_report",
+      "json": "pvr_ec_latency_stability_report.json",
+      "md": "pvr_ec_latency_stability_report.md"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "full_expert_vs_best_smaller_loss",
+      "full_best": 3.894876480102539,
+      "smaller_best": 3.8574278354644775
+    }
+  ]
+}
+```

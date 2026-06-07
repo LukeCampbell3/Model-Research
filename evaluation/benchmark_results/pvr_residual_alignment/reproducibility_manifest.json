@@ -1,0 +1,33 @@
+{
+  "run_id": "algo_20260607_020346_benchmark-lite",
+  "timestamp": "2026-06-07T02:04:46.620993",
+  "docker_image": "sparse-loop-moe-gpu",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_deploy_top1,pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-residual-alignment-diagnostic --output-dir evaluation/benchmark_results/pvr_residual_alignment",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": true,
+  "device_used": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_gpu_memory_mb": 2747.6494140625,
+  "amp_enabled": true,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "train_steps": 500,
+  "n_samples": 1000,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 59.38873887062073,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+    "pvr_ec_deploy_top1"
+  ]
+}

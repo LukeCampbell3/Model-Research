@@ -269,6 +269,9 @@ class Trainer:
         all_metrics = []
 
         for step_idx in range(steps):
+            if hasattr(self.model, "set_training_step"):
+                self.model.set_training_step(step_idx)
+
             # Generate batch
             batch_samples = self.task_generator.generate_batch(
                 batch_size=self.config.batch_size

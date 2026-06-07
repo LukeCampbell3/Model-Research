@@ -1,0 +1,33 @@
+{
+  "run_id": "algo_20260607_174834_benchmark-lite",
+  "timestamp": "2026-06-07T17:50:21.290712",
+  "docker_image": "sparse-loop-moe-gpu",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps-list 500,1000,2000 --seed-list 42,123,777 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-longer-training-confirmation-gate --output-dir evaluation/benchmark_results/pvr_final_longer_training_confirmation",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": true,
+  "device_used": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_gpu_memory_mb": 10565.7431640625,
+  "amp_enabled": true,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "train_steps": 500,
+  "n_samples": 1000,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 105.58454608917236,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_ownership_top1_final_candidate_v1",
+    "fixed_moe_vectorized"
+  ]
+}

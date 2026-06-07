@@ -93,6 +93,12 @@ class CombinedLoss(nn.Module):
             total = total + w.lambda_balance * l_balance
             components["balance_loss"] = l_balance
 
+        for name, value in aux_losses.items():
+            if name == "load_balance_loss" or not isinstance(value, torch.Tensor):
+                continue
+            total = total + value
+            components[name] = value
+
         # L_compute: penalize unnecessary compute
         l_compute = self._compute_loss(loop_stats)
         total = total + w.lambda_compute * l_compute

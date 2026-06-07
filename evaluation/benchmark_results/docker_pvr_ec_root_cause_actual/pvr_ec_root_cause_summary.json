@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:57:09.527724",
+    "run_id": "algo_20260606_185440_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "N/A",
+    "cuda_available": false,
+    "gpu_name": "",
+    "amp_enabled": false,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale tiny --families clrs,listops,scan,dyck --sample-limit 128 --train-steps 50 --seed 42 --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen_candidate --run-root-baseline-matrix --run-training-dynamics-diagnostic --run-ownership-integration-diagnostic --run-shared-sparse-ablation --run-loss-calibration-diagnostic --run-task-fit-diagnostic --output-dir evaluation/benchmark_results/docker_pvr_ec_root_cause_actual",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 50,
+    "sample_limit": 128,
+    "mode": "benchmark-lite",
+    "scale": "tiny",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "root_cause_flags": {
+      "run_root_baseline_matrix": true,
+      "run_training_dynamics_diagnostic": true,
+      "run_ownership_integration_diagnostic": true,
+      "run_shared_sparse_ablation": true,
+      "run_loss_calibration_diagnostic": true,
+      "run_task_fit_diagnostic": true,
+      "run_latency_stability_diagnostic": false
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [
+        50
+      ],
+      "seed_list": [
+        42
+      ],
+      "ownership_schedule_sweep": [],
+      "loss_schedule_sweep": [],
+      "task_loss_schedule_sweep": [],
+      "batch_size_list": [
+        1,
+        32
+      ],
+      "seq_len_list": [
+        64
+      ]
+    },
+    "source": "trained_benchmark"
+  },
+  "status": "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "promotion_ready": false,
+  "do_not_promote": true,
+  "primary_root_cause": "PVR_EC_EXPERT_CAPACITY_NOT_PRIMARY_BLOCKER",
+  "evidence": [
+    {
+      "label": "full_expert_vs_best_smaller_loss",
+      "full_best": 3.894876480102539,
+      "smaller_best": 3.8574278354644775
+    }
+  ],
+  "completed_reports": [
+    "pvr_ec_root_baseline_matrix",
+    "pvr_ec_training_dynamics_report",
+    "pvr_ec_ownership_integration_report",
+    "pvr_ec_shared_sparse_ablation_report",
+    "pvr_ec_loss_calibration_report",
+    "pvr_ec_task_fit_report",
+    "pvr_ec_latency_stability_report"
+  ],
+  "source_summary": {
+    "run_id": "algo_20260606_185440_benchmark-lite",
+    "mode": "benchmark-lite",
+    "scale": "tiny",
+    "total_time_s": 149.158052444458,
+    "seed": 42,
+    "train_steps": 50,
+    "n_samples": 128,
+    "num_models": 5,
+    "num_failures": 0,
+    "total_valid_results": 40,
+    "total_samples": 2310,
+    "families_attempted": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "families_succeeded": [
+      "clrs_style",
+      "scan_style",
+      "dyck",
+      "listops"
+    ],
+    "model_table": {
+      "fixed_moe_vectorized": {
+        "params": 260932,
+        "avg_accuracy": 0.0009366925064599483,
+        "avg_exact_match": 0.0,
+        "avg_loss": 3.927697777748108,
+        "avg_qpc": 0.00046834625322997417,
+        "avg_loops": 1.0
+      },
+      "pvr_ec_deploy_top1": {
+        "params": 169218,
+        "avg_accuracy": 0.0,
+        "avg_exact_match": 0.0,
+        "avg_loss": 3.9953606575727463,
+        "avg_qpc": 0.0,
+        "avg_loops": 1.0
+      },
+      "pvr_ec_ownership_top1_delta_medium": {
+        "params": 136194,
+        "avg_accuracy": 0.0006459948320413437,
+        "avg_exact_match": 0.0,
+        "avg_loss": 4.0010876059532166,
+        "avg_qpc": 0.0006459948320413437,
+        "avg_loops": 1.0
+      },
+      "pvr_ec_ownership_top1_delta_large": {
+        "params": 169218,
+        "avg_accuracy": 0.0,
+        "avg_exact_match": 0.0,
+        "avg_loss": 3.9953610002994537,
+        "avg_qpc": 0.0,
+        "avg_loops": 1.0
+      },
+      "pvr_ec_ownership_top1_full_expert_ffn_control": {
+        "params": 235266,
+        "avg_accuracy": 0.004554263565891473,
+        "avg_exact_match": 0.0,
+        "avg_loss": 4.0216119438409805,
+        "avg_qpc": 0.004554263565891473,
+        "avg_loops": 1.0
+      }
+    },
+    "win_loss_tie": {
+      "adaptive_moe_vs_dense_baseline": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      },
+      "looped_moe_vs_dense_baseline": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      },
+      "full_system_vs_dense_baseline": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      },
+      "adaptive_moe_vs_fixed_moe": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      },
+      "looped_moe_vs_fixed_moe": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      },
+      "full_system_vs_fixed_moe": {
+        "win": 0,
+        "loss": 0,
+        "tie": 0
+      }
+    },
+    "recommendation": {
+      "status": "VALID_ALGORITHMIC_BENCHMARK",
+      "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+      "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+      "adaptive_vs_dense": 0,
+      "adaptive_vs_fixed": 0,
+      "full_vs_adaptive": 0,
+      "fixed_vs_dense": 0,
+      "fixed_qpc": 0,
+      "adaptive_qpc": 0
+    }
+  }
+}

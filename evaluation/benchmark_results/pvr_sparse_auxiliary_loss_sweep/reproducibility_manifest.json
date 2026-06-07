@@ -1,0 +1,40 @@
+{
+  "run_id": "algo_20260607_031408_benchmark-lite",
+  "timestamp": "2026-06-07T03:18:04.131241",
+  "docker_image": "sparse-loop-moe-gpu",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-sparse-auxiliary-loss-sweep --sparse-aux-loss-variants baseline_main_loss,sparse_ce_0_03,sparse_ce_0_05,margin_align_0_03_m0_5,margin_align_0_05_m0_5,wrong_suppress_0_03_t0_25,sparse_ce_0_03_plus_margin_0_03,margin_0_03_plus_wrong_suppress_0_03,sparse_ce_0_03_plus_harm_0_03 --output-dir evaluation/benchmark_results/pvr_sparse_auxiliary_loss_sweep",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": true,
+  "device_used": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_gpu_memory_mb": 1492.14990234375,
+  "amp_enabled": true,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "train_steps": 500,
+  "n_samples": 1000,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 234.12906122207642,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__margin_0_03_plus_wrong_suppress_0_03",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__baseline_main_loss",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__wrong_suppress_0_03_t0_25",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__sparse_ce_0_05",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__sparse_ce_0_03_plus_margin_0_03",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__sparse_ce_0_03",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__sparse_ce_0_03_plus_harm_0_03",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__margin_align_0_05_m0_5",
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__aux__margin_align_0_03_m0_5"
+  ]
+}

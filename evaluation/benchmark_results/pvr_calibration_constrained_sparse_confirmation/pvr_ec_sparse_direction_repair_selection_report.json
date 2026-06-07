@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-07T14:10:51.125573",
+    "run_id": "algo_20260607_140807_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_scale_schedule_1_to_8,pvr_ec_ownership_top1_best_sparse_logit_repair --enable-ownership-map --ownership-map-mode frozen --run-sparse-direction-transfer-confirmation --output-dir evaluation/benchmark_results/pvr_calibration_constrained_sparse_confirmation",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+      "pvr_ec_ownership_top1_best_sparse_logit_repair"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_SPARSE_AUXILIARY_LOSS_HELPFUL",
+  "statuses": [
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_HELPFUL",
+    "PVR_EC_SPARSE_AUXILIARY_LOSS_IMPLEMENTED"
+  ],
+  "promotion_ready": false,
+  "selected_repair": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+  "best_auxiliary_loss": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+  "selection_reason": "selected lowest-loss auxiliary variant without accuracy regression",
+  "complexity_penalty_applied": true
+}

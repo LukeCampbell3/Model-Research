@@ -1,0 +1,74 @@
+# PVR-EC Curriculum Repair Report
+
+**Status:** PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER
+
+**Statuses:** PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED, PVR_EC_BENCHMARK_TRANSFER_BLOCKER, PVR_EC_DO_NOT_PROMOTE, PVR_EC_DYCK_FINAL_STATE_BLOCKER, PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER, PVR_EC_LISTOPS_TRANSFER_BLOCKER, PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK, PVR_EC_SCAN_TRANSFER_BLOCKER, PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T02:34:22.355073",
+    "run_id": "algo_20260607_023350_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --device cuda --amp --models pvr_ec_ownership_top1_scale_schedule_1_to_8 --enable-ownership-map --ownership-map-mode frozen --run-output-readout-diagnostic --readout-variants baseline_output_head,shared_only_output_head,sparse_only_output_head,combined_output_head,concat_shared_sparse_readout,gated_shared_sparse_readout,final_state_readout,mean_pool_readout,attention_pool_readout_diagnostic --output-dir evaluation/benchmark_results/pvr_output_readout_diagnostic",
+    "model_variants": [
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER",
+  "statuses": [
+    "PVR_EC_BENCHMARK_CAPABILITY_NOT_IMPROVED",
+    "PVR_EC_BENCHMARK_TRANSFER_BLOCKER",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_DYCK_FINAL_STATE_BLOCKER",
+    "PVR_EC_EXPERT_RESIDUAL_ALIGNMENT_BLOCKER",
+    "PVR_EC_LISTOPS_TRANSFER_BLOCKER",
+    "PVR_EC_RESIDUAL_ALIGNED_TO_BENCHMARK",
+    "PVR_EC_SCAN_TRANSFER_BLOCKER",
+    "PVR_EC_TASK_LEVEL_TRANSFER_BLOCKER"
+  ],
+  "promotion_ready": false,
+  "diagnostic_only": true,
+  "variants": [],
+  "best_curriculum_repair": "baseline_curriculum",
+  "metrics": {
+    "avg_loss": 0.46348366168482846,
+    "avg_accuracy": 0.06054665483850138,
+    "decision_token_loss": -0.6754102862905711,
+    "final_token_accuracy": 0.057418601710802854,
+    "token_to_sequence_transfer_ratio": 0.06254858933453986,
+    "calibration_proxy": 0.08361891197652371,
+    "latency_p50": 0.6108798980712891,
+    "latency_p95": 0.6108798980712891
+  }
+}
+```

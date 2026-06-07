@@ -1,0 +1,126 @@
+{
+  "run_id": "algo_20260607_032151_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 171.50427293777466,
+  "seed": 42,
+  "train_steps": 500,
+  "n_samples": 1000,
+  "num_models": 7,
+  "num_failures": 0,
+  "total_valid_results": 56,
+  "total_samples": 25375,
+  "families_attempted": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "families_succeeded": [
+    "clrs_style",
+    "scan_style",
+    "dyck",
+    "listops"
+  ],
+  "model_table": {
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_all_tokens": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_decision_tokens_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_final_tokens_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_listops_scan_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_scan_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_listops_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_scale_schedule_1_to_8__scope__aux_dyck_final_state_only": {
+      "params": 482690,
+      "avg_accuracy": 0.24243722927027295,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.4004437902864689,
+      "avg_qpc": 0.24243722927027295,
+      "avg_loops": 1.0
+    }
+  },
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "VALID_ALGORITHMIC_BENCHMARK",
+    "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+    "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+    "adaptive_vs_dense": 0,
+    "adaptive_vs_fixed": 0,
+    "full_vs_adaptive": 0,
+    "fixed_vs_dense": 0,
+    "fixed_qpc": 0,
+    "adaptive_qpc": 0
+  }
+}

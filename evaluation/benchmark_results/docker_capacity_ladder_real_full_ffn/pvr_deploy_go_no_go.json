@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:41:08.421270",
+    "run_id": "algo_20260606_183459_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 200 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_delta_rank_8,pvr_ec_ownership_top1_delta_rank_16,pvr_ec_ownership_top1_delta_rank_32,pvr_ec_ownership_top1_delta_rank_64,pvr_ec_ownership_top1_delta_rank_128,pvr_ec_ownership_top1_delta_small,pvr_ec_ownership_top1_delta_medium,pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_micro_ffn_0_25x,pvr_ec_ownership_top1_micro_ffn_0_5x,pvr_ec_ownership_top1_micro_ffn_1_0x,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen --run-capacity-ladder --run-capacity-fairness-audit --output-dir evaluation/benchmark_results/docker_capacity_ladder_real_full_ffn",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_delta_rank_8",
+      "pvr_ec_ownership_top1_delta_rank_16",
+      "pvr_ec_ownership_top1_delta_rank_32",
+      "pvr_ec_ownership_top1_delta_rank_64",
+      "pvr_ec_ownership_top1_delta_rank_128",
+      "pvr_ec_ownership_top1_delta_small",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_micro_ffn_0_25x",
+      "pvr_ec_ownership_top1_micro_ffn_0_5x",
+      "pvr_ec_ownership_top1_micro_ffn_1_0x",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 200,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+  "statuses": [
+    "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "go": false,
+  "do_not_promote": true,
+  "primary_baseline": "fixed_moe_vectorized",
+  "primary_candidate": "pvr_ec_deploy_top2"
+}

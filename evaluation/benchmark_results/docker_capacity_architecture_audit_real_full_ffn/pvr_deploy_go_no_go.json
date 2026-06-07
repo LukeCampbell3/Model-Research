@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-06T18:33:53.938499",
+    "run_id": "algo_20260606_183330_benchmark-lite",
+    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 128 --train-steps 1 --device cuda --amp --models pvr_ec_ownership_top1_delta_large,pvr_ec_ownership_top1_full_expert_ffn_control --enable-ownership-map --ownership-map-mode frozen --run-capacity-architecture-audit --output-dir evaluation/benchmark_results/docker_capacity_architecture_audit_real_full_ffn",
+    "model_variants": [
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_full_expert_ffn_control"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 1,
+    "sample_limit": 128,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ]
+  },
+  "status": "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+  "statuses": [
+    "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "go": false,
+  "do_not_promote": true,
+  "primary_baseline": "fixed_moe_vectorized",
+  "primary_candidate": "pvr_ec_deploy_top2"
+}

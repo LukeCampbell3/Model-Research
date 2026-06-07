@@ -1,0 +1,94 @@
+{
+  "run_id": "algo_20260607_183400_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 135.5849142074585,
+  "seed": 42,
+  "train_steps": 500,
+  "n_samples": 1000,
+  "num_models": 3,
+  "num_failures": 0,
+  "total_valid_results": 24,
+  "total_samples": 10875,
+  "families_attempted": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "families_succeeded": [
+    "dyck",
+    "clrs_style",
+    "listops",
+    "scan_style"
+  ],
+  "model_table": {
+    "fixed_moe_vectorized": {
+      "params": 1001092,
+      "avg_accuracy": 0.25857819999606313,
+      "avg_exact_match": 0.00925,
+      "avg_loss": 0.38860768983916694,
+      "avg_qpc": 0.12928909999803156,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_deploy_top1": {
+      "params": 614274,
+      "avg_accuracy": 0.0771500010285979,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.45097945421002805,
+      "avg_qpc": 0.0771500010285979,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1": {
+      "params": 482690,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.39578524367728585,
+      "avg_qpc": 0.24662427509545803,
+      "avg_loops": 1.0
+    }
+  },
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "VALID_ALGORITHMIC_BENCHMARK",
+    "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+    "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+    "adaptive_vs_dense": 0,
+    "adaptive_vs_fixed": 0,
+    "full_vs_adaptive": 0,
+    "fixed_vs_dense": 0,
+    "fixed_qpc": 0,
+    "adaptive_qpc": 0
+  }
+}
