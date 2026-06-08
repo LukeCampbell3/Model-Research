@@ -7,15 +7,15 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T23:38:23.771811",
-    "run_id": "algo_20260607_233823_smoke",
-    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
+    "timestamp": "2026-06-08T03:46:14.518024",
+    "run_id": "algo_20260608_034614_smoke",
+    "git_commit": "c214633e8dfb56a3ba797333eee2da2c985b17cd",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest -q sparse_loop_moe/tests/test_pvr_ec.py -k minimax or nlp_research or qpm or collapse",
     "model_variants": [
       "fixed_moe_vectorized",
       "pvr_ec_deploy_top1",

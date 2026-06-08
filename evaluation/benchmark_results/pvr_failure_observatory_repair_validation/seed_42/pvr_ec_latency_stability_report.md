@@ -1,0 +1,686 @@
+# PVR-EC Latency Stability Report
+
+**Status:** PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-08T03:36:05.976509",
+    "run_id": "algo_20260608_033306_benchmark-lite",
+    "git_commit": "c214633e8dfb56a3ba797333eee2da2c985b17cd",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --run-pvr-failure-repair-validation --repair-candidates family_balanced_sampling,logit_norm_cap_light,wrong_suppress_0_01,posthoc_temperature_T_1_2,qpm_runtime_hygiene --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed-list 42,123,777 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --output-dir evaluation/benchmark_results/pvr_failure_observatory_repair_validation",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "dyck",
+      "listops",
+      "scan"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "root_cause_flags": {
+      "run_stability_repair_sweep": true
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [
+        500
+      ],
+      "seed_list": [
+        42
+      ],
+      "batch_size_list": [
+        1,
+        32
+      ],
+      "seq_len_list": [
+        64
+      ],
+      "shape_pairs": [],
+      "max_train_seconds": null,
+      "repeatability_repair_variants": [],
+      "calibration_repair_variants": [],
+      "minimax_variants": [],
+      "stability_repair_variants": [
+        "family_balanced_sampling",
+        "logit_norm_cap_light",
+        "wrong_suppress_0_01",
+        "posthoc_temperature_T_1_2",
+        "qpm_runtime_hygiene"
+      ]
+    },
+    "source": "trained_benchmark"
+  },
+  "status": "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+  "statuses": [
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "by_model": {
+    "fixed_moe_vectorized": {
+      "count": 8,
+      "avg_loss": 0.3886076922838887,
+      "avg_accuracy": 0.25857819999606313,
+      "avg_train_loss": 0.13683609664440155,
+      "latency_p50_ms": 856.2021851539612,
+      "latency_p95_ms": 856.2021851539612,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling": {
+      "count": 8,
+      "avg_loss": 0.39604007289744914,
+      "avg_accuracy": 0.2501775413384722,
+      "avg_train_loss": 0.14772729575634003,
+      "latency_p50_ms": 315.6517744064331,
+      "latency_p95_ms": 315.6517744064331,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light": {
+      "count": 8,
+      "avg_loss": 0.39578524367728585,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_train_loss": 0.1481063961982727,
+      "latency_p50_ms": 316.3354992866516,
+      "latency_p95_ms": 316.3354992866516,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01": {
+      "count": 8,
+      "avg_loss": 0.396524605457671,
+      "avg_accuracy": 0.23399084419826383,
+      "avg_train_loss": 0.14932295680046082,
+      "latency_p50_ms": 315.2434229850769,
+      "latency_p95_ms": 315.2434229850769,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2": {
+      "count": 8,
+      "avg_loss": 0.41567398891008145,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_train_loss": 0.1481063961982727,
+      "latency_p50_ms": 302.1339774131775,
+      "latency_p95_ms": 302.1339774131775,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene": {
+      "count": 8,
+      "avg_loss": 0.39578524367728585,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_train_loss": 0.1481063961982727,
+      "latency_p50_ms": 320.07917761802673,
+      "latency_p95_ms": 320.07917761802673,
+      "latency_p95_p50_ratio": 1.0,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    }
+  },
+  "latency_p95_p50_ratio_reported": true,
+  "max_latency_p95_p50_ratio": 1.0,
+  "rows": [
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 1002.2943019866943,
+      "latency_p95_ms": 1002.2943019866943,
+      "latency_p99_ms": 1002.2943019866943,
+      "latency_max_ms": 1002.2943019866943,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 930.7999610900879,
+      "latency_p95_ms": 930.7999610900879,
+      "latency_p99_ms": 930.7999610900879,
+      "latency_max_ms": 930.7999610900879,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 937.2005462646484,
+      "latency_p95_ms": 937.2005462646484,
+      "latency_p99_ms": 937.2005462646484,
+      "latency_max_ms": 937.2005462646484,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 938.0004405975342,
+      "latency_p95_ms": 938.0004405975342,
+      "latency_p99_ms": 938.0004405975342,
+      "latency_max_ms": 938.0004405975342,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 937.7493858337402,
+      "latency_p95_ms": 937.7493858337402,
+      "latency_p99_ms": 937.7493858337402,
+      "latency_max_ms": 937.7493858337402,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 468.4145450592041,
+      "latency_p95_ms": 468.4145450592041,
+      "latency_p99_ms": 468.4145450592041,
+      "latency_max_ms": 468.4145450592041,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 931.7672252655029,
+      "latency_p95_ms": 931.7672252655029,
+      "latency_p99_ms": 931.7672252655029,
+      "latency_max_ms": 931.7672252655029,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 703.3910751342773,
+      "latency_p95_ms": 703.3910751342773,
+      "latency_p99_ms": 703.3910751342773,
+      "latency_max_ms": 703.3910751342773,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 364.90869522094727,
+      "latency_p95_ms": 364.90869522094727,
+      "latency_p99_ms": 364.90869522094727,
+      "latency_max_ms": 364.90869522094727,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 344.92015838623047,
+      "latency_p95_ms": 344.92015838623047,
+      "latency_p99_ms": 344.92015838623047,
+      "latency_max_ms": 344.92015838623047,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 351.2756824493408,
+      "latency_p95_ms": 351.2756824493408,
+      "latency_p99_ms": 351.2756824493408,
+      "latency_max_ms": 351.2756824493408,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 367.5212860107422,
+      "latency_p95_ms": 367.5212860107422,
+      "latency_p99_ms": 367.5212860107422,
+      "latency_max_ms": 367.5212860107422,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 336.045503616333,
+      "latency_p95_ms": 336.045503616333,
+      "latency_p99_ms": 336.045503616333,
+      "latency_max_ms": 336.045503616333,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 162.9025936126709,
+      "latency_p95_ms": 162.9025936126709,
+      "latency_p99_ms": 162.9025936126709,
+      "latency_max_ms": 162.9025936126709,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 336.90929412841797,
+      "latency_p95_ms": 336.90929412841797,
+      "latency_p99_ms": 336.90929412841797,
+      "latency_max_ms": 336.90929412841797,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 260.7309818267822,
+      "latency_p95_ms": 260.7309818267822,
+      "latency_p99_ms": 260.7309818267822,
+      "latency_max_ms": 260.7309818267822,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 353.0278205871582,
+      "latency_p95_ms": 353.0278205871582,
+      "latency_p99_ms": 353.0278205871582,
+      "latency_max_ms": 353.0278205871582,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 344.4969654083252,
+      "latency_p95_ms": 344.4969654083252,
+      "latency_p99_ms": 344.4969654083252,
+      "latency_max_ms": 344.4969654083252,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 349.08533096313477,
+      "latency_p95_ms": 349.08533096313477,
+      "latency_p99_ms": 349.08533096313477,
+      "latency_max_ms": 349.08533096313477,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 372.5147247314453,
+      "latency_p95_ms": 372.5147247314453,
+      "latency_p99_ms": 372.5147247314453,
+      "latency_max_ms": 372.5147247314453,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 340.2705192565918,
+      "latency_p95_ms": 340.2705192565918,
+      "latency_p99_ms": 340.2705192565918,
+      "latency_max_ms": 340.2705192565918,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 168.77484321594238,
+      "latency_p95_ms": 168.77484321594238,
+      "latency_p99_ms": 168.77484321594238,
+      "latency_max_ms": 168.77484321594238,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 340.4877185821533,
+      "latency_p95_ms": 340.4877185821533,
+      "latency_p99_ms": 340.4877185821533,
+      "latency_max_ms": 340.4877185821533,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 262.0260715484619,
+      "latency_p95_ms": 262.0260715484619,
+      "latency_p99_ms": 262.0260715484619,
+      "latency_max_ms": 262.0260715484619,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 349.45178031921387,
+      "latency_p95_ms": 349.45178031921387,
+      "latency_p99_ms": 349.45178031921387,
+      "latency_max_ms": 349.45178031921387,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 343.416690826416,
+      "latency_p95_ms": 343.416690826416,
+      "latency_p99_ms": 343.416690826416,
+      "latency_max_ms": 343.416690826416,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 355.19933700561523,
+      "latency_p95_ms": 355.19933700561523,
+      "latency_p99_ms": 355.19933700561523,
+      "latency_max_ms": 355.19933700561523,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 361.88387870788574,
+      "latency_p95_ms": 361.88387870788574,
+      "latency_p99_ms": 361.88387870788574,
+      "latency_max_ms": 361.88387870788574,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 339.81871604919434,
+      "latency_p95_ms": 339.81871604919434,
+      "latency_p99_ms": 339.81871604919434,
+      "latency_max_ms": 339.81871604919434,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 170.05610466003418,
+      "latency_p95_ms": 170.05610466003418,
+      "latency_p99_ms": 170.05610466003418,
+      "latency_max_ms": 170.05610466003418,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 339.56456184387207,
+      "latency_p95_ms": 339.56456184387207,
+      "latency_p99_ms": 339.56456184387207,
+      "latency_max_ms": 339.56456184387207,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 262.5563144683838,
+      "latency_p95_ms": 262.5563144683838,
+      "latency_p99_ms": 262.5563144683838,
+      "latency_max_ms": 262.5563144683838,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 336.2276554107666,
+      "latency_p95_ms": 336.2276554107666,
+      "latency_p99_ms": 336.2276554107666,
+      "latency_max_ms": 336.2276554107666,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 336.320161819458,
+      "latency_p95_ms": 336.320161819458,
+      "latency_p99_ms": 336.320161819458,
+      "latency_max_ms": 336.320161819458,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 340.06404876708984,
+      "latency_p95_ms": 340.06404876708984,
+      "latency_p99_ms": 340.06404876708984,
+      "latency_max_ms": 340.06404876708984,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 347.90897369384766,
+      "latency_p95_ms": 347.90897369384766,
+      "latency_p99_ms": 347.90897369384766,
+      "latency_max_ms": 347.90897369384766,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 320.5723762512207,
+      "latency_p95_ms": 320.5723762512207,
+      "latency_p99_ms": 320.5723762512207,
+      "latency_max_ms": 320.5723762512207,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 159.21616554260254,
+      "latency_p95_ms": 159.21616554260254,
+      "latency_p99_ms": 159.21616554260254,
+      "latency_max_ms": 159.21616554260254,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 327.1138668060303,
+      "latency_p95_ms": 327.1138668060303,
+      "latency_p99_ms": 327.1138668060303,
+      "latency_max_ms": 327.1138668060303,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 249.6485710144043,
+      "latency_p95_ms": 249.6485710144043,
+      "latency_p99_ms": 249.6485710144043,
+      "latency_max_ms": 249.6485710144043,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 349.3771553039551,
+      "latency_p95_ms": 349.3771553039551,
+      "latency_p99_ms": 349.3771553039551,
+      "latency_max_ms": 349.3771553039551,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 340.4810428619385,
+      "latency_p95_ms": 340.4810428619385,
+      "latency_p99_ms": 340.4810428619385,
+      "latency_max_ms": 340.4810428619385,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 349.3313789367676,
+      "latency_p95_ms": 349.3313789367676,
+      "latency_p99_ms": 349.3313789367676,
+      "latency_max_ms": 349.3313789367676,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 363.72947692871094,
+      "latency_p95_ms": 363.72947692871094,
+      "latency_p99_ms": 363.72947692871094,
+      "latency_max_ms": 363.72947692871094,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 345.2904224395752,
+      "latency_p95_ms": 345.2904224395752,
+      "latency_p99_ms": 345.2904224395752,
+      "latency_max_ms": 345.2904224395752,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 178.52115631103516,
+      "latency_p95_ms": 178.52115631103516,
+      "latency_p99_ms": 178.52115631103516,
+      "latency_max_ms": 178.52115631103516,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 365.36550521850586,
+      "latency_p95_ms": 365.36550521850586,
+      "latency_p99_ms": 365.36550521850586,
+      "latency_max_ms": 365.36550521850586,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+      "batch_size": null,
+      "sequence_length": null,
+      "latency_p50_ms": 268.5372829437256,
+      "latency_p95_ms": 268.5372829437256,
+      "latency_p99_ms": 268.5372829437256,
+      "latency_max_ms": 268.5372829437256,
+      "latency_std_ms": null,
+      "latency_p95_p50_ratio": 1.0
+    }
+  ]
+}
+```

@@ -1,0 +1,56 @@
+{
+  "status": "REPAIR_REQUIRES_MORE_EVIDENCE",
+  "passed": false,
+  "repair_results": [
+    {
+      "repair_candidate": "CUDA events instead of global sync",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "bounded diagnostic-only repair",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "cache masks and ownership bias",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "disable sparse logit decomposition in inference timing",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "preallocate tensors",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "remove Python objects from measured forward",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "repeatability replay",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "separate diagnostic and inference paths",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "slice-specific validation",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    },
+    {
+      "repair_candidate": "warmup per shape",
+      "repair_result": "REPAIR_SOLVED",
+      "repair_validation_status": "REPAIR_SOLVED"
+    }
+  ]
+}

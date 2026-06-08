@@ -1,0 +1,179 @@
+# PVR-EC Root Cause Loop Report
+
+**Status:** PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE
+
+**Statuses:** PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE, PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-08T03:32:24.706031",
+    "run_id": "algo_20260608_033203_inference-only",
+    "git_commit": "c214633e8dfb56a3ba797333eee2da2c985b17cd",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode inference-only --scale small --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --shape-list b8-s64,b16-s64,b16-s128,b32-s64,b32-s128,b64-s16,b64-s64,b64-s128,b1-s16,b1-s64,b8-s16,b32-s16 --run-failure-case-replay --run-failure-attribution --output-dir evaluation/benchmark_results/pvr_failure_observatory_qpm_replay",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      8,
+      16,
+      32,
+      64
+    ],
+    "sequence_lengths": [
+      16,
+      64,
+      128
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "inference-only",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "root_cause_flags": {
+      "run_qpm_failing_shape_replay": true
+    },
+    "diagnostic_sweeps": {
+      "shape_pairs": [
+        [
+          8,
+          64
+        ],
+        [
+          16,
+          64
+        ],
+        [
+          16,
+          128
+        ],
+        [
+          32,
+          64
+        ],
+        [
+          32,
+          128
+        ],
+        [
+          64,
+          16
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          128
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          64
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          32,
+          16
+        ]
+      ],
+      "batch_size_list": [
+        1,
+        8,
+        16,
+        32,
+        64
+      ],
+      "seq_len_list": [
+        16,
+        64,
+        128
+      ]
+    },
+    "source": "inference_only"
+  },
+  "status": "PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE",
+  "statuses": [
+    "PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE",
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "promotion_ready": false,
+  "diagnostic_loop": [
+    {
+      "name": "pvr_ec_root_baseline_matrix",
+      "json": "pvr_ec_root_baseline_matrix.json",
+      "md": "pvr_ec_root_baseline_matrix.md"
+    },
+    {
+      "name": "pvr_ec_training_dynamics_report",
+      "json": "pvr_ec_training_dynamics_report.json",
+      "md": "pvr_ec_training_dynamics_report.md"
+    },
+    {
+      "name": "pvr_ec_ownership_integration_report",
+      "json": "pvr_ec_ownership_integration_report.json",
+      "md": "pvr_ec_ownership_integration_report.md"
+    },
+    {
+      "name": "pvr_ec_shared_sparse_ablation_report",
+      "json": "pvr_ec_shared_sparse_ablation_report.json",
+      "md": "pvr_ec_shared_sparse_ablation_report.md"
+    },
+    {
+      "name": "pvr_ec_learning_separation_report",
+      "json": "pvr_ec_learning_separation_report.json",
+      "md": "pvr_ec_learning_separation_report.md"
+    },
+    {
+      "name": "pvr_ec_loss_calibration_report",
+      "json": "pvr_ec_loss_calibration_report.json",
+      "md": "pvr_ec_loss_calibration_report.md"
+    },
+    {
+      "name": "pvr_ec_task_fit_report",
+      "json": "pvr_ec_task_fit_report.json",
+      "md": "pvr_ec_task_fit_report.md"
+    },
+    {
+      "name": "pvr_ec_latency_stability_report",
+      "json": "pvr_ec_latency_stability_report.json",
+      "md": "pvr_ec_latency_stability_report.md"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "max_accuracy_too_low_for_decisive_root_cause",
+      "value": 0.0087890625
+    }
+  ]
+}
+```

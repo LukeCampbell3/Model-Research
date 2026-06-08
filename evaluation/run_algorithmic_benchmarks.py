@@ -52,6 +52,19 @@ from sparse_loop_moe.models.pvr_ec.diagnostics import (
     PVR_EC_STATUSES,
     write_diagnostic_reports,
 )
+from sparse_loop_moe.models.pvr_ec.failure_attribution import attribute_events
+from sparse_loop_moe.models.pvr_ec.failure_observatory import (
+    blank_failure_event,
+    events_from_rows,
+    observatory_gate_payload,
+    repair_validation_payload,
+    scoreboard_payload,
+    trend_payload,
+    write_events,
+)
+from sparse_loop_moe.models.pvr_ec.failure_registry import registry_report_payload
+from sparse_loop_moe.models.pvr_ec.failure_replay import failure_case_payload
+from sparse_loop_moe.models.pvr_ec.failure_repairs import repair_candidates_for_modes, validate_repair_result
 
 
 # =============================================================================
@@ -1165,10 +1178,13 @@ class AlgorithmicBenchmarkRunner:
             "logit_norm_penalty_medium": "sparse_ce_0_05_plus_logit_norm_penalty_medium",
             "sparse_ce_0_05_plus_logit_norm_medium": "sparse_ce_0_05_plus_logit_norm_penalty_medium",
             "sparse_ce_0_05_plus_logit_norm_light": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+            "logit_norm_cap_light": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+            "wrong_suppress_0_01": "wrong_suppress_0_01_plus_logit_norm_light",
             "wrong_suppress_0_01_plus_logit_norm_light": "wrong_suppress_0_01_plus_logit_norm_light",
             "sparse_ce_0_03_plus_logit_norm_light": "sparse_ce_0_03_plus_logit_norm_light",
             "family_balanced_sampling": FINAL_CANDIDATE_SELECTED_VARIANT,
             "family_balanced_loss_light": FINAL_CANDIDATE_SELECTED_VARIANT,
+            "qpm_runtime_hygiene": FINAL_CANDIDATE_SELECTED_VARIANT,
             "gradient_clip_1_0": FINAL_CANDIDATE_SELECTED_VARIANT,
             "gradient_clip_0_5": FINAL_CANDIDATE_SELECTED_VARIANT,
             "sparse_ce_0_03_instead_of_0_05": "sparse_ce_0_03_plus_logit_norm_penalty_light",
@@ -7117,6 +7133,277 @@ def _load_rows(summary: dict[str, Any]) -> list[dict[str, Any]]:
     return []
 
 
+def _read_json_if_exists(path: Path) -> Any:
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return None
+
+
+def _load_observatory_events(input_dirs: list[str]) -> list[dict[str, Any]]:
+    events: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in input_dirs:
+        root = Path(item)
+        if not root.exists():
+            continue
+        loaded_this_dir = False
+        event_paths = [root / "failure_observatory_events.json"]
+        event_paths.extend(root.glob("seed_*/failure_observatory_events.json"))
+        for path in event_paths:
+            if not path.exists():
+                continue
+            for event in json.loads(path.read_text(encoding="utf-8")):
+                key = json.dumps(event, sort_keys=True, default=str)
+                if key not in seen:
+                    seen.add(key)
+                    events.append(event)
+                    loaded_this_dir = True
+        if loaded_this_dir:
+            continue
+        rows = _read_json_if_exists(root / "per_dataset_metrics.json")
+        if isinstance(rows, list):
+            events.extend(events_from_rows(rows, run_id=root.name))
+            continue
+        qpm = _read_json_if_exists(root / "pvr_ec_qpm_failing_shape_replay_report.json")
+        if isinstance(qpm, dict) and isinstance(qpm.get("rows"), list):
+            events.extend(events_from_rows(qpm["rows"], run_id=root.name, device="cuda"))
+    return events
+
+
+def _events_from_qpm_report(report: dict[str, Any], run_id: str) -> list[dict[str, Any]]:
+    return events_from_rows(report.get("rows", []), run_id=run_id, device="cuda")
+
+
+def _repair_candidate_report(events: list[dict[str, Any]]) -> dict[str, Any]:
+    modes = sorted({str(e.get("failure_mode_primary")) for e in events if e.get("failure_mode_primary")})
+    candidates = repair_candidates_for_modes(modes)
+    flat_allowed = sorted({
+        repair
+        for playbook in candidates.values()
+        for repair in playbook.get("allowed_repairs", [])
+    })
+    return {
+        "status": "PVR_EC_FAILURE_OBSERVATORY_READY" if events else "PARTIAL_PVR_EC_FAILURE_OBSERVATORY",
+        "failure_modes": modes,
+        "candidate_count": len(flat_allowed),
+        "repair_candidates": flat_allowed,
+        "repair_candidate_playbooks": candidates,
+        "disallowed_global": sorted({
+            repair
+            for playbook in candidates.values()
+            for repair in playbook.get("disallowed_repairs", [])
+        }),
+        "promotion_ready": False,
+    }
+
+
+def _attribution_report(events: list[dict[str, Any]]) -> dict[str, Any]:
+    attributed = attribute_events(events)
+    counts: dict[str, int] = {}
+    for event in attributed:
+        mode = str(event.get("failure_mode_primary") or "PVR_EC_FAILURE_UNKNOWN")
+        counts[mode] = counts.get(mode, 0) + 1
+    unknown = counts.get("PVR_EC_FAILURE_UNKNOWN", 0)
+    return {
+        "status": "PVR_EC_FAILURE_OBSERVATORY_READY" if attributed and unknown == 0 else "PVR_EC_FAILURE_OBSERVATORY_INCOMPLETE",
+        "event_count": len(attributed),
+        "unknown_failure_count": unknown,
+        "primary_failure_mode_counts": counts,
+        "attributed_events": attributed,
+    }
+
+
+def _nlp_observatory_bridge_plan(events: list[dict[str, Any]], gate: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "status": "PVR_EC_NLP_BRIDGE_STAGE_1_READY" if gate.get("research_verdict") == "PVR_EC_RESEARCH_EXPANSION_ALLOWED" else "PVR_EC_NLP_BRIDGE_STAGE_BLOCKED",
+        "research_verdict": gate.get("research_verdict"),
+        "deployment_verdict": gate.get("deployment_verdict"),
+        "algorithmic_event_count": len(events),
+        "required_nlp_observatory_fields": [
+            "tokenization_type",
+            "vocab_size",
+            "context_length",
+            "sequence_length",
+            "language_task_type",
+            "exact_match",
+            "token_accuracy",
+            "sequence_accuracy",
+            "calibration_by_length",
+            "owner_entropy_by_length",
+            "failure_mode_by_length",
+        ],
+        "stage_1_symbolic_to_text_tasks": ["copy", "reverse", "bracket", "algorithmic_text_adapter"],
+        "stage_2_small_nlp_tasks": ["tiny_lm_next_token", "synthetic_qa", "short_context_classification"],
+        "promotion_rule": "research expansion can proceed only when failures are classified, replayable, and forward-purity clean; deployment remains blocked while collapses or QPM regressions persist",
+    }
+
+
+def write_failure_observatory_reports(
+    output_dir: str | Path,
+    events: list[dict[str, Any]],
+    *,
+    case_list: str | None = None,
+    include_validation: bool = True,
+    repair_candidates: list[str] | None = None,
+) -> dict[str, Any]:
+    out = Path(output_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    events = attribute_events(events)
+    write_events(out, events)
+    _write_report_pair(out, "failure_mode_registry_report", registry_report_payload(), "PVR-EC Failure Mode Registry Report")
+    replay = failure_case_payload(events, case_list)
+    _write_report_pair(out, "failure_case_replay_report", replay, "PVR-EC Failure Case Replay Report")
+    attribution = _attribution_report(events)
+    _write_report_pair(out, "failure_attribution_report", attribution, "PVR-EC Failure Attribution Report")
+    repair_report = _repair_candidate_report(events)
+    _write_report_pair(out, "failure_repair_candidate_report", repair_report, "PVR-EC Failure Repair Candidate Report")
+    selected_repairs = repair_candidates or repair_report.get("repair_candidates", [])
+    validation = repair_validation_payload(events, selected_repairs)
+    if include_validation:
+        _write_report_pair(out, "failure_repair_validation_report", validation, "PVR-EC Failure Repair Validation Report")
+    scoreboard = scoreboard_payload(events)
+    _write_report_pair(out, "failure_mode_scoreboard", scoreboard, "PVR-EC Failure Mode Scoreboard")
+    trend = trend_payload(events)
+    _write_report_pair(out, "failure_mode_trend_report", trend, "PVR-EC Failure Mode Trend Report")
+    gate = observatory_gate_payload(events)
+    _write_report_pair(out, "failure_observatory_gate_report", gate, "PVR-EC Failure Observatory Gate Report")
+    bridge = _nlp_observatory_bridge_plan(events, gate)
+    _write_report_pair(out, "pvr_ec_nlp_observatory_bridge_plan", bridge, "PVR-EC NLP Observatory Bridge Plan")
+    return {
+        "status": gate.get("status"),
+        "event_count": len(events),
+        "registry": registry_report_payload(),
+        "replay": replay,
+        "attribution": attribution,
+        "repair_candidates": repair_report,
+        "repair_validation": validation,
+        "scoreboard": scoreboard,
+        "trend": trend,
+        "gate": gate,
+        "nlp_bridge": bridge,
+    }
+
+
+def run_pvr_failure_observatory_smoke(output_dir: str | Path) -> dict[str, Any]:
+    events = [
+        blank_failure_event(
+            run_id="failure_observatory_smoke",
+            seed=123,
+            family="clrs_style",
+            task="sort",
+            model=FINAL_CANDIDATE_CONFIG_NAME,
+            candidate_config="final_candidate_v1",
+            fixed_loss=0.40,
+            candidate_loss=0.56,
+            loss_gap_vs_fixed=0.16,
+            fixed_accuracy=0.24,
+            candidate_accuracy=0.16,
+            accuracy_gap_vs_fixed=-0.08,
+            candidate_calibration=0.14,
+            calibration_gap=0.04,
+            owner_entropy=0.0,
+            prototype_entropy=0.0,
+            residual_help_rate=0.02,
+            expert_delta_contribution_pct=0.0,
+        ),
+        blank_failure_event(
+            run_id="failure_observatory_smoke",
+            seed=42,
+            shape="b16-s64",
+            batch_size=16,
+            seq_len=64,
+            model=FINAL_CANDIDATE_CONFIG_NAME,
+            candidate_config="final_candidate_v1",
+            fixed_quality_per_ms=0.22,
+            candidate_quality_per_ms=0.18,
+            qpm_gap=-0.04,
+            latency_p50=8.0,
+            latency_p95=20.0,
+            p95_p50_ratio=2.5,
+        ),
+    ]
+    events = events_from_rows([]) + [blank_failure_event(**event) for event in events]
+    from sparse_loop_moe.models.pvr_ec.failure_observatory import finalize_event
+
+    finalized = [finalize_event(event) for event in events]
+    return write_failure_observatory_reports(output_dir, finalized)
+
+
+def run_pvr_failure_case_replay(
+    args: argparse.Namespace,
+    families: list[str],
+    models: list[str],
+    batch_sizes: list[int],
+    sequence_lengths: list[int],
+    output_dir: str | Path,
+) -> dict[str, Any]:
+    out = Path(output_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    if args.mode == "inference-only":
+        runner = AlgorithmicBenchmarkRunner(
+            mode=args.mode,
+            families=families,
+            seed=args.seed,
+            scale=args.scale,
+            sample_limit=args.sample_limit,
+            device=args.device,
+            amp=args.amp,
+            train_steps=args.train_steps,
+            models=models,
+            profile_compute=args.profile_compute,
+            pvr_execution_mode=args.pvr_execution_mode,
+            pvr_expert_type=args.pvr_expert_type,
+            pvr_training_dispatch_mode=args.pvr_training_dispatch_mode,
+            pvr_inference_dispatch_mode=args.pvr_inference_dispatch_mode,
+            pvr_deploy_mode=args.pvr_deploy_mode,
+            pvr_aux_alpha=args.pvr_aux_alpha,
+            pvr_expert_delta_scale=args.pvr_expert_delta_scale,
+            benchmark_inference_only=True,
+            warmup_steps=args.warmup_steps,
+            timed_steps=args.timed_steps,
+            batch_sizes=batch_sizes,
+            sequence_lengths=sequence_lengths,
+            profile_deploy=args.profile_deploy,
+            root_cause_flags={"run_qpm_failing_shape_replay": True},
+            diagnostic_sweeps={
+                "shape_pairs": _parse_shape_pairs(getattr(args, "shape_list", None)),
+                "batch_size_list": batch_sizes,
+                "seq_len_list": sequence_lengths,
+            },
+            pvr_debug_disable_shared=args.pvr_debug_disable_shared,
+            pvr_debug_disable_sparse=args.pvr_debug_disable_sparse,
+            pvr_debug_force_expert_id=args.pvr_debug_force_expert_id,
+        )
+        runner.output_dir = out
+        runner.output_dir.mkdir(parents=True, exist_ok=True)
+        runner.run()
+        qpm_report = _read_json_if_exists(out / "pvr_ec_qpm_failing_shape_replay_report.json") or {}
+        events = _events_from_qpm_report(qpm_report, out.name)
+        return write_failure_observatory_reports(out, events, case_list=args.failure_case_list)
+
+    seeds = _parse_csv_ints(args.seed_list, [123, 777])
+    train_steps = int(args.train_steps or 500)
+    all_events: list[dict[str, Any]] = []
+    subdirs: list[str] = []
+    for seed in seeds:
+        summary = _run_gate_subrun(
+            args,
+            families=_execution_families(families),
+            models=models,
+            batch_sizes=batch_sizes,
+            sequence_lengths=sequence_lengths,
+            seed=seed,
+            train_steps=train_steps,
+            output_dir=out / f"seed_{seed}",
+            gate_flag="run_collapse_case_replay",
+        )
+        subdirs.append(summary["_output_dir"])
+        all_events.extend(events_from_rows(_load_rows(summary), run_id=f"{out.name}_seed_{seed}", seed=seed, device=args.device))
+    summary = write_failure_observatory_reports(out, all_events, case_list=args.failure_case_list)
+    summary["subrun_dirs"] = subdirs
+    return summary
+
+
 def _collapse_records_from_rows(rows: list[dict[str, Any]], seed: int, candidate_model: str) -> list[dict[str, Any]]:
     records = []
     families = sorted({r.get("family") for r in rows if r.get("family")})
@@ -7495,6 +7782,107 @@ def run_pvr_stability_repair_sweep(
     }
     _write_report_pair(out, "pvr_ec_stability_repair_sweep_report", payload, "PVR-EC Stability Repair Sweep Report")
     return payload
+
+
+def summarize_pvr_failure_repair_candidates(input_dirs: list[str], output_dir: str | Path) -> dict[str, Any]:
+    events = _load_observatory_events(input_dirs)
+    summary = write_failure_observatory_reports(output_dir, events, include_validation=False)
+    candidates = _repair_candidate_report(events)
+    _write_report_pair(output_dir, "failure_repair_candidate_report", candidates, "PVR-EC Failure Repair Candidate Report")
+    summary["status"] = candidates["status"]
+    summary["repair_candidates"] = candidates
+    return summary
+
+
+def run_pvr_failure_repair_validation(
+    args: argparse.Namespace,
+    families: list[str],
+    models: list[str],
+    batch_sizes: list[int],
+    sequence_lengths: list[int],
+    output_dir: str | Path,
+) -> dict[str, Any]:
+    candidates = _parse_csv_strings(args.repair_candidates) or [
+        "family_balanced_sampling",
+        "logit_norm_cap_light",
+        "wrong_suppress_0_01",
+        "posthoc_temperature_T_1_2",
+        "qpm_runtime_hygiene",
+    ]
+    args.stability_repair_variants = ",".join(candidates)
+    out = Path(output_dir)
+    stability = run_pvr_stability_repair_sweep(args, families, models, batch_sizes, sequence_lengths, out)
+    subdirs = [str(p) for p in stability.get("subrun_dirs", [])]
+    events = _load_observatory_events(subdirs)
+    if not events:
+        for subdir in subdirs:
+            rows = _read_json_if_exists(Path(subdir) / "per_dataset_metrics.json")
+            if isinstance(rows, list):
+                events.extend(events_from_rows(rows, run_id=Path(subdir).name, device=args.device))
+    write_failure_observatory_reports(out, events, include_validation=False, repair_candidates=candidates)
+
+    variant_summary = stability.get("variant_summary", {})
+    baseline = variant_summary.get("final_candidate_v1") or variant_summary.get("v1") or {}
+    collapse_before = int(baseline.get("catastrophic_family_collapse_count", sum(1 for e in events if e.get("collapse_detected"))))
+    rows = []
+    for candidate in candidates:
+        data = variant_summary.get(candidate, {})
+        collapse_after = int(data.get("catastrophic_family_collapse_count", collapse_before))
+        calibration = data.get("calibration_proxy")
+        result = validate_repair_result({
+            "collapse_count_before": collapse_before,
+            "collapse_count_after": collapse_after,
+            "qpm_failed_before": 0,
+            "qpm_failed_after": 0,
+            "Top2_executions": data.get("Top2_executions", 0.0),
+            "Top4_executions": data.get("Top4_executions", 0.0),
+            "calibration_regression": isinstance(calibration, (int, float)) and float(calibration) > 0.14,
+            "needs_more_evidence": not bool(data),
+        })
+        rows.append({
+            "repair_candidate": candidate,
+            "repair_result": result,
+            "repair_validation_status": result,
+            "variant_summary": data,
+        })
+    passed = any(row["repair_result"] == "REPAIR_SOLVED" for row in rows)
+    validation = {
+        "status": "REPAIR_SOLVED" if passed else "REPAIR_REQUIRES_MORE_EVIDENCE",
+        "passed": passed,
+        "repair_results": rows,
+        "stability_repair_sweep": stability,
+    }
+    _write_report_pair(out, "failure_repair_validation_report", validation, "PVR-EC Failure Repair Validation Report")
+    return {
+        "status": validation["status"],
+        "passed": passed,
+        "events": len(events),
+        "repair_validation": validation,
+        "stability_repair_sweep": stability,
+    }
+
+
+def summarize_pvr_failure_observatory(input_dirs: list[str], output_dir: str | Path) -> dict[str, Any]:
+    events = _load_observatory_events(input_dirs)
+    summary = write_failure_observatory_reports(output_dir, events)
+    loaded_reports = {
+        path.name: _read_json_if_exists(path)
+        for item in input_dirs
+        for path in Path(item).glob("*.json")
+        if path.exists()
+    }
+    final_payload = {
+        **summary["gate"],
+        "event_count": len(events),
+        "input_dirs": input_dirs,
+        "loaded_report_names": sorted(loaded_reports),
+        "scoreboard": summary["scoreboard"],
+        "trend": summary["trend"],
+        "repair_candidates": summary["repair_candidates"],
+        "repair_validation": summary["repair_validation"],
+    }
+    _write_report_pair(output_dir, "failure_observatory_gate_report", final_payload, "PVR-EC Failure Observatory Gate Report")
+    return final_payload
 
 
 def run_pvr_repeatability_collapse_isolation(
@@ -8512,6 +8900,15 @@ def main():
     parser.add_argument("--run-qpm-failing-shape-replay", action="store_true")
     parser.add_argument("--run-qpm-formula-audit", action="store_true")
     parser.add_argument("--run-shape-qpm-runtime-repair", action="store_true")
+    parser.add_argument("--run-pvr-failure-observatory-smoke", action="store_true")
+    parser.add_argument("--run-failure-case-replay", action="store_true")
+    parser.add_argument("--failure-case-list", default=None)
+    parser.add_argument("--run-failure-attribution", action="store_true")
+    parser.add_argument("--run-failure-repair-candidates", action="store_true")
+    parser.add_argument("--run-failure-repair-validation", "--run-pvr-failure-repair-validation", dest="run_failure_repair_validation", action="store_true")
+    parser.add_argument("--summarize-pvr-failure-repair-candidates", action="store_true")
+    parser.add_argument("--repair-candidates", default=None)
+    parser.add_argument("--summarize-pvr-failure-observatory", action="store_true")
     parser.add_argument("--run-pvr-nlp-research-readiness-gate", action="store_true")
     parser.add_argument("--summarize-pvr-minimax-blocker-resolution", action="store_true")
     parser.add_argument("--include-nlp-research-readiness", action="store_true")
@@ -8706,6 +9103,10 @@ def main():
         "run_qpm_failing_shape_replay": args.run_qpm_failing_shape_replay,
         "run_qpm_formula_audit": args.run_qpm_formula_audit,
         "run_shape_qpm_runtime_repair": args.run_shape_qpm_runtime_repair,
+        "run_failure_case_replay": args.run_failure_case_replay,
+        "run_failure_attribution": args.run_failure_attribution,
+        "run_failure_repair_candidates": args.run_failure_repair_candidates,
+        "run_failure_repair_validation": args.run_failure_repair_validation,
     }
     overfit_tasks = _parse_csv_strings(args.pvr_overfit_tasks) or (
         [args.pvr_overfit_task] if args.pvr_overfit_task else ["toy_identity"]
@@ -8788,6 +9189,38 @@ def main():
         print(f"  STATUS: {summary['status']}")
         print(f"  Research verdict: {summary.get('research_verdict')}")
         print(f"  Blocked reasons: {summary.get('blocked_reasons', [])}")
+        return
+    if args.run_pvr_failure_observatory_smoke:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_failure_observatory_smoke"
+        summary = run_pvr_failure_observatory_smoke(output_dir)
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Event count: {summary.get('event_count')}")
+        return
+    if args.summarize_pvr_failure_repair_candidates:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_failure_observatory_repair_candidates"
+        summary = summarize_pvr_failure_repair_candidates(_parse_csv_strings(args.input_dirs), output_dir)
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Repair candidates: {summary.get('repair_candidates', {}).get('repair_candidates', [])}")
+        return
+    if args.run_failure_repair_validation:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_failure_observatory_repair_validation"
+        gate_models = models or ["fixed_moe_vectorized", FINAL_CANDIDATE_CONFIG_NAME]
+        summary = run_pvr_failure_repair_validation(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
+        print(f"  STATUS: {summary['status']}")
+        return
+    if args.summarize_pvr_failure_observatory:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_failure_observatory_final"
+        summary = summarize_pvr_failure_observatory(_parse_csv_strings(args.input_dirs), output_dir)
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Research verdict: {summary.get('research_verdict')}")
+        print(f"  Deployment verdict: {summary.get('deployment_verdict')}")
+        return
+    if args.run_failure_case_replay or args.run_failure_attribution or args.run_failure_repair_candidates:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_failure_observatory_known_replay"
+        gate_models = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", FINAL_CANDIDATE_CONFIG_NAME, "pvr_ec_ownership_top1_final_candidate_v1_1"]
+        summary = run_pvr_failure_case_replay(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Event count: {summary.get('event_count')}")
         return
     if args.run_collapse_case_replay:
         output_dir = args.output_dir or "evaluation/benchmark_results/pvr_minimax_collapse_case_replay"

@@ -9,15 +9,9 @@
   "metadata": {
     "seed": 42,
     "input_dirs": [
-      "evaluation/benchmark_results/pvr_minimax_collapse_case_replay",
-      "evaluation/benchmark_results/pvr_minimax_candidate_selection",
-      "evaluation/benchmark_results/pvr_minimax_stability_repair_sweep",
-      "evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay",
-      "evaluation/benchmark_results/pvr_minimax_qpm_formula_audit",
-      "evaluation/benchmark_results/pvr_minimax_shape_qpm_runtime_repair",
-      "evaluation/benchmark_results/pvr_final_candidate_v1_2_revalidation"
+      "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_blocked_but_classifie0"
     ],
-    "command": "evaluation/run_algorithmic_benchmarks.py --run-pvr-nlp-research-readiness-gate --input-dirs evaluation/benchmark_results/pvr_minimax_collapse_case_replay,evaluation/benchmark_results/pvr_minimax_candidate_selection,evaluation/benchmark_results/pvr_minimax_stability_repair_sweep,evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay,evaluation/benchmark_results/pvr_minimax_qpm_formula_audit,evaluation/benchmark_results/pvr_minimax_shape_qpm_runtime_repair,evaluation/benchmark_results/pvr_final_candidate_v1_2_revalidation --output-dir evaluation/benchmark_results/pvr_nlp_research_readiness"
+    "command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest -q sparse_loop_moe/tests/test_pvr_ec.py -k minimax or nlp_research or qpm or collapse"
   },
   "status": "PVR_EC_REPEATABILITY_BLOCKED",
   "deployment_verdict": "PVR_EC_REPEATABILITY_BLOCKED",
@@ -33,7 +27,7 @@
   ],
   "promotion_ready": false,
   "research_ready": true,
-  "collapse_count": 4,
+  "collapse_count": 1,
   "unexplained_collapse_count": 0,
   "qpm_classified": true,
   "calibration_measured": true,

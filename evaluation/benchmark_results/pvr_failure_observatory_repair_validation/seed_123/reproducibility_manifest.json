@@ -1,0 +1,37 @@
+{
+  "run_id": "algo_20260608_033606_benchmark-lite",
+  "timestamp": "2026-06-08T03:39:14.694438",
+  "docker_image": "sparse-loop-moe-gpu",
+  "command": "evaluation/run_algorithmic_benchmarks.py --run-pvr-failure-repair-validation --repair-candidates family_balanced_sampling,logit_norm_cap_light,wrong_suppress_0_01,posthoc_temperature_T_1_2,qpm_runtime_hygiene --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed-list 42,123,777 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --output-dir evaluation/benchmark_results/pvr_failure_observatory_repair_validation",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": true,
+  "device_used": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_gpu_memory_mb": 10565.7431640625,
+  "amp_enabled": true,
+  "seed": 123,
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "train_steps": 500,
+  "n_samples": 1000,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "dyck",
+    "listops",
+    "scan"
+  ],
+  "total_time_s": 186.86732459068298,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2",
+    "fixed_moe_vectorized",
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light",
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene",
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01",
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling"
+  ]
+}

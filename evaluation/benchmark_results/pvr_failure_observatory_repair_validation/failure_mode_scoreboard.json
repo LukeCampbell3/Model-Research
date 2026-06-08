@@ -1,0 +1,56 @@
+{
+  "status": "PVR_EC_FAILURE_OBSERVATORY_READY",
+  "mode_count": 2,
+  "scoreboard": [
+    {
+      "failure_mode": "PVR_EC_FAILURE_OWNER_PROTOTYPE_COLLAPSE",
+      "count": 50,
+      "repeatable_count": 50,
+      "unexplained_count": 0,
+      "repaired_count": 0,
+      "partial_repair_count": 0,
+      "blocked_count": 50,
+      "affected_seeds": [],
+      "affected_families": [
+        "clrs_style",
+        "scan_style"
+      ],
+      "affected_tasks": [
+        "clrs_lcs",
+        "clrs_searching",
+        "clrs_sorting",
+        "scan_random"
+      ],
+      "affected_shapes": [],
+      "most_common_primary_metric": "loss_gap_vs_fixed",
+      "current_status": "blocked",
+      "recommended_next_action": "run bounded repair validation"
+    },
+    {
+      "failure_mode": "PVR_EC_FAILURE_DATA_SPLIT_DIFFICULTY",
+      "count": 70,
+      "repeatable_count": 70,
+      "unexplained_count": 0,
+      "repaired_count": 0,
+      "partial_repair_count": 0,
+      "blocked_count": 70,
+      "affected_seeds": [],
+      "affected_families": [
+        "dyck",
+        "listops",
+        "scan_style"
+      ],
+      "affected_tasks": [
+        "dyck_completion",
+        "dyck_validation",
+        "listops",
+        "scan_length",
+        "scan_random"
+      ],
+      "affected_shapes": [],
+      "most_common_primary_metric": "loss_gap_vs_fixed",
+      "current_status": "blocked",
+      "recommended_next_action": "run bounded repair validation"
+    }
+  ]
+}

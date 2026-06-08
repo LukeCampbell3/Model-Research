@@ -1,0 +1,118 @@
+{
+  "run_id": "algo_20260608_033306_benchmark-lite",
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "total_time_s": 178.93844389915466,
+  "seed": 42,
+  "train_steps": 500,
+  "n_samples": 1000,
+  "num_models": 6,
+  "num_failures": 0,
+  "total_valid_results": 48,
+  "total_samples": 21750,
+  "families_attempted": [
+    "clrs",
+    "dyck",
+    "listops",
+    "scan"
+  ],
+  "families_succeeded": [
+    "clrs_style",
+    "listops",
+    "scan_style",
+    "dyck"
+  ],
+  "model_table": {
+    "fixed_moe_vectorized": {
+      "params": 1001092,
+      "avg_accuracy": 0.25857819999606313,
+      "avg_exact_match": 0.00925,
+      "avg_loss": 0.3886076922838887,
+      "avg_qpc": 0.12928909999803156,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__family_balanced_sampling": {
+      "params": 482690,
+      "avg_accuracy": 0.2501775413384722,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.39604007289744914,
+      "avg_qpc": 0.2501775413384722,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__logit_norm_cap_light": {
+      "params": 482690,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.39578524367728585,
+      "avg_qpc": 0.24662427509545803,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__wrong_suppress_0_01": {
+      "params": 482690,
+      "avg_accuracy": 0.23399084419826383,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.396524605457671,
+      "avg_qpc": 0.23399084419826383,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__posthoc_temperature_T_1_2": {
+      "params": 482690,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.41567398891008145,
+      "avg_qpc": 0.24662427509545803,
+      "avg_loops": 1.0
+    },
+    "pvr_ec_ownership_top1_final_candidate_v1__repair__qpm_runtime_hygiene": {
+      "params": 482690,
+      "avg_accuracy": 0.24662427509545803,
+      "avg_exact_match": 0.0,
+      "avg_loss": 0.39578524367728585,
+      "avg_qpc": 0.24662427509545803,
+      "avg_loops": 1.0
+    }
+  },
+  "win_loss_tie": {
+    "adaptive_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_dense_baseline": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "adaptive_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "looped_moe_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    },
+    "full_system_vs_fixed_moe": {
+      "win": 0,
+      "loss": 0,
+      "tie": 0
+    }
+  },
+  "recommendation": {
+    "status": "VALID_ALGORITHMIC_BENCHMARK",
+    "architecture_recommendation": "DENSE_BASELINE_CURRENT_BEST",
+    "reason": "4 respected benchmark families evaluated successfully. dense (0.0000) >= all MoE variants \u2014 MoE overhead not justified",
+    "adaptive_vs_dense": 0,
+    "adaptive_vs_fixed": 0,
+    "full_vs_adaptive": 0,
+    "fixed_vs_dense": 0,
+    "fixed_qpc": 0,
+    "adaptive_qpc": 0
+  }
+}
