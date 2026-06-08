@@ -1,0 +1,179 @@
+{
+  "status": "PVR_EC_NLP_BRIDGE_STAGE_1_READY",
+  "statuses": [
+    "PVR_EC_NLP_BRIDGE_LADDER_REQUIRED",
+    "PVR_EC_NLP_BRIDGE_STAGE_1_READY"
+  ],
+  "research_verdict": "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
+  "stage_1_ready": true,
+  "stages": [
+    {
+      "stage": 1,
+      "name": "character/byte-level copy and transformation",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 2,
+      "name": "small-vocab synthetic language modeling",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 3,
+      "name": "algorithmic text tasks with natural-language wrappers",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 4,
+      "name": "short-context language modeling",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 5,
+      "name": "instruction-style toy QA",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 6,
+      "name": "small real NLP benchmark subset",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    },
+    {
+      "stage": 7,
+      "name": "larger NLP benchmark suite",
+      "required_models": [
+        "fixed_moe_vectorized",
+        "dense_baseline_or_dense_transformer",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate"
+      ],
+      "required_metrics": [
+        "owners/token",
+        "Top2/Top4 executions",
+        "loss",
+        "accuracy_or_token_accuracy",
+        "calibration",
+        "latency",
+        "memory",
+        "collapse cases",
+        "task/family breakdown",
+        "confidence metrics",
+        "incorrect overamp metrics"
+      ],
+      "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+    }
+  ]
+}

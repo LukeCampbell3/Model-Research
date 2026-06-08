@@ -7,18 +7,19 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T20:17:42.750300",
-    "run_id": "algo_20260607_201742_pvr-overfit-sanity",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-07T23:38:57.167753",
+    "run_id": "algo_20260607_233855_pvr-overfit-sanity",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q",
     "model_variants": [
+      "dense_baseline",
       "pvr_full",
-      "pvr_full_scale_schedule_1_to_4"
+      "pvr_full_fixed_owner_e0"
     ],
     "batch_sizes": [
       1,
@@ -45,10 +46,11 @@
     "pvr_expert_delta_scale_hold_steps": null,
     "pvr_expert_delta_scale_decay": null,
     "pvr_overfit_tasks": [
+      "toy_xor_or_parity",
       "toy_identity"
     ],
-    "pvr_overfit_steps": 2,
-    "pvr_overfit_batch_size": 2,
+    "pvr_overfit_steps": 20,
+    "pvr_overfit_batch_size": 8,
     "failures": []
   },
   "statuses": [
@@ -89,24 +91,69 @@
     "dominant_failure_mode": "loss_schedule_or_target_blocker",
     "recommended_repair": "verify_parity_target_and_loss_construction",
     "parity_results_by_model": {
-      "pvr_full": {},
-      "pvr_full_scale_schedule_1_to_4": {}
+      "dense_baseline": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.7514553666114807,
+          "passed": false
+        }
+      },
+      "pvr_full": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.8058504462242126,
+          "passed": false
+        }
+      },
+      "pvr_full_fixed_owner_e0": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.8063040375709534,
+          "passed": false
+        }
+      }
     },
     "nonlinear_results_by_model": {
+      "dense_baseline": {},
       "pvr_full": {},
-      "pvr_full_scale_schedule_1_to_4": {}
+      "pvr_full_fixed_owner_e0": {}
     }
   },
   "status": "PVR_EC_LOSS_SCHEDULE_BLOCKER",
-  "parity_class_balance": [],
+  "parity_class_balance": [
+    {
+      "balanced": true,
+      "class_ratios": {
+        "0": 0.5546875,
+        "1": 0.4453125
+      },
+      "max_class_ratio": 0.5546875
+    },
+    {
+      "balanced": true,
+      "class_ratios": {
+        "0": 0.5546875,
+        "1": 0.4453125
+      },
+      "max_class_ratio": 0.5546875
+    },
+    {
+      "balanced": true,
+      "class_ratios": {
+        "0": 0.5546875,
+        "1": 0.4453125
+      },
+      "max_class_ratio": 0.5546875
+    }
+  ],
   "loss_target_sanity": [
     {
       "target_shape": [
-        2,
+        8,
         16
       ],
       "logit_shape": [
-        2,
+        8,
         16,
         256
       ],
@@ -114,51 +161,24 @@
       "ignore_index": null,
       "num_classes": 256,
       "target_value_range": [
-        19,
-        255
+        0,
+        1
       ],
       "class_distribution": {
-        "19": 1,
-        "38": 1,
-        "41": 2,
-        "53": 1,
-        "59": 1,
-        "60": 1,
-        "61": 2,
-        "63": 2,
-        "84": 1,
-        "90": 1,
-        "91": 1,
-        "97": 1,
-        "132": 1,
-        "137": 1,
-        "156": 1,
-        "166": 1,
-        "172": 1,
-        "184": 1,
-        "196": 1,
-        "207": 1,
-        "211": 1,
-        "213": 1,
-        "218": 1,
-        "228": 1,
-        "239": 1,
-        "240": 1,
-        "247": 1,
-        "251": 1,
-        "255": 1
+        "0": 71,
+        "1": 57
       },
-      "baseline_random_loss": 4.999621868133545,
+      "baseline_random_loss": 5.265663146972656,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
     {
       "target_shape": [
-        2,
+        8,
         16
       ],
       "logit_shape": [
-        2,
+        8,
         16,
         256
       ],
@@ -166,41 +186,204 @@
       "ignore_index": null,
       "num_classes": 256,
       "target_value_range": [
-        19,
+        2,
         255
       ],
       "class_distribution": {
-        "19": 1,
+        "2": 1,
+        "4": 2,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "11": 1,
+        "14": 1,
+        "18": 1,
+        "19": 6,
+        "22": 1,
+        "30": 1,
+        "34": 1,
+        "35": 1,
+        "37": 1,
         "38": 1,
-        "41": 2,
+        "42": 1,
+        "45": 1,
         "53": 1,
+        "54": 2,
         "59": 1,
-        "60": 1,
-        "61": 2,
-        "63": 2,
-        "84": 1,
-        "90": 1,
-        "91": 1,
-        "97": 1,
-        "132": 1,
-        "137": 1,
-        "156": 1,
-        "166": 1,
-        "172": 1,
-        "184": 1,
-        "196": 1,
-        "207": 1,
-        "211": 1,
-        "213": 1,
-        "218": 1,
-        "228": 1,
-        "239": 1,
-        "240": 1,
-        "247": 1,
-        "251": 1,
-        "255": 1
+        "65": 1,
+        "68": 1,
+        "72": 1,
+        "73": 1,
+        "75": 2,
+        "76": 1,
+        "77": 2,
+        "78": 1,
+        "79": 1,
+        "82": 1,
+        "83": 2,
+        "85": 1
       },
-      "baseline_random_loss": 4.987950325012207,
+      "baseline_random_loss": 5.028156280517578,
+      "expected_random_loss": 5.545177444479562,
+      "accuracy_definition": "mean argmax token accuracy over all positions"
+    },
+    {
+      "target_shape": [
+        8,
+        16
+      ],
+      "logit_shape": [
+        8,
+        16,
+        256
+      ],
+      "loss_function": "cross_entropy",
+      "ignore_index": null,
+      "num_classes": 256,
+      "target_value_range": [
+        0,
+        1
+      ],
+      "class_distribution": {
+        "0": 71,
+        "1": 57
+      },
+      "baseline_random_loss": 5.394180774688721,
+      "expected_random_loss": 5.545177444479562,
+      "accuracy_definition": "mean argmax token accuracy over all positions"
+    },
+    {
+      "target_shape": [
+        8,
+        16
+      ],
+      "logit_shape": [
+        8,
+        16,
+        256
+      ],
+      "loss_function": "cross_entropy",
+      "ignore_index": null,
+      "num_classes": 256,
+      "target_value_range": [
+        2,
+        255
+      ],
+      "class_distribution": {
+        "2": 1,
+        "4": 2,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "11": 1,
+        "14": 1,
+        "18": 1,
+        "19": 6,
+        "22": 1,
+        "30": 1,
+        "34": 1,
+        "35": 1,
+        "37": 1,
+        "38": 1,
+        "42": 1,
+        "45": 1,
+        "53": 1,
+        "54": 2,
+        "59": 1,
+        "65": 1,
+        "68": 1,
+        "72": 1,
+        "73": 1,
+        "75": 2,
+        "76": 1,
+        "77": 2,
+        "78": 1,
+        "79": 1,
+        "82": 1,
+        "83": 2,
+        "85": 1
+      },
+      "baseline_random_loss": 5.018004417419434,
+      "expected_random_loss": 5.545177444479562,
+      "accuracy_definition": "mean argmax token accuracy over all positions"
+    },
+    {
+      "target_shape": [
+        8,
+        16
+      ],
+      "logit_shape": [
+        8,
+        16,
+        256
+      ],
+      "loss_function": "cross_entropy",
+      "ignore_index": null,
+      "num_classes": 256,
+      "target_value_range": [
+        0,
+        1
+      ],
+      "class_distribution": {
+        "0": 71,
+        "1": 57
+      },
+      "baseline_random_loss": 5.387650489807129,
+      "expected_random_loss": 5.545177444479562,
+      "accuracy_definition": "mean argmax token accuracy over all positions"
+    },
+    {
+      "target_shape": [
+        8,
+        16
+      ],
+      "logit_shape": [
+        8,
+        16,
+        256
+      ],
+      "loss_function": "cross_entropy",
+      "ignore_index": null,
+      "num_classes": 256,
+      "target_value_range": [
+        2,
+        255
+      ],
+      "class_distribution": {
+        "2": 1,
+        "4": 2,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "11": 1,
+        "14": 1,
+        "18": 1,
+        "19": 6,
+        "22": 1,
+        "30": 1,
+        "34": 1,
+        "35": 1,
+        "37": 1,
+        "38": 1,
+        "42": 1,
+        "45": 1,
+        "53": 1,
+        "54": 2,
+        "59": 1,
+        "65": 1,
+        "68": 1,
+        "72": 1,
+        "73": 1,
+        "75": 2,
+        "76": 1,
+        "77": 2,
+        "78": 1,
+        "79": 1,
+        "82": 1,
+        "83": 2,
+        "85": 1
+      },
+      "baseline_random_loss": 5.006946563720703,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     }

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-08T00:39:29.967832",
+    "run_id": "algo_20260608_003333_benchmark-lite",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 9001,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed-list 42,123,777,2026,9001 --device cuda --amp --models fixed_moe_vectorized,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --run-stability-repair-sweep --stability-repair-variants baseline_v1,baseline_v1_1,family_balanced_sampling,family_balanced_loss_light,gradient_clip_1_0,gradient_clip_0_5,logit_norm_cap_light,logit_norm_cap_medium,wrong_suppress_0_01,wrong_suppress_0_03,sparse_ce_0_03_instead_of_0_05,sparse_ce_0_05_with_decay_to_0_03,sparse_ce_0_05_with_decay_to_0_01 --output-dir evaluation/benchmark_results/pvr_minimax_stability_repair_sweep",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "dyck",
+      "listops",
+      "scan"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+  "statuses": [
+    "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "go": false,
+  "do_not_promote": true,
+  "primary_baseline": "fixed_moe_vectorized",
+  "primary_candidate": "pvr_ec_deploy_top2"
+}

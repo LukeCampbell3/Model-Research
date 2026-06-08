@@ -7,9 +7,9 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T20:17:50.988021",
-    "run_id": "algo_20260607_201750_smoke",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-07T23:38:19.436380",
+    "run_id": "algo_20260607_233819_smoke",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
@@ -96,7 +96,8 @@
       "pvr_ec_ownership_top1_best_transfer_repair",
       "pvr_ec_ownership_top1_best_sparse_logit_repair",
       "pvr_ec_ownership_top1_final_candidate_v1",
-      "pvr_ec_ownership_top1_final_candidate_v1_1"
+      "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "pvr_ec_ownership_top1_final_candidate_v1_2"
     ],
     "batch_sizes": [
       1,

@@ -1,0 +1,231 @@
+# PVR-EC Training Dynamics Report
+
+**Status:** PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-07T23:44:16.858525",
+    "run_id": "algo_20260607_234206_benchmark-lite",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 777,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed-list 123,777 --families clrs_style,listops --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_final_candidate_v1,pvr_ec_ownership_top1_final_candidate_v1_1 --enable-ownership-map --ownership-map-mode frozen --run-collapse-case-replay --output-dir evaluation/benchmark_results/pvr_minimax_collapse_case_replay",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1",
+      "pvr_ec_ownership_top1_final_candidate_v1_1"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "root_cause_flags": {
+      "run_collapse_case_replay": true
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [
+        500
+      ],
+      "seed_list": [
+        777
+      ],
+      "batch_size_list": [
+        1,
+        32
+      ],
+      "seq_len_list": [
+        64
+      ],
+      "shape_pairs": [],
+      "max_train_seconds": null,
+      "repeatability_repair_variants": [],
+      "calibration_repair_variants": [],
+      "minimax_variants": [],
+      "stability_repair_variants": []
+    },
+    "source": "trained_benchmark"
+  },
+  "status": "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+  "statuses": [
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "loss_curve": [
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16213898360729218,
+      "eval_loss": 0.25702635291963816,
+      "accuracy": 0.2720909090909091
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16213898360729218,
+      "eval_loss": 0.2398307528346777,
+      "accuracy": 0.19011002011120312
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16213898360729218,
+      "eval_loss": 0.24611769802868366,
+      "accuracy": 0.3308168795973674
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "listops",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16213898360729218,
+      "eval_loss": 1.4206876046955585,
+      "accuracy": 0.18241412937479684
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.18943354487419128,
+      "eval_loss": 0.2730925418436527,
+      "accuracy": 0.2061818181818182
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.18943354487419128,
+      "eval_loss": 0.24803490098565817,
+      "accuracy": 0.15615757719152965
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.18943354487419128,
+      "eval_loss": 0.2816811967641115,
+      "accuracy": 0.1629887727448703
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "listops",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.18943354487419128,
+      "eval_loss": 1.556906521320343,
+      "accuracy": 0.139126665944306
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.21892981510609388,
+      "accuracy": 0.5381818181818182
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.21400899160653353,
+      "accuracy": 0.4650419969241689
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.21387974172830582,
+      "accuracy": 0.490418118466899
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "listops",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 1.5707997642457485,
+      "accuracy": 0.18249539495069889
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.24945882055908442,
+      "accuracy": 0.5381818181818182
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.23733126744627953,
+      "accuracy": 0.4650419969241689
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "family": "clrs_style",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 0.2395689794793725,
+      "accuracy": 0.490418118466899
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "family": "listops",
+      "seed": 777,
+      "train_steps": 500,
+      "train_loss": 0.16685862839221954,
+      "eval_loss": 1.558279525488615,
+      "accuracy": 0.18249539495069889
+    }
+  ],
+  "specialization_metrics": {
+    "expert_utilization": 0.75,
+    "expert_gradient_norm_by_expert": {},
+    "expert_output_norm_by_expert": {}
+  }
+}
+```

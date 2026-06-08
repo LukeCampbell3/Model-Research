@@ -23,7 +23,7 @@ replay_in_forward: disabled
 file_writes_in_forward: disabled
 cpu_gpu_transfer_in_forward: disabled
 production_topk_execution: 1
-notes: Selected by calibration sweep; requires full revalidation before deploy.
+notes: Selected by calibration/minimax sweep as v1_1; requires full revalidation before deploy.
 base_config: pvr_ec_ownership_top1_final_candidate_v1
 selected_repair_variant: posthoc_temperature_T_1_2
 pvr_output_temperature: 1.2

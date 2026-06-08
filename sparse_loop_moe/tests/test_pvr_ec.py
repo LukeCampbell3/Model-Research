@@ -2500,5 +2500,193 @@ def test_diagnostic_logits_not_retained_in_inference_timing():
     assert "pvr_logit_decomposition" not in out
 
 
+def _qpm_fixture_rows():
+    return [
+        {"model": "fixed_moe_vectorized", "batch_size": 8, "sequence_length": 64, "loss": 0.30, "accuracy": 0.30, "p50_latency_ms": 1.0, "p95_latency_ms": 1.2, "max_memory_allocated_mb": 100, "active_param_count": 100},
+        {"model": "pvr_ec_deploy_top1", "batch_size": 8, "sequence_length": 64, "loss": 0.32, "accuracy": 0.25, "p50_latency_ms": 1.1, "p95_latency_ms": 1.3, "max_memory_allocated_mb": 80, "active_param_count": 80, "actual_owner_count_per_token": 1.0},
+        {"model": "pvr_ec_ownership_top1_final_candidate_v1", "batch_size": 8, "sequence_length": 64, "loss": 0.31, "accuracy": 0.29, "p50_latency_ms": 2.0, "p95_latency_ms": 2.4, "max_memory_allocated_mb": 90, "active_param_count": 80, "actual_owner_count_per_token": 1.0},
+    ]
+
+
+def _readiness_fixture(tmp_path, *, unexplained=0, owner_count=1.0, qpm_pass=False):
+    from run_algorithmic_benchmarks import _write_report_pair
+
+    _write_report_pair(tmp_path, "pvr_ec_collapse_case_replay_report", {
+        "status": "PVR_EC_REPEATABILITY_BLOCKED",
+        "statuses": ["PVR_EC_COLLAPSE_CASES_REPLAYED", "PVR_EC_CALIBRATION_COLLAPSE"],
+        "passed": False,
+        "collapse_count": 1,
+        "unexplained_collapse_count": unexplained,
+    }, "x")
+    _write_report_pair(tmp_path, "pvr_ec_minimax_candidate_selection_report", {
+        "status": "PVR_EC_REPEATABILITY_BLOCKED",
+        "passed": False,
+        "fixed_mean_loss": 0.41,
+        "fixed_mean_accuracy": 0.19,
+        "variant_summary": {"v1": {"mean_loss": 0.40, "mean_accuracy": 0.28, "calibration_proxy": 0.11}},
+    }, "x")
+    _write_report_pair(tmp_path, "pvr_ec_stability_repair_sweep_report", {"status": "PVR_EC_REPEATABILITY_BLOCKED", "passed": False}, "x")
+    qpm_rows = [
+        {"model": "pvr_ec_ownership_top1_final_candidate_v1", "shape": "b8-s64", "owner_count_per_token": owner_count, "Top2_executions": 0.0, "Top4_executions": 0.0}
+    ]
+    _write_report_pair(tmp_path, "pvr_ec_qpm_failing_shape_replay_report", {
+        "status": "PVR_EC_QPM_SHAPE_FAILURES_REPLAYED",
+        "passed": qpm_pass,
+        "failed_shape_count": 1 if not qpm_pass else 0,
+        "failure_classifications": ["QUALITY_FORMULA_FAILURE"],
+        "rows": qpm_rows,
+    }, "x")
+    _write_report_pair(tmp_path, "pvr_ec_qpm_formula_audit_report", {"status": "PVR_EC_QPM_FORMULA_AUDITED", "passed": qpm_pass}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_shape_qpm_runtime_repair_report", {"status": "PVR_EC_QPM_SHAPE_BLOCKED", "passed": qpm_pass, "rows": qpm_rows}, "x")
+
+
+def test_collapse_case_replay_report_written(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair
+    _write_report_pair(tmp_path, "pvr_ec_collapse_case_replay_report", {"status": "PVR_EC_COLLAPSE_CASES_REPLAYED"}, "x")
+    assert (tmp_path / "pvr_ec_collapse_case_replay_report.json").exists()
+
+
+def test_minimax_candidate_selection_report_written(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair
+    _write_report_pair(tmp_path, "pvr_ec_minimax_candidate_selection_report", {"status": "PVR_EC_MINIMAX_SELECTION_HELPFUL"}, "x")
+    assert (tmp_path / "pvr_ec_minimax_candidate_selection_report.json").exists()
+
+
+def test_stability_repair_sweep_report_written(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair
+    _write_report_pair(tmp_path, "pvr_ec_stability_repair_sweep_report", {"status": "PVR_EC_REPEATABILITY_BLOCKED"}, "x")
+    assert (tmp_path / "pvr_ec_stability_repair_sweep_report.json").exists()
+
+
+def test_qpm_failing_shape_replay_report_written(tmp_path):
+    runner = _final_gate_runner(tmp_path)
+    report = runner._write_qpm_failing_shape_replay_report(_qpm_fixture_rows())
+    assert report["failed_shape_count"] == 1
+
+
+def test_qpm_formula_audit_report_written(tmp_path):
+    runner = _final_gate_runner(tmp_path)
+    report = runner._write_qpm_formula_audit_report(_qpm_fixture_rows())
+    assert (tmp_path / "pvr_ec_qpm_formula_audit_report.json").exists()
+    assert report["qpm_failed_shape_count"] == 1
+
+
+def test_shape_qpm_runtime_repair_report_written(tmp_path):
+    runner = _final_gate_runner(tmp_path)
+    report = runner._write_shape_qpm_runtime_repair_report(_qpm_fixture_rows())
+    assert report["qpm_pass_shapes"] == 0
+
+
+def test_v1_2_not_created_unless_variant_wins(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "configs").mkdir()
+    assert not (tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1_2.json").exists()
+
+
+def test_v1_and_v1_1_not_mutated(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "configs").mkdir()
+    v1 = {"config_name": "pvr_ec_ownership_top1_final_candidate_v1"}
+    v11 = {"config_name": "pvr_ec_ownership_top1_final_candidate_v1_1"}
+    (tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1.json").write_text(json.dumps(v1))
+    (tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1_1.json").write_text(json.dumps(v11))
+    _final_gate_runner(tmp_path)._write_selected_candidate_variant_config("logit_norm_penalty_medium", version="v1_2")
+    assert json.loads((tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1.json").read_text()) == v1
+    assert json.loads((tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1_1.json").read_text()) == v11
+    assert (tmp_path / "configs" / "pvr_ec_ownership_top1_final_candidate_v1_2.json").exists()
+
+
+def test_v1_2_requires_full_revalidation(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair
+    _write_report_pair(tmp_path, "pvr_ec_minimax_candidate_selection_report", {"selected_variant": "logit_norm_penalty_medium", "selected_requires_revalidation": True}, "x")
+    data = json.loads((tmp_path / "pvr_ec_minimax_candidate_selection_report.json").read_text())
+    assert data["selected_requires_revalidation"] is True
+
+
+def test_collapse_count_blocks_deployment_promotion(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair, summarize_pvr_minimax_blocker_resolution
+    _write_report_pair(tmp_path, "pvr_ec_collapse_case_replay_report", {"collapse_count": 1, "statuses": [], "passed": False}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_minimax_candidate_selection_report", {"passed": True, "statuses": []}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_stability_repair_sweep_report", {"passed": True, "statuses": []}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_qpm_failing_shape_replay_report", {"passed": True, "statuses": []}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_qpm_formula_audit_report", {"passed": True, "statuses": []}, "x")
+    _write_report_pair(tmp_path, "pvr_ec_shape_qpm_runtime_repair_report", {"passed": True, "statuses": []}, "x")
+    report = summarize_pvr_minimax_blocker_resolution([str(tmp_path)], tmp_path / "final")
+    assert report["deployment_verdict"] == "PVR_EC_REPEATABILITY_BLOCKED"
+
+
+def test_qpm_failed_shapes_block_deployment_promotion(tmp_path):
+    _readiness_fixture(tmp_path, qpm_pass=False)
+    from run_algorithmic_benchmarks import summarize_pvr_minimax_blocker_resolution
+    report = summarize_pvr_minimax_blocker_resolution([str(tmp_path)], tmp_path / "final")
+    assert "qpm_shape" in report["blocked_reasons"]
+
+
+def test_calibration_proxy_blocks_deployment_promotion(tmp_path):
+    from run_algorithmic_benchmarks import _write_report_pair
+    _write_report_pair(tmp_path, "pvr_ec_minimax_candidate_selection_report", {"variant_summary": {"v1": {"calibration_proxy": 0.13}}}, "x")
+    assert json.loads((tmp_path / "pvr_ec_minimax_candidate_selection_report.json").read_text())["variant_summary"]["v1"]["calibration_proxy"] > 0.12
+
+
+def test_Top2_Top4_execution_zero_after_all_repairs(tmp_path):
+    report = _final_gate_runner(tmp_path)._write_shape_qpm_runtime_repair_report(_qpm_fixture_rows())
+    assert report["top2_top4_zero"] is True
+
+
+def test_owners_per_token_equals_one_after_all_repairs(tmp_path):
+    report = _final_gate_runner(tmp_path)._write_shape_qpm_runtime_repair_report(_qpm_fixture_rows())
+    assert report["owners_per_token_ok"] is True
+
+
+def test_deployment_vs_research_verdict_report_written(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path)
+    run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert (tmp_path / "ready" / "pvr_ec_deployment_vs_research_verdict_report.json").exists()
+
+
+def test_nlp_research_readiness_report_written(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path)
+    run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert (tmp_path / "ready" / "pvr_ec_nlp_research_readiness_report.json").exists()
+
+
+def test_nlp_bridge_ladder_plan_written(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path)
+    run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert (tmp_path / "ready" / "pvr_ec_nlp_bridge_ladder_plan.json").exists()
+
+
+def test_deployment_blocked_but_research_ready_fixture_passes(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path)
+    report = run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert report["research_verdict"] == "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"
+
+
+def test_unexplained_collapse_blocks_nlp_research(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path, unexplained=1)
+    report = run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert report["research_verdict"] == "PVR_EC_NLP_RESEARCH_NOT_READY"
+
+
+def test_forward_purity_failure_blocks_nlp_research(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path, owner_count=2.0)
+    report = run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert report["research_verdict"] == "PVR_EC_NLP_RESEARCH_NOT_READY"
+
+
+def test_qpm_blocked_but_classified_allows_research_ready_with_blockers(tmp_path):
+    from run_algorithmic_benchmarks import run_pvr_nlp_research_readiness_gate
+    _readiness_fixture(tmp_path, qpm_pass=False)
+    report = run_pvr_nlp_research_readiness_gate([str(tmp_path)], tmp_path / "ready")
+    assert report["qpm_classified"] is True
+    assert report["research_verdict"] == "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

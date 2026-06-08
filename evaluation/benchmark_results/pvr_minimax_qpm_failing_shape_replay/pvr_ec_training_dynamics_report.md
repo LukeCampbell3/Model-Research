@@ -1,0 +1,637 @@
+# PVR-EC Training Dynamics Report
+
+**Status:** PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+**Statuses:** PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE, PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+```json
+{
+  "metadata": {
+    "timestamp": "2026-06-08T00:40:08.727770",
+    "run_id": "algo_20260608_003949_inference-only",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode inference-only --scale small --device cuda --amp --models fixed_moe_vectorized,pvr_ec_deploy_top1,pvr_ec_ownership_top1_final_candidate_v1 --enable-ownership-map --ownership-map-mode frozen --shape-list b8-s64,b16-s64,b16-s128,b32-s64,b32-s128,b64-s16,b64-s64,b64-s128,b1-s16,b1-s64,b8-s16,b32-s16 --run-qpm-failing-shape-replay --output-dir evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay",
+    "model_variants": [
+      "fixed_moe_vectorized",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "batch_sizes": [
+      1,
+      8,
+      16,
+      32,
+      64
+    ],
+    "sequence_lengths": [
+      16,
+      64,
+      128
+    ],
+    "train_steps": 500,
+    "sample_limit": null,
+    "mode": "inference-only",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
+    "root_cause_flags": {
+      "run_root_baseline_matrix": false,
+      "run_training_dynamics_diagnostic": false,
+      "run_ownership_integration_diagnostic": false,
+      "run_shared_sparse_ablation": false,
+      "run_learning_separation_diagnostic": false,
+      "run_loss_calibration_diagnostic": false,
+      "run_task_fit_diagnostic": false,
+      "run_latency_stability_diagnostic": false,
+      "run_gradient_flow_diagnostic": false,
+      "run_optimizer_update_diagnostic": false,
+      "run_expert_contribution_diagnostic": false,
+      "run_loss_target_sanity": false,
+      "run_shared_absorption_diagnostic": false,
+      "run_expert_initialization_diagnostic": false,
+      "run_after_repair_confirmation": false,
+      "run_nonlinear_overfit_diagnostic": false,
+      "run_fixed_owner_parity_diagnostic": false,
+      "run_parity_scale_sweep": false,
+      "run_nonlinear_overfit_confirmation": false,
+      "run_after_nonlinear_repair_confirmation": false,
+      "run_expert_delta_scale_schedule_diagnostic": false,
+      "run_expert_delta_scale_schedule_confirmation": false,
+      "run_residual_alignment_diagnostic": false,
+      "run_family_scale_sweep": false,
+      "run_conditional_scale_oracle": false,
+      "run_benchmark_transfer_confirmation": false,
+      "run_task_level_transfer_diagnostic": false,
+      "run_decision_token_credit_diagnostic": false,
+      "run_token_to_sequence_transfer_diagnostic": false,
+      "run_family_failure_decomposition": false,
+      "run_output_readout_diagnostic": false,
+      "run_loss_credit_repair_sweep": false,
+      "run_curriculum_repair_sweep": false,
+      "run_segment_residual_diagnostic": false,
+      "run_sparse_logit_direction_diagnostic": false,
+      "run_sparse_auxiliary_loss_sweep": false,
+      "run_calibration_constrained_sparse_aux_sweep": false,
+      "run_sparse_auxiliary_scope_sweep": false,
+      "run_sparse_direction_transfer_confirmation": false,
+      "run_final_config_manifest": false,
+      "run_forward_purity_gate": false,
+      "run_multiseed_confirmation_gate": false,
+      "run_longer_training_confirmation_gate": false,
+      "run_matched_wall_clock_gate": false,
+      "run_final_calibration_sweep": false,
+      "run_family_regression_gate": false,
+      "run_quality_per_ms_memory_gate": false,
+      "run_reliability_proxy_gate": false,
+      "run_repeatability_collapse_isolation": false,
+      "run_repeatability_repair_sweep": false,
+      "run_qpm_shape_regression_analysis": false,
+      "run_qpm_memory_repair": false,
+      "run_reliability_calibration_repair": false,
+      "run_final_candidate_revalidation": false,
+      "run_collapse_case_replay": false,
+      "run_minimax_candidate_selection": false,
+      "run_stability_repair_sweep": false,
+      "run_qpm_failing_shape_replay": true,
+      "run_qpm_formula_audit": false,
+      "run_shape_qpm_runtime_repair": false
+    },
+    "diagnostic_sweeps": {
+      "train_steps_list": [],
+      "seed_list": [
+        42
+      ],
+      "ownership_schedule_sweep": [],
+      "shared_scale_sweep": [],
+      "expert_delta_scale_sweep": [],
+      "loss_schedule_sweep": [],
+      "task_loss_schedule_sweep": [],
+      "batch_size_list": [
+        1,
+        8,
+        16,
+        32,
+        64
+      ],
+      "seq_len_list": [
+        16,
+        64,
+        128
+      ],
+      "shape_pairs": [
+        [
+          8,
+          64
+        ],
+        [
+          16,
+          64
+        ],
+        [
+          16,
+          128
+        ],
+        [
+          32,
+          64
+        ],
+        [
+          32,
+          128
+        ],
+        [
+          64,
+          16
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          128
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          64
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          32,
+          16
+        ]
+      ],
+      "pvr_overfit_tasks": [
+        "toy_identity"
+      ],
+      "pvr_overfit_steps": 100,
+      "pvr_overfit_batch_size": 16,
+      "pvr_overfit_single_batch": false,
+      "pvr_shared_scale_sweep": [],
+      "pvr_expert_delta_scale_sweep": [],
+      "pvr_expert_init_sweep": [],
+      "pvr_expert_delta_scale_schedule": "constant",
+      "pvr_expert_delta_scale_start": null,
+      "pvr_expert_delta_scale_end": null,
+      "pvr_expert_delta_scale_warmup_steps": null,
+      "pvr_expert_delta_scale_hold_steps": null,
+      "pvr_expert_delta_scale_decay": null,
+      "conditional_scale_modes": [],
+      "readout_variants": [],
+      "loss_credit_variants": [],
+      "curriculum_variants": [],
+      "sparse_aux_loss_variants": [],
+      "sparse_aux_scopes": [],
+      "final_calibration_variants": [],
+      "repeatability_repair_variants": [],
+      "calibration_repair_variants": [],
+      "minimax_variants": [],
+      "stability_repair_variants": [],
+      "max_train_seconds": null
+    },
+    "source": "inference_only"
+  },
+  "status": "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+  "statuses": [
+    "PVR_EC_CAPABILITY_SIGNAL_TOO_WEAK_FOR_FINAL_ROOT_CAUSE",
+    "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+  ],
+  "loss_curve": [
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.627333164215088,
+      "accuracy": 0.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.562073707580566,
+      "accuracy": 0.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.575721740722656,
+      "accuracy": 0.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.5746259689331055,
+      "accuracy": 0.0078125
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.572011947631836,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.545858860015869,
+      "accuracy": 0.0087890625
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.556034088134766,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.581860542297363,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.568894386291504,
+      "accuracy": 0.00244140625
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.5647664070129395,
+      "accuracy": 0.0
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.568611145019531,
+      "accuracy": 0.00341796875
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.575446605682373,
+      "accuracy": 0.00341796875
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.5833258628845215,
+      "accuracy": 0.001953125
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.575882911682129,
+      "accuracy": 0.0048828125
+    },
+    {
+      "model": "fixed_moe_vectorized",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.572770595550537,
+      "accuracy": 0.0035400390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.6672868728637695,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.57466459274292,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.588520050048828,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.574477195739746,
+      "accuracy": 0.0078125
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.589869499206543,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.578625202178955,
+      "accuracy": 0.0087890625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.5682148933410645,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.59083366394043,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.577230453491211,
+      "accuracy": 0.00244140625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.582729816436768,
+      "accuracy": 0.001953125
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.575033187866211,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.57670783996582,
+      "accuracy": 0.00341796875
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.58107328414917,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.576350688934326,
+      "accuracy": 0.00439453125
+    },
+    {
+      "model": "pvr_ec_deploy_top1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.576910972595215,
+      "accuracy": 0.0035400390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.53541898727417,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.564690589904785,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.570484161376953,
+      "accuracy": 0.0
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.574362754821777,
+      "accuracy": 0.0078125
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.57849645614624,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.562441825866699,
+      "accuracy": 0.0087890625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.547356128692627,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.593461036682129,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.578299522399902,
+      "accuracy": 0.00244140625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.580729007720947,
+      "accuracy": 0.001953125
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.568515300750732,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.573005199432373,
+      "accuracy": 0.00341796875
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.57095193862915,
+      "accuracy": 0.00390625
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.567958354949951,
+      "accuracy": 0.00439453125
+    },
+    {
+      "model": "pvr_ec_ownership_top1_final_candidate_v1",
+      "family": "unknown",
+      "seed": 42,
+      "train_steps": 500,
+      "train_loss": null,
+      "eval_loss": 5.575181484222412,
+      "accuracy": 0.0035400390625
+    }
+  ],
+  "specialization_metrics": {
+    "expert_utilization": null,
+    "expert_gradient_norm_by_expert": {},
+    "expert_output_norm_by_expert": {}
+  }
+}
+```

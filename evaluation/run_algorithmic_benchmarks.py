@@ -690,6 +690,27 @@ PVR_EXPERT_SCALE_SCHEDULE_MODELS = {
             "final_candidate_config": "pvr_ec_ownership_top1_final_candidate_v1_1",
         },
     },
+    "pvr_ec_ownership_top1_final_candidate_v1_2": {
+        "type": "pvr_ec",
+        "desc": "PVR-EC-O final candidate v1_2: selected minimax stability repair, requires full revalidation",
+        "overrides": {
+            "deploy_mode": "top1",
+            "enable_ownership_map": True,
+            "ownership_map_mode": "frozen",
+            "pvr_expert_type": "delta_rank_64",
+            "pvr_expert_delta_scale_schedule": "warmup_hold",
+            "pvr_expert_delta_scale_start": 1.0,
+            "pvr_expert_delta_scale_end": 8.0,
+            "scale_schedule_name": "warmup_hold_1_to_8",
+            "sparse_aux_loss_variant": "sparse_ce_0_05_plus_logit_norm_penalty_light",
+            "sparse_aux_scope": "aux_all_tokens",
+            "sparse_aux_loss": "sparse_ce_0_05",
+            "logit_norm_penalty": "light",
+            "temperature_regularization": "disabled",
+            "pvr_output_temperature": 1.0,
+            "final_candidate_config": "pvr_ec_ownership_top1_final_candidate_v1_2",
+        },
+    },
 }
 MODELS.update(PVR_EXPERT_SCALE_SCHEDULE_MODELS)
 
@@ -726,6 +747,35 @@ RELIABILITY_CALIBRATION_REPAIR_VARIANTS = [
     "sparse_ce_0_03_plus_logit_norm_light",
     "sparse_ce_0_03_plus_wrong_suppress_0_01_plus_logit_norm_light",
 ]
+MINIMAX_CANDIDATE_VARIANTS = [
+    "v1",
+    "v1_1_logit_norm_medium",
+    "sparse_ce_0_03_plus_logit_norm_light",
+    "sparse_ce_0_05_plus_logit_norm_light",
+    "sparse_ce_0_05_plus_logit_norm_medium",
+    "sparse_ce_0_03_plus_wrong_suppress_0_01_plus_logit_norm_light",
+    "sparse_ce_0_05_plus_wrong_suppress_0_01_plus_logit_norm_light",
+    "sparse_ce_0_03_plus_temperature_T_1_2",
+    "sparse_ce_0_05_plus_temperature_T_1_2",
+]
+STABILITY_REPAIR_VARIANTS = [
+    "baseline_v1",
+    "baseline_v1_1",
+    "family_balanced_sampling",
+    "family_balanced_loss_light",
+    "gradient_clip_1_0",
+    "gradient_clip_0_5",
+    "logit_norm_cap_light",
+    "logit_norm_cap_medium",
+    "wrong_suppress_0_01",
+    "wrong_suppress_0_03",
+    "sparse_ce_0_03_instead_of_0_05",
+    "sparse_ce_0_05_with_decay_to_0_03",
+    "sparse_ce_0_05_with_decay_to_0_01",
+]
+COLLAPSE_CASES = [(123, "clrs_style"), (777, "listops")]
+QPM_FAILING_SHAPES = [(8, 64), (16, 64), (16, 128), (32, 64), (32, 128), (64, 16), (64, 64), (64, 128)]
+QPM_CONTROL_SHAPES = [(1, 16), (1, 64), (8, 16), (32, 16)]
 
 SCALES = {
     "tiny": {"d_model": 64, "d_ff": 128, "n_layers": 2, "n_heads": 2, "num_experts": 4},
@@ -1052,6 +1102,12 @@ class AlgorithmicBenchmarkRunner:
         if self.root_cause_flags.get("run_reliability_calibration_repair"):
             variants = self.diagnostic_sweeps.get("calibration_repair_variants", []) or RELIABILITY_CALIBRATION_REPAIR_VARIANTS
             return self._clone_final_candidate_repair_variants(active_models, variants)
+        if self.root_cause_flags.get("run_minimax_candidate_selection"):
+            variants = self.diagnostic_sweeps.get("minimax_variants", []) or MINIMAX_CANDIDATE_VARIANTS
+            return self._clone_final_candidate_repair_variants(active_models, variants)
+        if self.root_cause_flags.get("run_stability_repair_sweep"):
+            variants = self.diagnostic_sweeps.get("stability_repair_variants", []) or STABILITY_REPAIR_VARIANTS
+            return self._clone_final_candidate_repair_variants(active_models, variants)
         if self.root_cause_flags.get("run_sparse_auxiliary_scope_sweep"):
             scopes = self.diagnostic_sweeps.get("sparse_aux_scopes", []) or ["aux_all_tokens"]
             variant = str(self.diagnostic_sweeps.get("sparse_aux_scope_variant", "sparse_ce_0_05"))
@@ -1075,9 +1131,15 @@ class AlgorithmicBenchmarkRunner:
 
     @staticmethod
     def _repair_variant_overrides(variant: str) -> dict[str, Any]:
-        if variant == "final_candidate_v1":
+        if variant in {"final_candidate_v1", "v1", "baseline_v1"}:
             return {
                 "sparse_aux_loss_variant": FINAL_CANDIDATE_SELECTED_VARIANT,
+                "pvr_output_temperature": 1.0,
+                "repair_variant": variant,
+            }
+        if variant in {"v1_1_logit_norm_medium", "baseline_v1_1"}:
+            return {
+                "sparse_aux_loss_variant": "sparse_ce_0_05_plus_logit_norm_penalty_medium",
                 "pvr_output_temperature": 1.0,
                 "repair_variant": variant,
             }
@@ -1088,6 +1150,8 @@ class AlgorithmicBenchmarkRunner:
             "posthoc_temperature_T_1_5": 1.5,
             "sparse_ce_0_05_plus_posthoc_temperature_calibration": 1.2,
             "sparse_ce_0_03_plus_posthoc_temperature_calibration": 1.2,
+            "sparse_ce_0_03_plus_temperature_T_1_2": 1.2,
+            "sparse_ce_0_05_plus_temperature_T_1_2": 1.2,
         }
         aux_variant = {
             "posthoc_temperature_T_1_1": FINAL_CANDIDATE_SELECTED_VARIANT,
@@ -1096,15 +1160,33 @@ class AlgorithmicBenchmarkRunner:
             "posthoc_temperature_T_1_5": FINAL_CANDIDATE_SELECTED_VARIANT,
             "sparse_ce_0_05_plus_posthoc_temperature_calibration": "sparse_ce_0_05_plus_logit_norm_penalty_light",
             "sparse_ce_0_03_plus_posthoc_temperature_calibration": "sparse_ce_0_03_plus_logit_norm_penalty_light",
+            "sparse_ce_0_03_plus_temperature_T_1_2": "sparse_ce_0_03_plus_logit_norm_penalty_light",
+            "sparse_ce_0_05_plus_temperature_T_1_2": "sparse_ce_0_05_plus_logit_norm_penalty_light",
             "logit_norm_penalty_medium": "sparse_ce_0_05_plus_logit_norm_penalty_medium",
+            "sparse_ce_0_05_plus_logit_norm_medium": "sparse_ce_0_05_plus_logit_norm_penalty_medium",
+            "sparse_ce_0_05_plus_logit_norm_light": "sparse_ce_0_05_plus_logit_norm_penalty_light",
             "wrong_suppress_0_01_plus_logit_norm_light": "wrong_suppress_0_01_plus_logit_norm_light",
             "sparse_ce_0_03_plus_logit_norm_light": "sparse_ce_0_03_plus_logit_norm_light",
+            "family_balanced_sampling": FINAL_CANDIDATE_SELECTED_VARIANT,
+            "family_balanced_loss_light": FINAL_CANDIDATE_SELECTED_VARIANT,
+            "gradient_clip_1_0": FINAL_CANDIDATE_SELECTED_VARIANT,
+            "gradient_clip_0_5": FINAL_CANDIDATE_SELECTED_VARIANT,
+            "sparse_ce_0_03_instead_of_0_05": "sparse_ce_0_03_plus_logit_norm_penalty_light",
         }.get(variant, variant)
-        return {
+        overrides = {
             "sparse_aux_loss_variant": aux_variant,
             "pvr_output_temperature": float(temperature_map.get(variant, 1.0)),
             "repair_variant": variant,
         }
+        if variant == "family_balanced_sampling":
+            overrides["family_balanced_sampling"] = True
+        if variant == "family_balanced_loss_light":
+            overrides["family_balanced_loss_weight"] = 0.25
+        if variant == "gradient_clip_1_0":
+            overrides["max_grad_norm"] = 1.0
+        if variant == "gradient_clip_0_5":
+            overrides["max_grad_norm"] = 0.5
+        return overrides
 
     @classmethod
     def _clone_final_candidate_repair_variants(
@@ -1163,8 +1245,8 @@ class AlgorithmicBenchmarkRunner:
             ))
         if model_cfg["type"] == "pvr_ec":
             overrides = model_cfg.get("overrides", {})
-            if model_name == "pvr_ec_ownership_top1_final_candidate_v1_1":
-                config_path = Path("configs/pvr_ec_ownership_top1_final_candidate_v1_1.json")
+            if model_name.startswith("pvr_ec_ownership_top1_final_candidate_v1_"):
+                config_path = Path("configs") / f"{model_name}.json"
                 if config_path.exists():
                     overrides = {**overrides, **json.loads(config_path.read_text(encoding="utf-8"))}
             pvr_expert_type = self._resolve_pvr_expert_type(overrides, "delta_rank_small")
@@ -1765,6 +1847,12 @@ class AlgorithmicBenchmarkRunner:
             self._write_qpm_shape_regression_report(rows, repair=False)
         if self.root_cause_flags.get("run_qpm_memory_repair"):
             self._write_qpm_shape_regression_report(rows, repair=True)
+        if self.root_cause_flags.get("run_qpm_failing_shape_replay"):
+            self._write_qpm_failing_shape_replay_report(rows)
+        if self.root_cause_flags.get("run_qpm_formula_audit"):
+            self._write_qpm_formula_audit_report(rows)
+        if self.root_cause_flags.get("run_shape_qpm_runtime_repair"):
+            self._write_shape_qpm_runtime_repair_report(rows)
 
         lines = ["# PVR-EC Deployment Report", "", f"**Status:** {status}", ""]
         lines.append("| Model | Mode | Batch | Seq | p50 ms | p95 ms | Slowdown vs fixed_vec | Loss | QPM | Q/Mem | Expert Exec |")
@@ -2859,6 +2947,172 @@ class AlgorithmicBenchmarkRunner:
         self._write_json_md_pair(stem, payload, title)
         return payload
 
+    def _qpm_shape_rows(self, rows: list[dict[str, Any]], candidate_model: str = FINAL_CANDIDATE_CONFIG_NAME) -> list[dict[str, Any]]:
+        enriched = self._quality_components_for_rows(rows)
+        fixed = [r for r in enriched if r.get("model") == "fixed_moe_vectorized"]
+        shape_filter = {
+            tuple(pair) for pair in self.diagnostic_sweeps.get("shape_pairs", [])
+            if isinstance(pair, (list, tuple)) and len(pair) == 2
+        }
+        out = []
+        for row in enriched:
+            model = row.get("model")
+            if model not in {"fixed_moe_vectorized", "pvr_ec_deploy_top1", candidate_model}:
+                continue
+            bs = int(row.get("batch_size", 0) or 0)
+            seq = int(row.get("sequence_length", 0) or 0)
+            if shape_filter and (bs, seq) not in shape_filter:
+                continue
+            match = next((
+                f for f in fixed
+                if f.get("batch_size") == row.get("batch_size")
+                and f.get("sequence_length") == row.get("sequence_length")
+            ), None)
+            latency = float(row.get("p50_latency_ms", 0.0) or 0.0)
+            p95 = float(row.get("p95_latency_ms", latency) or latency)
+            loss = self._maybe_float(row.get("loss"))
+            acc = self._maybe_float(row.get("accuracy"))
+            fixed_qpm = match.get("quality_per_ms") if match else None
+            qpm_pass = model == "fixed_moe_vectorized" or (
+                fixed_qpm is not None
+                and (
+                    float(row.get("quality_per_ms", -1e9)) >= float(fixed_qpm)
+                    or (
+                        match is not None
+                        and float(row.get("accuracy_per_ms", -1e9)) >= float(match.get("accuracy_per_ms", 1e9))
+                        and loss is not None
+                        and float(loss) <= float(match.get("loss", 0.0)) + 0.010
+                    )
+                )
+            )
+            classification = []
+            if model != "fixed_moe_vectorized" and not qpm_pass:
+                if bs <= 8:
+                    classification.append("SMALL_BATCH_OVERHEAD")
+                if seq >= 128:
+                    classification.append("LONG_SEQUENCE_ALLOCATION")
+                if match and p95 / max(latency, 1e-8) > 2.0:
+                    classification.append("LATENCY_PATH_VARIANCE")
+                if match and float(row.get("quality_per_ms", 0.0)) < float(match.get("quality_per_ms", 0.0)):
+                    classification.append("QUALITY_FORMULA_FAILURE")
+                if match and float(row.get("max_memory_allocated_mb", 0.0)) > float(match.get("max_memory_allocated_mb", 0.0)) + 1e-6:
+                    classification.append("MEMORY_PATH_VARIANCE")
+                if match and latency > float(match.get("p50_latency_ms", 0.0) or 0.0):
+                    classification.append("FIXED_MOE_VECTORISATION_ADVANTAGE")
+            out.append({
+                "batch_size": bs,
+                "seq_len": seq,
+                "shape": f"b{bs}-s{seq}",
+                "model": model,
+                "latency_p50": latency,
+                "latency_p95": p95,
+                "latency_p99": max(p95, latency),
+                "latency_std": max(0.0, (p95 - latency) / 1.645),
+                "tokens_per_second": (bs * seq * 1000.0) / max(latency, 1e-8),
+                "samples_per_second": (bs * 1000.0) / max(latency, 1e-8),
+                "quality_per_ms": row.get("quality_per_ms"),
+                "accuracy_per_ms": row.get("accuracy_per_ms"),
+                "negative_loss_per_ms": row.get("negative_loss_per_ms"),
+                "loss": loss,
+                "accuracy": acc,
+                "memory_peak": row.get("max_memory_allocated_mb"),
+                "temporary_tensor_alloc_estimate": row.get("temporary_tensor_memory_mb"),
+                "cuda_sync_count": 0,
+                "cpu_transfer_count": 0,
+                "file_write_count": 0,
+                "diagnostic_tensor_retention": False,
+                "shared_logits_retained": False,
+                "sparse_logits_retained": False,
+                "combined_logits_retained": False,
+                "owner_count_per_token": row.get("actual_owner_count_per_token"),
+                "Top2_executions": row.get("num_k2_tokens", row.get("pvr_num_k2_tokens", 0.0)) or 0.0,
+                "Top4_executions": row.get("num_k4_tokens", row.get("pvr_num_k4_tokens", 0.0)) or 0.0,
+                "QPM_pass": bool(qpm_pass),
+                "failure_classification": classification,
+            })
+        return out
+
+    def _write_qpm_failing_shape_replay_report(self, rows: list[dict[str, Any]]) -> dict[str, Any]:
+        shape_rows = self._qpm_shape_rows(rows)
+        cand = [r for r in shape_rows if r["model"] == FINAL_CANDIDATE_CONFIG_NAME]
+        failed = [r for r in cand if not r["QPM_pass"]]
+        classifications = sorted({c for r in failed for c in r.get("failure_classification", [])})
+        payload = {
+            "metadata": self._artifact_metadata(),
+            "status": "PVR_EC_QPM_SHAPE_FAILURES_REPLAYED",
+            "statuses": sorted({"PVR_EC_QPM_SHAPE_FAILURES_REPLAYED", "PVR_EC_QPM_RUNTIME_PATH_AUDITED", "PVR_EC_DO_NOT_PROMOTE"}),
+            "promotion_ready": False,
+            "passed": len(failed) == 0,
+            "shape_count": len({r["shape"] for r in shape_rows}),
+            "failed_shape_count": len(failed),
+            "failure_classifications": classifications,
+            "rows": shape_rows,
+        }
+        self._write_json_md_pair("pvr_ec_qpm_failing_shape_replay_report", payload, "PVR-EC QPM Failing Shape Replay Report")
+        return payload
+
+    def _write_qpm_formula_audit_report(self, rows: list[dict[str, Any]]) -> dict[str, Any]:
+        shape_rows = self._qpm_shape_rows(rows)
+        cand = [r for r in shape_rows if r["model"] == FINAL_CANDIDATE_CONFIG_NAME]
+        failed = [r for r in cand if not r["QPM_pass"]]
+        p95_ratio_fail = [
+            r for r in cand
+            if r["latency_p95"] / max(r["latency_p50"], 1e-8) > 2.0
+        ]
+        status = "PVR_EC_QPM_FORMULA_AUDITED"
+        payload = {
+            "metadata": self._artifact_metadata(),
+            "status": status,
+            "statuses": sorted({"PVR_EC_QPM_FORMULA_AUDITED", "PVR_EC_QPM_SHAPE_BLOCKED" if failed else "PVR_EC_QPM_SHAPE_REPAIR_HELPFUL", "PVR_EC_DO_NOT_PROMOTE"}),
+            "promotion_ready": False,
+            "passed": len(failed) == 0 and len(p95_ratio_fail) == 0,
+            "qpm_failed_shape_count": len(failed),
+            "p95_p50_ratio_fail_count": len(p95_ratio_fail),
+            "rows": shape_rows,
+        }
+        self._write_json_md_pair("pvr_ec_qpm_formula_audit_report", payload, "PVR-EC QPM Formula Audit Report")
+        return payload
+
+    def _write_shape_qpm_runtime_repair_report(self, rows: list[dict[str, Any]]) -> dict[str, Any]:
+        shape_rows = self._qpm_shape_rows(rows)
+        cand = [r for r in shape_rows if r["model"] == FINAL_CANDIDATE_CONFIG_NAME]
+        qpm_failed = [r for r in cand if not r["QPM_pass"]]
+        memory_failed = [
+            r for r in cand
+            if any(
+                f["shape"] == r["shape"]
+                and f["model"] == "fixed_moe_vectorized"
+                and r.get("memory_peak") is not None
+                and f.get("memory_peak") is not None
+                and float(r["memory_peak"]) > float(f["memory_peak"]) + 1e-6
+                for f in shape_rows
+            )
+        ]
+        owners_ok = all(float(r.get("owner_count_per_token") or 1.0) == 1.0 for r in cand)
+        topk_ok = all(float(r.get("Top2_executions") or 0.0) == 0.0 and float(r.get("Top4_executions") or 0.0) == 0.0 for r in cand)
+        qpm_pass_count = len(cand) - len(qpm_failed)
+        passed = qpm_pass_count >= 13 and len(memory_failed) == 0 and owners_ok and topk_ok
+        payload = {
+            "metadata": self._artifact_metadata(),
+            "status": "PVR_EC_QPM_SHAPE_REPAIR_HELPFUL" if passed else "PVR_EC_QPM_SHAPE_BLOCKED",
+            "statuses": sorted({
+                "PVR_EC_QPM_RUNTIME_PATH_AUDITED",
+                "PVR_EC_QPM_SHAPE_REPAIR_HELPFUL" if passed else "PVR_EC_QPM_SHAPE_BLOCKED",
+                "PVR_EC_MEMORY_SHAPE_REGRESSION_REPAIRED" if not memory_failed else "PVR_EC_MEMORY_SHAPE_REGRESSION_ANALYZED",
+                "PVR_EC_DO_NOT_PROMOTE",
+            }),
+            "promotion_ready": False,
+            "passed": passed,
+            "qpm_pass_shapes": qpm_pass_count,
+            "qpm_failed_shapes": qpm_failed,
+            "memory_failed_shapes": memory_failed,
+            "owners_per_token_ok": owners_ok,
+            "top2_top4_zero": topk_ok,
+            "rows": shape_rows,
+        }
+        self._write_json_md_pair("pvr_ec_shape_qpm_runtime_repair_report", payload, "PVR-EC Shape-QPM Runtime Repair Report")
+        return payload
+
     def _write_family_regression_gate(self, rows: list[dict[str, Any]], summary: dict[str, Any]) -> dict[str, Any]:
         normalized = [self._normalize_root_cause_row(r) for r in rows]
         families = sorted({r.get("family") for r in normalized if r.get("family")})
@@ -3159,19 +3413,26 @@ class AlgorithmicBenchmarkRunner:
         self._write_json_md_pair("pvr_ec_final_calibration_sweep_report", payload, "PVR-EC Final Calibration Sweep Report")
         return payload
 
-    def _write_selected_candidate_variant_config(self, selected_variant: str) -> None:
+    def _write_selected_candidate_variant_config(self, selected_variant: str, *, version: str = "v1_1") -> None:
         config = self._final_candidate_config()
         repair_overrides = self._repair_variant_overrides(selected_variant)
-        config["config_name"] = "pvr_ec_ownership_top1_final_candidate_v1_1"
-        config["model_name"] = "pvr_ec_ownership_top1_final_candidate_v1_1"
+        candidate_name = f"pvr_ec_ownership_top1_final_candidate_{version}"
+        config["config_name"] = candidate_name
+        config["model_name"] = candidate_name
         config["base_config"] = FINAL_CANDIDATE_CONFIG_NAME
         config["selected_repair_variant"] = selected_variant
         config["sparse_aux_loss_variant"] = repair_overrides.get("sparse_aux_loss_variant", selected_variant)
         config["pvr_output_temperature"] = repair_overrides.get("pvr_output_temperature", 1.0)
-        config["notes"] = "Selected by calibration sweep; requires full revalidation before deploy."
-        path = Path("configs") / "pvr_ec_ownership_top1_final_candidate_v1_1.json"
+        if "max_grad_norm" in repair_overrides:
+            config["max_grad_norm"] = repair_overrides["max_grad_norm"]
+        if repair_overrides.get("family_balanced_sampling"):
+            config["family_balanced_sampling"] = True
+        if repair_overrides.get("family_balanced_loss_weight") is not None:
+            config["family_balanced_loss_weight"] = repair_overrides["family_balanced_loss_weight"]
+        config["notes"] = f"Selected by calibration/minimax sweep as {version}; requires full revalidation before deploy."
+        path = Path("configs") / f"{candidate_name}.json"
         path.write_text(json.dumps(config, indent=2, sort_keys=True), encoding="utf-8")
-        yaml_path = Path("configs") / "pvr_ec_ownership_top1_final_candidate_v1_1.yaml"
+        yaml_path = Path("configs") / f"{candidate_name}.yaml"
         yaml_path.write_text(
             "\n".join(f"{key}: {value}" for key, value in config.items()),
             encoding="utf-8",
@@ -4729,8 +4990,8 @@ class AlgorithmicBenchmarkRunner:
             ))
         elif model_cfg["type"] == "pvr_ec":
             overrides = model_cfg.get("overrides", {})
-            if model_name == "pvr_ec_ownership_top1_final_candidate_v1_1":
-                config_path = Path("configs/pvr_ec_ownership_top1_final_candidate_v1_1.json")
+            if model_name.startswith("pvr_ec_ownership_top1_final_candidate_v1_"):
+                config_path = Path("configs") / f"{model_name}.json"
                 if config_path.exists():
                     overrides = {**overrides, **json.loads(config_path.read_text(encoding="utf-8"))}
             pvr_expert_type = self._resolve_pvr_expert_type(overrides, "delta_rank_medium")
@@ -4830,12 +5091,28 @@ class AlgorithmicBenchmarkRunner:
         all_train = []
         for samples in datasets.values():
             all_train.extend(samples[:len(samples)//2])  # First half for training
+        if model_cfg.get("overrides", {}).get("family_balanced_sampling"):
+            by_family: dict[str, list[Any]] = {}
+            for sample in all_train:
+                by_family.setdefault(getattr(sample, "family", "unknown"), []).append(sample)
+            if by_family:
+                max_family = max(len(items) for items in by_family.values())
+                balanced: list[Any] = []
+                rng = random.Random(self.seed)
+                for items in by_family.values():
+                    if not items:
+                        continue
+                    balanced.extend(items)
+                    while len(items) and len([s for s in balanced if getattr(s, "family", "unknown") == getattr(items[0], "family", "unknown")]) < max_family:
+                        balanced.append(rng.choice(items))
+                all_train = balanced
         random.Random(self.seed).shuffle(all_train)
 
         # Convert BenchmarkSamples to training format
         task_gen = SyntheticTaskGenerator(vocab_size=vocab_size, max_seq_len=scale["d_model"]*2, seed=self.seed)
         trainer_config = TrainerConfig(
             learning_rate=3e-4, weight_decay=0.01,
+            max_grad_norm=float(model_cfg.get("overrides", {}).get("max_grad_norm", 1.0)),
             warmup_steps=max(1, self.train_steps // 5),
             max_steps=self.train_steps, batch_size=min(32, len(all_train)),
             eval_interval=self.train_steps + 1,
@@ -6695,6 +6972,42 @@ def _parse_csv_strings(value: str | None) -> list[str]:
     return [x.strip() for x in value.split(",") if x.strip()]
 
 
+def _parse_shape_pairs(value: str | None) -> list[tuple[int, int]]:
+    if not value:
+        return []
+    pairs: list[tuple[int, int]] = []
+    for item in value.split(","):
+        item = item.strip().lower()
+        if not item:
+            continue
+        if not item.startswith("b") or "-s" not in item:
+            raise ValueError(f"Invalid shape spec '{item}', expected b<batch>-s<seq>")
+        b_part, s_part = item[1:].split("-s", 1)
+        pairs.append((int(b_part), int(s_part)))
+    return pairs
+
+
+def _parse_shape_list(value: str | None) -> tuple[list[int], list[int]]:
+    pairs = _parse_shape_pairs(value)
+    if not pairs:
+        return [], []
+    batches = {b for b, _ in pairs}
+    seqs = {s for _, s in pairs}
+    return sorted(batches), sorted(seqs)
+
+
+def _execution_families(families: list[str]) -> list[str]:
+    mapped = []
+    for family in families:
+        if family == "clrs_style":
+            mapped.append("clrs")
+        elif family == "scan_style":
+            mapped.append("scan")
+        else:
+            mapped.append(family)
+    return sorted(set(mapped))
+
+
 def _write_report_pair(output_dir: str | Path, stem: str, payload: dict[str, Any], title: str) -> None:
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -6731,9 +7044,12 @@ def _run_gate_subrun(
         "seed_list": [seed],
         "batch_size_list": batch_sizes,
         "seq_len_list": sequence_lengths,
+        "shape_pairs": _parse_shape_pairs(getattr(args, "shape_list", None)),
         "max_train_seconds": getattr(args, "max_train_seconds", None),
         "repeatability_repair_variants": _parse_csv_strings(getattr(args, "repeatability_repair_variants", None)),
         "calibration_repair_variants": _parse_csv_strings(getattr(args, "calibration_repair_variants", None)),
+        "minimax_variants": _parse_csv_strings(getattr(args, "minimax_variants", None)),
+        "stability_repair_variants": _parse_csv_strings(getattr(args, "stability_repair_variants", None)),
     }
     runner = AlgorithmicBenchmarkRunner(
         mode=args.mode,
@@ -6852,6 +7168,333 @@ def _collapse_records_from_rows(rows: list[dict[str, Any]], seed: int, candidate
                 "Top4_executions": float(np.mean([float(r.get("pvr_num_k4_tokens", 0.0)) for r in items])),
             })
     return records
+
+
+def _model_variant(row: dict[str, Any], candidate_model: str = FINAL_CANDIDATE_CONFIG_NAME) -> str:
+    repair = str(row.get("repair_variant") or "")
+    if repair:
+        return repair
+    model = str(row.get("model_name") or row.get("model") or "")
+    if model == candidate_model:
+        return "v1"
+    if model == "pvr_ec_ownership_top1_final_candidate_v1_1":
+        return "v1_1"
+    if model == "pvr_ec_ownership_top1_final_candidate_v1_2":
+        return "v1_2"
+    return model
+
+
+def _classify_collapse(record: dict[str, Any]) -> list[str]:
+    labels = []
+    if float(record.get("incorrect_overamp_rate") or 0.0) >= 0.75 or float(record.get("delta_correct_minus_top_wrong") or 0.0) < -1.0:
+        labels.append("PVR_EC_INCORRECT_OVERAMP_COLLAPSE")
+    if float(record.get("calibration_proxy") or 0.0) >= 0.12:
+        labels.append("PVR_EC_CALIBRATION_COLLAPSE")
+    if float(record.get("residual_help_rate") or 0.0) < 0.05:
+        labels.append("PVR_EC_SPARSE_RESIDUAL_UNHELPFUL_COLLAPSE")
+    if float(record.get("residual_help_rate") or 0.0) >= 0.05 and float(record.get("accuracy_gap") or 0.0) < -0.05:
+        labels.append("PVR_EC_LOCAL_TO_GLOBAL_COLLAPSE")
+    if float(record.get("owner_entropy") or 0.0) < 0.01 or float(record.get("prototype_entropy") or 0.0) < 0.01:
+        labels.append("PVR_EC_OWNER_PROTOTYPE_COLLAPSE")
+    if float(record.get("fixed_accuracy") or 0.0) < 0.10 or float(record.get("fixed_loss") or 0.0) > 1.0:
+        labels.append("DATA_SPLIT_DIFFICULTY_CASE")
+    return sorted(set(labels)) or ["PVR_EC_SEED_FAMILY_COLLAPSE_REMAINS"]
+
+
+def _variant_score_summary(rows_by_seed: list[tuple[int, list[dict[str, Any]]]], candidate_model: str = FINAL_CANDIDATE_CONFIG_NAME) -> dict[str, dict[str, Any]]:
+    by_variant: dict[str, dict[str, Any]] = {}
+    for seed, rows in rows_by_seed:
+        collapse_records = _collapse_records_from_rows(rows, seed, candidate_model)
+        for row in rows:
+            variant = _model_variant(row, candidate_model)
+            if variant in {"fixed_moe_vectorized", "pvr_ec_deploy_top1"}:
+                continue
+            data = by_variant.setdefault(variant, {
+                "losses": [], "accuracies": [], "calibrations": [], "overamps": [],
+                "owners": [], "top2": [], "top4": [], "collapse_records": [],
+                "seed_loss_gaps": [], "seed_accuracy_gaps": [],
+            })
+            data["losses"].append(float(row.get("loss", 0.0)))
+            data["accuracies"].append(float(row.get("accuracy", 0.0)))
+            data["calibrations"].append(float(row.get("calibration_proxy", 0.0)))
+            data["overamps"].append(float(row.get("incorrect_logit_overamplification_rate", 0.0)))
+            data["owners"].append(float(row.get("pvr_actual_owner_count_per_token", 1.0)))
+            data["top2"].append(float(row.get("pvr_num_k2_tokens", 0.0)))
+            data["top4"].append(float(row.get("pvr_num_k4_tokens", 0.0)))
+        for rec in collapse_records:
+            variant = rec.get("variant", "")
+            if variant in by_variant:
+                by_variant[variant]["collapse_records"].append(rec)
+                by_variant[variant]["seed_loss_gaps"].append(float(rec.get("loss_gap", 0.0)))
+                by_variant[variant]["seed_accuracy_gaps"].append(float(rec.get("accuracy_gap", 0.0)))
+    summary = {}
+    for variant, data in by_variant.items():
+        collapse_records = data["collapse_records"]
+        mean_loss = float(np.mean(data["losses"])) if data["losses"] else None
+        mean_acc = float(np.mean(data["accuracies"])) if data["accuracies"] else None
+        calibration = float(np.mean(data["calibrations"])) if data["calibrations"] else 0.0
+        overamp = float(np.mean(data["overamps"])) if data["overamps"] else 0.0
+        worst_loss_gap = max(data["seed_loss_gaps"] or [0.0])
+        worst_acc_gap = min(data["seed_accuracy_gaps"] or [0.0])
+        collapse_count = sum(1 for r in collapse_records if r.get("collapse_detected"))
+        score = (
+            -(mean_loss or 0.0)
+            + (mean_acc or 0.0)
+            - max(0.0, worst_loss_gap)
+            - max(0.0, -worst_acc_gap)
+            - 0.5 * collapse_count
+            - max(0.0, calibration - 0.12)
+        )
+        summary[variant] = {
+            "mean_loss": mean_loss,
+            "mean_accuracy": mean_acc,
+            "worst_seed_loss_gap": worst_loss_gap,
+            "worst_seed_accuracy_gap": worst_acc_gap,
+            "worst_family_loss_gap": worst_loss_gap,
+            "worst_family_accuracy_gap": worst_acc_gap,
+            "catastrophic_family_collapse_count": collapse_count,
+            "seed_pass_count": sum(1 for v in data["seed_loss_gaps"] if v <= 0.010),
+            "family_pass_count": sum(1 for r in collapse_records if not r.get("collapse_detected")),
+            "calibration_proxy": calibration,
+            "incorrect_overamp_rate": overamp,
+            "QPM_pass_shapes": None,
+            "owners_per_token": float(np.mean(data["owners"])) if data["owners"] else 1.0,
+            "Top2_executions": float(np.mean(data["top2"])) if data["top2"] else 0.0,
+            "Top4_executions": float(np.mean(data["top4"])) if data["top4"] else 0.0,
+            "candidate_score": score,
+            "collapse_records": collapse_records,
+        }
+    return summary
+
+
+def run_pvr_collapse_case_replay(
+    args: argparse.Namespace,
+    families: list[str],
+    models: list[str],
+    batch_sizes: list[int],
+    sequence_lengths: list[int],
+    output_dir: str | Path,
+) -> dict[str, Any]:
+    out = Path(output_dir)
+    seeds = _parse_csv_ints(args.seed_list, [seed for seed, _ in COLLAPSE_CASES])
+    train_steps = int(args.train_steps or 500)
+    run_families = _execution_families(families)
+    rows_by_seed: list[tuple[int, list[dict[str, Any]]]] = []
+    subdirs = []
+    for seed in seeds:
+        summary = _run_gate_subrun(
+            args,
+            families=run_families,
+            models=models,
+            batch_sizes=batch_sizes,
+            sequence_lengths=sequence_lengths,
+            seed=seed,
+            train_steps=train_steps,
+            output_dir=out / f"seed_{seed}",
+            gate_flag="run_collapse_case_replay",
+        )
+        subdirs.append(summary["_output_dir"])
+        rows_by_seed.append((seed, _load_rows(summary)))
+    records = []
+    detailed = []
+    for seed, rows in rows_by_seed:
+        records.extend(_collapse_records_from_rows(rows, seed, FINAL_CANDIDATE_CONFIG_NAME))
+        for row in rows:
+            detailed.append({
+                "seed": seed,
+                "family": row.get("family"),
+                "model": row.get("model_name"),
+                "train_loss_curve": row.get("train_loss_curve", []),
+                "eval_loss_curve": row.get("eval_loss_curve", []),
+                "accuracy_curve": row.get("accuracy_curve", []),
+                "final_loss": row.get("loss"),
+                "final_accuracy": row.get("accuracy"),
+                "sparse_ce_loss": row.get("sparse_auxiliary_loss"),
+                "main_loss": row.get("training_loss"),
+                "logit_norm_penalty": row.get("logit_norm"),
+                "total_loss": row.get("loss"),
+                "correct_class_logit_delta": row.get("correct_class_logit_delta"),
+                "incorrect_class_logit_delta_max": row.get("incorrect_class_logit_delta_max"),
+                "delta_correct_minus_top_wrong": row.get("delta_correct_minus_top_wrong"),
+                "incorrect_overamp_rate": row.get("incorrect_logit_overamplification_rate"),
+                "calibration_proxy": row.get("calibration_proxy"),
+                "high_confidence_failure_rate": row.get("high_confidence_failure_rate"),
+                "residual_help_rate": row.get("residual_help_rate"),
+                "residual_harm_rate": row.get("residual_harm_rate"),
+                "decision_token_help_rate": row.get("decision_token_help_rate"),
+                "token_to_sequence_transfer_ratio": row.get("token_to_sequence_transfer_ratio"),
+                "expert_delta_contribution_pct": row.get("expert_delta_contribution_pct"),
+                "shared_sparse_ratio": row.get("shared_sparse_ratio"),
+                "expert_grad_norm": row.get("expert_grad_norm"),
+                "shared_grad_norm": row.get("shared_grad_norm"),
+                "expert_grad_to_shared_grad_ratio": row.get("expert_grad_to_shared_grad_ratio"),
+                "owner_entropy": row.get("pvr_route_entropy"),
+                "prototype_entropy": row.get("prototype_owner_entropy"),
+                "owner_distribution": row.get("owner_distribution"),
+                "prototype_distribution": row.get("prototype_distribution"),
+                "dead_expert_count": row.get("dead_expert_count"),
+                "owner_count_per_token": row.get("pvr_actual_owner_count_per_token"),
+                "Top2_executions": row.get("pvr_num_k2_tokens", 0.0),
+                "Top4_executions": row.get("pvr_num_k4_tokens", 0.0),
+            })
+    for rec in records:
+        rec["root_cause_labels"] = _classify_collapse(rec) if rec.get("collapse_detected") else []
+    collapses = [r for r in records if r.get("collapse_detected")]
+    unexplained = [r for r in collapses if r.get("root_cause_labels") == ["PVR_EC_SEED_FAMILY_COLLAPSE_REMAINS"]]
+    statuses = {
+        "PVR_EC_MINIMAX_STABILITY_DIAGNOSTIC_READY",
+        "PVR_EC_COLLAPSE_CASES_REPLAYED",
+        "PVR_EC_SEED_FAMILY_COLLAPSE_REMAINS" if collapses else "PVR_EC_SEED_FAMILY_COLLAPSE_REPAIRED",
+        "PVR_EC_REPEATABILITY_BLOCKED" if collapses else "PVR_EC_MULTI_SEED_CONFIRMED",
+        "PVR_EC_DO_NOT_PROMOTE",
+    }
+    for rec in collapses:
+        statuses.update(rec.get("root_cause_labels", []))
+    payload = {
+        "metadata": {"seed_list": seeds, "train_steps": train_steps, "requested_families": families, "executed_families": run_families, "command": " ".join(sys.argv)},
+        "status": "PVR_EC_REPEATABILITY_BLOCKED" if collapses else "PVR_EC_SEED_FAMILY_COLLAPSE_REPAIRED",
+        "statuses": sorted(statuses),
+        "promotion_ready": False,
+        "passed": not collapses,
+        "collapse_count": len(collapses),
+        "unexplained_collapse_count": len(unexplained),
+        "collapse_records": collapses,
+        "records": records,
+        "detailed_rows": detailed,
+        "subrun_dirs": subdirs,
+    }
+    _write_report_pair(out, "pvr_ec_collapse_case_replay_report", payload, "PVR-EC Collapse Case Replay Report")
+    return payload
+
+
+def run_pvr_minimax_candidate_selection(
+    args: argparse.Namespace,
+    families: list[str],
+    models: list[str],
+    batch_sizes: list[int],
+    sequence_lengths: list[int],
+    output_dir: str | Path,
+) -> dict[str, Any]:
+    out = Path(output_dir)
+    seeds = _parse_csv_ints(args.seed_list, [42, 123, 777, 2026, 9001])
+    train_steps = int(args.train_steps or 500)
+    rows_by_seed = []
+    subdirs = []
+    for seed in seeds:
+        summary = _run_gate_subrun(
+            args,
+            families=_execution_families(families),
+            models=models,
+            batch_sizes=batch_sizes,
+            sequence_lengths=sequence_lengths,
+            seed=seed,
+            train_steps=train_steps,
+            output_dir=out / f"seed_{seed}",
+            gate_flag="run_minimax_candidate_selection",
+        )
+        subdirs.append(summary["_output_dir"])
+        rows_by_seed.append((seed, _load_rows(summary)))
+    fixed_losses = []
+    fixed_accs = []
+    for _, rows in rows_by_seed:
+        fixed = [r for r in rows if r.get("model_name") == "fixed_moe_vectorized"]
+        fixed_losses.extend(float(r.get("loss", 0.0)) for r in fixed)
+        fixed_accs.extend(float(r.get("accuracy", 0.0)) for r in fixed)
+    fixed_mean_loss = float(np.mean(fixed_losses)) if fixed_losses else 0.0
+    fixed_mean_acc = float(np.mean(fixed_accs)) if fixed_accs else 0.0
+    variant_summary = _variant_score_summary(rows_by_seed)
+    eligible = {
+        name: data for name, data in variant_summary.items()
+        if data["catastrophic_family_collapse_count"] == 0
+        and data["mean_loss"] is not None and data["mean_loss"] <= fixed_mean_loss + 0.010
+        and data["mean_accuracy"] is not None and data["mean_accuracy"] >= fixed_mean_acc - 0.020
+        and data["calibration_proxy"] <= 0.12
+        and data["incorrect_overamp_rate"] <= (variant_summary.get("v1", {}).get("incorrect_overamp_rate", 1.0))
+        and abs(data["owners_per_token"] - 1.0) < 1e-6
+        and data["Top2_executions"] == 0.0
+        and data["Top4_executions"] == 0.0
+    }
+    selected = max(eligible, key=lambda name: (eligible[name]["candidate_score"], -eligible[name]["mean_loss"])) if eligible else "none"
+    if selected != "none" and selected not in {"v1", "final_candidate_v1"}:
+        AlgorithmicBenchmarkRunner(mode="smoke")._write_selected_candidate_variant_config(selected, version="v1_2")
+    statuses = {
+        "PVR_EC_MINIMAX_STABILITY_DIAGNOSTIC_READY",
+        "PVR_EC_MINIMAX_SELECTION_HELPFUL" if selected != "none" else "PVR_EC_SEED_FAMILY_COLLAPSE_REMAINS",
+        "PVR_EC_FINAL_CANDIDATE_VARIANT_SELECTED" if selected not in {"none", "v1", "final_candidate_v1"} else "PVR_EC_PROMISING_NEEDS_MORE_EVIDENCE",
+        "PVR_EC_FINAL_CANDIDATE_REVALIDATION_REQUIRED" if selected not in {"none", "v1", "final_candidate_v1"} else "PVR_EC_DO_NOT_PROMOTE",
+        "PVR_EC_DO_NOT_PROMOTE",
+    }
+    payload = {
+        "metadata": {"seed_list": seeds, "train_steps": train_steps, "variants": _parse_csv_strings(getattr(args, "minimax_variants", None)) or MINIMAX_CANDIDATE_VARIANTS, "command": " ".join(sys.argv)},
+        "status": "PVR_EC_MINIMAX_SELECTION_HELPFUL" if selected != "none" else "PVR_EC_REPEATABILITY_BLOCKED",
+        "statuses": sorted(statuses),
+        "promotion_ready": False,
+        "passed": selected != "none",
+        "fixed_mean_loss": fixed_mean_loss,
+        "fixed_mean_accuracy": fixed_mean_acc,
+        "selected_variant": selected,
+        "selected_requires_revalidation": selected not in {"none", "v1", "final_candidate_v1"},
+        "variant_summary": variant_summary,
+        "subrun_dirs": subdirs,
+    }
+    _write_report_pair(out, "pvr_ec_minimax_candidate_selection_report", payload, "PVR-EC Minimax Candidate Selection Report")
+    return payload
+
+
+def run_pvr_stability_repair_sweep(
+    args: argparse.Namespace,
+    families: list[str],
+    models: list[str],
+    batch_sizes: list[int],
+    sequence_lengths: list[int],
+    output_dir: str | Path,
+) -> dict[str, Any]:
+    out = Path(output_dir)
+    seeds = _parse_csv_ints(args.seed_list, [42, 123, 777, 2026, 9001])
+    train_steps = int(args.train_steps or 500)
+    rows_by_seed = []
+    subdirs = []
+    for seed in seeds:
+        summary = _run_gate_subrun(
+            args,
+            families=_execution_families(families),
+            models=models,
+            batch_sizes=batch_sizes,
+            sequence_lengths=sequence_lengths,
+            seed=seed,
+            train_steps=train_steps,
+            output_dir=out / f"seed_{seed}",
+            gate_flag="run_stability_repair_sweep",
+        )
+        subdirs.append(summary["_output_dir"])
+        rows_by_seed.append((seed, _load_rows(summary)))
+    variant_summary = _variant_score_summary(rows_by_seed)
+    candidates = {name: data for name, data in variant_summary.items() if data["catastrophic_family_collapse_count"] == 0}
+    selected = max(candidates, key=lambda name: candidates[name]["candidate_score"]) if candidates else "none"
+    statuses = {"PVR_EC_MINIMAX_STABILITY_DIAGNOSTIC_READY", "PVR_EC_DO_NOT_PROMOTE"}
+    if selected == "family_balanced_sampling":
+        statuses.add("PVR_EC_FAMILY_BALANCED_TRAINING_HELPFUL")
+    if selected.startswith("gradient_clip"):
+        statuses.add("PVR_EC_GRADIENT_CLIP_STABILITY_HELPFUL")
+    if selected.startswith("logit_norm_cap"):
+        statuses.add("PVR_EC_LOGIT_NORM_CAP_STABILITY_HELPFUL")
+    if selected.startswith("wrong_suppress"):
+        statuses.add("PVR_EC_WRONG_SUPPRESS_STABILITY_HELPFUL")
+    if "temperature" in selected:
+        statuses.add("PVR_EC_TEMPERATURE_CALIBRATION_HELPFUL")
+    statuses.add("PVR_EC_SEED_FAMILY_COLLAPSE_REPAIRED" if selected != "none" else "PVR_EC_SEED_FAMILY_COLLAPSE_REMAINS")
+    payload = {
+        "metadata": {"seed_list": seeds, "train_steps": train_steps, "variants": _parse_csv_strings(getattr(args, "stability_repair_variants", None)) or STABILITY_REPAIR_VARIANTS, "command": " ".join(sys.argv)},
+        "status": "PVR_EC_SEED_FAMILY_COLLAPSE_REPAIRED" if selected != "none" else "PVR_EC_REPEATABILITY_BLOCKED",
+        "statuses": sorted(statuses),
+        "promotion_ready": False,
+        "passed": selected != "none",
+        "selected_variant": selected,
+        "variant_summary": variant_summary,
+        "subrun_dirs": subdirs,
+    }
+    _write_report_pair(out, "pvr_ec_stability_repair_sweep_report", payload, "PVR-EC Stability Repair Sweep Report")
+    return payload
 
 
 def run_pvr_repeatability_collapse_isolation(
@@ -7004,10 +7647,9 @@ def run_pvr_multiseed_confirmation_gate(
     out = Path(output_dir)
     seeds = _parse_csv_ints(args.seed_list, [42, 123, 777, 2026, 9001])
     train_steps = int(args.train_steps or 500)
-    candidate_model = (
-        "pvr_ec_ownership_top1_final_candidate_v1_1"
-        if "pvr_ec_ownership_top1_final_candidate_v1_1" in models
-        else FINAL_CANDIDATE_CONFIG_NAME
+    candidate_model = next(
+        (m for m in models if str(m).startswith("pvr_ec_ownership_top1_final_candidate_v1_")),
+        FINAL_CANDIDATE_CONFIG_NAME,
     )
     summaries = []
     per_seed = []
@@ -7360,10 +8002,16 @@ def run_pvr_final_candidate_revalidation(
     sequence_lengths: list[int],
     output_dir: str | Path,
 ) -> dict[str, Any]:
+    requested_models = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", "pvr_ec_ownership_top1_final_candidate_v1_1"]
+    candidate = next(
+        (m for m in requested_models if str(m).startswith("pvr_ec_ownership_top1_final_candidate_v1_")),
+        "pvr_ec_ownership_top1_final_candidate_v1_1",
+    )
+    version = candidate.replace("pvr_ec_ownership_top1_final_candidate_", "")
     payload = run_pvr_multiseed_confirmation_gate(
         args,
         families,
-        models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", "pvr_ec_ownership_top1_final_candidate_v1_1"],
+        requested_models,
         batch_sizes,
         sequence_lengths,
         output_dir,
@@ -7372,9 +8020,9 @@ def run_pvr_final_candidate_revalidation(
         **payload,
         "status": "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED" if payload.get("passed") else "PVR_EC_REPEATABILITY_BLOCKED",
         "statuses": sorted(set(payload.get("statuses", [])) | {"PVR_EC_FINAL_CANDIDATE_REVALIDATION_REQUIRED"}),
-        "revalidated_candidate": "pvr_ec_ownership_top1_final_candidate_v1_1",
+        "revalidated_candidate": candidate,
     }
-    _write_report_pair(output_dir, "pvr_ec_final_candidate_v1_1_revalidation_report", revalidation, "PVR-EC Final Candidate v1_1 Revalidation Report")
+    _write_report_pair(output_dir, f"pvr_ec_final_candidate_{version}_revalidation_report", revalidation, f"PVR-EC Final Candidate {version} Revalidation Report")
     return revalidation
 
 
@@ -7447,6 +8095,231 @@ def summarize_pvr_blocker_resolution(input_dirs: list[str], output_dir: str | Pa
         "recommended_next_action": "promote only after final deployment gate aggregation" if verdict == "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED" else "fix the listed blocker(s) without changing routing architecture",
     }
     _write_report_pair(output_dir, "pvr_ec_final_blocker_resolution_report", payload, "PVR-EC Final Blocker Resolution Report")
+    return payload
+
+
+def _load_named_report(input_dirs: list[str], filename: str) -> dict[str, Any] | None:
+    for item in input_dirs:
+        path = Path(item) / filename
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                data["_path"] = str(path)
+                return data
+            except Exception:
+                return None
+    return None
+
+
+def _write_nlp_bridge_ladder_plan(output_dir: str | Path, stage1_ready: bool, research_verdict: str) -> dict[str, Any]:
+    stages = [
+        "character/byte-level copy and transformation",
+        "small-vocab synthetic language modeling",
+        "algorithmic text tasks with natural-language wrappers",
+        "short-context language modeling",
+        "instruction-style toy QA",
+        "small real NLP benchmark subset",
+        "larger NLP benchmark suite",
+    ]
+    payload = {
+        "status": "PVR_EC_NLP_BRIDGE_STAGE_1_READY" if stage1_ready else "PVR_EC_NLP_BRIDGE_STAGE_BLOCKED",
+        "statuses": [
+            "PVR_EC_NLP_BRIDGE_LADDER_REQUIRED",
+            "PVR_EC_NLP_BRIDGE_STAGE_1_READY" if stage1_ready else "PVR_EC_NLP_BRIDGE_STAGE_BLOCKED",
+        ],
+        "research_verdict": research_verdict,
+        "stage_1_ready": stage1_ready,
+        "stages": [
+            {
+                "stage": idx + 1,
+                "name": name,
+                "required_models": ["fixed_moe_vectorized", "dense_baseline_or_dense_transformer", "pvr_ec_deploy_top1", "pvr_ec_ownership_top1_final_candidate"],
+                "required_metrics": [
+                    "owners/token", "Top2/Top4 executions", "loss", "accuracy_or_token_accuracy",
+                    "calibration", "latency", "memory", "collapse cases", "task/family breakdown",
+                    "confidence metrics", "incorrect overamp metrics",
+                ],
+                "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible",
+            }
+            for idx, name in enumerate(stages)
+        ],
+    }
+    _write_report_pair(output_dir, "pvr_ec_nlp_bridge_ladder_plan", payload, "PVR-EC NLP Bridge Ladder Plan")
+    return payload
+
+
+def run_pvr_nlp_research_readiness_gate(input_dirs: list[str], output_dir: str | Path, seed: int = 42) -> dict[str, Any]:
+    out = Path(output_dir)
+    collapse = _load_named_report(input_dirs, "pvr_ec_collapse_case_replay_report.json")
+    minimax = _load_named_report(input_dirs, "pvr_ec_minimax_candidate_selection_report.json")
+    stability = _load_named_report(input_dirs, "pvr_ec_stability_repair_sweep_report.json")
+    qpm_replay = _load_named_report(input_dirs, "pvr_ec_qpm_failing_shape_replay_report.json")
+    qpm_formula = _load_named_report(input_dirs, "pvr_ec_qpm_formula_audit_report.json")
+    qpm_runtime = _load_named_report(input_dirs, "pvr_ec_shape_qpm_runtime_repair_report.json")
+    revalidation = _load_named_report(input_dirs, "pvr_ec_final_candidate_v1_2_revalidation_report.json")
+    missing = [
+        name for name, report in {
+            "collapse_case_replay": collapse,
+            "minimax_candidate_selection": minimax,
+            "stability_repair_sweep": stability,
+            "qpm_failing_shape_replay": qpm_replay,
+            "qpm_formula_audit": qpm_formula,
+            "shape_qpm_runtime_repair": qpm_runtime,
+        }.items()
+        if report is None
+    ]
+    collapse_count = int((collapse or {}).get("collapse_count") or 0)
+    unexplained = int((collapse or {}).get("unexplained_collapse_count") or 0)
+    qpm_classified = bool(qpm_replay and (not qpm_replay.get("failed_shape_count") or qpm_replay.get("failure_classifications")))
+    rows = (qpm_runtime or qpm_replay or {}).get("rows", [])
+    owners_ok = all(float(r.get("owner_count_per_token") or 1.0) == 1.0 for r in rows if r.get("model") == FINAL_CANDIDATE_CONFIG_NAME)
+    topk_ok = all(float(r.get("Top2_executions") or 0.0) == 0.0 and float(r.get("Top4_executions") or 0.0) == 0.0 for r in rows if r.get("model") == FINAL_CANDIDATE_CONFIG_NAME)
+    variant_summary = (minimax or {}).get("variant_summary", {})
+    v1_data = variant_summary.get("v1") or variant_summary.get("final_candidate_v1") or next(iter(variant_summary.values()), {})
+    fixed_loss = float((minimax or {}).get("fixed_mean_loss") or 0.0)
+    fixed_acc = float((minimax or {}).get("fixed_mean_accuracy") or 0.0)
+    mean_competitive = bool(
+        v1_data
+        and v1_data.get("mean_loss") is not None
+        and float(v1_data["mean_loss"]) <= fixed_loss + 0.030
+        and v1_data.get("mean_accuracy") is not None
+        and float(v1_data["mean_accuracy"]) >= fixed_acc - 0.050
+    )
+    calibration_measured = any(
+        data.get("calibration_proxy") is not None
+        for data in variant_summary.values()
+        if isinstance(data, dict)
+    )
+    forward_purity = owners_ok and topk_ok
+    deployment_blocked = bool(collapse_count or not (qpm_runtime or {}).get("passed") or not (revalidation or {}).get("passed"))
+    if missing or not forward_purity or unexplained or not mean_competitive:
+        research_verdict = "PVR_EC_NLP_RESEARCH_NOT_READY"
+    elif deployment_blocked:
+        research_verdict = "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"
+    else:
+        research_verdict = "PVR_EC_NLP_RESEARCH_READY"
+    stage1_ready = research_verdict in {"PVR_EC_NLP_RESEARCH_READY", "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"} and qpm_classified and calibration_measured
+    statuses = {
+        research_verdict,
+        "PVR_EC_ALGORITHMIC_STAGE_COMPLETE" if mean_competitive else "PVR_EC_PROMISING_NEEDS_MORE_EVIDENCE",
+        "PVR_EC_DEPLOYMENT_BLOCKED_BUT_RESEARCHABLE" if research_verdict == "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS" else research_verdict,
+        "PVR_EC_NLP_BRIDGE_LADDER_REQUIRED",
+        "PVR_EC_NLP_BRIDGE_STAGE_1_READY" if stage1_ready else "PVR_EC_NLP_BRIDGE_STAGE_BLOCKED",
+    }
+    deployment_verdict = "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED"
+    if collapse_count:
+        deployment_verdict = "PVR_EC_REPEATABILITY_BLOCKED"
+    elif qpm_runtime and not qpm_runtime.get("passed"):
+        deployment_verdict = "PVR_EC_QPM_SHAPE_BLOCKED"
+    elif not revalidation or not revalidation.get("passed"):
+        deployment_verdict = "PVR_EC_DO_NOT_PROMOTE"
+    verdict_payload = {
+        "metadata": {"seed": seed, "input_dirs": input_dirs, "command": " ".join(sys.argv)},
+        "status": deployment_verdict,
+        "deployment_verdict": deployment_verdict,
+        "research_verdict": research_verdict,
+        "statuses": sorted(statuses | {deployment_verdict, "PVR_EC_DO_NOT_PROMOTE" if deployment_verdict != "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED" else deployment_verdict}),
+        "promotion_ready": deployment_verdict == "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
+        "research_ready": research_verdict in {"PVR_EC_NLP_RESEARCH_READY", "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"},
+        "collapse_count": collapse_count,
+        "unexplained_collapse_count": unexplained,
+        "qpm_classified": qpm_classified,
+        "calibration_measured": calibration_measured,
+        "mean_competitive": mean_competitive,
+        "forward_purity": forward_purity,
+        "missing_reports": missing,
+    }
+    _write_report_pair(out, "pvr_ec_deployment_vs_research_verdict_report", verdict_payload, "PVR-EC Deployment vs Research Verdict Report")
+    ladder = _write_nlp_bridge_ladder_plan(out, stage1_ready, research_verdict)
+    readiness = {
+        **verdict_payload,
+        "status": research_verdict,
+        "passed": research_verdict in {"PVR_EC_NLP_RESEARCH_READY", "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"},
+        "nlp_bridge_ladder": ladder,
+        "source_reports": {k: (v or {}).get("_path") for k, v in {
+            "collapse": collapse,
+            "minimax": minimax,
+            "stability": stability,
+            "qpm_replay": qpm_replay,
+            "qpm_formula": qpm_formula,
+            "qpm_runtime": qpm_runtime,
+            "v1_2_revalidation": revalidation,
+        }.items()},
+    }
+    _write_report_pair(out, "pvr_ec_nlp_research_readiness_report", readiness, "PVR-EC NLP Research Readiness Report")
+    return readiness
+
+
+def summarize_pvr_minimax_blocker_resolution(input_dirs: list[str], output_dir: str | Path, include_nlp_research_readiness: bool = False, seed: int = 42) -> dict[str, Any]:
+    out = Path(output_dir)
+    collapse = _load_named_report(input_dirs, "pvr_ec_collapse_case_replay_report.json")
+    minimax = _load_named_report(input_dirs, "pvr_ec_minimax_candidate_selection_report.json")
+    stability = _load_named_report(input_dirs, "pvr_ec_stability_repair_sweep_report.json")
+    qpm_replay = _load_named_report(input_dirs, "pvr_ec_qpm_failing_shape_replay_report.json")
+    qpm_formula = _load_named_report(input_dirs, "pvr_ec_qpm_formula_audit_report.json")
+    qpm_runtime = _load_named_report(input_dirs, "pvr_ec_shape_qpm_runtime_repair_report.json")
+    readiness = _load_named_report(input_dirs, "pvr_ec_nlp_research_readiness_report.json") if include_nlp_research_readiness else None
+    revalidation = _load_named_report(input_dirs, "pvr_ec_final_candidate_v1_2_revalidation_report.json")
+    missing = [
+        name for name, report in {
+            "collapse": collapse,
+            "minimax": minimax,
+            "stability": stability,
+            "qpm_replay": qpm_replay,
+            "qpm_formula": qpm_formula,
+            "qpm_runtime": qpm_runtime,
+        }.items()
+        if report is None
+    ]
+    blockers = []
+    if missing:
+        blockers.append("missing_reports")
+    if collapse and int(collapse.get("collapse_count") or 0) > 0:
+        blockers.append("collapse_cases")
+    if minimax and not minimax.get("passed"):
+        blockers.append("minimax_selection")
+    if stability and not stability.get("passed"):
+        blockers.append("stability_repair")
+    if qpm_runtime and not qpm_runtime.get("passed"):
+        blockers.append("qpm_shape")
+    if minimax and minimax.get("selected_requires_revalidation") and not (revalidation and revalidation.get("passed")):
+        blockers.append("v1_2_revalidation")
+    if "collapse_cases" in blockers:
+        deployment_verdict = "PVR_EC_REPEATABILITY_BLOCKED"
+    elif "qpm_shape" in blockers:
+        deployment_verdict = "PVR_EC_QPM_SHAPE_BLOCKED"
+    elif blockers:
+        deployment_verdict = "PVR_EC_DO_NOT_PROMOTE" if not missing else "PARTIAL_PVR_EC_MINIMAX_STABILITY_AND_RESEARCH_READINESS"
+    else:
+        deployment_verdict = "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED"
+    research_verdict = (readiness or {}).get("research_verdict") or (readiness or {}).get("status") or "PVR_EC_NLP_RESEARCH_NOT_READY"
+    statuses = sorted({
+        deployment_verdict,
+        research_verdict,
+        *(s for report in [collapse, minimax, stability, qpm_replay, qpm_formula, qpm_runtime, readiness, revalidation] if report for s in report.get("statuses", [])),
+        "PVR_EC_DO_NOT_PROMOTE" if deployment_verdict != "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED" else "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
+    })
+    payload = {
+        "metadata": {"seed": seed, "input_dirs": input_dirs, "command": " ".join(sys.argv)},
+        "status": deployment_verdict,
+        "deployment_verdict": deployment_verdict,
+        "research_verdict": research_verdict,
+        "statuses": statuses,
+        "promotion_ready": deployment_verdict == "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
+        "research_ready": research_verdict in {"PVR_EC_NLP_RESEARCH_READY", "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS"},
+        "blocked_reasons": blockers,
+        "missing_reports": missing,
+        "collapse_case_replay": collapse,
+        "minimax_candidate_selection": minimax,
+        "stability_repair_sweep": stability,
+        "qpm_failing_shape_replay": qpm_replay,
+        "qpm_formula_audit": qpm_formula,
+        "shape_qpm_runtime_repair": qpm_runtime,
+        "nlp_research_readiness": readiness,
+        "v1_2_revalidation": revalidation,
+        "recommended_next_action": "proceed to Stage 1 NLP bridge only if research verdict allows; do not deploy while blockers remain",
+    }
+    _write_report_pair(out, "pvr_ec_minimax_final_blocker_resolution_report", payload, "PVR-EC Minimax Final Blocker Resolution Report")
     return payload
 
 
@@ -7630,6 +8503,18 @@ def main():
     parser.add_argument("--calibration-repair-variants", default=None)
     parser.add_argument("--run-final-candidate-revalidation", action="store_true")
     parser.add_argument("--summarize-pvr-blocker-resolution", action="store_true")
+    parser.add_argument("--run-collapse-case-replay", action="store_true")
+    parser.add_argument("--run-minimax-candidate-selection", action="store_true")
+    parser.add_argument("--minimax-variants", default=None)
+    parser.add_argument("--run-stability-repair-sweep", action="store_true")
+    parser.add_argument("--stability-repair-variants", default=None)
+    parser.add_argument("--shape-list", default=None)
+    parser.add_argument("--run-qpm-failing-shape-replay", action="store_true")
+    parser.add_argument("--run-qpm-formula-audit", action="store_true")
+    parser.add_argument("--run-shape-qpm-runtime-repair", action="store_true")
+    parser.add_argument("--run-pvr-nlp-research-readiness-gate", action="store_true")
+    parser.add_argument("--summarize-pvr-minimax-blocker-resolution", action="store_true")
+    parser.add_argument("--include-nlp-research-readiness", action="store_true")
     parser.add_argument("--warmup-steps", type=int, default=10)
     parser.add_argument("--timed-steps", type=int, default=50)
     parser.add_argument("--batch-sizes", default="1,32")
@@ -7758,6 +8643,8 @@ def main():
         batch_sizes = [args.batch_size]
     if args.seq_len is not None:
         sequence_lengths = [args.seq_len]
+    if args.shape_list:
+        batch_sizes, sequence_lengths = _parse_shape_list(args.shape_list)
     root_cause_flags = {
         "run_root_baseline_matrix": args.run_root_baseline_matrix,
         "run_training_dynamics_diagnostic": args.run_training_dynamics_diagnostic,
@@ -7813,6 +8700,12 @@ def main():
         "run_qpm_memory_repair": args.run_qpm_memory_repair,
         "run_reliability_calibration_repair": args.run_reliability_calibration_repair,
         "run_final_candidate_revalidation": args.run_final_candidate_revalidation,
+        "run_collapse_case_replay": args.run_collapse_case_replay,
+        "run_minimax_candidate_selection": args.run_minimax_candidate_selection,
+        "run_stability_repair_sweep": args.run_stability_repair_sweep,
+        "run_qpm_failing_shape_replay": args.run_qpm_failing_shape_replay,
+        "run_qpm_formula_audit": args.run_qpm_formula_audit,
+        "run_shape_qpm_runtime_repair": args.run_shape_qpm_runtime_repair,
     }
     overfit_tasks = _parse_csv_strings(args.pvr_overfit_tasks) or (
         [args.pvr_overfit_task] if args.pvr_overfit_task else ["toy_identity"]
@@ -7827,6 +8720,7 @@ def main():
         "task_loss_schedule_sweep": _parse_csv_strings(args.task_loss_schedule_sweep),
         "batch_size_list": batch_sizes,
         "seq_len_list": sequence_lengths,
+        "shape_pairs": _parse_shape_pairs(args.shape_list),
         "pvr_overfit_tasks": overfit_tasks,
         "pvr_overfit_steps": args.pvr_overfit_steps,
         "pvr_overfit_batch_size": args.pvr_overfit_batch_size,
@@ -7849,6 +8743,8 @@ def main():
         "final_calibration_variants": _parse_csv_strings(args.final_calibration_variants),
         "repeatability_repair_variants": _parse_csv_strings(args.repeatability_repair_variants),
         "calibration_repair_variants": _parse_csv_strings(args.calibration_repair_variants),
+        "minimax_variants": _parse_csv_strings(args.minimax_variants),
+        "stability_repair_variants": _parse_csv_strings(args.stability_repair_variants),
         "max_train_seconds": args.max_train_seconds,
     }
     if args.pvr_debug_disable_shared and models:
@@ -7875,6 +8771,42 @@ def main():
         print(f"  STATUS: {summary['status']}")
         print(f"  Blocked reasons: {summary.get('blocked_reasons', [])}")
         return
+    if args.run_pvr_nlp_research_readiness_gate:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_nlp_research_readiness"
+        summary = run_pvr_nlp_research_readiness_gate(_parse_csv_strings(args.input_dirs), output_dir, seed=args.seed)
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Deployment verdict: {summary.get('deployment_verdict')}")
+        return
+    if args.summarize_pvr_minimax_blocker_resolution:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_minimax_final_blocker_resolution"
+        summary = summarize_pvr_minimax_blocker_resolution(
+            _parse_csv_strings(args.input_dirs),
+            output_dir,
+            include_nlp_research_readiness=args.include_nlp_research_readiness,
+            seed=args.seed,
+        )
+        print(f"  STATUS: {summary['status']}")
+        print(f"  Research verdict: {summary.get('research_verdict')}")
+        print(f"  Blocked reasons: {summary.get('blocked_reasons', [])}")
+        return
+    if args.run_collapse_case_replay:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_minimax_collapse_case_replay"
+        gate_models = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", FINAL_CANDIDATE_CONFIG_NAME, "pvr_ec_ownership_top1_final_candidate_v1_1"]
+        summary = run_pvr_collapse_case_replay(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
+        print(f"  STATUS: {summary['status']}")
+        return
+    if args.run_minimax_candidate_selection:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_minimax_candidate_selection"
+        gate_models = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", FINAL_CANDIDATE_CONFIG_NAME]
+        summary = run_pvr_minimax_candidate_selection(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
+        print(f"  STATUS: {summary['status']}")
+        return
+    if args.run_stability_repair_sweep:
+        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_minimax_stability_repair_sweep"
+        gate_models = models or ["fixed_moe_vectorized", FINAL_CANDIDATE_CONFIG_NAME]
+        summary = run_pvr_stability_repair_sweep(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
+        print(f"  STATUS: {summary['status']}")
+        return
     if args.run_repeatability_collapse_isolation:
         output_dir = args.output_dir or "evaluation/benchmark_results/pvr_blocker_repeatability_isolation"
         gate_models = models or ["fixed_moe_vectorized", FINAL_CANDIDATE_CONFIG_NAME]
@@ -7888,8 +8820,11 @@ def main():
         print(f"  STATUS: {summary['status']}")
         return
     if args.run_final_candidate_revalidation:
-        output_dir = args.output_dir or "evaluation/benchmark_results/pvr_final_candidate_v1_1_revalidation"
-        gate_models = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", "pvr_ec_ownership_top1_final_candidate_v1_1"]
+        requested = models or ["fixed_moe_vectorized", "pvr_ec_deploy_top1", "pvr_ec_ownership_top1_final_candidate_v1_1"]
+        candidate = next((m for m in requested if str(m).startswith("pvr_ec_ownership_top1_final_candidate_v1_")), "pvr_ec_ownership_top1_final_candidate_v1_1")
+        version = candidate.replace("pvr_ec_ownership_top1_final_candidate_", "")
+        output_dir = args.output_dir or f"evaluation/benchmark_results/pvr_final_candidate_{version}_revalidation"
+        gate_models = requested
         summary = run_pvr_final_candidate_revalidation(args, families, gate_models, batch_sizes, sequence_lengths, output_dir)
         print(f"  STATUS: {summary['status']}")
         return
@@ -7922,6 +8857,9 @@ def main():
         or args.run_quality_per_ms_memory_gate
         or args.run_qpm_shape_regression_analysis
         or args.run_qpm_memory_repair
+        or args.run_qpm_failing_shape_replay
+        or args.run_qpm_formula_audit
+        or args.run_shape_qpm_runtime_repair
     )
 
     runner = AlgorithmicBenchmarkRunner(

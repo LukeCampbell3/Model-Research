@@ -7,18 +7,19 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T20:17:42.750300",
-    "run_id": "algo_20260607_201742_pvr-overfit-sanity",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-07T23:38:57.167753",
+    "run_id": "algo_20260607_233855_pvr-overfit-sanity",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q",
     "model_variants": [
+      "dense_baseline",
       "pvr_full",
-      "pvr_full_scale_schedule_1_to_4"
+      "pvr_full_fixed_owner_e0"
     ],
     "batch_sizes": [
       1,
@@ -45,10 +46,11 @@
     "pvr_expert_delta_scale_hold_steps": null,
     "pvr_expert_delta_scale_decay": null,
     "pvr_overfit_tasks": [
+      "toy_xor_or_parity",
       "toy_identity"
     ],
-    "pvr_overfit_steps": 2,
-    "pvr_overfit_batch_size": 2,
+    "pvr_overfit_steps": 20,
+    "pvr_overfit_batch_size": 8,
     "failures": []
   },
   "statuses": [
@@ -89,12 +91,32 @@
     "dominant_failure_mode": "loss_schedule_or_target_blocker",
     "recommended_repair": "verify_parity_target_and_loss_construction",
     "parity_results_by_model": {
-      "pvr_full": {},
-      "pvr_full_scale_schedule_1_to_4": {}
+      "dense_baseline": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.7514553666114807,
+          "passed": false
+        }
+      },
+      "pvr_full": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.8058504462242126,
+          "passed": false
+        }
+      },
+      "pvr_full_fixed_owner_e0": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.5546875,
+          "loss": 0.8063040375709534,
+          "passed": false
+        }
+      }
     },
     "nonlinear_results_by_model": {
+      "dense_baseline": {},
       "pvr_full": {},
-      "pvr_full_scale_schedule_1_to_4": {}
+      "pvr_full_fixed_owner_e0": {}
     }
   },
   "status": "PVR_EC_NONLINEAR_OVERFIT_READY",

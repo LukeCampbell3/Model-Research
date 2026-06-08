@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "seed": 42,
+    "input_dirs": [
+      "evaluation/benchmark_results/pvr_minimax_collapse_case_replay",
+      "evaluation/benchmark_results/pvr_minimax_candidate_selection",
+      "evaluation/benchmark_results/pvr_minimax_stability_repair_sweep",
+      "evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay",
+      "evaluation/benchmark_results/pvr_minimax_qpm_formula_audit",
+      "evaluation/benchmark_results/pvr_minimax_shape_qpm_runtime_repair",
+      "evaluation/benchmark_results/pvr_final_candidate_v1_2_revalidation"
+    ],
+    "command": "evaluation/run_algorithmic_benchmarks.py --run-pvr-nlp-research-readiness-gate --input-dirs evaluation/benchmark_results/pvr_minimax_collapse_case_replay,evaluation/benchmark_results/pvr_minimax_candidate_selection,evaluation/benchmark_results/pvr_minimax_stability_repair_sweep,evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay,evaluation/benchmark_results/pvr_minimax_qpm_formula_audit,evaluation/benchmark_results/pvr_minimax_shape_qpm_runtime_repair,evaluation/benchmark_results/pvr_final_candidate_v1_2_revalidation --output-dir evaluation/benchmark_results/pvr_nlp_research_readiness"
+  },
+  "status": "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
+  "deployment_verdict": "PVR_EC_REPEATABILITY_BLOCKED",
+  "research_verdict": "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
+  "statuses": [
+    "PVR_EC_ALGORITHMIC_STAGE_COMPLETE",
+    "PVR_EC_DEPLOYMENT_BLOCKED_BUT_RESEARCHABLE",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_NLP_BRIDGE_LADDER_REQUIRED",
+    "PVR_EC_NLP_BRIDGE_STAGE_1_READY",
+    "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
+    "PVR_EC_REPEATABILITY_BLOCKED"
+  ],
+  "promotion_ready": false,
+  "research_ready": true,
+  "collapse_count": 4,
+  "unexplained_collapse_count": 0,
+  "qpm_classified": true,
+  "calibration_measured": true,
+  "mean_competitive": true,
+  "forward_purity": true,
+  "missing_reports": [],
+  "passed": true,
+  "nlp_bridge_ladder": {
+    "status": "PVR_EC_NLP_BRIDGE_STAGE_1_READY",
+    "statuses": [
+      "PVR_EC_NLP_BRIDGE_LADDER_REQUIRED",
+      "PVR_EC_NLP_BRIDGE_STAGE_1_READY"
+    ],
+    "research_verdict": "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
+    "stage_1_ready": true,
+    "stages": [
+      {
+        "stage": 1,
+        "name": "character/byte-level copy and transformation",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 2,
+        "name": "small-vocab synthetic language modeling",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 3,
+        "name": "algorithmic text tasks with natural-language wrappers",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 4,
+        "name": "short-context language modeling",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 5,
+        "name": "instruction-style toy QA",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 6,
+        "name": "small real NLP benchmark subset",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      },
+      {
+        "stage": 7,
+        "name": "larger NLP benchmark suite",
+        "required_models": [
+          "fixed_moe_vectorized",
+          "dense_baseline_or_dense_transformer",
+          "pvr_ec_deploy_top1",
+          "pvr_ec_ownership_top1_final_candidate"
+        ],
+        "required_metrics": [
+          "owners/token",
+          "Top2/Top4 executions",
+          "loss",
+          "accuracy_or_token_accuracy",
+          "calibration",
+          "latency",
+          "memory",
+          "collapse cases",
+          "task/family breakdown",
+          "confidence metrics",
+          "incorrect overamp metrics"
+        ],
+        "promotion_rule": "advance only if forward purity passes, Top2/Top4 stay zero, metrics are competitive or explained, calibration is measured, collapses are absent or classified, and artifacts are reproducible"
+      }
+    ]
+  },
+  "source_reports": {
+    "collapse": "evaluation/benchmark_results/pvr_minimax_collapse_case_replay/pvr_ec_collapse_case_replay_report.json",
+    "minimax": "evaluation/benchmark_results/pvr_minimax_candidate_selection/pvr_ec_minimax_candidate_selection_report.json",
+    "stability": "evaluation/benchmark_results/pvr_minimax_stability_repair_sweep/pvr_ec_stability_repair_sweep_report.json",
+    "qpm_replay": "evaluation/benchmark_results/pvr_minimax_qpm_failing_shape_replay/pvr_ec_qpm_failing_shape_replay_report.json",
+    "qpm_formula": "evaluation/benchmark_results/pvr_minimax_qpm_formula_audit/pvr_ec_qpm_formula_audit_report.json",
+    "qpm_runtime": "evaluation/benchmark_results/pvr_minimax_shape_qpm_runtime_repair/pvr_ec_shape_qpm_runtime_repair_report.json",
+    "v1_2_revalidation": null
+  }
+}

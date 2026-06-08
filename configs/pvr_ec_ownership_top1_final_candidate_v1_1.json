@@ -8,7 +8,7 @@
   "forced_action": "disabled",
   "logit_norm_penalty": "light",
   "model_name": "pvr_ec_ownership_top1_final_candidate_v1_1",
-  "notes": "Selected by calibration sweep; requires full revalidation before deploy.",
+  "notes": "Selected by calibration/minimax sweep as v1_1; requires full revalidation before deploy.",
   "oracle_owner": "disabled",
   "owners_per_token": 1.0,
   "ownership_map_mode": "frozen",

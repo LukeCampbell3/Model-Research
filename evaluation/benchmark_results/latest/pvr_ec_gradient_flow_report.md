@@ -7,9 +7,9 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T20:17:42.320290",
-    "run_id": "algo_20260607_201738_pvr-overfit-sanity",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-07T23:38:11.091951",
+    "run_id": "algo_20260607_233806_pvr-overfit-sanity",
+    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
@@ -64,17 +64,17 @@
     {
       "model": "pvr_full",
       "task": "toy_identity",
-      "initial_train_loss": 4.999621868133545,
-      "final_train_loss": 4.996732711791992,
-      "loss_reduction_pct": 0.0005778749708988116,
+      "initial_train_loss": 5.0135393142700195,
+      "final_train_loss": 5.019477367401123,
+      "loss_reduction_pct": -0.0011844034241841998,
       "steps_to_90pct_loss_reduction": null,
-      "final_train_accuracy": 0.84375,
+      "final_train_accuracy": 0.78125,
       "overfit_success": false,
       "train_loss_curve": [
-        4.996732711791992
+        5.019477367401123
       ],
       "train_accuracy_curve": [
-        0.84375
+        0.78125
       ],
       "expert_delta_scale_curve": [
         1.0
@@ -83,44 +83,44 @@
         {
           "step": 0,
           "expert_delta_scale_t": 1.0,
-          "train_loss": 4.996732711791992,
-          "eval_loss": 4.996732711791992,
-          "accuracy": 0.84375,
-          "shared_output_norm": 0.1661963239312172,
-          "sparse_output_norm": 3.634090781211853,
-          "expert_delta_contribution_pct": 0.9562674294512387,
-          "expert_grad_norm": 0.04424346354062436,
-          "shared_grad_norm": 0.04920694761676714,
-          "expert_grad_to_shared_grad_ratio": 0.8991304212811713,
-          "logit_norm": 2.645017147064209,
-          "prediction_entropy": 5.531331539154053,
-          "confidence_when_correct": 0.007146291900426149,
-          "confidence_when_wrong": 0.006187121383845806,
-          "ece": 0.838687002658844,
-          "calibration_proxy": 0.838687002658844,
-          "loss_accuracy_disagreement": 0.7807394862174988,
-          "latency_ms": 15.906572341918945
+          "train_loss": 5.019477367401123,
+          "eval_loss": 5.019477367401123,
+          "accuracy": 0.78125,
+          "shared_output_norm": 0.16176336258649826,
+          "sparse_output_norm": 3.75577175617218,
+          "expert_delta_contribution_pct": 0.9587078717400866,
+          "expert_grad_norm": 0.04341689585635322,
+          "shared_grad_norm": 0.04133994138101116,
+          "expert_grad_to_shared_grad_ratio": 1.050240866483088,
+          "logit_norm": 2.601278305053711,
+          "prediction_entropy": 5.531772613525391,
+          "confidence_when_correct": 0.006976237520575523,
+          "confidence_when_wrong": 0.006307967007160187,
+          "ece": 0.7771797180175781,
+          "calibration_proxy": 0.7771797180175781,
+          "loss_accuracy_disagreement": 1.0980106741189957,
+          "latency_ms": 0.0
         }
       ],
       "gradient_metrics": {
-        "shared_gradient_norm": 0.04920694761676714,
-        "expert_gradient_norm_mean": 0.04424346354062436,
-        "expert_gradient_norm_max": 0.0778251236770302,
-        "expert_gradient_norm_min": 0.017712350469082594,
+        "shared_gradient_norm": 0.04133994138101116,
+        "expert_gradient_norm_mean": 0.04341689585635322,
+        "expert_gradient_norm_max": 0.0575893756467849,
+        "expert_gradient_norm_min": 0.024203629203839228,
         "expert_gradient_norm_by_expert": {
-          "0": 0.0778251236770302,
-          "1": 0.05460728530306369,
-          "2": 0.026829094713320956,
-          "3": 0.017712350469082594
+          "0": 0.04845866945106536,
+          "1": 0.0575893756467849,
+          "2": 0.024203629203839228,
+          "3": 0.043415909123723395
         },
-        "router_gradient_norm": 0.002486630924977362,
+        "router_gradient_norm": 0.002251664254193505,
         "prototype_gradient_norm": 0.0,
         "ownership_bias_gradient_norm_if_trainable": 0.0,
-        "expert_grad_to_shared_grad_ratio": 0.8991304212811713,
+        "expert_grad_to_shared_grad_ratio": 1.050240866483088,
         "dead_gradient_expert_count": 0,
         "zero_gradient_expert_count": 0,
-        "expert_gradient_cv": 0.5351400377490665,
-        "expert_gradient_cosine_similarity": 0.10142958164215088
+        "expert_gradient_cv": 0.2810127103264893,
+        "expert_gradient_cosine_similarity": -0.005631944164633751
       },
       "optimizer_metrics": {
         "parameter_requires_grad_by_group": {
@@ -136,26 +136,26 @@
           "router": 8
         },
         "parameter_update_norm_by_group": {
-          "other": 0.09421771289780737,
-          "shared": 0.10014902691667278,
-          "expert": 0.09438516304362565,
-          "router": 0.06373248947784305
+          "other": 0.09421583823859692,
+          "shared": 0.10014795310174425,
+          "expert": 0.1078082222957164,
+          "router": 0.06298622617032379
         },
-        "expert_parameter_update_norm": 0.09438516304362565,
-        "shared_parameter_update_norm": 0.10014902691667278,
-        "router_parameter_update_norm": 0.06373248947784305,
+        "expert_parameter_update_norm": 0.1078082222957164,
+        "shared_parameter_update_norm": 0.10014795310174425,
+        "router_parameter_update_norm": 0.06298622617032379,
         "prototype_parameter_update_norm": 0.0,
         "ownership_parameter_update_norm": 0.0
       },
       "contribution_metrics": {
-        "shared_output_norm": 0.1661963239312172,
-        "sparse_output_norm": 3.634090781211853,
-        "expert_delta_output_norm_mean": 3.634090781211853,
+        "shared_output_norm": 0.16176336258649826,
+        "sparse_output_norm": 3.75577175617218,
+        "expert_delta_output_norm_mean": 3.75577175617218,
         "expert_delta_output_norm_by_expert": {},
         "combined_output_norm": null,
-        "shared_sparse_ratio": 0.04573814570903778,
-        "expert_delta_contribution_pct": 0.9562674294512387,
-        "expert_delta_to_shared_ratio": 21.86625248531896,
+        "shared_sparse_ratio": 0.04306663013994694,
+        "expert_delta_contribution_pct": 0.9587078717400866,
+        "expert_delta_to_shared_ratio": 23.217690929019174,
         "expert_output_diversity": null,
         "expert_output_correlation": null
       },
@@ -173,41 +173,41 @@
         "ignore_index": null,
         "num_classes": 256,
         "target_value_range": [
-          19,
-          255
+          2,
+          248
         ],
         "class_distribution": {
-          "19": 1,
-          "38": 1,
-          "41": 2,
-          "53": 1,
-          "59": 1,
-          "60": 1,
-          "61": 2,
-          "63": 2,
-          "84": 1,
-          "90": 1,
-          "91": 1,
-          "97": 1,
+          "2": 1,
+          "3": 1,
+          "13": 1,
+          "17": 1,
+          "18": 1,
+          "27": 1,
+          "35": 1,
+          "83": 1,
+          "94": 1,
+          "102": 1,
+          "111": 1,
+          "115": 1,
+          "121": 1,
+          "125": 1,
+          "126": 1,
           "132": 1,
-          "137": 1,
-          "156": 1,
-          "166": 1,
+          "150": 1,
+          "157": 1,
+          "170": 1,
+          "171": 1,
           "172": 1,
-          "184": 1,
-          "196": 1,
-          "207": 1,
-          "211": 1,
-          "213": 1,
-          "218": 1,
+          "183": 1,
+          "191": 1,
+          "197": 2,
+          "219": 2,
           "228": 1,
-          "239": 1,
-          "240": 1,
-          "247": 1,
-          "251": 1,
-          "255": 1
+          "231": 2,
+          "232": 1,
+          "248": 1
         },
-        "baseline_random_loss": 4.999621868133545,
+        "baseline_random_loss": 5.0135393142700195,
         "expected_random_loss": 5.545177444479562,
         "accuracy_definition": "mean argmax token accuracy over all positions"
       },
@@ -224,15 +224,15 @@
   ],
   "model_summary": {
     "pvr_full": {
-      "avg_final_train_loss": 4.996732711791992,
-      "avg_final_train_accuracy": 0.84375,
-      "avg_loss_reduction_pct": 0.0005778749708988116,
+      "avg_final_train_loss": 5.019477367401123,
+      "avg_final_train_accuracy": 0.78125,
+      "avg_loss_reduction_pct": -0.0011844034241841998,
       "overfit_success_rate": 0.0
     }
   },
   "status": "PVR_EC_ROUTED_EXPERT_GRADIENTS_PRESENT",
-  "expert_gradient_norm": 0.04424346354062436,
-  "shared_gradient_norm": 0.04920694761676714,
-  "expert_grad_to_shared_grad_ratio": 0.8991304212811713
+  "expert_gradient_norm": 0.04341689585635322,
+  "shared_gradient_norm": 0.04133994138101116,
+  "expert_grad_to_shared_grad_ratio": 1.050240866483088
 }
 ```

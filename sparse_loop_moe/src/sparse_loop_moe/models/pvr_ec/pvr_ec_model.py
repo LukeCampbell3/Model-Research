@@ -356,11 +356,21 @@ class PVRECModel(nn.Module):
             add_sparse_ce(0.10)
         elif variant in {"sparse_ce_warmup_then_decay", "sparse_ce_warmup_decay"}:
             add_sparse_ce(self._sparse_ce_warmup_decay_weight())
+        elif variant == "sparse_ce_0_05_with_decay_to_0_03":
+            add_sparse_ce(self._sparse_ce_decay_weight(final_weight=0.03))
+        elif variant == "sparse_ce_0_05_with_decay_to_0_01":
+            add_sparse_ce(self._sparse_ce_decay_weight(final_weight=0.01))
         elif variant == "margin_align_0_03_m0_5":
             add_margin(0.03, 0.5)
         elif variant == "margin_align_0_05_m0_5":
             add_margin(0.05, 0.5)
         elif variant == "wrong_suppress_0_03_t0_25":
+            add_wrong_suppress(0.03, 0.25)
+        elif variant == "wrong_suppress_0_01":
+            add_sparse_ce(0.05)
+            add_wrong_suppress(0.01, 0.25)
+        elif variant == "wrong_suppress_0_03":
+            add_sparse_ce(0.05)
             add_wrong_suppress(0.03, 0.25)
         elif variant == "sparse_ce_0_03_plus_margin_0_03":
             add_sparse_ce(0.03)
@@ -407,6 +417,12 @@ class PVRECModel(nn.Module):
         elif variant == "logit_norm_penalty_medium":
             add_sparse_ce(0.05)
             add_logit_norm(0.0015)
+        elif variant == "logit_norm_cap_light":
+            add_sparse_ce(0.05)
+            add_logit_norm(0.00075)
+        elif variant == "logit_norm_cap_medium":
+            add_sparse_ce(0.05)
+            add_logit_norm(0.0015)
         elif variant == "margin_0_03_plus_wrong_suppress_0_03":
             add_margin(0.03, 0.5)
             add_wrong_suppress(0.03, 0.25)
@@ -423,13 +439,16 @@ class PVRECModel(nn.Module):
         return total, metrics
 
     def _sparse_ce_warmup_decay_weight(self) -> float:
+        return self._sparse_ce_decay_weight(final_weight=0.01)
+
+    def _sparse_ce_decay_weight(self, final_weight: float) -> float:
         total = max(1, int(self.config.pvr_sparse_aux_schedule_total_steps or 500))
         progress = max(0.0, min(1.0, float(self._training_step) / float(total)))
         if progress < 0.30:
             return 0.05
         if progress < 0.80:
             return 0.03
-        return 0.01
+        return float(final_weight)
 
     def _sparse_auxiliary_mask(self, targets: torch.Tensor) -> torch.Tensor:
         scope = str(self.config.pvr_sparse_aux_scope or "aux_all_tokens")
