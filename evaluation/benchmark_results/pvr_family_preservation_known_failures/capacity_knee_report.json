@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-09T01:58:56.259831",
+    "run_id": "algo_20260609_015636_benchmark-lite",
+    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed 42 --families clrs,listops,scan,dyck --device cuda --amp --models dense_baseline,fixed_moe_vectorized,pvr_full,pvr_full_fixed_owner_e0,pvr_full_expert_delta_scale_4 --output-dir evaluation/benchmark_results/pvr_family_preservation_known_failures",
+    "model_variants": [
+      "dense_baseline",
+      "fixed_moe_vectorized",
+      "pvr_full",
+      "pvr_full_fixed_owner_e0",
+      "pvr_full_expert_delta_scale_4"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 500,
+    "sample_limit": 1000,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+  "statuses": [
+    "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+    "PVR_EC_DISTILLATION_BLOCKED",
+    "PVR_EC_DO_NOT_PROMOTE"
+  ],
+  "best_capacity_variant": null,
+  "best_capacity_metrics": null,
+  "full_ffn_signal_real": false,
+  "model_averages": {
+    "fixed_moe_vectorized": {
+      "capacity_variant": "",
+      "expert_architecture_id": "",
+      "params_total": 1001092,
+      "params_active_estimate": 1001092,
+      "avg_loss": 0.3886076922838887,
+      "avg_accuracy": 0.25857819999606313,
+      "latency_p50": null,
+      "latency_p95": null,
+      "quality_per_ms": null,
+      "quality_per_active_param": 2.5829614061051647e-07,
+      "owners_per_token": 0.0,
+      "expert_capacity_failure_rate": null,
+      "shared_vs_sparse_contribution": null,
+      "owner_change_rate": null,
+      "owner_changed_success_rate": null
+    }
+  }
+}

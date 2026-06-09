@@ -1,0 +1,42 @@
+# Pvr Ec Prototype Geometry Candidate Report
+
+**Status:** CANDIDATE_SELECTED
+
+```json
+{
+  "status": "CANDIDATE_SELECTED",
+  "candidate_name": "warmup_plus_family_align",
+  "candidate_info": {
+    "name": "warmup_plus_family_align",
+    "score": 0.9280770567174083,
+    "entropy_delta": -0.6718259694935242,
+    "gap_delta": -0.2550980233504516,
+    "accuracy_delta": 0.0011530638734323917,
+    "config": {
+      "proto_warmup_steps": 100,
+      "proto_family_align_weight": 0.1
+    },
+    "metrics": {
+      "config": {
+        "proto_warmup_steps": 100,
+        "proto_family_align_weight": 0.1
+      },
+      "global_membership_entropy": 2.097964437069629,
+      "global_membership_margin": 0.20905814149831242,
+      "dead_prototype_count": 6,
+      "low_sample_count": 5,
+      "classification_counts": {
+        "STABLE_SPECIALIST": 0,
+        "HIGH_GAP_MONOPOLY": 3,
+        "HIGH_GAP_NON_MONOPOLY": 0,
+        "LOW_SAMPLE": 5,
+        "GEOMETRY_UNCERTAIN": 1,
+        "DEAD_PROTOTYPE": 6,
+        "BOUNDARY_EVERYWHERE": 1
+      },
+      "avg_oracle_gap": 1.9815059801192767,
+      "avg_accuracy": 0.608750087411144
+    }
+  }
+}
+```

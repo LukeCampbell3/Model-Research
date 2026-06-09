@@ -7,15 +7,15 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-07T23:38:18.262463",
-    "run_id": "algo_20260607_233818_benchmark-lite",
-    "git_commit": "51e443da02bdc0a13c33b86368b863343ae036a2",
+    "timestamp": "2026-06-09T00:46:56.355460",
+    "run_id": "algo_20260609_004656_benchmark-lite",
+    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
     "docker_image": "N/A",
     "cuda_available": false,
     "gpu_name": "",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest sparse_loop_moe/tests/test_pvr_ec.py -q",
+    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\pytest\\__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_failure_observatory.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_nlp_stage1.py sparse_loop_moe/tests/test_pvr_ec_family_preserving_router.py sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q",
     "model_variants": [
       "dense_baseline",
       "fixed_moe",

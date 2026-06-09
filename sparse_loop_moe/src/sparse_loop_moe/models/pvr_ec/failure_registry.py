@@ -42,6 +42,20 @@ FAILURE_MODE_IDS = (
     "PVR_EC_FAILURE_PROTOTYPE_DRIFT",
     "PVR_EC_FAILURE_REPAIR_OVERFITS_COLLAPSE_CASE",
     "PVR_EC_FAILURE_UNKNOWN",
+    # Family preservation failure modes
+    "PVR_EC_FAILURE_FAMILY_PRESERVATION_LOSS",
+    "PVR_EC_FAILURE_OVERLAP_BOUNDARY_MISROUTE",
+    "PVR_EC_FAILURE_NOISY_REGION_OWNERSHIP",
+    "PVR_EC_FAILURE_FAMILY_OWNER_CHURN",
+    "PVR_EC_FAILURE_PROTOTYPE_FAMILY_COLLAPSE",
+    "PVR_EC_FAILURE_BALANCE_BIAS_FAMILY_OVERRIDE",
+    "PVR_EC_FAILURE_FAMILY_AWARE_ORACLE_GAP_HIGH",
+    "PVR_EC_FAILURE_SOFT_FAMILY_EVIDENCE_DROPPED",
+    "PVR_EC_FAILURE_FAMILY_LABEL_PROXY_DISAGREEMENT",
+    "PVR_EC_FAILURE_NLP_AMBIGUOUS_TOKEN_OWNERSHIP",
+    "PVR_EC_FAILURE_NLP_CONTEXT_INSENSITIVE_ROUTING",
+    "PVR_EC_FAILURE_NLP_LENGTH_GENERALIZATION_COLLAPSE",
+    "PVR_EC_FAILURE_NLP_OBSERVATORY_TAXONOMY_GAP",
 )
 
 
@@ -80,6 +94,52 @@ PLAYBOOKS: dict[str, dict[str, list[str]]] = {
         "inspect": ["latency_p50", "latency_p95", "p95_p50_ratio", "memory_peak", "diagnostic_tensor_retention", "cuda_sync_count", "cpu_transfer_count", "temporary_tensor_alloc_estimate"],
         "allowed_repairs": ["separate diagnostic and inference paths", "disable sparse logit decomposition in inference timing", "preallocate tensors", "cache masks and ownership bias", "remove Python objects from measured forward", "CUDA events instead of global sync", "warmup per shape"],
         "disallowed_repairs": ["changing model math", "removing required expert execution", "changing output", "Top2/Top4"],
+    },
+    # Family preservation playbooks
+    "PVR_EC_FAILURE_FAMILY_PRESERVATION_LOSS": {
+        "inspect": ["family_preservation_score", "family_top1_oracle_gap", "expert_family_purity", "expert_family_coverage", "prototype_family_owner_consistency"],
+        "allowed_repairs": ["family_preservation_bias_shadow_to_active", "family_overlap_replay_refresh", "compatible_mask_refinement", "ownership_map_refresh"],
+        "disallowed_repairs": ["Top2/Top4 execution", "new router architecture", "runtime dynamic-K"],
+    },
+    "PVR_EC_FAILURE_OVERLAP_BOUNDARY_MISROUTE": {
+        "inspect": ["overlap_preservation_score", "boundary_failure_rate", "family_margin", "family_membership_entropy"],
+        "allowed_repairs": ["family_preservation_bias_shadow_to_active", "compatible_mask_refinement", "boundary_state_replay"],
+        "disallowed_repairs": ["Top2/Top4 execution", "multi-expert execution"],
+    },
+    "PVR_EC_FAILURE_NOISY_REGION_OWNERSHIP": {
+        "inspect": ["noisy_region_failure_rate", "owner_churn_by_prototype", "oracle_gap_noisy_region"],
+        "allowed_repairs": ["ownership_map_refresh", "oracle_gap_replay", "owner_reliability_recalibration"],
+        "disallowed_repairs": ["Top2/Top4 execution", "runtime dynamic-K"],
+    },
+    "PVR_EC_FAILURE_FAMILY_OWNER_CHURN": {
+        "inspect": ["owner_churn_by_family", "owner_churn_by_prototype", "owner_churn_by_seed", "family_owner_stability_score"],
+        "allowed_repairs": ["route_consistency_loss", "prototype_stabilization", "family_consistency_replay_labels"],
+        "disallowed_repairs": ["Top2/Top4 execution", "forced owner freezing without evidence"],
+    },
+    "PVR_EC_FAILURE_PROTOTYPE_FAMILY_COLLAPSE": {
+        "inspect": ["prototype_family_owner_consistency", "prototype_local_monopoly_rate", "expert_family_entropy", "family_top1_oracle_gap"],
+        "allowed_repairs": ["family_balanced_sampling", "family_balanced_loss_light", "anti_monopoly_penalty"],
+        "disallowed_repairs": ["Top2/Top4 execution", "forced diversity without evidence"],
+    },
+    "PVR_EC_FAILURE_BALANCE_BIAS_FAMILY_OVERRIDE": {
+        "inspect": ["balance_bias_changed_owner_rate", "balance_bias_changed_family_score_delta", "semantic_family_margin_when_balance_flipped"],
+        "allowed_repairs": ["semantic_family_margin_guard", "balance_bias_cap_reduction", "family_aware_balance_constraint"],
+        "disallowed_repairs": ["disabling balance entirely", "Top2/Top4 execution"],
+    },
+    "PVR_EC_FAILURE_FAMILY_AWARE_ORACLE_GAP_HIGH": {
+        "inspect": ["prototype_family_oracle_gap", "family_top1_oracle_gap", "challenger_family_win_rate"],
+        "allowed_repairs": ["ownership_map_refresh", "family_preservation_bias", "challenger_evidence_distillation"],
+        "disallowed_repairs": ["Top2/Top4 execution", "runtime oracle"],
+    },
+    "PVR_EC_FAILURE_NLP_CONTEXT_INSENSITIVE_ROUTING": {
+        "inspect": ["same_token_different_context_owner_rate", "context_conditioned_loss_gap", "contextual_owner_stability"],
+        "allowed_repairs": ["context_conditioned_prototype_features", "context_role_tags", "context_aware_owner_reliability"],
+        "disallowed_repairs": ["Top2/Top4 execution", "new router architecture"],
+    },
+    "PVR_EC_FAILURE_NLP_LENGTH_GENERALIZATION_COLLAPSE": {
+        "inspect": ["loss_by_seq_len", "owner_entropy_by_seq_len", "prototype_entropy_by_seq_len", "family_preservation_score_by_seq_len"],
+        "allowed_repairs": ["length_balanced_training", "prototype_drift_control_by_length", "length_conditioned_family_preservation"],
+        "disallowed_repairs": ["Top2/Top4 execution", "length-specific routing"],
     },
 }
 

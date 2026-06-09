@@ -6,49 +6,17 @@
 {
   "status": "PVR_EC_FAILURE_OBSERVATORY_READY",
   "failure_modes": [
-    "PVR_EC_FAILURE_DATA_SPLIT_DIFFICULTY",
-    "PVR_EC_FAILURE_OWNER_PROTOTYPE_COLLAPSE",
-    "PVR_EC_FAILURE_QPM_SHAPE_REGRESSION"
+    "PVR_EC_FAILURE_OWNER_PROTOTYPE_COLLAPSE"
   ],
-  "candidate_count": 15,
+  "candidate_count": 5,
   "repair_candidates": [
-    "CUDA events instead of global sync",
-    "bounded diagnostic-only repair",
-    "cache masks and ownership bias",
-    "disable sparse logit decomposition in inference timing",
     "family_balanced_loss_light",
     "family_balanced_sampling",
     "owner_entropy_floor_diagnostic_only",
     "ownership_bias_clip_adjustment",
-    "preallocate tensors",
-    "prototype_entropy_regularization_light",
-    "remove Python objects from measured forward",
-    "repeatability replay",
-    "separate diagnostic and inference paths",
-    "slice-specific validation",
-    "warmup per shape"
+    "prototype_entropy_regularization_light"
   ],
   "repair_candidate_playbooks": {
-    "PVR_EC_FAILURE_DATA_SPLIT_DIFFICULTY": {
-      "inspect": [
-        "loss_gap_vs_fixed",
-        "accuracy_gap_vs_fixed",
-        "calibration_gap",
-        "runtime_purity_passed"
-      ],
-      "allowed_repairs": [
-        "bounded diagnostic-only repair",
-        "repeatability replay",
-        "slice-specific validation"
-      ],
-      "disallowed_repairs": [
-        "Top2/Top4 execution",
-        "new routing architecture",
-        "distillation",
-        "quantization",
-        "model size increase"
-      ]
-    },
     "PVR_EC_FAILURE_OWNER_PROTOTYPE_COLLAPSE": {
       "inspect": [
         "owner_entropy",
@@ -70,47 +38,13 @@
         "larger experts",
         "distillation"
       ]
-    },
-    "PVR_EC_FAILURE_QPM_SHAPE_REGRESSION": {
-      "inspect": [
-        "latency_p50",
-        "latency_p95",
-        "p95_p50_ratio",
-        "memory_peak",
-        "diagnostic_tensor_retention",
-        "cuda_sync_count",
-        "cpu_transfer_count",
-        "temporary_tensor_alloc_estimate"
-      ],
-      "allowed_repairs": [
-        "separate diagnostic and inference paths",
-        "disable sparse logit decomposition in inference timing",
-        "preallocate tensors",
-        "cache masks and ownership bias",
-        "remove Python objects from measured forward",
-        "CUDA events instead of global sync",
-        "warmup per shape"
-      ],
-      "disallowed_repairs": [
-        "changing model math",
-        "removing required expert execution",
-        "changing output",
-        "Top2/Top4"
-      ]
     }
   },
   "disallowed_global": [
-    "Top2/Top4",
     "Top2/Top4 execution",
-    "changing model math",
-    "changing output",
     "distillation",
     "larger experts",
-    "model size increase",
-    "new router architecture",
-    "new routing architecture",
-    "quantization",
-    "removing required expert execution"
+    "new router architecture"
   ],
   "promotion_ready": false
 }

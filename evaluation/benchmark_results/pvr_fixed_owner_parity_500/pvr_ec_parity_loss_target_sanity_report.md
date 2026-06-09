@@ -2,20 +2,20 @@
 
 **Status:** PVR_EC_LOSS_TARGET_SANITY_PASSED
 
-**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_FIXED_OWNER_PARITY_FAILED, PVR_EC_NONLINEAR_OVERFIT_PASSED, PVR_EC_NONLINEAR_OVERFIT_READY, PVR_EC_PARITY_OVERFIT_PASSED, PVR_EC_ROUND_ROBIN_PARITY_PASSED
+**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_FIXED_OWNER_PARITY_PASSED, PVR_EC_NONLINEAR_OVERFIT_PASSED, PVR_EC_NONLINEAR_OVERFIT_READY, PVR_EC_PARITY_OVERFIT_PASSED, PVR_EC_ROUND_ROBIN_PARITY_PASSED
 
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-06T23:50:17.134253",
-    "run_id": "algo_20260606_234749_pvr-overfit-sanity",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-09T01:56:23.960785",
+    "run_id": "algo_20260609_015459_pvr-overfit-sanity",
+    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
     "docker_image": "sparse-loop-moe-gpu",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
     "amp_enabled": true,
     "seed": 42,
-    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode pvr-overfit-sanity --scale tiny --device cuda --amp --pvr-overfit-tasks toy_xor_or_parity,toy_xor_or_parity_balanced,toy_nonlinear_lookup --pvr-overfit-steps 500 --pvr-overfit-batch-size 32 --models pvr_full,pvr_full_fixed_owner_e0,pvr_full_fixed_owner_round_robin,pvr_full_uniform_owner,pvr_sparse_only,pvr_shared_only --run-fixed-owner-parity-diagnostic --output-dir evaluation/benchmark_results/pvr_fixed_owner_parity_500",
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode pvr-overfit-sanity --scale small --device cuda --amp --pvr-overfit-tasks toy_xor_or_parity,toy_xor_or_parity_balanced,toy_nonlinear_lookup --pvr-overfit-steps 500 --pvr-overfit-batch-size 32 --models pvr_full,pvr_full_fixed_owner_e0,pvr_full_fixed_owner_round_robin,pvr_full_uniform_owner,pvr_sparse_only,pvr_shared_only --run-nonlinear-overfit-diagnostic --output-dir evaluation/benchmark_results/pvr_fixed_owner_parity_500",
     "model_variants": [
       "pvr_full",
       "pvr_full_fixed_owner_e0",
@@ -34,13 +34,20 @@
     "train_steps": 500,
     "sample_limit": null,
     "mode": "pvr-nonlinear-overfit",
-    "scale": "tiny",
+    "scale": "small",
     "families": [
       "clrs",
       "listops",
       "scan",
       "dyck"
     ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
     "pvr_overfit_tasks": [
       "toy_xor_or_parity",
       "toy_xor_or_parity_balanced",
@@ -52,7 +59,7 @@
   },
   "statuses": [
     "PVR_EC_DO_NOT_PROMOTE",
-    "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+    "PVR_EC_FIXED_OWNER_PARITY_PASSED",
     "PVR_EC_NONLINEAR_OVERFIT_PASSED",
     "PVR_EC_NONLINEAR_OVERFIT_READY",
     "PVR_EC_PARITY_OVERFIT_PASSED",
@@ -63,14 +70,14 @@
     "overall_status": "PVR_EC_NONLINEAR_OVERFIT_PASSED",
     "statuses": [
       "PVR_EC_DO_NOT_PROMOTE",
-      "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+      "PVR_EC_FIXED_OWNER_PARITY_PASSED",
       "PVR_EC_NONLINEAR_OVERFIT_PASSED",
       "PVR_EC_NONLINEAR_OVERFIT_READY",
       "PVR_EC_PARITY_OVERFIT_PASSED",
       "PVR_EC_ROUND_ROBIN_PARITY_PASSED"
     ],
     "controls_pass": true,
-    "fixed_owner_parity": false,
+    "fixed_owner_parity": true,
     "round_robin_parity": true,
     "uniform_owner_parity": true,
     "learned_owner_parity": true,
@@ -86,73 +93,73 @@
     "parity_results_by_model": {
       "pvr_shared_only": {
         "toy_xor_or_parity": {
-          "accuracy": 0.771484375,
-          "loss": 0.4524768888950348,
+          "accuracy": 0.833984375,
+          "loss": 0.33894726634025574,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.521484375,
-          "loss": 0.6917451620101929,
-          "passed": false
+          "accuracy": 0.80859375,
+          "loss": 0.36571696400642395,
+          "passed": true
         }
       },
       "pvr_sparse_only": {
         "toy_xor_or_parity": {
-          "accuracy": 0.79296875,
-          "loss": 0.3880808353424072,
+          "accuracy": 0.802734375,
+          "loss": 0.41138383746147156,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.724609375,
-          "loss": 0.48650074005126953,
+          "accuracy": 0.802734375,
+          "loss": 0.4059789180755615,
           "passed": true
         }
       },
       "pvr_full": {
         "toy_xor_or_parity": {
-          "accuracy": 0.765625,
-          "loss": 0.449166476726532,
+          "accuracy": 0.830078125,
+          "loss": 0.3407552242279053,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.705078125,
-          "loss": 0.545546293258667,
-          "passed": false
+          "accuracy": 0.84375,
+          "loss": 0.34503689408302307,
+          "passed": true
         }
       },
       "pvr_full_fixed_owner_e0": {
         "toy_xor_or_parity": {
-          "accuracy": 0.51171875,
-          "loss": 0.693463921546936,
-          "passed": false
-        },
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.517578125,
-          "loss": 0.6940039992332458,
-          "passed": false
-        }
-      },
-      "pvr_full_fixed_owner_round_robin": {
-        "toy_xor_or_parity": {
-          "accuracy": 0.873046875,
-          "loss": 0.29688477516174316,
+          "accuracy": 0.859375,
+          "loss": 0.3024533987045288,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
           "accuracy": 0.8515625,
-          "loss": 0.32192617654800415,
+          "loss": 0.33646851778030396,
+          "passed": true
+        }
+      },
+      "pvr_full_fixed_owner_round_robin": {
+        "toy_xor_or_parity": {
+          "accuracy": 0.859375,
+          "loss": 0.28743794560432434,
+          "passed": true
+        },
+        "toy_xor_or_parity_balanced": {
+          "accuracy": 0.90234375,
+          "loss": 0.25693443417549133,
           "passed": true
         }
       },
       "pvr_full_uniform_owner": {
         "toy_xor_or_parity": {
-          "accuracy": 0.873046875,
-          "loss": 0.29688477516174316,
+          "accuracy": 0.859375,
+          "loss": 0.28743794560432434,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.8515625,
-          "loss": 0.32192617654800415,
+          "accuracy": 0.90234375,
+          "loss": 0.25693443417549133,
           "passed": true
         }
       }
@@ -161,42 +168,42 @@
       "pvr_shared_only": {
         "toy_nonlinear_lookup": {
           "accuracy": 1.0,
-          "loss": 0.001411398290656507,
+          "loss": 0.0013917478499934077,
           "passed": true
         }
       },
       "pvr_sparse_only": {
         "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.0011937307426705956,
+          "accuracy": 0.998046875,
+          "loss": 0.006234675645828247,
           "passed": true
         }
       },
       "pvr_full": {
         "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.0011457855580374599,
+          "accuracy": 0.998046875,
+          "loss": 0.014162704348564148,
           "passed": true
         }
       },
       "pvr_full_fixed_owner_e0": {
         "toy_nonlinear_lookup": {
           "accuracy": 1.0,
-          "loss": 0.0011603438761085272,
+          "loss": 0.002840080764144659,
           "passed": true
         }
       },
       "pvr_full_fixed_owner_round_robin": {
         "toy_nonlinear_lookup": {
           "accuracy": 1.0,
-          "loss": 0.001208406058140099,
+          "loss": 0.000980533310212195,
           "passed": true
         }
       },
       "pvr_full_uniform_owner": {
         "toy_nonlinear_lookup": {
           "accuracy": 1.0,
-          "loss": 0.001208406058140099,
+          "loss": 0.000980533310212195,
           "passed": true
         }
       }
@@ -207,98 +214,98 @@
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.5,
-        "1": 0.5
+        "0": 0.51171875,
+        "1": 0.48828125
       },
-      "max_class_ratio": 0.5
+      "max_class_ratio": 0.51171875
     },
     {
       "balanced": true,
       "class_ratios": {
-        "0": 0.50390625,
-        "1": 0.49609375
+        "0": 0.517578125,
+        "1": 0.482421875
       },
-      "max_class_ratio": 0.50390625
+      "max_class_ratio": 0.517578125
     }
   ],
   "loss_target_sanity": [
@@ -320,10 +327,10 @@
         1
       ],
       "class_distribution": {
-        "0": 256,
-        "1": 256
+        "0": 262,
+        "1": 250
       },
-      "baseline_random_loss": 5.391030311584473,
+      "baseline_random_loss": 5.132177352905273,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -345,10 +352,10 @@
         1
       ],
       "class_distribution": {
-        "0": 258,
-        "1": 254
+        "0": 265,
+        "1": 247
       },
-      "baseline_random_loss": 5.387753486633301,
+      "baseline_random_loss": 5.119999885559082,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -371,23 +378,23 @@
       ],
       "class_distribution": {
         "0": 29,
-        "1": 33,
-        "2": 29,
-        "3": 42,
-        "4": 32,
-        "5": 22,
-        "6": 28,
-        "7": 28,
-        "8": 37,
-        "9": 37,
-        "10": 38,
-        "11": 33,
-        "12": 27,
-        "13": 32,
-        "14": 31,
-        "15": 34
+        "1": 35,
+        "2": 23,
+        "3": 35,
+        "4": 33,
+        "5": 40,
+        "6": 36,
+        "7": 27,
+        "8": 35,
+        "9": 25,
+        "10": 29,
+        "11": 30,
+        "12": 28,
+        "13": 36,
+        "14": 33,
+        "15": 38
       },
-      "baseline_random_loss": 5.572383403778076,
+      "baseline_random_loss": 5.526703834533691,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -409,10 +416,10 @@
         1
       ],
       "class_distribution": {
-        "0": 256,
-        "1": 256
+        "0": 262,
+        "1": 250
       },
-      "baseline_random_loss": 5.41211462020874,
+      "baseline_random_loss": 5.238989353179932,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -434,10 +441,10 @@
         1
       ],
       "class_distribution": {
-        "0": 258,
-        "1": 254
+        "0": 265,
+        "1": 247
       },
-      "baseline_random_loss": 5.398385047912598,
+      "baseline_random_loss": 5.233109951019287,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -460,23 +467,23 @@
       ],
       "class_distribution": {
         "0": 29,
-        "1": 33,
-        "2": 29,
-        "3": 42,
-        "4": 32,
-        "5": 22,
-        "6": 28,
-        "7": 28,
-        "8": 37,
-        "9": 37,
-        "10": 38,
-        "11": 33,
-        "12": 27,
-        "13": 32,
-        "14": 31,
-        "15": 34
+        "1": 35,
+        "2": 23,
+        "3": 35,
+        "4": 33,
+        "5": 40,
+        "6": 36,
+        "7": 27,
+        "8": 35,
+        "9": 25,
+        "10": 29,
+        "11": 30,
+        "12": 28,
+        "13": 36,
+        "14": 33,
+        "15": 38
       },
-      "baseline_random_loss": 5.646402835845947,
+      "baseline_random_loss": 5.500094413757324,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -498,10 +505,10 @@
         1
       ],
       "class_distribution": {
-        "0": 256,
-        "1": 256
+        "0": 262,
+        "1": 250
       },
-      "baseline_random_loss": 5.4102864265441895,
+      "baseline_random_loss": 5.228257179260254,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     },
@@ -523,10 +530,10 @@
         1
       ],
       "class_distribution": {
-        "0": 258,
-        "1": 254
+        "0": 265,
+        "1": 247
       },
-      "baseline_random_loss": 5.397106647491455,
+      "baseline_random_loss": 5.220990180969238,
       "expected_random_loss": 5.545177444479562,
       "accuracy_definition": "mean argmax token accuracy over all positions"
     }

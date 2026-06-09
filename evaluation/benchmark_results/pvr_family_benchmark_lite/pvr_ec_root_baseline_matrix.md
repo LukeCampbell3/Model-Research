@@ -1,0 +1,11 @@
+# PVR-EC Root Baseline Matrix
+
+**Status:** PVR_EC_ROOT_BASELINE_MATRIX_RECORDED
+
+**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+
+| Model | Count | Loss | Accuracy | p95/p50 |
+|---|---:|---:|---:|---:|
+| dense_baseline | 8 | 0.44256602305298054 | 0.06708629865773938 | 1.0 |
+| fixed_moe_vectorized | 8 | 0.4403862536419183 | 0.0405815215621312 | 1.0 |
+| pvr_full | 8 | 0.45161311755267286 | 0.07171890165302205 | 1.0 |

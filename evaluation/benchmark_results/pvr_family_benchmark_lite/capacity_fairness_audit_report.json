@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-09T01:21:58.635604",
+    "run_id": "algo_20260609_012119_benchmark-lite",
+    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
+    "docker_image": "sparse-loop-moe-gpu",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "amp_enabled": true,
+    "seed": 42,
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 512 --train-steps 200 --seed 42 --families clrs,listops,scan,dyck --device cuda --amp --models dense_baseline,fixed_moe_vectorized,pvr_full --output-dir evaluation/benchmark_results/pvr_family_benchmark_lite",
+    "model_variants": [
+      "dense_baseline",
+      "fixed_moe_vectorized",
+      "pvr_full"
+    ],
+    "batch_sizes": [
+      1,
+      32
+    ],
+    "sequence_lengths": [
+      64
+    ],
+    "train_steps": 200,
+    "sample_limit": 512,
+    "mode": "benchmark-lite",
+    "scale": "small",
+    "families": [
+      "clrs",
+      "listops",
+      "scan",
+      "dyck"
+    ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null
+  },
+  "status": "PVR_EC_CAPACITY_FAIRNESS_AUDIT_BLOCKED",
+  "statuses": [
+    "PENDING_PVR_EC_CAPACITY_FAIRNESS_AUDIT",
+    "PVR_EC_CAPACITY_FAIRNESS_AUDIT_BLOCKED",
+    "PVR_EC_CAPACITY_LADDER_INVALID",
+    "PVR_EC_DISTILLATION_BLOCKED",
+    "PVR_EC_DO_NOT_PROMOTE",
+    "PVR_EC_FULL_EXPERT_CAPACITY_NOT_PROVEN",
+    "PVR_EC_REAL_TRACE_PROMOTION_GATE_NOT_CLEAN",
+    "PVR_EC_TOP1_OWNER_ASSERTION_FAILED"
+  ],
+  "fairness_audit": {
+    "same_seed": true,
+    "same_train_eval_split": true,
+    "same_labels_objective": true,
+    "same_benchmark_family": true,
+    "same_target_preprocessing": true,
+    "same_loss_computation": true,
+    "same_batch_size": true,
+    "same_amp_mode": true,
+    "same_number_of_train_steps": true,
+    "same_optimizer_schedule": true,
+    "same_eval_mode": true,
+    "same_ownership_map_mode": true,
+    "same_route_policy_ownership_top1": true,
+    "exactly_one_owner": false,
+    "top2_executions_zero": false,
+    "top4_executions_zero": false,
+    "no_hidden_dense_all_expert_execution": false,
+    "no_oracle_owner_used_at_inference": true,
+    "no_forced_action_path_used_in_deploy": true,
+    "no_replay_probe_data_used_as_eval_labels": true
+  },
+  "promotion_ready": false
+}

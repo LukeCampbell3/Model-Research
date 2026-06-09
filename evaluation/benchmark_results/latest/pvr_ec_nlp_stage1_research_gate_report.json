@@ -1,0 +1,9 @@
+{
+  "status": "PVR_EC_NLP_STAGE1_RESEARCH_ALLOWED_WITH_BLOCKERS",
+  "family_preservation_verdict": "PVR_EC_FAMILY_PRESERVATION_PASSED_WITH_BLOCKERS",
+  "candidate_gate_verdict": "PVR_EC_FAMILY_PRESERVING_ROUTER_ACCEPTED",
+  "owners_per_token": 1.0,
+  "top2_executions": 0,
+  "unknown_failures": 0,
+  "forward_purity": "PASSED"
+}

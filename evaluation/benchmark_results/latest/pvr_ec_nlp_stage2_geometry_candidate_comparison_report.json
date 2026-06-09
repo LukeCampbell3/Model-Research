@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETE",
+  "selected": "contrastive_light",
+  "all_geometry": {
+    "baseline": {
+      "membership_entropy": 2.76773938536644,
+      "membership_margin": 0.0036776545748580247,
+      "boundary_rate": 1.0,
+      "owner_entropy": 0.6142158135771751,
+      "challenger_disagree_rate": 0.2958984375
+    },
+    "warmup_plus_family_align": {
+      "membership_entropy": 0.18401695415377617,
+      "membership_margin": 0.9697152301669121,
+      "boundary_rate": 0.00079345703125,
+      "owner_entropy": 0.3122562877833843,
+      "challenger_disagree_rate": 0.97705078125
+    },
+    "contrastive_light": {
+      "membership_entropy": 0.1411719461902976,
+      "membership_margin": 0.975029245018959,
+      "boundary_rate": 0.0029296875,
+      "owner_entropy": 0.287979481741786,
+      "challenger_disagree_rate": 0.887451171875
+    }
+  },
+  "score": 11.748530609242152
+}

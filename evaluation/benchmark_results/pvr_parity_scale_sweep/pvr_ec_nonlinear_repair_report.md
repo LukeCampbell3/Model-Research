@@ -2,27 +2,25 @@
 
 **Status:** PVR_EC_NONLINEAR_REPAIR_APPLIED
 
-**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_EXPERT_SCALE_UNDERPOWERED, PVR_EC_FIXED_OWNER_PARITY_FAILED, PVR_EC_LEARNED_OWNER_PARITY_FAILED, PVR_EC_NONLINEAR_OVERFIT_FAILED, PVR_EC_NONLINEAR_OVERFIT_READY, PVR_EC_PARITY_OVERFIT_FAILED, PVR_EC_ROUND_ROBIN_PARITY_FAILED
+**Statuses:** PVR_EC_DO_NOT_PROMOTE, PVR_EC_EXPERT_SCALE_UNDERPOWERED, PVR_EC_FIXED_OWNER_PARITY_FAILED, PVR_EC_NONLINEAR_OVERFIT_FAILED, PVR_EC_NONLINEAR_OVERFIT_READY, PVR_EC_PARITY_OVERFIT_PASSED, PVR_EC_ROUND_ROBIN_PARITY_FAILED
 
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-06T23:53:13.725897",
-    "run_id": "algo_20260606_235030_pvr-overfit-sanity",
-    "git_commit": "7d9af3bfed5260baa5c415658eb9206f52f3fc21",
+    "timestamp": "2026-06-09T01:54:48.039474",
+    "run_id": "algo_20260609_015325_pvr-overfit-sanity",
+    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
     "docker_image": "sparse-loop-moe-gpu",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
     "amp_enabled": true,
     "seed": 42,
-    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode pvr-overfit-sanity --scale tiny --device cuda --amp --pvr-overfit-tasks toy_xor_or_parity,toy_xor_or_parity_balanced --pvr-overfit-steps 500 --pvr-overfit-batch-size 32 --pvr-expert-delta-scale-sweep 0.5,1,2,4,8 --pvr-shared-scale-sweep 1,0.75,0.5,0.25,0 --run-parity-scale-sweep --output-dir evaluation/benchmark_results/pvr_parity_scale_sweep",
+    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode pvr-overfit-sanity --scale small --device cuda --amp --pvr-overfit-tasks toy_xor_or_parity,toy_xor_or_parity_balanced --pvr-overfit-steps 500 --pvr-overfit-batch-size 32 --models pvr_full,pvr_full_shared_scale_0_5,pvr_full_shared_scale_0_25,pvr_full_shared_scale_0_0,pvr_full_expert_delta_scale_1,pvr_full_expert_delta_scale_2,pvr_full_expert_delta_scale_4,pvr_full_expert_delta_scale_8 --run-nonlinear-overfit-diagnostic --output-dir evaluation/benchmark_results/pvr_parity_scale_sweep",
     "model_variants": [
       "pvr_full",
-      "pvr_full_shared_scale_1_0",
       "pvr_full_shared_scale_0_5",
       "pvr_full_shared_scale_0_25",
       "pvr_full_shared_scale_0_0",
-      "pvr_full_expert_delta_scale_0_5",
       "pvr_full_expert_delta_scale_1",
       "pvr_full_expert_delta_scale_2",
       "pvr_full_expert_delta_scale_4",
@@ -38,13 +36,20 @@
     "train_steps": 500,
     "sample_limit": null,
     "mode": "pvr-nonlinear-overfit",
-    "scale": "tiny",
+    "scale": "small",
     "families": [
       "clrs",
       "listops",
       "scan",
       "dyck"
     ],
+    "pvr_expert_delta_scale": null,
+    "pvr_expert_delta_scale_schedule": "constant",
+    "pvr_expert_delta_scale_start": null,
+    "pvr_expert_delta_scale_end": null,
+    "pvr_expert_delta_scale_warmup_steps": null,
+    "pvr_expert_delta_scale_hold_steps": null,
+    "pvr_expert_delta_scale_decay": null,
     "pvr_overfit_tasks": [
       "toy_xor_or_parity",
       "toy_xor_or_parity_balanced"
@@ -57,10 +62,9 @@
     "PVR_EC_DO_NOT_PROMOTE",
     "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
     "PVR_EC_FIXED_OWNER_PARITY_FAILED",
-    "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
     "PVR_EC_NONLINEAR_OVERFIT_FAILED",
     "PVR_EC_NONLINEAR_OVERFIT_READY",
-    "PVR_EC_PARITY_OVERFIT_FAILED",
+    "PVR_EC_PARITY_OVERFIT_PASSED",
     "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
   ],
   "promotion_ready": false,
@@ -70,155 +74,128 @@
       "PVR_EC_DO_NOT_PROMOTE",
       "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
       "PVR_EC_FIXED_OWNER_PARITY_FAILED",
-      "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
       "PVR_EC_NONLINEAR_OVERFIT_FAILED",
       "PVR_EC_NONLINEAR_OVERFIT_READY",
-      "PVR_EC_PARITY_OVERFIT_FAILED",
+      "PVR_EC_PARITY_OVERFIT_PASSED",
       "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
     ],
     "controls_pass": true,
     "fixed_owner_parity": false,
     "round_robin_parity": false,
     "uniform_owner_parity": false,
-    "learned_owner_parity": false,
+    "learned_owner_parity": true,
     "sparse_only_parity": false,
     "shared_only_parity": false,
     "dense_parity": false,
     "fixed_moe_parity": false,
     "micro_ffn_parity": false,
-    "best_expert_delta_scale": 4.0,
-    "best_expert_delta_scale_accuracy": 0.837890625,
+    "best_expert_delta_scale": 2.0,
+    "best_expert_delta_scale_accuracy": 0.8671875,
     "dominant_failure_mode": "expert_scale_underpowered",
-    "recommended_repair": "expert_delta_scale_schedule_target_4.0",
+    "recommended_repair": "expert_delta_scale_schedule_target_2.0",
     "parity_results_by_model": {
       "pvr_full": {
         "toy_xor_or_parity": {
-          "accuracy": 0.533203125,
-          "loss": 0.6871919631958008,
-          "passed": false
+          "accuracy": 0.84765625,
+          "loss": 0.35332849621772766,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.68359375,
-          "loss": 0.5859651565551758,
-          "passed": false
-        }
-      },
-      "pvr_full_shared_scale_1_0": {
-        "toy_xor_or_parity": {
-          "accuracy": 0.533203125,
-          "loss": 0.6871919631958008,
-          "passed": false
-        },
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.68359375,
-          "loss": 0.5859651565551758,
-          "passed": false
+          "accuracy": 0.77734375,
+          "loss": 0.4032782018184662,
+          "passed": true
         }
       },
       "pvr_full_shared_scale_0_5": {
         "toy_xor_or_parity": {
-          "accuracy": 0.658203125,
-          "loss": 0.5919238328933716,
-          "passed": false
+          "accuracy": 0.82421875,
+          "loss": 0.3624371886253357,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.8515625,
-          "loss": 0.35090523958206177,
+          "accuracy": 0.80859375,
+          "loss": 0.3753509521484375,
           "passed": true
         }
       },
       "pvr_full_shared_scale_0_25": {
         "toy_xor_or_parity": {
-          "accuracy": 0.53515625,
-          "loss": 0.6893468499183655,
-          "passed": false
+          "accuracy": 0.787109375,
+          "loss": 0.4257141947746277,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.7734375,
-          "loss": 0.44005537033081055,
+          "accuracy": 0.787109375,
+          "loss": 0.4234113097190857,
           "passed": true
         }
       },
       "pvr_full_shared_scale_0_0": {
         "toy_xor_or_parity": {
-          "accuracy": 0.541015625,
-          "loss": 0.6899011135101318,
-          "passed": false
-        },
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.734375,
-          "loss": 0.5039455890655518,
+          "accuracy": 0.7890625,
+          "loss": 0.41980597376823425,
           "passed": true
-        }
-      },
-      "pvr_full_expert_delta_scale_0_5": {
-        "toy_xor_or_parity": {
-          "accuracy": 0.541015625,
-          "loss": 0.6900106072425842,
-          "passed": false
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.73828125,
-          "loss": 0.4761383533477783,
+          "accuracy": 0.810546875,
+          "loss": 0.39652928709983826,
           "passed": true
         }
       },
       "pvr_full_expert_delta_scale_1": {
         "toy_xor_or_parity": {
-          "accuracy": 0.533203125,
-          "loss": 0.6871919631958008,
-          "passed": false
+          "accuracy": 0.84765625,
+          "loss": 0.35332849621772766,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.68359375,
-          "loss": 0.5859651565551758,
-          "passed": false
+          "accuracy": 0.77734375,
+          "loss": 0.4032782018184662,
+          "passed": true
         }
       },
       "pvr_full_expert_delta_scale_2": {
         "toy_xor_or_parity": {
-          "accuracy": 0.61328125,
-          "loss": 0.6161251068115234,
-          "passed": false
+          "accuracy": 0.8671875,
+          "loss": 0.3185996413230896,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.716796875,
-          "loss": 0.5014308094978333,
+          "accuracy": 0.818359375,
+          "loss": 0.41827279329299927,
           "passed": true
         }
       },
       "pvr_full_expert_delta_scale_4": {
         "toy_xor_or_parity": {
-          "accuracy": 0.5234375,
-          "loss": 0.6763818860054016,
-          "passed": false
+          "accuracy": 0.861328125,
+          "loss": 0.31747058033943176,
+          "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.837890625,
-          "loss": 0.3299400806427002,
+          "accuracy": 0.84375,
+          "loss": 0.3162716031074524,
           "passed": true
         }
       },
       "pvr_full_expert_delta_scale_8": {
         "toy_xor_or_parity": {
-          "accuracy": 0.701171875,
-          "loss": 0.5281936526298523,
+          "accuracy": 0.841796875,
+          "loss": 0.36368608474731445,
           "passed": true
         },
         "toy_xor_or_parity_balanced": {
-          "accuracy": 0.81640625,
-          "loss": 0.39288613200187683,
+          "accuracy": 0.83203125,
+          "loss": 0.3323166072368622,
           "passed": true
         }
       }
     },
     "nonlinear_results_by_model": {
       "pvr_full": {},
-      "pvr_full_shared_scale_1_0": {},
       "pvr_full_shared_scale_0_5": {},
       "pvr_full_shared_scale_0_25": {},
       "pvr_full_shared_scale_0_0": {},
-      "pvr_full_expert_delta_scale_0_5": {},
       "pvr_full_expert_delta_scale_1": {},
       "pvr_full_expert_delta_scale_2": {},
       "pvr_full_expert_delta_scale_4": {},
@@ -227,7 +204,7 @@
   },
   "status": "PVR_EC_NONLINEAR_REPAIR_APPLIED",
   "dominant_failure_mode": "expert_scale_underpowered",
-  "recommended_repair": "expert_delta_scale_schedule_target_4.0",
+  "recommended_repair": "expert_delta_scale_schedule_target_2.0",
   "repair_applied": false,
   "note": "Repair must be applied and confirmed in a follow-up run"
 }

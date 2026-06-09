@@ -1,141 +1,15 @@
-# PVR-EC Family Regression Gate Report
+# x
 
-**Status:** PVR_EC_FAMILY_REGRESSION_BLOCKED
+**Status:** OK
 
-**Statuses:** PVR_EC_FAMILY_REGRESSION_BLOCKED, PVR_EC_DO_NOT_PROMOTE
+**Statuses:** OK
 
 ```json
 {
-  "metadata": {
-    "timestamp": "2026-06-08T03:46:14.384154",
-    "run_id": "algo_20260608_034614_smoke",
-    "git_commit": "c214633e8dfb56a3ba797333eee2da2c985b17cd",
-    "docker_image": "N/A",
-    "cuda_available": false,
-    "gpu_name": "",
-    "amp_enabled": false,
-    "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest -q sparse_loop_moe/tests/test_pvr_ec.py -k minimax or nlp_research or qpm or collapse",
-    "model_variants": [
-      "fixed_moe_vectorized",
-      "pvr_ec_deploy_top1",
-      "pvr_ec_ownership_top1_final_candidate_v1"
-    ],
-    "batch_sizes": [
-      1,
-      32
-    ],
-    "sequence_lengths": [
-      64
-    ],
-    "train_steps": 30,
-    "sample_limit": null,
-    "mode": "smoke",
-    "scale": "small",
-    "families": [
-      "clrs",
-      "listops",
-      "scan",
-      "dyck"
-    ],
-    "pvr_expert_delta_scale": null,
-    "pvr_expert_delta_scale_schedule": "constant",
-    "pvr_expert_delta_scale_start": null,
-    "pvr_expert_delta_scale_end": null,
-    "pvr_expert_delta_scale_warmup_steps": null,
-    "pvr_expert_delta_scale_hold_steps": null,
-    "pvr_expert_delta_scale_decay": null
-  },
-  "status": "PVR_EC_FAMILY_REGRESSION_BLOCKED",
+  "status": "OK",
   "statuses": [
-    "PVR_EC_FAMILY_REGRESSION_BLOCKED",
-    "PVR_EC_DO_NOT_PROMOTE"
+    "OK"
   ],
-  "promotion_ready": false,
-  "passed": false,
-  "catastrophic_family_collapse_count": 1,
-  "per_family": {
-    "clrs_style": {
-      "loss": 0.398,
-      "accuracy": 0.248,
-      "fixed_moe_loss": 0.39,
-      "fixed_moe_accuracy": 0.26,
-      "deploy_top1_loss": 0.45,
-      "deploy_top1_accuracy": 0.08,
-      "loss_gap_vs_fixed": 0.008000000000000007,
-      "accuracy_gap_vs_fixed": -0.01200000000000001,
-      "residual_help_rate": null,
-      "residual_harm_rate": null,
-      "calibration_proxy": 0.105,
-      "decision_token_help_rate": null,
-      "token_to_sequence_transfer_ratio": null,
-      "collapsed": false
-    },
-    "dyck": {
-      "loss": 0.398,
-      "accuracy": 0.0,
-      "fixed_moe_loss": 0.39,
-      "fixed_moe_accuracy": 0.26,
-      "deploy_top1_loss": 0.45,
-      "deploy_top1_accuracy": 0.08,
-      "loss_gap_vs_fixed": 0.008000000000000007,
-      "accuracy_gap_vs_fixed": -0.26,
-      "residual_help_rate": null,
-      "residual_harm_rate": null,
-      "calibration_proxy": 0.105,
-      "decision_token_help_rate": null,
-      "token_to_sequence_transfer_ratio": null,
-      "collapsed": true
-    },
-    "listops": {
-      "loss": 0.398,
-      "accuracy": 0.248,
-      "fixed_moe_loss": 0.39,
-      "fixed_moe_accuracy": 0.26,
-      "deploy_top1_loss": 0.45,
-      "deploy_top1_accuracy": 0.08,
-      "loss_gap_vs_fixed": 0.008000000000000007,
-      "accuracy_gap_vs_fixed": -0.01200000000000001,
-      "residual_help_rate": null,
-      "residual_harm_rate": null,
-      "calibration_proxy": 0.105,
-      "decision_token_help_rate": null,
-      "token_to_sequence_transfer_ratio": null,
-      "collapsed": false
-    },
-    "scan_style": {
-      "loss": 0.398,
-      "accuracy": 0.248,
-      "fixed_moe_loss": 0.39,
-      "fixed_moe_accuracy": 0.26,
-      "deploy_top1_loss": 0.45,
-      "deploy_top1_accuracy": 0.08,
-      "loss_gap_vs_fixed": 0.008000000000000007,
-      "accuracy_gap_vs_fixed": -0.01200000000000001,
-      "residual_help_rate": null,
-      "residual_harm_rate": null,
-      "calibration_proxy": 0.105,
-      "decision_token_help_rate": null,
-      "token_to_sequence_transfer_ratio": null,
-      "collapsed": false
-    }
-  },
-  "model_table": {
-    "fixed_moe_vectorized": {
-      "avg_loss": 0.39,
-      "avg_accuracy": 0.26,
-      "avg_qpc": 0.13
-    },
-    "pvr_ec_deploy_top1": {
-      "avg_loss": 0.45,
-      "avg_accuracy": 0.08,
-      "avg_qpc": 0.08
-    },
-    "pvr_ec_ownership_top1_final_candidate_v1": {
-      "avg_loss": 0.398,
-      "avg_accuracy": 0.248,
-      "avg_qpc": 0.248
-    }
-  }
+  "passed": true
 }
 ```

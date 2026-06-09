@@ -1,0 +1,36 @@
+{
+  "run_id": "algo_20260609_015636_benchmark-lite",
+  "timestamp": "2026-06-09T01:58:56.943487",
+  "docker_image": "sparse-loop-moe-gpu",
+  "command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed 42 --families clrs,listops,scan,dyck --device cuda --amp --models dense_baseline,fixed_moe_vectorized,pvr_full,pvr_full_fixed_owner_e0,pvr_full_expert_delta_scale_4 --output-dir evaluation/benchmark_results/pvr_family_preservation_known_failures",
+  "python_version": "3.10.13",
+  "torch_version": "2.2.0",
+  "torch_cuda_version": "12.1",
+  "cuda_available": true,
+  "device_used": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
+  "peak_gpu_memory_mb": 10565.7431640625,
+  "amp_enabled": true,
+  "seed": 42,
+  "mode": "benchmark-lite",
+  "scale": "small",
+  "train_steps": 500,
+  "n_samples": 1000,
+  "batch_size": 32,
+  "families": [
+    "clrs",
+    "listops",
+    "scan",
+    "dyck"
+  ],
+  "total_time_s": 139.8741455078125,
+  "os": "Linux",
+  "machine": "x86_64",
+  "models_evaluated": [
+    "pvr_full_fixed_owner_e0",
+    "fixed_moe_vectorized",
+    "pvr_full",
+    "dense_baseline",
+    "pvr_full_expert_delta_scale_4"
+  ]
+}

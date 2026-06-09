@@ -1,0 +1,27 @@
+# Pvr Ec Targeted Monopoly Repair Gate Report
+
+**Status:** PVR_EC_PROTOTYPE_GEOMETRY_REPAIR_REQUIRED
+
+```json
+{
+  "status": "PVR_EC_PROTOTYPE_GEOMETRY_REPAIR_REQUIRED",
+  "verdict": "PVR_EC_PROTOTYPE_GEOMETRY_REPAIR_REQUIRED",
+  "gate_details": {
+    "verdict": "PVR_EC_PROTOTYPE_GEOMETRY_REPAIR_REQUIRED",
+    "protected_regression_count": 0,
+    "repaired_improved": 0,
+    "repaired_total": 7,
+    "challenger_improved": 0,
+    "details": [
+      "repair_insufficient=0/7"
+    ]
+  },
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "total_time_s": 43.17303156852722
+}
+```

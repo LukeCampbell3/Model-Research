@@ -1,0 +1,19 @@
+{
+  "status": "PVR_EC_NLP_STAGE2_RESEARCH_ALLOWED",
+  "verdict": "PVR_EC_NLP_STAGE2_RESEARCH_ALLOWED",
+  "selected_candidate": "contrastive_light",
+  "geometry_improvement": {
+    "entropy_delta": 2.626567439176142,
+    "margin_delta": 0.971351590444101
+  },
+  "failures_classified": 0,
+  "unknown_failures": 0,
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "deployment_verdict": "PVR_EC_DEPLOYMENT_STILL_BLOCKED",
+  "total_time_s": 103.98950958251953
+}

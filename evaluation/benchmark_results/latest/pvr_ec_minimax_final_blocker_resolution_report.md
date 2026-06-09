@@ -9,9 +9,9 @@
   "metadata": {
     "seed": 42,
     "input_dirs": [
-      "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0"
+      "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0"
     ],
-    "command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts\\pytest -q sparse_loop_moe/tests/test_pvr_ec.py -k minimax or nlp_research or qpm or collapse"
+    "command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\pytest\\__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_failure_observatory.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_nlp_stage1.py sparse_loop_moe/tests/test_pvr_ec_family_preserving_router.py sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q"
   },
   "status": "PVR_EC_REPEATABILITY_BLOCKED",
   "deployment_verdict": "PVR_EC_REPEATABILITY_BLOCKED",
@@ -41,7 +41,7 @@
     "passed": false,
     "collapse_count": 1,
     "unexplained_collapse_count": 0,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_collapse_case_replay_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_collapse_case_replay_report.json"
   },
   "minimax_candidate_selection": {
     "status": "PVR_EC_REPEATABILITY_BLOCKED",
@@ -55,12 +55,12 @@
         "calibration_proxy": 0.11
       }
     },
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_minimax_candidate_selection_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_minimax_candidate_selection_report.json"
   },
   "stability_repair_sweep": {
     "status": "PVR_EC_REPEATABILITY_BLOCKED",
     "passed": false,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_stability_repair_sweep_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_stability_repair_sweep_report.json"
   },
   "qpm_failing_shape_replay": {
     "status": "PVR_EC_QPM_SHAPE_FAILURES_REPLAYED",
@@ -78,12 +78,12 @@
         "Top4_executions": 0.0
       }
     ],
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_qpm_failing_shape_replay_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_qpm_failing_shape_replay_report.json"
   },
   "qpm_formula_audit": {
     "status": "PVR_EC_QPM_FORMULA_AUDITED",
     "passed": false,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_qpm_formula_audit_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_qpm_formula_audit_report.json"
   },
   "shape_qpm_runtime_repair": {
     "status": "PVR_EC_QPM_SHAPE_BLOCKED",
@@ -97,7 +97,7 @@
         "Top4_executions": 0.0
       }
     ],
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-144\\test_qpm_failed_shapes_block_d0\\pvr_ec_shape_qpm_runtime_repair_report.json"
+    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_qpm_failed_shapes_block_d0\\pvr_ec_shape_qpm_runtime_repair_report.json"
   },
   "nlp_research_readiness": null,
   "v1_2_revalidation": null,

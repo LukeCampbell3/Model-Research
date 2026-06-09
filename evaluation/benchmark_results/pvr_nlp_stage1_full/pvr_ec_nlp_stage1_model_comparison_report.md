@@ -1,0 +1,190 @@
+# Pvr Ec Nlp Stage1 Model Comparison Report
+
+**Status:** PVR_EC_NLP_STAGE1_MODEL_COMPARISON_COMPLETE
+
+```json
+{
+  "status": "PVR_EC_NLP_STAGE1_MODEL_COMPARISON_COMPLETE",
+  "training_results": {
+    "pvr_full": {
+      "char_copy": {
+        "initial_loss": 5.199358940124512,
+        "final_loss": 0.0008348603150807321,
+        "loss_reduction_pct": 0.999839430144236,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "char_reverse": {
+        "initial_loss": 2.680532455444336,
+        "final_loss": 0.0012240562355145812,
+        "loss_reduction_pct": 0.999543353324065,
+        "final_accuracy": 0.99951171875,
+        "overfit_success": true
+      },
+      "char_shift": {
+        "initial_loss": 0.710109531879425,
+        "final_loss": 0.00026972228079102933,
+        "loss_reduction_pct": 0.999620168060444,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "bracketed_copy": {
+        "initial_loss": 0.7468743920326233,
+        "final_loss": 0.0001758756989147514,
+        "loss_reduction_pct": 0.9997645177009803,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "small_vocab_grammar_lm": {
+        "initial_loss": 3.2275686264038086,
+        "final_loss": 9.425121243111789e-05,
+        "loss_reduction_pct": 0.9999707980764033,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "delimiter_memory_probe": {
+        "initial_loss": 4.083200931549072,
+        "final_loss": 0.002460472984239459,
+        "loss_reduction_pct": 0.9993974156487797,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "length_generalization_probe": {
+        "initial_loss": 4.958496570587158,
+        "final_loss": 0.0010152151808142662,
+        "loss_reduction_pct": 0.9997952574603285,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "ambiguous_token_context_probe": {
+        "initial_loss": 2.232598066329956,
+        "final_loss": 0.0002838233776856214,
+        "loss_reduction_pct": 0.9998728730522677,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      }
+    },
+    "pvr_full_fixed_owner_e0": {
+      "char_copy": {
+        "initial_loss": 5.1985578536987305,
+        "final_loss": 0.0012153413845226169,
+        "loss_reduction_pct": 0.9997662156662048,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "char_reverse": {
+        "initial_loss": 2.7717127799987793,
+        "final_loss": 0.000553788326214999,
+        "loss_reduction_pct": 0.9998001999593135,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "char_shift": {
+        "initial_loss": 2.975759983062744,
+        "final_loss": 0.00048686465015634894,
+        "loss_reduction_pct": 0.9998363898120388,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "bracketed_copy": {
+        "initial_loss": 2.731416702270508,
+        "final_loss": 0.00024826571461744606,
+        "loss_reduction_pct": 0.9999091073454991,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "small_vocab_grammar_lm": {
+        "initial_loss": 3.2033586502075195,
+        "final_loss": 0.01943032070994377,
+        "loss_reduction_pct": 0.9939343911089428,
+        "final_accuracy": 0.98974609375,
+        "overfit_success": true
+      },
+      "delimiter_memory_probe": {
+        "initial_loss": 4.1826958656311035,
+        "final_loss": 0.0003672093152999878,
+        "loss_reduction_pct": 0.9999122075027455,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "length_generalization_probe": {
+        "initial_loss": 5.596418380737305,
+        "final_loss": 0.0010312717640772462,
+        "loss_reduction_pct": 0.9998157264711254,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "ambiguous_token_context_probe": {
+        "initial_loss": 1.4530378580093384,
+        "final_loss": 0.0011563192820176482,
+        "loss_reduction_pct": 0.9992042056745846,
+        "final_accuracy": 0.99951171875,
+        "overfit_success": true
+      }
+    },
+    "pvr_full_scale_4": {
+      "char_copy": {
+        "initial_loss": 5.088613986968994,
+        "final_loss": 0.000756800698582083,
+        "loss_reduction_pct": 0.9998512756714264,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "char_reverse": {
+        "initial_loss": 1.643988847732544,
+        "final_loss": 0.0003401944413781166,
+        "loss_reduction_pct": 0.9997930676708378,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "char_shift": {
+        "initial_loss": 0.10673951357603073,
+        "final_loss": 0.00016466100350953639,
+        "loss_reduction_pct": 0.9984573566246182,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "bracketed_copy": {
+        "initial_loss": 0.3498128652572632,
+        "final_loss": 9.888874046737328e-05,
+        "loss_reduction_pct": 0.9997173095952471,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "small_vocab_grammar_lm": {
+        "initial_loss": 3.0225584506988525,
+        "final_loss": 0.013726889155805111,
+        "loss_reduction_pct": 0.9954585198666278,
+        "final_accuracy": 0.99462890625,
+        "overfit_success": true
+      },
+      "delimiter_memory_probe": {
+        "initial_loss": 3.8503530025482178,
+        "final_loss": 0.12146154046058655,
+        "loss_reduction_pct": 0.9684544403123034,
+        "final_accuracy": 0.9619140625,
+        "overfit_success": true
+      },
+      "length_generalization_probe": {
+        "initial_loss": 4.868844985961914,
+        "final_loss": 0.0035377764143049717,
+        "loss_reduction_pct": 0.9992733848737215,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      },
+      "ambiguous_token_context_probe": {
+        "initial_loss": 2.0080819129943848,
+        "final_loss": 0.0006418462144210935,
+        "loss_reduction_pct": 0.9996803685097367,
+        "final_accuracy": 1.0,
+        "overfit_success": true
+      }
+    }
+  },
+  "models_evaluated": [
+    "pvr_full",
+    "pvr_full_fixed_owner_e0",
+    "pvr_full_scale_4"
+  ]
+}
+```

@@ -1,0 +1,14 @@
+{
+  "status": "ACTIVE_EVAL_COMPLETE",
+  "before_loss": 1.6352438728014629,
+  "after_loss": 0.5044446935256323,
+  "loss_improved": true,
+  "loss_delta": -1.1307991792758307,
+  "membership_entropy_before": 2.7697904065631533,
+  "membership_entropy_after": 2.241824346686984,
+  "membership_margin_before": 0.001603067149509909,
+  "membership_margin_after": 0.15689119064839932,
+  "owners_per_token": 1.0,
+  "top2_executions": 0,
+  "top4_executions": 0
+}
