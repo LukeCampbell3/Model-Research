@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "timestamp": "2026-06-10T12:06:30.352711",
-    "run_id": "algo_20260610_120630_benchmark-lite",
-    "git_commit": "40abf0eeee8adcd8bbeaf41be833cfb6fd251c98",
+    "timestamp": "2026-06-10T20:14:28.024249",
+    "run_id": "algo_20260610_201427_benchmark-lite",
+    "git_commit": "48f9fbfd8e16a3775c479d71d0994955f572a033",
     "docker_image": "N/A",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_final_deployment_gate.py sparse_loop_moe/tests/test_pvr_ec_descriptor_semantic_identity_repair.py sparse_loop_moe/tests/test_pvr_ec_same_input_wrong_descriptor.py -q --tb=line",
+    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_release_freeze.py sparse_loop_moe/tests/test_pvr_ec_release_package.py sparse_loop_moe/tests/test_pvr_ec_manifest_lock.py sparse_loop_moe/tests/test_pvr_ec_production_shape_profile.py sparse_loop_moe/tests/test_pvr_ec_canary_rollout.py sparse_loop_moe/tests/test_pvr_ec_drift_monitoring.py sparse_loop_moe/tests/test_pvr_ec_release_readiness.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line",
     "model_variants": [
       "dense_baseline",
       "fixed_moe",

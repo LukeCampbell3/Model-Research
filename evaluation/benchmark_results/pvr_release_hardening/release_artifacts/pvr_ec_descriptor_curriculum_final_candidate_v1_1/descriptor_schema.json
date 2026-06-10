@@ -1,0 +1,17 @@
+{
+  "descriptors": {
+    "compositional_grammar": 102,
+    "agreement_dependency": 103,
+    "negation_polarity": 104,
+    "ambiguous_word_sense": 105,
+    "coreference_memory": 106,
+    "instruction_micro": 107,
+    "multisentence_delimiter": 108,
+    "paraphrase_invariance": 109
+  },
+  "prefix": [
+    100,
+    "TOKEN",
+    101
+  ]
+}

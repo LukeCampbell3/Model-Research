@@ -1,0 +1,1 @@
+{"auto_rollback": true, "triggers": ["margin<0.03", "unknown_failure>0", "top2>0"]}

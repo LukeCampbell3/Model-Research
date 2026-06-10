@@ -1,0 +1,25 @@
+{
+  "status": "PVR_EC_RELEASE_READY_FOR_CANARY",
+  "final_release_verdict": "PVR_EC_RELEASE_READY_FOR_CANARY",
+  "candidate_freeze_status": "PASSED",
+  "release_package_status": "CREATED",
+  "manifest_lock_status": "LOCKED",
+  "production_shape_profile_status": "PASSED",
+  "canary_simulation_status": "PASSED",
+  "drift_monitoring_status": "CREATED",
+  "descriptor_control_margin_baseline": 0.187,
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "release_artifact_paths": [
+    "evaluation/benchmark_results/pvr_release_hardening/release_artifacts/pvr_ec_descriptor_curriculum_final_candidate_v1_1",
+    "evaluation/benchmark_results/pvr_release_hardening/release_packages/pvr_ec_descriptor_curriculum_final_candidate_v1_1"
+  ],
+  "known_blockers": [],
+  "known_warnings": [],
+  "recommended_rollout_plan": "1% canary \u2192 5% \u2192 10% \u2192 25% \u2192 50% \u2192 100%",
+  "total_time_s": 76.43225002288818
+}
