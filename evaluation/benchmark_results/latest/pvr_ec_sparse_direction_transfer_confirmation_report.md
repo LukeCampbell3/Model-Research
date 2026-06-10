@@ -7,15 +7,15 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-09T00:46:57.485804",
-    "run_id": "algo_20260609_004657_smoke",
-    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
+    "timestamp": "2026-06-10T00:39:41.618451",
+    "run_id": "algo_20260610_003941_smoke",
+    "git_commit": "928992ecf24f649e7449de43e61a75deed225384",
     "docker_image": "N/A",
-    "cuda_available": false,
-    "gpu_name": "",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\pytest\\__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_failure_observatory.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_nlp_stage1.py sparse_loop_moe/tests/test_pvr_ec_family_preserving_router.py sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q",
+    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line",
     "model_variants": [
       "dense_baseline",
       "fixed_moe",

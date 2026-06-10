@@ -1,0 +1,11 @@
+{
+  "status": "PVR_EC_NLP_RETEST_PASSED",
+  "s1_converged": 8,
+  "s2_converged": 8,
+  "geometry": {
+    "entropy": 2.6853702664375305,
+    "margin": 0.018101137597113848
+  },
+  "owners_per_token": 1.0,
+  "top2": 0
+}

@@ -2,26 +2,102 @@
 
 **Status:** PVR_EC_ROOT_CAUSE_INCONCLUSIVE
 
-**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_LATENCY_VARIANCE_BLOCKER, PVR_EC_LEARNING_SEPARATION_DIAGNOSTIC_READY, PVR_EC_ROOT_CAUSE_INCONCLUSIVE, PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER
 
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-09T01:58:56.339003",
-    "run_id": "algo_20260609_015636_benchmark-lite",
-    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
-    "docker_image": "sparse-loop-moe-gpu",
+    "timestamp": "2026-06-10T00:39:49.051290",
+    "run_id": "algo_20260610_003949_smoke",
+    "git_commit": "928992ecf24f649e7449de43e61a75deed225384",
+    "docker_image": "N/A",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
-    "amp_enabled": true,
+    "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode benchmark-lite --scale small --sample-limit 1000 --train-steps 500 --seed 42 --families clrs,listops,scan,dyck --device cuda --amp --models dense_baseline,fixed_moe_vectorized,pvr_full,pvr_full_fixed_owner_e0,pvr_full_expert_delta_scale_4 --output-dir evaluation/benchmark_results/pvr_family_preservation_known_failures",
+    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line",
     "model_variants": [
       "dense_baseline",
+      "fixed_moe",
+      "fixed_moe_looped_reference",
       "fixed_moe_vectorized",
+      "adaptive_moe",
+      "looped_moe",
+      "full_system",
+      "pvr_ec",
+      "pvr_ec_matched",
+      "pvr_ec_fixed_top2",
+      "pvr_ec_no_prototypes",
+      "pvr_ec_no_load_bias",
+      "pvr_ec_no_extra_experts",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_deploy_top2",
+      "pvr_ec_deploy_bucketed",
+      "pvr_ec_deploy_dense_masked_control",
+      "pvr_ec_ownership_top1_frozen_candidate",
+      "pvr_ec_ownership_top1_delta_small",
+      "pvr_ec_ownership_top1_delta_medium",
+      "pvr_ec_ownership_top1_delta_large",
+      "pvr_ec_ownership_top1_full_expert_ffn_control",
+      "pvr_ec_ownership_top1_rank_8",
+      "pvr_ec_ownership_top1_rank_16",
+      "pvr_ec_ownership_top1_rank_32",
+      "pvr_ec_ownership_top1_rank_64",
+      "pvr_ec_ownership_top1_rank_128",
+      "pvr_ec_ownership_top1_micro_ffn_0_25x",
+      "pvr_ec_ownership_top1_micro_ffn_0_5x",
+      "pvr_ec_ownership_top1_micro_ffn_1_0x",
+      "pvr_ec_ownership_top1_delta_rank_8",
+      "pvr_ec_ownership_top1_delta_rank_16",
+      "pvr_ec_ownership_top1_delta_rank_32",
+      "pvr_ec_ownership_top1_delta_rank_64",
+      "pvr_ec_ownership_top1_delta_rank_128",
+      "pvr_ec_learning_full",
+      "pvr_ec_learning_shared_only",
+      "pvr_ec_learning_sparse_only",
+      "pvr_ec_learning_shared_scale_0_5",
+      "pvr_ec_learning_expert_delta_scale_2_0",
+      "pvr_ec_ownership_top1_delayed_candidate",
+      "pvr_shared_only",
+      "pvr_sparse_only",
       "pvr_full",
+      "pvr_full_shared_scale_1_0",
+      "pvr_full_shared_scale_0_5",
+      "pvr_full_shared_scale_0_25",
+      "pvr_full_shared_scale_0_0",
+      "pvr_full_expert_delta_scale_0_5",
+      "pvr_full_expert_delta_scale_1_0",
+      "pvr_full_expert_delta_scale_2_0",
+      "pvr_full_expert_delta_scale_4_0",
       "pvr_full_fixed_owner_e0",
-      "pvr_full_expert_delta_scale_4"
+      "pvr_full_fixed_owner_round_robin",
+      "pvr_full_uniform_owner",
+      "pvr_full_expert_delta_scale_1",
+      "pvr_full_expert_delta_scale_2",
+      "pvr_full_expert_delta_scale_4",
+      "pvr_full_expert_delta_scale_8",
+      "pvr_full_delta_rank_16",
+      "pvr_full_delta_rank_64",
+      "pvr_full_delta_rank_128",
+      "pvr_full_micro_ffn_0_5x",
+      "pvr_ec_ownership_top1_constant_1",
+      "pvr_ec_ownership_top1_constant_2",
+      "pvr_ec_ownership_top1_constant_4",
+      "pvr_ec_ownership_top1_constant_8",
+      "pvr_full_scale_schedule_1_to_4",
+      "pvr_full_scale_schedule_1_to_8",
+      "pvr_full_scale_schedule_1_to_8_to_4",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_4",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8_to_4",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_8_to_2",
+      "pvr_ec_ownership_top1_scale_schedule_1_to_4_to_2",
+      "pvr_ec_ownership_top1_best_scale_repair",
+      "pvr_ec_ownership_top1_best_transfer_repair",
+      "pvr_ec_ownership_top1_best_sparse_logit_repair",
+      "pvr_ec_ownership_top1_final_candidate_v1",
+      "pvr_ec_ownership_top1_final_candidate_v1_1",
+      "pvr_ec_ownership_top1_final_candidate_v1_2"
     ],
     "batch_sizes": [
       1,
@@ -30,9 +106,9 @@
     "sequence_lengths": [
       64
     ],
-    "train_steps": 500,
-    "sample_limit": 1000,
-    "mode": "benchmark-lite",
+    "train_steps": 30,
+    "sample_limit": null,
+    "mode": "smoke",
     "scale": "small",
     "families": [
       "clrs",
@@ -48,118 +124,23 @@
     "pvr_expert_delta_scale_hold_steps": null,
     "pvr_expert_delta_scale_decay": null,
     "root_cause_flags": {
-      "run_root_baseline_matrix": false,
-      "run_training_dynamics_diagnostic": false,
-      "run_ownership_integration_diagnostic": false,
-      "run_shared_sparse_ablation": false,
-      "run_learning_separation_diagnostic": false,
-      "run_loss_calibration_diagnostic": false,
-      "run_task_fit_diagnostic": false,
-      "run_latency_stability_diagnostic": false,
-      "run_gradient_flow_diagnostic": false,
-      "run_optimizer_update_diagnostic": false,
-      "run_expert_contribution_diagnostic": false,
-      "run_loss_target_sanity": false,
-      "run_shared_absorption_diagnostic": false,
-      "run_expert_initialization_diagnostic": false,
-      "run_after_repair_confirmation": false,
-      "run_nonlinear_overfit_diagnostic": false,
-      "run_fixed_owner_parity_diagnostic": false,
-      "run_parity_scale_sweep": false,
-      "run_nonlinear_overfit_confirmation": false,
-      "run_after_nonlinear_repair_confirmation": false,
-      "run_expert_delta_scale_schedule_diagnostic": false,
-      "run_expert_delta_scale_schedule_confirmation": false,
-      "run_residual_alignment_diagnostic": false,
-      "run_family_scale_sweep": false,
-      "run_conditional_scale_oracle": false,
-      "run_benchmark_transfer_confirmation": false,
-      "run_task_level_transfer_diagnostic": false,
-      "run_decision_token_credit_diagnostic": false,
-      "run_token_to_sequence_transfer_diagnostic": false,
-      "run_family_failure_decomposition": false,
-      "run_output_readout_diagnostic": false,
-      "run_loss_credit_repair_sweep": false,
-      "run_curriculum_repair_sweep": false,
-      "run_segment_residual_diagnostic": false,
-      "run_sparse_logit_direction_diagnostic": false,
-      "run_sparse_auxiliary_loss_sweep": false,
-      "run_calibration_constrained_sparse_aux_sweep": false,
-      "run_sparse_auxiliary_scope_sweep": false,
-      "run_sparse_direction_transfer_confirmation": false,
-      "run_final_config_manifest": false,
-      "run_forward_purity_gate": false,
-      "run_multiseed_confirmation_gate": false,
-      "run_longer_training_confirmation_gate": false,
-      "run_matched_wall_clock_gate": false,
-      "run_final_calibration_sweep": false,
-      "run_family_regression_gate": false,
-      "run_quality_per_ms_memory_gate": false,
-      "run_reliability_proxy_gate": false,
-      "run_repeatability_collapse_isolation": false,
-      "run_repeatability_repair_sweep": false,
-      "run_qpm_shape_regression_analysis": false,
-      "run_qpm_memory_repair": false,
-      "run_reliability_calibration_repair": false,
-      "run_final_candidate_revalidation": false,
-      "run_collapse_case_replay": false,
-      "run_minimax_candidate_selection": false,
-      "run_stability_repair_sweep": false,
-      "run_qpm_failing_shape_replay": false,
-      "run_qpm_formula_audit": false,
-      "run_shape_qpm_runtime_repair": false,
-      "run_failure_case_replay": false,
-      "run_failure_attribution": false,
-      "run_failure_repair_candidates": false,
-      "run_failure_repair_validation": false
+      "run_root_baseline_matrix": true,
+      "run_training_dynamics_diagnostic": true,
+      "run_ownership_integration_diagnostic": true,
+      "run_shared_sparse_ablation": true,
+      "run_loss_calibration_diagnostic": true,
+      "run_task_fit_diagnostic": true,
+      "run_latency_stability_diagnostic": true
     },
     "diagnostic_sweeps": {
-      "train_steps_list": [
-        500
+      "loss_schedule_sweep": [
+        "ce_only",
+        "aux_delta"
       ],
-      "seed_list": [
-        42
-      ],
-      "ownership_schedule_sweep": [],
-      "shared_scale_sweep": [],
-      "expert_delta_scale_sweep": [],
-      "loss_schedule_sweep": [],
-      "task_loss_schedule_sweep": [],
-      "batch_size_list": [
-        1,
-        32
-      ],
-      "seq_len_list": [
-        64
-      ],
-      "shape_pairs": [],
-      "pvr_overfit_tasks": [
-        "toy_identity"
-      ],
-      "pvr_overfit_steps": 100,
-      "pvr_overfit_batch_size": 16,
-      "pvr_overfit_single_batch": false,
-      "pvr_shared_scale_sweep": [],
-      "pvr_expert_delta_scale_sweep": [],
-      "pvr_expert_init_sweep": [],
-      "pvr_expert_delta_scale_schedule": "constant",
-      "pvr_expert_delta_scale_start": null,
-      "pvr_expert_delta_scale_end": null,
-      "pvr_expert_delta_scale_warmup_steps": null,
-      "pvr_expert_delta_scale_hold_steps": null,
-      "pvr_expert_delta_scale_decay": null,
-      "conditional_scale_modes": [],
-      "readout_variants": [],
-      "loss_credit_variants": [],
-      "curriculum_variants": [],
-      "sparse_aux_loss_variants": [],
-      "sparse_aux_scopes": [],
-      "final_calibration_variants": [],
-      "repeatability_repair_variants": [],
-      "calibration_repair_variants": [],
-      "minimax_variants": [],
-      "stability_repair_variants": [],
-      "max_train_seconds": null
+      "task_loss_schedule_sweep": [
+        "uniform",
+        "family_balanced"
+      ]
     },
     "source": "trained_benchmark"
   },
@@ -167,372 +148,51 @@
   "statuses": [
     "PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY",
     "PVR_EC_DO_NOT_PROMOTE",
-    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE"
+    "PVR_EC_LATENCY_VARIANCE_BLOCKER",
+    "PVR_EC_LEARNING_SEPARATION_DIAGNOSTIC_READY",
+    "PVR_EC_ROOT_CAUSE_INCONCLUSIVE",
+    "PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER"
   ],
   "loss_curve": [
     {
-      "model": "dense_baseline",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.30445483326911926,
-      "accuracy": 0.06636363636363636
-    },
-    {
-      "model": "dense_baseline",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.2642211178317666,
-      "accuracy": 0.09036073329390892
-    },
-    {
-      "model": "dense_baseline",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.3168967980891466,
-      "accuracy": 0.062137049941927994
-    },
-    {
-      "model": "dense_baseline",
-      "family": "listops",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 1.5325019508600235,
-      "accuracy": 0.06462393978542942
-    },
-    {
-      "model": "dense_baseline",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.28982960246503353,
-      "accuracy": 0.030778764718033463
-    },
-    {
-      "model": "dense_baseline",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.4012259393930435,
-      "accuracy": 0.03504043126684636
-    },
-    {
-      "model": "dense_baseline",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.5708926282823086,
-      "accuracy": 0.01737691352916839
-    },
-    {
-      "model": "dense_baseline",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1864786148071289,
-      "eval_loss": 0.39861596127351123,
-      "accuracy": 0.041782178217821785
-    },
-    {
       "model": "fixed_moe_vectorized",
-      "family": "clrs_style",
+      "family": "clrs",
       "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.21254643518477678,
-      "accuracy": 0.49845454545454543
+      "train_steps": 30,
+      "train_loss": 0.8,
+      "eval_loss": 0.7,
+      "accuracy": 0.4
     },
     {
-      "model": "fixed_moe_vectorized",
-      "family": "clrs_style",
+      "model": "pvr_ec_ownership_top1_delta_medium",
+      "family": "clrs",
       "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.19413983263075352,
-      "accuracy": 0.524896510940272
+      "train_steps": 30,
+      "train_loss": 0.9,
+      "eval_loss": 0.8,
+      "accuracy": 0.35
     },
     {
-      "model": "fixed_moe_vectorized",
-      "family": "clrs_style",
+      "model": "pvr_ec_shared_only_ablation",
+      "family": "scan",
       "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.19540273770689964,
-      "accuracy": 0.54045683313976
+      "train_steps": 30,
+      "train_loss": 0.6,
+      "eval_loss": 0.6,
+      "accuracy": 0.5
     },
     {
-      "model": "fixed_moe_vectorized",
-      "family": "listops",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 1.3568207398056984,
-      "accuracy": 0.22077739706790991
-    },
-    {
-      "model": "fixed_moe_vectorized",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.19047189597040415,
-      "accuracy": 0.1043172898161537
-    },
-    {
-      "model": "fixed_moe_vectorized",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.27171850576996803,
-      "accuracy": 0.07577118897873615
-    },
-    {
-      "model": "fixed_moe_vectorized",
+      "model": "pvr_ec_sparse_only_ablation",
       "family": "dyck",
       "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.4121997430920601,
-      "accuracy": 0.02989242863053372
-    },
-    {
-      "model": "fixed_moe_vectorized",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.13683609664440155,
-      "eval_loss": 0.2755616481105487,
-      "accuracy": 0.07405940594059406
-    },
-    {
-      "model": "pvr_full",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.3074029963463545,
-      "accuracy": 0.1378181818181818
-    },
-    {
-      "model": "pvr_full",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.28325783275067806,
-      "accuracy": 0.07344766410408042
-    },
-    {
-      "model": "pvr_full",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.3238312490284443,
-      "accuracy": 0.08091366627951994
-    },
-    {
-      "model": "pvr_full",
-      "family": "listops",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 1.6209645047783852,
-      "accuracy": 0.11464359939336068
-    },
-    {
-      "model": "pvr_full",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.21884552482515574,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.3002347759902477,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.4245618898421526,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.18775048851966858,
-      "eval_loss": 0.29722652584314346,
-      "accuracy": 0.0007920792079207921
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.31244483031332493,
-      "accuracy": 0.11427272727272728
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.2841526158154011,
-      "accuracy": 0.10147841513897102
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.3302482310682535,
-      "accuracy": 0.08236546651180797
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "listops",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 1.7004116885364056,
-      "accuracy": 0.07057799247317868
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.21699993591755629,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.2974763661623001,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.42559670843183994,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_fixed_owner_e0",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.1881854236125946,
-      "eval_loss": 0.2957934613029162,
-      "accuracy": 0.0007920792079207921
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.30516638047993183,
-      "accuracy": 0.14481818181818182
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.28202829137444496,
-      "accuracy": 0.10065050266114725
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "clrs_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.3265083581209183,
-      "accuracy": 0.07994579945799458
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "listops",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 1.6789878457784653,
-      "accuracy": 0.07479076560130316
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.21670475415885448,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "scan_style",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.2968834191560745,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.4244465231895447,
-      "accuracy": 0.0
-    },
-    {
-      "model": "pvr_full_expert_delta_scale_4",
-      "family": "dyck",
-      "seed": 42,
-      "train_steps": 500,
-      "train_loss": 0.19066591560840607,
-      "eval_loss": 0.2950296724836032,
-      "accuracy": 0.0015841584158415843
+      "train_steps": 30,
+      "train_loss": 0.9,
+      "eval_loss": 0.9,
+      "accuracy": 0.2
     }
   ],
   "specialization_metrics": {
-    "expert_utilization": 0.6,
+    "expert_utilization": null,
     "expert_gradient_norm_by_expert": {},
     "expert_output_norm_by_expert": {}
   }

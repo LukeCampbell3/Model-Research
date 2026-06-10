@@ -1,0 +1,12 @@
+{
+  "status": "PVR_EC_STAGE3C_TRANSFER_CONDITIONING_TESTED",
+  "baseline_seen_acc": 0.9595772425333658,
+  "baseline_heldout_acc": 0.26722013764083385,
+  "descriptor_gain": 0.00721718929708004,
+  "fewshot_k1_gain": -0.09175493102520704,
+  "fewshot_k4_gain": NaN,
+  "fewshot_k8_gain": NaN,
+  "operator_composition_gain": 0.5979515928775072,
+  "role_binding_gain": NaN,
+  "full_candidate_gain": -0.13521440140902996
+}

@@ -1,0 +1,17 @@
+# Pvr Ec Stage3 Geometry Metric Consistency Report
+**Status:** CONSISTENT
+
+```json
+{
+  "status": "CONSISTENT",
+  "same_batch_contrastive": {
+    "entropy": 2.6864354610443115,
+    "margin": 0.016643330454826355
+  },
+  "same_batch_baseline": {
+    "entropy": 2.768817901611328,
+    "margin": 0.0018146067159250379
+  },
+  "metrics_consistent": true
+}
+```

@@ -1,0 +1,36 @@
+{
+  "status": "PVR_EC_STAGE4_SMALL_NLP_BRIDGE_PASSED_WITH_BLOCKERS",
+  "verdict": "PVR_EC_STAGE4_SMALL_NLP_BRIDGE_PASSED_WITH_BLOCKERS",
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "group_results": {
+    "language_modeling": {
+      "pvr_acc": 0.7606026785714286,
+      "dense_acc": 1.0,
+      "pvr_competitive": false
+    },
+    "classification": {
+      "pvr_acc": 0.9354407166907167,
+      "dense_acc": 1.0,
+      "pvr_competitive": true
+    },
+    "qa_instruction": {
+      "pvr_acc": 0.5726126328393953,
+      "dense_acc": 0.8351201167489897,
+      "pvr_competitive": false
+    },
+    "coreference": {
+      "pvr_acc": 0.78515625,
+      "dense_acc": 0.9951923076923077,
+      "pvr_competitive": false
+    }
+  },
+  "competitive_count": 1,
+  "unknown_failures": 0,
+  "total_time_s": 104.89465308189392,
+  "deployment_verdict": "PVR_EC_DEPLOYMENT_STILL_BLOCKED"
+}

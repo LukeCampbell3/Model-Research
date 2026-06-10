@@ -1,0 +1,16 @@
+{
+  "status": "EVIDENCE_COMPUTED",
+  "operators": [
+    "none",
+    "negation",
+    "instruction_action",
+    "conditional",
+    "delimiter",
+    "role_marker",
+    "polarity_positive",
+    "polarity_negative",
+    "copy_command",
+    "reverse_command",
+    "shift_command"
+  ]
+}

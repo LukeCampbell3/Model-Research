@@ -1,0 +1,28 @@
+# Pvr Ec Stage3E Research Gate Report
+**Status:** PVR_EC_STAGE3E_TRANSFER_EMERGES
+
+```json
+{
+  "status": "PVR_EC_STAGE3E_TRANSFER_EMERGES",
+  "verdict": "PVR_EC_STAGE3E_TRANSFER_EMERGES",
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "baseline_heldout_acc": 0.21270042657852173,
+  "scale_helps": false,
+  "best_scale_config": "small_128_2layer",
+  "best_scale_heldout_acc": 0.21270042657852173,
+  "context_helps": true,
+  "meta_helps": false,
+  "meta_avg_fewshot": 0.0021008404437452555,
+  "descriptor_gain": 0.312527596950531,
+  "combined_gain": 0.11011511087417603,
+  "combined_heldout_acc": 0.32281553745269775,
+  "unknown_failures": 0,
+  "total_time_s": 765.3296520709991,
+  "deployment_verdict": "PVR_EC_DEPLOYMENT_STILL_BLOCKED"
+}
+```

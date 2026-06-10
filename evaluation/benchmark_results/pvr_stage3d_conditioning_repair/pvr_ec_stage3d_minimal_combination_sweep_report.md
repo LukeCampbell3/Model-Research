@@ -1,0 +1,19 @@
+# Pvr Ec Stage3D Minimal Combination Sweep Report
+**Status:** COMBINATION_SWEEP_COMPLETE
+
+```json
+{
+  "status": "COMBINATION_SWEEP_COMPLETE",
+  "baseline_heldout_acc": 0.27687371987849474,
+  "combo_results": {
+    "operator_plus_descriptor": 0.1528850421309471,
+    "descriptor_plus_fewshot_k4": 0.0,
+    "fewshot_k4_alone": 0.11363914795219898,
+    "descriptor_alone": 0.013377096503973007,
+    "role_binding_alone": 0.1616651937365532
+  },
+  "best_combo_name": "baseline",
+  "best_combo_acc": 0.27687371987849474,
+  "best_gain": 0.0
+}
+```

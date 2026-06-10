@@ -1,0 +1,42 @@
+# Pvr Ec Nlp Retest Stage1 Report
+**Status:** PASS
+
+```json
+{
+  "status": "PASS",
+  "results": {
+    "char_copy": {
+      "loss": 3.971561818616465e-05,
+      "accuracy": 1.0
+    },
+    "char_reverse": {
+      "loss": 4.1059851355385035e-05,
+      "accuracy": 1.0
+    },
+    "char_shift": {
+      "loss": 4.1334551497129723e-05,
+      "accuracy": 1.0
+    },
+    "bracketed_copy": {
+      "loss": 3.486631976556964e-05,
+      "accuracy": 1.0
+    },
+    "small_vocab_grammar_lm": {
+      "loss": 0.0001605670404387638,
+      "accuracy": 1.0
+    },
+    "delimiter_memory_probe": {
+      "loss": 5.0825070502469316e-05,
+      "accuracy": 1.0
+    },
+    "length_generalization_probe": {
+      "loss": 3.971561818616465e-05,
+      "accuracy": 1.0
+    },
+    "ambiguous_token_context_probe": {
+      "loss": 4.554857878247276e-05,
+      "accuracy": 1.0
+    }
+  }
+}
+```

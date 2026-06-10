@@ -1,21 +1,17 @@
 {
   "metadata": {
-    "timestamp": "2026-06-09T02:36:45.904990",
-    "run_id": "algo_20260609_023354_pvr-overfit-sanity",
-    "git_commit": "aff470f9ed548af833e78f9fb075ed1fa78a9af1",
-    "docker_image": "sparse-loop-moe-gpu",
+    "timestamp": "2026-06-10T00:39:23.556648",
+    "run_id": "algo_20260610_003923_pvr-overfit-sanity",
+    "git_commit": "928992ecf24f649e7449de43e61a75deed225384",
+    "docker_image": "N/A",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
-    "amp_enabled": true,
+    "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "evaluation/run_algorithmic_benchmarks.py --mode pvr-overfit-sanity --scale small --device cuda --amp --seed-list 42,123,777 --pvr-overfit-tasks toy_xor_or_parity_balanced,toy_nonlinear_lookup,single_batch_memorization --pvr-overfit-steps 1000 --pvr-overfit-batch-size 32 --models dense_baseline,fixed_moe_vectorized,pvr_full,pvr_full_fixed_owner_e0,pvr_full_expert_delta_scale_4,pvr_full_micro_ffn_0_5x --run-nonlinear-overfit-diagnostic --output-dir evaluation/benchmark_results/pvr_nonlinear_overfit_1000",
+    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line",
     "model_variants": [
-      "dense_baseline",
-      "fixed_moe_vectorized",
       "pvr_full",
-      "pvr_full_fixed_owner_e0",
-      "pvr_full_expert_delta_scale_4",
-      "pvr_full_micro_ffn_0_5x"
+      "pvr_full_scale_schedule_1_to_4"
     ],
     "batch_sizes": [
       1,
@@ -27,7 +23,7 @@
     "train_steps": 500,
     "sample_limit": null,
     "mode": "pvr-nonlinear-overfit",
-    "scale": "small",
+    "scale": "tiny",
     "families": [
       "clrs",
       "listops",
@@ -42,136 +38,56 @@
     "pvr_expert_delta_scale_hold_steps": null,
     "pvr_expert_delta_scale_decay": null,
     "pvr_overfit_tasks": [
-      "toy_xor_or_parity_balanced",
-      "toy_nonlinear_lookup",
-      "single_batch_memorization"
+      "toy_identity"
     ],
-    "pvr_overfit_steps": 1000,
-    "pvr_overfit_batch_size": 32,
+    "pvr_overfit_steps": 2,
+    "pvr_overfit_batch_size": 2,
     "failures": []
   },
   "statuses": [
     "PVR_EC_DO_NOT_PROMOTE",
-    "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
-    "PVR_EC_FIXED_OWNER_PARITY_PASSED",
-    "PVR_EC_NONLINEAR_OVERFIT_PASSED",
+    "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+    "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
+    "PVR_EC_LOSS_SCHEDULE_BLOCKER",
+    "PVR_EC_NONLINEAR_OVERFIT_FAILED",
     "PVR_EC_NONLINEAR_OVERFIT_READY",
-    "PVR_EC_PARITY_OVERFIT_PASSED",
+    "PVR_EC_PARITY_OVERFIT_FAILED",
     "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
   ],
   "promotion_ready": false,
   "analysis": {
-    "overall_status": "PVR_EC_NONLINEAR_OVERFIT_PASSED",
+    "overall_status": "PVR_EC_NONLINEAR_OVERFIT_FAILED",
     "statuses": [
       "PVR_EC_DO_NOT_PROMOTE",
-      "PVR_EC_EXPERT_SCALE_UNDERPOWERED",
-      "PVR_EC_FIXED_OWNER_PARITY_PASSED",
-      "PVR_EC_NONLINEAR_OVERFIT_PASSED",
+      "PVR_EC_FIXED_OWNER_PARITY_FAILED",
+      "PVR_EC_LEARNED_OWNER_PARITY_FAILED",
+      "PVR_EC_LOSS_SCHEDULE_BLOCKER",
+      "PVR_EC_NONLINEAR_OVERFIT_FAILED",
       "PVR_EC_NONLINEAR_OVERFIT_READY",
-      "PVR_EC_PARITY_OVERFIT_PASSED",
+      "PVR_EC_PARITY_OVERFIT_FAILED",
       "PVR_EC_ROUND_ROBIN_PARITY_FAILED"
     ],
-    "controls_pass": true,
-    "fixed_owner_parity": true,
+    "controls_pass": false,
+    "fixed_owner_parity": false,
     "round_robin_parity": false,
     "uniform_owner_parity": false,
-    "learned_owner_parity": true,
+    "learned_owner_parity": false,
     "sparse_only_parity": false,
     "shared_only_parity": false,
-    "dense_parity": true,
+    "dense_parity": false,
     "fixed_moe_parity": false,
-    "micro_ffn_parity": true,
-    "best_expert_delta_scale": 4.0,
-    "best_expert_delta_scale_accuracy": 0.921875,
-    "dominant_failure_mode": "expert_scale_underpowered",
-    "recommended_repair": "expert_delta_scale_schedule_target_4.0",
+    "micro_ffn_parity": false,
+    "best_expert_delta_scale": null,
+    "best_expert_delta_scale_accuracy": 0.0,
+    "dominant_failure_mode": "loss_schedule_or_target_blocker",
+    "recommended_repair": "verify_parity_target_and_loss_construction",
     "parity_results_by_model": {
-      "dense_baseline": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.78125,
-          "loss": 0.42694929242134094,
-          "passed": true
-        }
-      },
-      "fixed_moe_vectorized": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.509765625,
-          "loss": 0.6930435299873352,
-          "passed": false
-        }
-      },
-      "pvr_full": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.869140625,
-          "loss": 0.3039575517177582,
-          "passed": true
-        }
-      },
-      "pvr_full_fixed_owner_e0": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.89453125,
-          "loss": 0.27240124344825745,
-          "passed": true
-        }
-      },
-      "pvr_full_expert_delta_scale_4": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.921875,
-          "loss": 0.2106875777244568,
-          "passed": true
-        }
-      },
-      "pvr_full_micro_ffn_0_5x": {
-        "toy_xor_or_parity_balanced": {
-          "accuracy": 0.775390625,
-          "loss": 0.42588067054748535,
-          "passed": true
-        }
-      }
+      "pvr_full": {},
+      "pvr_full_scale_schedule_1_to_4": {}
     },
     "nonlinear_results_by_model": {
-      "dense_baseline": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.00016483038780279458,
-          "passed": true
-        }
-      },
-      "fixed_moe_vectorized": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.00018473439558874816,
-          "passed": true
-        }
-      },
-      "pvr_full": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 0.998046875,
-          "loss": 0.005288973450660706,
-          "passed": true
-        }
-      },
-      "pvr_full_fixed_owner_e0": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.00048239532043226063,
-          "passed": true
-        }
-      },
-      "pvr_full_expert_delta_scale_4": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 0.002530754543840885,
-          "passed": true
-        }
-      },
-      "pvr_full_micro_ffn_0_5x": {
-        "toy_nonlinear_lookup": {
-          "accuracy": 1.0,
-          "loss": 5.8679815992945805e-05,
-          "passed": true
-        }
-      }
+      "pvr_full": {},
+      "pvr_full_scale_schedule_1_to_4": {}
     }
   },
   "status": "PVR_EC_NONLINEAR_OVERFIT_READY",

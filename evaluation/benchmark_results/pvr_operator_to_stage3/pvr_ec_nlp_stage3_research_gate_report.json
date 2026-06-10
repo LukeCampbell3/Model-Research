@@ -1,0 +1,33 @@
+{
+  "status": "PVR_EC_NLP_STAGE3_DO_NOT_EXPAND",
+  "verdict": "PVR_EC_NLP_STAGE3_DO_NOT_EXPAND",
+  "train_acc": 0.9988665481408437,
+  "holdout_acc": 0.23389232903718948,
+  "all_acc": 0.8076229933649302,
+  "geometry": {
+    "entropy": 2.667250335216522,
+    "margin": 0.00535770517308265
+  },
+  "length_results": {
+    "32": {
+      "avg_loss": 0.23811987539132437
+    },
+    "64": {
+      "avg_loss": 0.0007902908691903576
+    },
+    "128": {
+      "avg_loss": 0.00031251460313796997
+    }
+  },
+  "failures": 2,
+  "unknown_failures": 0,
+  "operator_verdict": "PVR_EC_OPERATOR_CONDITIONED_ROUTER_ACCEPTED",
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "deployment_verdict": "PVR_EC_DEPLOYMENT_STILL_BLOCKED",
+  "total_time_s": 95.58976435661316
+}

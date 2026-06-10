@@ -1,18 +1,22 @@
 # PVR-EC Root Cause Summary
 
-**Status:** PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+**Status:** PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER
 
-**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_ROOT_CAUSE_INCONCLUSIVE
+**Statuses:** PVR_EC_DIAGNOSTIC_INFRASTRUCTURE_READY, PVR_EC_DO_NOT_PROMOTE, PVR_EC_LATENCY_VARIANCE_BLOCKER, PVR_EC_LEARNING_SEPARATION_DIAGNOSTIC_READY, PVR_EC_ROOT_CAUSE_INCONCLUSIVE, PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER
 
-Primary root cause: `PVR_EC_ROOT_CAUSE_INCONCLUSIVE`
+Primary root cause: `PVR_EC_ROUTED_EXPERT_UNDERCONTRIBUTION_BLOCKER`
 
 Promotion remains blocked.
 
 ```json
 [
   {
-    "label": "root_cause",
-    "value": "insufficient clean evidence"
+    "label": "latency_p95_p50_ratio",
+    "value": 4.0
+  },
+  {
+    "label": "full_model_score_minus_shared_only_score",
+    "value": -0.15000000000000002
   }
 ]
 ```

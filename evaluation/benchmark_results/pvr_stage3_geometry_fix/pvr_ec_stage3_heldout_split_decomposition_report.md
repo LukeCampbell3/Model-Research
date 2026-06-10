@@ -1,0 +1,84 @@
+# Pvr Ec Stage3 Heldout Split Decomposition Report
+**Status:** DECOMPOSED
+
+```json
+{
+  "status": "DECOMPOSED",
+  "seen_task_seen_template": {
+    "avg_accuracy": 0.8453239103158315,
+    "per_task": {
+      "compositional_grammar": {
+        "loss": 0.03578924387693405,
+        "accuracy": 0.90625
+      },
+      "agreement_dependency": {
+        "loss": 0.0028248699381947517,
+        "accuracy": 1.0
+      },
+      "negation_polarity": {
+        "loss": 0.02358720824122429,
+        "accuracy": 0.7977527976036072
+      },
+      "ambiguous_word_sense": {
+        "loss": 0.029306916519999504,
+        "accuracy": 0.8947368264198303
+      },
+      "coreference_memory": {
+        "loss": 0.05757379159331322,
+        "accuracy": 0.8984375
+      },
+      "instruction_micro": {
+        "loss": 0.23379966616630554,
+        "accuracy": 0.5747663378715515
+      }
+    }
+  },
+  "seen_task_heldout_template": {
+    "avg_accuracy": 0.8322403430938721,
+    "per_task": {
+      "compositional_grammar": {
+        "loss": 0.07009526342153549,
+        "accuracy": 0.8169642686843872
+      },
+      "agreement_dependency": {
+        "loss": 0.005751410964876413,
+        "accuracy": 0.9609375
+      },
+      "negation_polarity": {
+        "loss": 0.02188979461789131,
+        "accuracy": 0.8238636255264282
+      },
+      "ambiguous_word_sense": {
+        "loss": 0.02391216531395912,
+        "accuracy": 0.9153439402580261
+      },
+      "coreference_memory": {
+        "loss": 0.0675528421998024,
+        "accuracy": 0.91015625
+      },
+      "instruction_micro": {
+        "loss": 0.2456413209438324,
+        "accuracy": 0.5661764740943909
+      }
+    }
+  },
+  "heldout_task_family": {
+    "avg_accuracy": 0.26456311345100403,
+    "per_task": {
+      "multisentence_delimiter": {
+        "loss": 2.73624587059021,
+        "accuracy": 0.0
+      },
+      "paraphrase_invariance": {
+        "loss": 0.3046252429485321,
+        "accuracy": 0.5291262269020081
+      }
+    }
+  },
+  "geometry_after_partial_training": {
+    "entropy": 0.29638171941041946,
+    "margin": 0.9453111886978149,
+    "boundary": 0.0064697265625
+  }
+}
+```

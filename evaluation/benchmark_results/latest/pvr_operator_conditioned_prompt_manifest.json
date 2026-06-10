@@ -1,0 +1,28 @@
+{
+  "prompt_name": "PVR-EC-O Operator-Conditioned Top1 Router Refresh",
+  "prompt_version": "1.0.0",
+  "base_geometry_candidate": "contrastive_light",
+  "operator_conditioned_router_default_mode": "shadow",
+  "created_at": "2026-06-09T03:00:00",
+  "source_checkpoint_hash_if_available": "",
+  "router_config_hash_if_available": "",
+  "prototype_table_hash_if_available": "",
+  "operator_schema_hash_if_available": "",
+  "family_schema_hash_if_available": "",
+  "operator_schema": [
+    "none", "negation", "instruction_action", "conditional",
+    "delimiter", "role_marker", "polarity_positive", "polarity_negative",
+    "copy_command", "reverse_command", "shift_command", "before_after",
+    "unless_exception"
+  ],
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "runtime_dynamic_k": false,
+    "runtime_expert_choice": false,
+    "oracle_in_forward": false,
+    "map_mutation_in_forward": false
+  },
+  "status": "PRESERVED"
+}

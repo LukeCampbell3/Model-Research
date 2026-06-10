@@ -2,9 +2,9 @@
   "metadata": {
     "seed": 42,
     "input_dirs": [
-      "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0"
+      "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0"
     ],
-    "command": "C:\\Users\\jcthi\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\pytest\\__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_failure_observatory.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_nlp_stage1.py sparse_loop_moe/tests/test_pvr_ec_family_preserving_router.py sparse_loop_moe/tests/test_pvr_ec_nonlinear_overfit.py -q"
+    "command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line"
   },
   "status": "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
   "statuses": [
@@ -19,7 +19,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_final_forward_purity_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_final_forward_purity_report.json"
   },
   "multi_seed_gate": {
     "status": "OK",
@@ -27,7 +27,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_multiseed_confirmation_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_multiseed_confirmation_report.json"
   },
   "longer_training_gate": {
     "status": "OK",
@@ -35,7 +35,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_longer_training_confirmation_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_longer_training_confirmation_report.json"
   },
   "matched_step_gate": {
     "status": "OK",
@@ -43,7 +43,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_matched_step_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_matched_step_report.json"
   },
   "matched_wall_clock_gate": {
     "status": "OK",
@@ -51,7 +51,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_matched_wall_clock_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_matched_wall_clock_report.json"
   },
   "calibration_gate": {
     "status": "OK",
@@ -59,7 +59,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_final_calibration_sweep_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_final_calibration_sweep_report.json"
   },
   "family_regression_gate": {
     "status": "OK",
@@ -67,7 +67,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_family_regression_gate_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_family_regression_gate_report.json"
   },
   "quality_per_ms_gate": {
     "status": "OK",
@@ -75,7 +75,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_quality_per_ms_memory_gate_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_quality_per_ms_memory_gate_report.json"
   },
   "memory_gate": {
     "status": "OK",
@@ -83,7 +83,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_quality_per_ms_memory_gate_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_quality_per_ms_memory_gate_report.json"
   },
   "reliability_proxy_gate": {
     "status": "OK",
@@ -91,7 +91,7 @@
       "OK"
     ],
     "passed": true,
-    "_path": "C:\\Users\\jcthi\\AppData\\Local\\Temp\\pytest-of-jcthi\\pytest-147\\test_promotion_gate_passes_on_0\\pvr_ec_reliability_proxy_gate_report.json"
+    "_path": "/tmp/pytest-of-root/pytest-0/test_promotion_gate_passes_on_0/pvr_ec_reliability_proxy_gate_report.json"
   },
   "overall_verdict": "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",
   "promotion_status": "PVR_EC_DEPLOY_CANDIDATE_CONFIRMED",

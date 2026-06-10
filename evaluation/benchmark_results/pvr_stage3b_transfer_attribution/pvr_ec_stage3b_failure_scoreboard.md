@@ -1,0 +1,13 @@
+# Pvr Ec Stage3B Failure Scoreboard
+**Status:** PVR_EC_STAGE3B_TRANSFER_ATTRIBUTION_COMPLETE
+
+```json
+{
+  "status": "PVR_EC_STAGE3B_TRANSFER_ATTRIBUTION_COMPLETE",
+  "total_failures": 1,
+  "failure_classes": [
+    "PVR_EC_FAILURE_HELDOUT_TASK_FAMILY_TRANSFER"
+  ],
+  "unknown_failures": 0
+}
+```

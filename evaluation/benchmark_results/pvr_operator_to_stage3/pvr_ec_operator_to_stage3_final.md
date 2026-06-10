@@ -1,0 +1,30 @@
+# Pvr Ec Operator To Stage3 Final
+**Status:** PVR_EC_OPERATOR_TO_STAGE3_PIPELINE_COMPLETE
+
+```json
+{
+  "status": "PVR_EC_OPERATOR_TO_STAGE3_PIPELINE_COMPLETE",
+  "retest_verdict": "PVR_EC_NLP_RETEST_PASSED",
+  "operator_verdict": "PVR_EC_OPERATOR_CONDITIONED_ROUTER_ACCEPTED",
+  "stage3_verdict": "PVR_EC_NLP_STAGE3_DO_NOT_EXPAND",
+  "baseline_s1_acc": 1.0,
+  "baseline_s2_acc": 0.9916223511099815,
+  "after_operator_s2_acc": 0.9916223511099815,
+  "stage3_train_acc": 0.9988665481408437,
+  "stage3_holdout_acc": 0.23389232903718948,
+  "geometry_before": {
+    "entropy": 2.6853702664375305,
+    "margin": 0.018101137597113848
+  },
+  "geometry_after": {
+    "entropy": 2.667250335216522,
+    "margin": 0.00535770517308265
+  },
+  "owners_per_token": 1.0,
+  "top2_executions": 0,
+  "top4_executions": 0,
+  "production_map_mutated": false,
+  "first_pass_repairs_applied": false,
+  "total_time_s": 95.58976435661316
+}
+```

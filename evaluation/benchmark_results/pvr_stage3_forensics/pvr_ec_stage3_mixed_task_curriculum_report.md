@@ -1,0 +1,15 @@
+# Pvr Ec Stage3 Mixed Task Curriculum Report
+**Status:** COMPLETE
+
+```json
+{
+  "status": "COMPLETE",
+  "results": {
+    "single_task_multisentence_delimiter": 1.0,
+    "single_task_paraphrase_invariance": 0.9029126167297363,
+    "all_task_uniform_holdout_acc": 0.9943181872367859,
+    "augmented_holdout_acc": 0.8883587718009949,
+    "augmented_seen_acc": 0.9598075151443481
+  }
+}
+```
