@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: cognitive-microkernel
+Version: 0.1.0
+Summary: Minimal, safe, extensible runtime for recursive branch/fork cognitive processes
+Requires-Python: >=3.11
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pytest>=7.0.0
+Requires-Dist: uuid7>=0.1.0
+Requires-Dist: msgpack>=1.0.0
+Requires-Dist: sqlite-utils>=3.30.0
+Requires-Dist: dataclasses-json>=0.5.0
+Requires-Dist: python-ulid>=1.1.0
+Provides-Extra: dev
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: python-dotenv>=1.0.0; extra == "dev"
