@@ -7,15 +7,15 @@
 ```json
 {
   "metadata": {
-    "timestamp": "2026-06-10T00:39:51.844622",
-    "run_id": "algo_20260610_003951_smoke",
-    "git_commit": "928992ecf24f649e7449de43e61a75deed225384",
+    "timestamp": "2026-06-10T12:06:42.355777",
+    "run_id": "algo_20260610_120642_smoke",
+    "git_commit": "40abf0eeee8adcd8bbeaf41be833cfb6fd251c98",
     "docker_image": "N/A",
     "cuda_available": true,
     "gpu_name": "NVIDIA GeForce RTX 4080 SUPER",
     "amp_enabled": false,
     "seed": 42,
-    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line",
+    "benchmark_command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_final_deployment_gate.py sparse_loop_moe/tests/test_pvr_ec_descriptor_semantic_identity_repair.py sparse_loop_moe/tests/test_pvr_ec_same_input_wrong_descriptor.py -q --tb=line",
     "model_variants": [
       "fixed_moe_vectorized",
       "pvr_ec_deploy_top1",

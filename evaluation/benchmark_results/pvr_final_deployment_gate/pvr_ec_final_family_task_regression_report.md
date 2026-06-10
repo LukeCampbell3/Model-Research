@@ -1,0 +1,42 @@
+# pvr_ec_final_family_task_regression_report
+```json
+{
+  "status": "REGRESSION_PASSED",
+  "per_task": {
+    "compositional_grammar": {
+      "loss": 0.021755769848823547,
+      "accuracy": 0.7633928656578064
+    },
+    "agreement_dependency": {
+      "loss": 0.0007594179478473961,
+      "accuracy": 1.0
+    },
+    "negation_polarity": {
+      "loss": 0.0032728530932217836,
+      "accuracy": 0.9204545617103577
+    },
+    "ambiguous_word_sense": {
+      "loss": 0.0011937657836824656,
+      "accuracy": 0.9894179701805115
+    },
+    "coreference_memory": {
+      "loss": 0.011621467769145966,
+      "accuracy": 0.8984375
+    },
+    "instruction_micro": {
+      "loss": 0.06170126795768738,
+      "accuracy": 0.5392156839370728
+    },
+    "multisentence_delimiter": {
+      "loss": 0.08849257230758667,
+      "accuracy": 0.6183205842971802
+    },
+    "paraphrase_invariance": {
+      "loss": 0.0019025292713195086,
+      "accuracy": 0.9855769276618958
+    }
+  },
+  "collapsed_tasks": [],
+  "pass": true
+}
+```

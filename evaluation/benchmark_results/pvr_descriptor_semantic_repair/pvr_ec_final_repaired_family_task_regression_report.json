@@ -1,0 +1,7 @@
+{
+  "status": "REGRESSION_BLOCKED",
+  "collapsed_tasks": [
+    "negation_polarity"
+  ],
+  "pass": false
+}

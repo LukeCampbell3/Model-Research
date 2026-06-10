@@ -1,0 +1,7 @@
+{
+  "status": "OBSERVATORY_PASSED",
+  "unknown_failure_count": 0,
+  "failure_replay_success_rate": 1.0,
+  "observatory_taxonomy_gap_count": 0,
+  "pass": true
+}

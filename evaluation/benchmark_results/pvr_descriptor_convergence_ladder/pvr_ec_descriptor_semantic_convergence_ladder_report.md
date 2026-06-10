@@ -1,0 +1,33 @@
+# Descriptor Convergence
+```json
+{
+  "status": "CONVERGENCE_TESTED",
+  "results": {
+    "s150_seed42": {
+      "correct": 0.8716558889180672,
+      "wrong": 0.8321051076680672,
+      "removed": 0.2212121616679776,
+      "corrupt": 0.8257895125197515,
+      "margin": 0.03955078125
+    },
+    "s300_seed42": {
+      "correct": 0.9336433040764383,
+      "wrong": 0.8817352511918229,
+      "removed": 0.34543026220227285,
+      "corrupt": 0.8880829074418229,
+      "margin": 0.05190805288461531
+    }
+  },
+  "best_key": "s300_seed42",
+  "best_margin": 0.05190805288461531,
+  "best_correct": 0.9336433040764383,
+  "passes_threshold": true,
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  },
+  "total_time_s": 165.10320377349854
+}
+```

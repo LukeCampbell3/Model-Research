@@ -1,0 +1,29 @@
+# pvr_ec_final_multiseed_repeatability_report
+```json
+{
+  "status": "REPEATABILITY_PASSED",
+  "seed_results": {
+    "42": {
+      "accuracy": 0.7606953643262386,
+      "ablation_acc": 0.02507440559566021,
+      "ablation_drop": 0.7356209587305784
+    },
+    "123": {
+      "accuracy": 0.8517017103731632,
+      "ablation_acc": 0.18051479198038578,
+      "ablation_drop": 0.6711869183927774
+    },
+    "777": {
+      "accuracy": 0.8909806087613106,
+      "ablation_acc": 0.18817933462560177,
+      "ablation_drop": 0.7028012741357088
+    }
+  },
+  "mean_accuracy": 0.8344592278202375,
+  "std_accuracy": 0.054568236382334934,
+  "min_accuracy": 0.7606953643262386,
+  "max_accuracy": 0.8909806087613106,
+  "catastrophic_seed_count": 0,
+  "pass": true
+}
+```

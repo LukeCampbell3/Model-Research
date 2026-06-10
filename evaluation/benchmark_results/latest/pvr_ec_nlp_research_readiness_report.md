@@ -11,7 +11,7 @@
     "input_dirs": [
       "/tmp/pytest-of-root/pytest-0/test_qpm_blocked_but_classifie0"
     ],
-    "command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec_stage3f_descriptor_confirmation.py sparse_loop_moe/tests/test_pvr_ec_stage4_small_nlp_bridge.py sparse_loop_moe/tests/test_pvr_ec_stage5_research_nlp.py sparse_loop_moe/tests/test_pvr_ec_final_research_gate.py sparse_loop_moe/tests/test_pvr_ec_stage3e_gate.py sparse_loop_moe/tests/test_pvr_ec.py -q --tb=line"
+    "command": "/opt/conda/lib/python3.10/site-packages/pytest/__main__.py sparse_loop_moe/tests/test_pvr_ec.py sparse_loop_moe/tests/test_pvr_ec_ownership.py sparse_loop_moe/tests/test_pvr_ec_family_preservation.py sparse_loop_moe/tests/test_pvr_ec_final_deployment_gate.py sparse_loop_moe/tests/test_pvr_ec_descriptor_semantic_identity_repair.py sparse_loop_moe/tests/test_pvr_ec_same_input_wrong_descriptor.py -q --tb=line"
   },
   "status": "PVR_EC_NLP_RESEARCH_READY_WITH_BLOCKERS",
   "deployment_verdict": "PVR_EC_REPEATABILITY_BLOCKED",

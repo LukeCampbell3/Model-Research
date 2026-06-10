@@ -1,0 +1,11 @@
+# pvr_ec_final_calibration_reliability_report
+```json
+{
+  "status": "CALIBRATION_PASSED",
+  "high_confidence_failure_rate": 0.008886810102899906,
+  "avg_confidence_correct": 0.7400456274681099,
+  "avg_confidence_wrong": 0.438393145519615,
+  "total_predictions": 2138,
+  "pass": true
+}
+```

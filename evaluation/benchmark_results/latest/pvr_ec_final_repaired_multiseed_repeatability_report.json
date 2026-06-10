@@ -1,0 +1,12 @@
+{
+  "status": "REPEATABILITY_PASSED",
+  "seed_results": {
+    "42": {
+      "accuracy": 0.5706673806662432,
+      "margin": 0.0
+    }
+  },
+  "mean_accuracy": 0.5706673806662432,
+  "std_accuracy": 0.0,
+  "pass": "True"
+}
