@@ -1,0 +1,116 @@
+{
+  "losses": [
+    10.812458038330078,
+    10.149077415466309,
+    9.731963157653809,
+    9.508407592773438,
+    9.299013137817383,
+    9.173266410827637,
+    8.968417167663574,
+    8.770204544067383,
+    8.531590461730957,
+    8.376130104064941,
+    8.154523849487305,
+    7.9002909660339355,
+    7.698490142822266,
+    7.4441046714782715,
+    7.210004806518555,
+    7.060159206390381,
+    6.764913082122803,
+    6.547301292419434,
+    6.299978256225586,
+    6.106716156005859,
+    5.904802322387695,
+    5.693659782409668,
+    5.493793487548828,
+    5.238135814666748,
+    5.027476787567139,
+    4.801750659942627,
+    4.651278495788574,
+    4.597944736480713,
+    4.376620292663574,
+    4.206053733825684,
+    4.051480770111084,
+    3.9745798110961914,
+    3.8477113246917725,
+    3.7964582443237305,
+    3.6332085132598877,
+    3.7156288623809814,
+    3.5189599990844727,
+    3.49499249458313,
+    3.8700602054595947,
+    3.524156332015991,
+    3.5119969844818115,
+    3.550236940383911,
+    3.579324722290039,
+    3.5294435024261475,
+    3.49611759185791,
+    3.474517583847046,
+    3.476499557495117,
+    3.5526838302612305,
+    3.4554216861724854,
+    4.750362873077393
+  ],
+  "steps": 50,
+  "param_count": 18108416,
+  "device": "cuda",
+  "num_examples": 100,
+  "validity_checkpoints": [
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 5
+    },
+    {
+      "schema_validity_rate": 0.0,
+      "field_completeness_rate": 0.0,
+      "valid_count": 0,
+      "total_evaluated": 10
+    }
+  ],
+  "final_schema_validity_rate": 0.0,
+  "final_field_completeness_rate": 0.0,
+  "schema_validity_improved": true,
+  "loss_decreased": true,
+  "purity_counters": {
+    "top1_correct": 0,
+    "top2_correct": 0,
+    "top4_correct": 0,
+    "top8_correct": 0,
+    "total_predictions": 0,
+    "runtime_violations": 0,
+    "branch_compliance": 0,
+    "verifier_pass_rate": 0.0
+  }
+}

@@ -285,6 +285,123 @@ def cmd_train_branch_sft_smoke(args):
     return 0
 
 
+def cmd_train_branch_sft_full(args):
+    """Run full Branch SFT training (Phase 2)."""
+    from runtime_coder.training.train_branch_sft import BranchSFTFullConfig, run_branch_sft_full
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 2 - Full Branch SFT Training")
+    print("=" * 60)
+
+    config = BranchSFTFullConfig()
+    if args.output_dir:
+        config.report_path = os.path.join(args.output_dir, "branch_sft_full_report.json")
+
+    metrics = run_branch_sft_full(config)
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: BRANCH SFT FULL COMPLETE")
+    print(f"  Steps: {metrics['steps']}")
+    print(f"  Final loss: {metrics['losses'][-1]:.4f}")
+    print(f"  Loss decreased: {metrics['loss_decreased']}")
+    print(f"  Final schema validity rate: {metrics['final_schema_validity_rate']:.3f}")
+    print(f"  Final field completeness: {metrics['final_field_completeness_rate']:.3f}")
+    return 0
+
+
+def cmd_eval_branch_validity(args):
+    """Evaluate BranchTicket generation quality."""
+    from runtime_coder.data_pipeline.branch_ticket_dataset import generate_diverse_examples
+    from runtime_coder.evals.branch_ticket_validity import eval_branch_ticket_generation
+    from runtime_coder.model.runtime_coder_micro import RuntimeCoderMicroConfig, build_micro_model
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 2 - Branch Ticket Validity Eval")
+    print("=" * 60)
+
+    device = "cuda" if __import__("torch").cuda.is_available() else "cpu"
+    config = RuntimeCoderMicroConfig()
+    model = build_micro_model(config, device=device)
+
+    # Held-out examples (different seed)
+    test_examples = generate_diverse_examples(count=20, seed=777)
+    metrics = eval_branch_ticket_generation(
+        model, test_examples, device=device
+    )
+
+    for k, v in metrics.items():
+        if isinstance(v, float):
+            print(f"  {k}: {v:.4f}")
+        else:
+            print(f"  {k}: {v}")
+
+    # Save report
+    output_dir = args.output_dir or "evaluation/runtime_coder_phase2"
+    os.makedirs(output_dir, exist_ok=True)
+    report_path = os.path.join(output_dir, "branch_validity_eval_report.json")
+    with open(report_path, "w") as f:
+        json.dump(metrics, f, indent=2, default=str)
+    print(f"\n  Report saved: {report_path}")
+
+    print(f"\n{'=' * 60}")
+    print("Result: BRANCH VALIDITY EVAL COMPLETE")
+    return 0
+
+
+def cmd_build_branch_dataset(args):
+    """Build the diverse BranchTicket dataset."""
+    from runtime_coder.data_pipeline.branch_ticket_dataset import (
+        generate_diverse_examples,
+        generate_invalid_examples,
+    )
+    from runtime_coder.data_pipeline.branch_ir_dataset import generate_ir_examples
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 2 - Build Branch Dataset")
+    print("=" * 60)
+
+    # Generate main dataset
+    valid_examples = generate_diverse_examples(count=100)
+    invalid_examples = generate_invalid_examples(count=30)
+    ir_examples = generate_ir_examples(count=50)
+
+    print(f"  Valid BranchTicket examples: {len(valid_examples)}")
+    print(f"  Invalid BranchTicket examples: {len(invalid_examples)}")
+    print(f"  BranchIR examples: {len(ir_examples)}")
+
+    # Task type distribution
+    from collections import Counter
+    type_dist = Counter(ex.task_type for ex in valid_examples)
+    print(f"\n  Task type distribution:")
+    for tt, count in sorted(type_dist.items()):
+        print(f"    {tt}: {count}")
+
+    # Branch type distribution
+    bt_dist = Counter(ex.target_branch_ticket.branch_type for ex in valid_examples)
+    print(f"\n  Branch type distribution:")
+    for bt, count in sorted(bt_dist.items()):
+        print(f"    {bt}: {count}")
+
+    # Save dataset summary
+    output_dir = args.output_dir or "evaluation/runtime_coder_phase2"
+    os.makedirs(output_dir, exist_ok=True)
+    summary = {
+        "valid_examples": len(valid_examples),
+        "invalid_examples": len(invalid_examples),
+        "ir_examples": len(ir_examples),
+        "task_type_distribution": dict(type_dist),
+        "branch_type_distribution": dict(bt_dist),
+    }
+    report_path = os.path.join(output_dir, "dataset_summary.json")
+    with open(report_path, "w") as f:
+        json.dump(summary, f, indent=2)
+    print(f"\n  Summary saved: {report_path}")
+
+    print(f"\n{'=' * 60}")
+    print("Result: DATASET BUILT")
+    return 0
+
+
 def cmd_eval_pretrain(args):
     """Run pretraining evaluation metrics."""
     from runtime_coder.data_pipeline.fim_dataset import build_fim_dataset
@@ -352,7 +469,7 @@ def cmd_eval_pretrain(args):
 def main():
     parser = argparse.ArgumentParser(
         prog="runtime_coder",
-        description="RuntimeCoder-v1 Phase 0+1 CLI",
+        description="RuntimeCoder-v1 Phase 0+1+2 CLI",
     )
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
@@ -401,6 +518,23 @@ def main():
     sub = subparsers.add_parser("eval-pretrain", help="Run pretraining evaluation")
     sub.add_argument("--output-dir", default="", help="Directory to save results")
     sub.set_defaults(func=cmd_eval_pretrain)
+
+    # Phase 2 commands
+
+    # train-branch-sft-full
+    sub = subparsers.add_parser("train-branch-sft-full", help="Run full Branch SFT training (50+ steps)")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_train_branch_sft_full)
+
+    # eval-branch-validity
+    sub = subparsers.add_parser("eval-branch-validity", help="Evaluate BranchTicket generation quality")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_eval_branch_validity)
+
+    # build-branch-dataset
+    sub = subparsers.add_parser("build-branch-dataset", help="Build the diverse BranchTicket dataset")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_build_branch_dataset)
 
     args = parser.parse_args()
     if not args.command:
