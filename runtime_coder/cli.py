@@ -1,4 +1,4 @@
-"""RuntimeCoder CLI - command-line interface for all Phase 0 operations."""
+"""RuntimeCoder CLI - command-line interface for Phase 0 and Phase 1 operations."""
 
 import argparse
 import json
@@ -243,10 +243,116 @@ def cmd_tokenizer_smoke(args):
     return 0
 
 
+def cmd_train_pretrain_smoke(args):
+    """Run pretraining smoke test (5 steps on synthetic data)."""
+    from runtime_coder.training.train_pretrain import PretrainConfig, run_pretrain_smoke
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 1 - Pretrain Smoke Test")
+    print("=" * 60)
+
+    config = PretrainConfig()
+    if args.output_dir:
+        config.report_path = os.path.join(args.output_dir, "pretrain_smoke_report.json")
+
+    metrics = run_pretrain_smoke(config)
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: {'LOSS DECREASED' if metrics.get('loss_decreased') else 'LOSS DID NOT DECREASE'}")
+    print(f"  Final loss: {metrics['losses'][-1]:.4f}")
+    print(f"  Avg tok/s: {metrics['avg_tokens_per_sec']:.0f}")
+    return 0 if metrics.get("loss_decreased") else 1
+
+
+def cmd_train_branch_sft_smoke(args):
+    """Run branch SFT smoke test (3 steps on fixture data)."""
+    from runtime_coder.training.train_branch_sft import BranchSFTConfig, run_branch_sft_smoke
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 1 - Branch SFT Smoke Test")
+    print("=" * 60)
+
+    config = BranchSFTConfig()
+    if args.output_dir:
+        config.report_path = os.path.join(args.output_dir, "branch_sft_smoke_report.json")
+
+    metrics = run_branch_sft_smoke(config)
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: BRANCH SFT SMOKE COMPLETE")
+    print(f"  Final loss: {metrics['losses'][-1]:.4f}")
+    print(f"  Branch tokens present: {metrics['special_token_validation']['branch_tokens_present']}")
+    return 0
+
+
+def cmd_eval_pretrain(args):
+    """Run pretraining evaluation metrics."""
+    from runtime_coder.data_pipeline.fim_dataset import build_fim_dataset
+    from runtime_coder.evals.pretraining_eval import (
+        eval_fim_completion,
+        eval_perplexity,
+        eval_special_token_retention,
+    )
+    from runtime_coder.model.runtime_coder_micro import (
+        RuntimeCoderMicroConfig,
+        build_micro_model,
+    )
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 1 - Pretraining Evaluation")
+    print("=" * 60)
+
+    device = "cuda" if __import__("torch").cuda.is_available() else "cpu"
+    config = RuntimeCoderMicroConfig()
+    model = build_micro_model(config, device=device)
+
+    # Perplexity
+    dataset = [
+        "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    return -1\n",
+        "class DataProcessor:\n    def __init__(self):\n        self.data = []\n",
+        "import torch\nimport torch.nn as nn\n",
+    ]
+    ppl = eval_perplexity(model, dataset, device=device)
+    print(f"\n  Perplexity: {ppl:.2f}")
+
+    # FIM evaluation
+    fim_examples = build_fim_dataset(dataset, count=5, fim_rate=1.0, seed=42)
+    fim_metrics = eval_fim_completion(model, fim_examples, device=device)
+    print(f"  FIM loss: {fim_metrics['fim_loss']:.4f}")
+    print(f"  FIM perplexity: {fim_metrics['fim_perplexity']:.2f}")
+
+    # Special token retention
+    retention = eval_special_token_retention(model, device=device)
+    print(f"  Special tokens in vocab: {retention['special_tokens_in_vocab']}")
+    print(f"  All logits finite: {retention['all_logits_finite']}")
+    print(f"  No garbage logits: {retention['no_garbage_logits']}")
+
+    # Save report
+    report = {
+        "perplexity": ppl,
+        "fim_metrics": fim_metrics,
+        "special_token_retention": retention,
+    }
+    output_dir = args.output_dir or "evaluation/runtime_coder_phase1"
+    os.makedirs(output_dir, exist_ok=True)
+    report_path = os.path.join(output_dir, "pretrain_eval_report.json")
+    # Convert non-serializable values
+    for k, v in report.get("special_token_retention", {}).items():
+        if isinstance(v, bool):
+            report["special_token_retention"][k] = v
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=2, default=str)
+    print(f"\n  Report saved: {report_path}")
+
+    print(f"\n{'=' * 60}")
+    print("Result: PRETRAIN EVAL COMPLETE")
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="runtime_coder",
-        description="RuntimeCoder-v1 Phase 0 CLI",
+        description="RuntimeCoder-v1 Phase 0+1 CLI",
     )
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
@@ -278,6 +384,23 @@ def main():
     # tokenizer-smoke
     sub = subparsers.add_parser("tokenizer-smoke", help="Run tokenizer smoke test")
     sub.set_defaults(func=cmd_tokenizer_smoke)
+
+    # Phase 1 commands
+
+    # train-pretrain-smoke
+    sub = subparsers.add_parser("train-pretrain-smoke", help="Run pretrain smoke test (5 steps)")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_train_pretrain_smoke)
+
+    # train-branch-sft-smoke
+    sub = subparsers.add_parser("train-branch-sft-smoke", help="Run branch SFT smoke test (3 steps)")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_train_branch_sft_smoke)
+
+    # eval-pretrain
+    sub = subparsers.add_parser("eval-pretrain", help="Run pretraining evaluation")
+    sub.add_argument("--output-dir", default="", help="Directory to save results")
+    sub.set_defaults(func=cmd_eval_pretrain)
 
     args = parser.parse_args()
     if not args.command:

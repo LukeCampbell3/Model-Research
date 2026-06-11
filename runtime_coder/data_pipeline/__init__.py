@@ -1,4 +1,4 @@
-"""RuntimeCoder data pipeline - fixture generation and SFT example building."""
+"""RuntimeCoder data pipeline - fixture generation, SFT, FIM, and file boundary datasets."""
 
 from runtime_coder.data_pipeline.fixtures import generate_all_fixtures
 from runtime_coder.data_pipeline.sft_example_builder import build_sft_examples

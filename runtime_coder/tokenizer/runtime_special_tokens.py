@@ -123,6 +123,13 @@ OPERATOR_TOKENS = [
     "<|op_terminate|>",
 ]
 
+# File boundary tokens (for multi-file context)
+FILE_BOUNDARY_TOKENS = [
+    "<|file_sep|>",
+    "<|path|>",
+    "<|file_start|>",
+]
+
 # Collect all categories
 SPECIAL_TOKEN_CATEGORIES = {
     "task": TASK_TOKENS,
@@ -137,6 +144,7 @@ SPECIAL_TOKEN_CATEGORIES = {
     "mode": MODE_TOKENS,
     "descriptor": DESCRIPTOR_TOKENS,
     "operator": OPERATOR_TOKENS,
+    "file_boundary": FILE_BOUNDARY_TOKENS,
 }
 
 

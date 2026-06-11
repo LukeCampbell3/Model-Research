@@ -1,0 +1,17 @@
+{
+  "perplexity": 52015.30174061168,
+  "fim_metrics": {
+    "fim_loss": 10.90454273223877,
+    "fim_perplexity": 54423.032361522084,
+    "examples_evaluated": 5
+  },
+  "special_token_retention": {
+    "special_tokens_in_vocab": true,
+    "all_logits_finite": true,
+    "special_logit_std": 0.2934190332889557,
+    "special_logit_mean": -0.007586848922073841,
+    "total_special_token_prob": 0.0015346540603786707,
+    "num_special_tokens_checked": 78,
+    "no_garbage_logits": true
+  }
+}

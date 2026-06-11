@@ -45,7 +45,7 @@ class TestTokenUniqueness:
         """All required categories must be present."""
         required = {"task", "context", "branch", "patch", "evidence",
                     "verifier", "replay", "commit", "fim", "mode",
-                    "descriptor", "operator"}
+                    "descriptor", "operator", "file_boundary"}
         assert required == set(SPECIAL_TOKEN_CATEGORIES.keys())
 
 

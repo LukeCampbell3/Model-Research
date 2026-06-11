@@ -1,0 +1,27 @@
+{
+  "losses": [
+    10.705093383789062,
+    9.161630630493164,
+    8.447437286376953
+  ],
+  "steps": 3,
+  "param_count": 18108416,
+  "device": "cuda",
+  "special_token_validation": {
+    "total_special_tokens": 78,
+    "tokens_found_in_data": 22,
+    "branch_tokens_present": true,
+    "evidence_tokens_present": true,
+    "verifier_tokens_present": true
+  },
+  "purity_counters": {
+    "top1_correct": 0,
+    "top2_correct": 0,
+    "top4_correct": 0,
+    "top8_correct": 0,
+    "total_predictions": 0,
+    "runtime_violations": 0,
+    "branch_compliance": 0,
+    "verifier_pass_rate": 0.0
+  }
+}
