@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec.bak
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# pytest
+.pytest_cache/
+*.cover
+htmlcov/
+.coverage
+.coverage.*
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# setuptools
+*.egg-info/
+.eggs/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Project specific
+configs/*.json
+configs/*.yaml
+!configs/.gitkeep
+
+# Evaluation benchmarks
+evaluation/algorithmic_benchmarks/__pycache__/
+evaluation/benchmark_results/
+evaluation/__pycache__/
+
+# Cognitive Microkernel
+cognitive_microkernel/__pycache__/
+cognitive_microkernel/.pytest_cache/
+cognitive_microkernel/src/cognitive_microkernel/__pycache__/
+cognitive_microkernel/src/cognitive_microkernel.egg-info/
+cognitive_microkernel/tests/__pycache__/
+
+# Artifacts
+artifacts/
+*.pt
+*.pth
+*.checkpoint
+
+# Logs
+*.log
