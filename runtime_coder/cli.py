@@ -402,6 +402,85 @@ def cmd_build_branch_dataset(args):
     return 0
 
 
+def cmd_validate_runtime_tokenizer(args):
+    """Run Gate 0: Runtime Tokenizer Validation."""
+    from runtime_coder.tokenizer.runtime_tokenizer_gate import validate_runtime_tokenizer
+
+    print("=" * 60)
+    print("RuntimeCoder Gate 0 - Runtime Tokenizer Validation")
+    print("=" * 60)
+
+    result = validate_runtime_tokenizer()
+
+    print(f"\n  Status: {result['status']}")
+    print(f"  Vocab size: {result['tokenizer_vocab_size']}")
+    print(f"  Special tokens: {result['special_token_count']}")
+    print(f"\n  Checks:")
+    for check_name, passed in result["checks"].items():
+        status = "PASS" if passed else "FAIL"
+        print(f"    [{status}] {check_name}")
+
+    if result["errors"]:
+        print(f"\n  Errors:")
+        for err in result["errors"]:
+            print(f"    -> {err}")
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: GATE 0 {result['status']}")
+    return 0 if result["status"] == "CONFIRMED" else 1
+
+
+def cmd_build_python_curriculum(args):
+    """Build Python BranchTicket curriculum."""
+    from runtime_coder.data_pipeline.python_branch_ticket_curriculum import build_curriculum
+
+    print("=" * 60)
+    print("RuntimeCoder Phase 3 - Build Python Curriculum")
+    print("=" * 60)
+
+    stage = args.stage
+    size = args.size
+
+    print(f"  Stage: {stage}")
+    print(f"  Size: {size}")
+
+    examples = build_curriculum(stage=stage, size=size)
+
+    print(f"  Generated {len(examples)} examples")
+    print(f"\n  Sample (first 3):")
+    for i, ex in enumerate(examples[:3]):
+        print(f"    [{i}] stage={ex['stage']} input={ex['input'][:60]}...")
+        print(f"        target={ex['target'][:60]}...")
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: CURRICULUM BUILT ({len(examples)} examples, stage {stage})")
+    return 0
+
+
+def cmd_train_python_branch_ticket(args):
+    """Run Python BranchTicket trainer."""
+    from runtime_coder.training.train_python_runtime_coder import run_python_trainer
+
+    config_name = args.config
+    steps = args.steps
+    device = args.device
+    output_dir = args.output_dir
+
+    metrics = run_python_trainer(
+        config_name=config_name,
+        steps=steps,
+        device=device,
+        output_dir=output_dir,
+    )
+
+    print(f"\n{'=' * 60}")
+    print(f"Result: TRAINING COMPLETE")
+    print(f"  Loss decreased: {metrics['loss_decreased']}")
+    print(f"  Final loss: {metrics['final_loss']:.4f}")
+    print(f"  Time: {metrics['total_time_seconds']:.1f}s")
+    return 0
+
+
 def cmd_eval_pretrain(args):
     """Run pretraining evaluation metrics."""
     from runtime_coder.data_pipeline.fim_dataset import build_fim_dataset
@@ -513,6 +592,26 @@ def main():
     sub = subparsers.add_parser("train-branch-sft-smoke", help="Run branch SFT smoke test (3 steps)")
     sub.add_argument("--output-dir", default="", help="Directory to save results")
     sub.set_defaults(func=cmd_train_branch_sft_smoke)
+
+    # Phase 3 commands
+
+    # validate-runtime-tokenizer
+    sub = subparsers.add_parser("validate-runtime-tokenizer", help="Run Gate 0: tokenizer validation")
+    sub.set_defaults(func=cmd_validate_runtime_tokenizer)
+
+    # build-python-curriculum
+    sub = subparsers.add_parser("build-python-curriculum", help="Build Python BranchTicket curriculum")
+    sub.add_argument("--stage", default="C", choices=["A", "B", "C"], help="Curriculum stage")
+    sub.add_argument("--size", type=int, default=50, help="Number of examples")
+    sub.set_defaults(func=cmd_build_python_curriculum)
+
+    # train-python-branch-ticket
+    sub = subparsers.add_parser("train-python-branch-ticket", help="Train Python BranchTicket model")
+    sub.add_argument("--config", default="debug", choices=["debug", "mini", "micro"], help="Config name")
+    sub.add_argument("--steps", type=int, default=None, help="Override max steps")
+    sub.add_argument("--device", default=None, help="Device (cpu, cuda)")
+    sub.add_argument("--output-dir", default="artifacts/runtimecoder_python", help="Output directory")
+    sub.set_defaults(func=cmd_train_python_branch_ticket)
 
     # eval-pretrain
     sub = subparsers.add_parser("eval-pretrain", help="Run pretraining evaluation")

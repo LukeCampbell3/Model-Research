@@ -1,0 +1,54 @@
+{
+  "status": "RUNTIME_CODER_PYTHON_TRAINER_READY",
+  "language": "python",
+  "tests_passed": 186,
+  "gates": {
+    "gate_0_tokenizer": "RUNTIME_CODER_PYTHON_TOKENIZER_CONFIRMED",
+    "gate_1_trainer": "RUNTIME_CODER_PYTHON_TRAINER_READY",
+    "gate_2_json_validity": "NOT_YET_RUN_AT_SCALE",
+    "gate_3_branch_schema": "NOT_YET_RUN_AT_SCALE",
+    "gate_4_context_grounding": "NOT_YET_RUN_AT_SCALE",
+    "gate_5_usefulness": "NOT_YET_RUN_AT_SCALE",
+    "gate_6_authority_safety": "NOT_YET_RUN_AT_SCALE",
+    "gate_7_descriptor_control": "NOT_YET_RUN_AT_SCALE"
+  },
+  "debug_training": {
+    "config": "PYTHON_24M_DEBUG",
+    "params": 11600000,
+    "steps": 100,
+    "loss_start": 9.0,
+    "loss_end": 1.95,
+    "loss_decreased": true,
+    "train_examples": 163,
+    "eval_examples": 37,
+    "eval_loss": 1.97,
+    "oom_count": 0,
+    "time_seconds": 8.1,
+    "device": "cuda"
+  },
+  "schema": {
+    "source": "cognitive_microkernel",
+    "schema_hash": "computed",
+    "runtime_contract_version": "cognitive_microkernel_v1"
+  },
+  "curriculum": {
+    "stage_a": "JSON warmup (implemented)",
+    "stage_b": "Minimal BranchTicket (implemented)",
+    "stage_c": "Full BranchTicket (implemented)",
+    "stage_d": "Branch type selection (scaffold)",
+    "stage_e": "Patch SFT (scaffold)"
+  },
+  "task_bank": {
+    "total_templates": 53,
+    "types": ["bug_fix", "test_generation", "refactor", "type_fix", "import_fix", "performance_patch", "config_fix", "edge_case_fix"]
+  },
+  "forward_purity": {
+    "pvr_ec_routing": "NOT_ACTIVE_IN_THIS_TRAINER",
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0
+  },
+  "capability_evidence": false,
+  "synthetic_only": true,
+  "next_action": "Run train-python-json-warmup at 1000 steps with 60M config to pass Gate 2"
+}
