@@ -1,0 +1,22 @@
+{
+  "experiment": "PVR_OFFICIAL_LIKE_ROUTER_AUX_WEIGHT_SWEEP",
+  "model_configs": [
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p0_100m.yaml",
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p0001_100m.yaml",
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p00025_100m.yaml",
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p0005_100m.yaml",
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p001_100m.yaml",
+    "benchmark/configs/generated/official_like_router_aux_sweep/configs/pvr_sparse_v2_official_like_aux0p002_100m.yaml"
+  ],
+  "official_like_development_data_used": true,
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "weights": [
+    0.0,
+    0.0001,
+    0.00025,
+    0.0005,
+    0.001,
+    0.002
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        98,
+        95,
+        345,
+        212,
+        180,
+        164,
+        169,
+        273
+      ],
+      "step": 100
+    },
+    {
+      "expert_utilization": [
+        101,
+        134,
+        298,
+        192,
+        128,
+        209,
+        184,
+        290
+      ],
+      "step": 200
+    },
+    {
+      "expert_utilization": [
+        89,
+        135,
+        292,
+        184,
+        88,
+        237,
+        187,
+        324
+      ],
+      "step": 300
+    },
+    {
+      "expert_utilization": [
+        104,
+        151,
+        280,
+        200,
+        75,
+        243,
+        185,
+        298
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        103,
+        171,
+        271,
+        194,
+        92,
+        261,
+        156,
+        288
+      ],
+      "step": 500
+    },
+    {
+      "expert_utilization": [
+        77,
+        174,
+        275,
+        191,
+        94,
+        264,
+        153,
+        308
+      ],
+      "step": 600
+    },
+    {
+      "expert_utilization": [
+        121,
+        148,
+        294,
+        135,
+        102,
+        275,
+        123,
+        338
+      ],
+      "step": 700
+    },
+    {
+      "expert_utilization": [
+        95,
+        179,
+        282,
+        171,
+        100,
+        306,
+        92,
+        311
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        108,
+        178,
+        276,
+        169,
+        89,
+        337,
+        78,
+        301
+      ],
+      "step": 900
+    },
+    {
+      "expert_utilization": [
+        113,
+        165,
+        275,
+        188,
+        88,
+        324,
+        78,
+        305
+      ],
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_no_contrastive_geometry_100m",
+  "schema_version": "1.0"
+}

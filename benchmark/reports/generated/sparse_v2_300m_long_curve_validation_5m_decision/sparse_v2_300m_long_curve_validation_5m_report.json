@@ -1,0 +1,104 @@
+{
+  "candidate": {
+    "checkpoint_hash": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+    "checkpoint_status_caveat": "PVR final checkpoint metadata is inconsistent after timeout; curve/report artifacts are used for evidence.",
+    "eval_window_count": 10,
+    "final_eval_loss": 10.112784385681152,
+    "final_train_loss": 1.962173342704773,
+    "mean_eval_loss": 11.337301993370057,
+    "optimizer_steps": 4883,
+    "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+    "training_tokens_seen": 5000192,
+    "variant": "pvr_teacher_independent_sparse_v2_300m_long_curve"
+  },
+  "claim_gates": {
+    "all_main_baselines_completed": true,
+    "aux0005_valid": false,
+    "official_final_files_used": false,
+    "pvr_current_best_mean_eval": false,
+    "pvr_current_completed_5m": true
+  },
+  "completed_rows": [
+    {
+      "checkpoint_hash": "7e0d8a6e5587037ada5a77099d32b13ad48bcef3f8e98319bf85112638142f5b",
+      "checkpoint_status_caveat": "",
+      "eval_window_count": 10,
+      "final_eval_loss": 11.496098518371582,
+      "final_train_loss": 2.2771010398864746,
+      "mean_eval_loss": 10.32124400138855,
+      "optimizer_steps": 4883,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "generic_top2_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash": "c3b9866ce11379858d21cc94fa1ea9d21e03e55988482e043064b6da706a524f",
+      "checkpoint_status_caveat": "",
+      "eval_window_count": 10,
+      "final_eval_loss": 11.131117820739746,
+      "final_train_loss": 2.249508857727051,
+      "mean_eval_loss": 10.355957651138306,
+      "optimizer_steps": 4883,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "switch_top1_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash": "176c04b85e3cbba9a9a9103a10cdfe4941c0a0891d66421b29abbaacc7c7f3c9",
+      "checkpoint_status_caveat": "",
+      "eval_window_count": 10,
+      "final_eval_loss": 9.947757720947266,
+      "final_train_loss": 1.933674931526184,
+      "mean_eval_loss": 10.597127103805542,
+      "optimizer_steps": 4883,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "dense_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+      "checkpoint_status_caveat": "PVR final checkpoint metadata is inconsistent after timeout; curve/report artifacts are used for evidence.",
+      "eval_window_count": 10,
+      "final_eval_loss": 10.112784385681152,
+      "final_train_loss": 1.962173342704773,
+      "mean_eval_loss": 11.337301993370057,
+      "optimizer_steps": 4883,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "pvr_teacher_independent_sparse_v2_300m_long_curve"
+    }
+  ],
+  "created_at": "2026-07-18T14:50:58.674114+00:00",
+  "decision": "PVR_TEACHER_INDEPENDENT_300M_5M_OFFICIAL_LIKE_ADVANTAGE_NOT_SUPPORTED",
+  "experiment": "PVR_SPARSE_V2_300M_LONG_CURVE_VALIDATION_5M",
+  "failed_rows": [
+    {
+      "checkpoint_hash": "7bde18a8c0bd8cb9ed1c88d513ccb7cbc3ed25955a21bb31e65feaf1096285c7",
+      "checkpoint_status_caveat": "",
+      "eval_window_count": 0,
+      "final_eval_loss": null,
+      "final_train_loss": 5.459664821624756,
+      "mean_eval_loss": null,
+      "optimizer_steps": 414,
+      "status": "TRAINING_FAILED",
+      "training_tokens_seen": 423936,
+      "variant": "pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve"
+    }
+  ],
+  "interpretation": "Current teacher-independent PVR reaches dense-like train loss but has worse official-like dev mean eval than dense, Switch, and generic Top2 at the 5M-token rung.",
+  "schema_version": "1.0",
+  "scope": "5,000,192 training tokens/model for completed rows; train on broad_nlp_train, eval on official_like_dev. Final official bounded files not used.",
+  "status": "PVR_300M_5M_LONG_CURVE_VALIDATION_COMPLETE_WITH_AUX_FAILURE",
+  "winner": {
+    "checkpoint_hash": "7e0d8a6e5587037ada5a77099d32b13ad48bcef3f8e98319bf85112638142f5b",
+    "checkpoint_status_caveat": "",
+    "eval_window_count": 10,
+    "final_eval_loss": 11.496098518371582,
+    "final_train_loss": 2.2771010398864746,
+    "mean_eval_loss": 10.32124400138855,
+    "optimizer_steps": 4883,
+    "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+    "training_tokens_seen": 5000192,
+    "variant": "generic_top2_sparse_v2_300m_matched_long_curve"
+  }
+}

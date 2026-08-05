@@ -1,0 +1,15 @@
+# Python/runtime cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Heavy generated model artifacts
+checkpoints/
+*.pt
+*.ckpt
+*.pth
+*.safetensors
+*.bin
+
+# Generated legacy benchmark output
+evaluation/benchmark_results/

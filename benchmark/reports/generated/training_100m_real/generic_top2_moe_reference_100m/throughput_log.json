@@ -1,0 +1,7 @@
+{
+  "model": "generic_top2_moe_reference_100m",
+  "schema_version": "1.0",
+  "tokens_per_second": 7.622980602928791,
+  "tokens_seen": 16,
+  "wall_clock_seconds": 2.098916530609131
+}

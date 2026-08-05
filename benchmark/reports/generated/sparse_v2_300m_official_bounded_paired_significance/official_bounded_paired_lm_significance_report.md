@@ -1,0 +1,9 @@
+# Official Bounded Paired LM Significance
+
+Status: `PVR_SPARSE_V2_300M_OFFICIAL_BOUNDED_PAIRED_ADVANTAGE_NOT_SUPPORTED`
+
+| baseline | block delta | block 95% CI | file delta | file 95% CI | file wins | significant file win |
+|---|---:|---|---:|---|---:|---|
+| dense_sparse_v2_300m_matched | -0.6869987417012453 | [-0.9439331293106079, -0.441188040189445] | -0.6869987417012453 | [-1.4469890538603067, -0.08235012833029032] | 7/8 | True |
+| switch_top1_sparse_v2_300m_matched | 0.7587798396125436 | [0.5656211078166962, 0.9475187631323934] | 0.7587798396125436 | [0.3976497817784548, 1.147539421916008] | 0/8 | False |
+| generic_top2_sparse_v2_300m_matched | 0.46071298606693745 | [0.14120180811733007, 0.7928766654804349] | 0.46071298606693745 | [-0.4916243888437748, 1.4173840023577213] | 3/8 | False |

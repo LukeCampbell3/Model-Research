@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-06-13T11:43:11.145245+00:00",
+  "environment": {
+    "cwd": "C:\\Users\\jcthi\\Code\\brain",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python": "3.11.9"
+  },
+  "git_commit": "7ffa5ad9b4ebedae0bee0691a09dedb0613156eb",
+  "hashes": {
+    "data\\broad_nlp_train\\gutenberg_alice_wonderland.txt": "01b38ea4c710a84bc18d0bd41271a5a1a92b94e97b2812f4dece97d4a694725e",
+    "data\\broad_nlp_train\\gutenberg_pride_and_prejudice.txt": "74f2665d6e6925fc2c17dec644bec9e87df478a0f1836822125e8acbb3777806",
+    "data\\broad_nlp_train\\gutenberg_sherlock_holmes.txt": "922e2a12ccb43a4c9544c260b2166c6ad2097aeb5957faeee113f173bb857cd0"
+  },
+  "notes": "Training data paths are declared; absence blocks benchmark evidence.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "data/broad_nlp_train",
+    "data/code_train"
+  ]
+}

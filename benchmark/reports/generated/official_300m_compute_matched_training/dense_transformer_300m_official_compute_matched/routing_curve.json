@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-06-20T12:12:05.007349+00:00",
+  "model": "dense_transformer_300m_official_compute_matched",
+  "routing_curve": [],
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE"
+}

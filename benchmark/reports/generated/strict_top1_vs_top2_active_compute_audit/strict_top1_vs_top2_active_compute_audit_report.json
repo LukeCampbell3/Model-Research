@@ -1,0 +1,781 @@
+{
+  "benchmark_evidence_caveat": "Local reduced-file runtime-escalation stress test; Top2/Top4 PVR variants are eval-only controls, not frozen candidates.",
+  "broad_windows": 64,
+  "candidate_config": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+  "created_at": "2026-06-18T13:38:01.102508+00:00",
+  "decision_rule": "Support requires strict Top1 to remain Pareto-efficient, beat dense/Switch/generic Top2, keep clean Top1 invariants, and for runtime Top2/Top4 to provide no meaningful broad-LM loss gain or quality-per-FLOP gain.",
+  "device": "cuda",
+  "escalation_summary": {
+    "top2_added_active_flops": 61224048,
+    "top2_loss_gain_vs_strict": -0.12380173429846764,
+    "top4_added_active_flops": 183672144,
+    "top4_loss_gain_vs_strict": -0.24589266628026962
+  },
+  "experiment": "PVR_STRICT_TOP1_VS_TOP2_ACTIVE_COMPUTE_AUDIT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "max_meaningful_loss_gain": 0.01,
+  "rows": {
+    "dense_300m": {
+      "active_flops_per_token": 1800000000,
+      "active_params_per_token": 300000000,
+      "broad_lm_loss": 2.776603478938341,
+      "checkpoint_path": "checkpoints/benchmark_300m/dense_transformer_300m/checkpoint.pt",
+      "code_heavy_loss": 15.14897346496582,
+      "config_path": "benchmark/reports/generated/training_300m_real_4k/dense_transformer_300m/run_config.yaml",
+      "elapsed_seconds": 1.9188988208770752,
+      "gutenberg_prose_loss": 2.776603478938341,
+      "json_schema_loss": 14.023216485977173,
+      "key": "dense_300m",
+      "model_family": "dense_transformer",
+      "model_variant": "dense_transformer_300m",
+      "perplexity": 16.06436538696289,
+      "quality_per_active_flop": 2.000845852746598e-10,
+      "quality_per_active_param": 1.2005075116479587e-09,
+      "quality_per_ms": 3.5555414469842663,
+      "routing_snapshots": [],
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 10.864638328552246,
+          "mean_loss": 2.776603478938341,
+          "min_loss": 2.2984459400177,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 19.473281860351562,
+          "mean_loss": 15.14897346496582,
+          "min_loss": 9.624191284179688,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 10.864638328552246,
+          "mean_loss": 2.776603478938341,
+          "min_loss": 2.2984459400177,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 19.473281860351562,
+          "mean_loss": 15.14897346496582,
+          "min_loss": 9.624191284179688,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 16.16033935546875,
+          "mean_loss": 14.023216485977173,
+          "min_loss": 13.100582122802734,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 19.473281860351562,
+          "mean_loss": 14.586094975471497,
+          "min_loss": 9.624191284179688,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 9872.328751205978,
+      "top1_invariants_clean": null,
+      "total_params": 300000000,
+      "unseen_structured_loss": 14.586094975471497,
+      "vram_peak": 1053412864
+    },
+    "generic_top2_300m": {
+      "active_flops_per_token": 900000000,
+      "active_params_per_token": 150000000,
+      "broad_lm_loss": 2.779079955071211,
+      "checkpoint_path": "checkpoints/benchmark_300m/generic_top2_moe_reference_300m/checkpoint.pt",
+      "code_heavy_loss": 14.226502180099487,
+      "config_path": "benchmark/reports/generated/training_300m_real_4k/generic_top2_moe_reference_300m/run_config.yaml",
+      "elapsed_seconds": 12.065663814544678,
+      "gutenberg_prose_loss": 2.779079955071211,
+      "json_schema_loss": 12.023830652236938,
+      "key": "generic_top2_300m",
+      "model_family": "generic_top2_moe_reference",
+      "model_variant": "generic_top2_moe_reference_300m",
+      "perplexity": 16.104196548461914,
+      "quality_per_active_flop": 3.998125743318674e-10,
+      "quality_per_active_param": 2.398875445991204e-09,
+      "quality_per_ms": 0.5649622409594581,
+      "routing_snapshots": [],
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 12.768226623535156,
+          "mean_loss": 2.779079955071211,
+          "min_loss": 2.3202052116394043,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 18.6014404296875,
+          "mean_loss": 14.226502180099487,
+          "min_loss": 8.91202163696289,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 12.768226623535156,
+          "mean_loss": 2.779079955071211,
+          "min_loss": 2.3202052116394043,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 18.6014404296875,
+          "mean_loss": 14.226502180099487,
+          "min_loss": 8.91202163696289,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 13.130805969238281,
+          "mean_loss": 12.023830652236938,
+          "min_loss": 11.496522903442383,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 18.6014404296875,
+          "mean_loss": 13.125166416168213,
+          "min_loss": 8.91202163696289,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 1570.0752392225418,
+      "top1_invariants_clean": null,
+      "total_params": 300000000,
+      "unseen_structured_loss": 13.125166416168213,
+      "vram_peak": 1100439040
+    },
+    "pvr_runtime_top2": {
+      "active_flops_per_token": 691224048,
+      "active_params_per_token": 115204008,
+      "broad_lm_loss": 2.6957207806408405,
+      "checkpoint_path": "checkpoints/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_42/checkpoint.pt",
+      "code_heavy_loss": 12.073319435119629,
+      "config_path": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+      "elapsed_seconds": 18.172755241394043,
+      "gutenberg_prose_loss": 2.6957207806408405,
+      "json_schema_loss": 11.259726762771606,
+      "key": "pvr_runtime_top2",
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_ean_retention_gated_delta_replay_v1_300m",
+      "perplexity": 14.816192626953125,
+      "quality_per_active_flop": 5.366686847666132e-10,
+      "quality_per_active_param": 3.220012108599679e-09,
+      "quality_per_ms": 0.38670162864559204,
+      "routing_snapshots": [
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5228510116551964,
+          "expert_utilization": [
+            372,
+            267,
+            502,
+            590,
+            235,
+            414,
+            351,
+            341
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.19205729166666666,
+          "operator_control_margin": 0.5228510116551964,
+          "owner_churn": null,
+          "owner_entropy": 2.0394745693273473,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.0394745693273473,
+          "prototype_margin": 0.5228510116551964,
+          "prototype_monopoly_rate": 0.19205729166666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 0,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5181924393570322,
+          "expert_utilization": [
+            339,
+            317,
+            515,
+            664,
+            219,
+            409,
+            283,
+            326
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.21614583333333334,
+          "operator_control_margin": 0.5181924393570322,
+          "owner_churn": null,
+          "owner_entropy": 2.022532848881772,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.022532848881772,
+          "prototype_margin": 0.5181924393570322,
+          "prototype_monopoly_rate": 0.21614583333333334,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 25,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5162424731533974,
+          "expert_utilization": [
+            300,
+            301,
+            511,
+            712,
+            226,
+            432,
+            275,
+            315
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.23177083333333334,
+          "operator_control_margin": 0.5162424731533974,
+          "owner_churn": null,
+          "owner_entropy": 2.0094120686650028,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.0094120686650028,
+          "prototype_margin": 0.5162424731533974,
+          "prototype_monopoly_rate": 0.23177083333333334,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 50,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5094442157181523,
+          "expert_utilization": [
+            406,
+            269,
+            536,
+            589,
+            244,
+            385,
+            332,
+            311
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.19173177083333334,
+          "operator_control_margin": 0.5094442157181523,
+          "owner_churn": null,
+          "owner_entropy": 2.035802254275282,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.035802254275282,
+          "prototype_margin": 0.5094442157181523,
+          "prototype_monopoly_rate": 0.19173177083333334,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 75,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        }
+      ],
+      "runtime_experts_per_token": 2,
+      "runtime_topk_execution": true,
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 7.34198522567749,
+          "mean_loss": 2.6957207806408405,
+          "min_loss": 2.327998638153076,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 15.226977348327637,
+          "mean_loss": 12.073319435119629,
+          "min_loss": 7.393548965454102,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 7.34198522567749,
+          "mean_loss": 2.6957207806408405,
+          "min_loss": 2.327998638153076,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 15.226977348327637,
+          "mean_loss": 12.073319435119629,
+          "min_loss": 7.393548965454102,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 13.715862274169922,
+          "mean_loss": 11.259726762771606,
+          "min_loss": 10.148557662963867,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 15.226977348327637,
+          "mean_loss": 11.666523098945618,
+          "min_loss": 7.393548965454102,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 1042.4396162475798,
+      "top1_invariants_clean": false,
+      "total_params": 300000000,
+      "unseen_structured_loss": 11.666523098945618,
+      "vram_peak": 1199062528
+    },
+    "pvr_runtime_top4": {
+      "active_flops_per_token": 813672144,
+      "active_params_per_token": 135612024,
+      "broad_lm_loss": 2.8178117126226425,
+      "checkpoint_path": "checkpoints/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_42/checkpoint.pt",
+      "code_heavy_loss": 12.352684259414673,
+      "config_path": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+      "elapsed_seconds": 15.44661569595337,
+      "gutenberg_prose_loss": 2.8178117126226425,
+      "json_schema_loss": 11.51639723777771,
+      "key": "pvr_runtime_top4",
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_ean_retention_gated_delta_replay_v1_300m",
+      "perplexity": 16.74017906188965,
+      "quality_per_active_flop": 4.3615271653909354e-10,
+      "quality_per_active_param": 2.6169162992345615e-09,
+      "quality_per_ms": 0.4352375664815998,
+      "routing_snapshots": [
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5257229249352046,
+          "expert_utilization": [
+            402,
+            267,
+            500,
+            563,
+            239,
+            419,
+            347,
+            335
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.18326822916666666,
+          "operator_control_margin": 0.5257229249352046,
+          "owner_churn": null,
+          "owner_entropy": 2.043267120819184,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.043267120819184,
+          "prototype_margin": 0.5257229249352046,
+          "prototype_monopoly_rate": 0.18326822916666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 0,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5188976079613591,
+          "expert_utilization": [
+            366,
+            309,
+            527,
+            619,
+            221,
+            405,
+            302,
+            323
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.20149739583333334,
+          "operator_control_margin": 0.5188976079613591,
+          "owner_churn": null,
+          "owner_entropy": 2.031035596116174,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.031035596116174,
+          "prototype_margin": 0.5188976079613591,
+          "prototype_monopoly_rate": 0.20149739583333334,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 25,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5157020473488956,
+          "expert_utilization": [
+            342,
+            293,
+            513,
+            671,
+            213,
+            432,
+            291,
+            317
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.21842447916666666,
+          "operator_control_margin": 0.5157020473488956,
+          "owner_churn": null,
+          "owner_entropy": 2.018213825881632,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.018213825881632,
+          "prototype_margin": 0.5157020473488956,
+          "prototype_monopoly_rate": 0.21842447916666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 50,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5135119095769672,
+          "expert_utilization": [
+            440,
+            271,
+            538,
+            551,
+            246,
+            379,
+            332,
+            315
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.17936197916666666,
+          "operator_control_margin": 0.5135119095769672,
+          "owner_churn": null,
+          "owner_entropy": 2.0401778976575176,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.0401778976575176,
+          "prototype_margin": 0.5135119095769672,
+          "prototype_monopoly_rate": 0.17936197916666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 75,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        }
+      ],
+      "runtime_experts_per_token": 4,
+      "runtime_topk_execution": true,
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 7.993265151977539,
+          "mean_loss": 2.8178117126226425,
+          "min_loss": 2.415644884109497,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 15.557143211364746,
+          "mean_loss": 12.352684259414673,
+          "min_loss": 7.619744300842285,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 7.993265151977539,
+          "mean_loss": 2.8178117126226425,
+          "min_loss": 2.415644884109497,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 15.557143211364746,
+          "mean_loss": 12.352684259414673,
+          "min_loss": 7.619744300842285,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 13.989405632019043,
+          "mean_loss": 11.51639723777771,
+          "min_loss": 10.376323699951172,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 15.557143211364746,
+          "mean_loss": 11.934540748596191,
+          "min_loss": 7.619744300842285,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 1226.4175126052278,
+      "top1_invariants_clean": false,
+      "total_params": 300000000,
+      "unseen_structured_loss": 11.934540748596191,
+      "vram_peak": 1671241216
+    },
+    "pvr_strict_top1": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "broad_lm_loss": 2.571919046342373,
+      "checkpoint_path": "checkpoints/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_42/checkpoint.pt",
+      "code_heavy_loss": 11.644206404685974,
+      "config_path": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+      "elapsed_seconds": 12.428480386734009,
+      "gutenberg_prose_loss": 2.571919046342373,
+      "json_schema_loss": 10.820296287536621,
+      "key": "pvr_strict_top1",
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_ean_retention_gated_delta_replay_v1_300m",
+      "perplexity": 13.090921401977539,
+      "quality_per_active_flop": 6.171662321794114e-10,
+      "quality_per_active_param": 3.7029973930764686e-09,
+      "quality_per_ms": 0.5926473667994295,
+      "routing_snapshots": [
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5183323635040628,
+          "expert_utilization": [
+            349,
+            270,
+            485,
+            620,
+            241,
+            404,
+            345,
+            358
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.20182291666666666,
+          "operator_control_margin": 0.5183323635040628,
+          "owner_churn": null,
+          "owner_entropy": 2.037768461799472,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.037768461799472,
+          "prototype_margin": 0.5183323635040628,
+          "prototype_monopoly_rate": 0.20182291666666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 0,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5130888865387533,
+          "expert_utilization": [
+            302,
+            329,
+            512,
+            701,
+            223,
+            409,
+            272,
+            324
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.22819010416666666,
+          "operator_control_margin": 0.5130888865387533,
+          "owner_churn": null,
+          "owner_entropy": 2.013830819174193,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.013830819174193,
+          "prototype_margin": 0.5130888865387533,
+          "prototype_monopoly_rate": 0.22819010416666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 25,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5152230673314383,
+          "expert_utilization": [
+            288,
+            296,
+            501,
+            728,
+            238,
+            427,
+            277,
+            317
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.23697916666666666,
+          "operator_control_margin": 0.5152230673314383,
+          "owner_churn": null,
+          "owner_entropy": 2.0080757147085775,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.0080757147085775,
+          "prototype_margin": 0.5152230673314383,
+          "prototype_monopoly_rate": 0.23697916666666666,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 50,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        },
+        {
+          "challenger_disagreement_rate": null,
+          "descriptor_control_margin": 0.5068799492582912,
+          "expert_utilization": [
+            372,
+            274,
+            519,
+            631,
+            242,
+            375,
+            321,
+            338
+          ],
+          "failure_mode_distribution": {},
+          "high_gap_monopoly_rate": 0.20540364583333334,
+          "operator_control_margin": 0.5068799492582912,
+          "owner_churn": null,
+          "owner_entropy": 2.0325072608582655,
+          "owners_per_token": 1.0,
+          "production_map_mutated": false,
+          "prototype_entropy": 2.0325072608582655,
+          "prototype_margin": 0.5068799492582912,
+          "prototype_monopoly_rate": 0.20540364583333334,
+          "runtime_dynamic_k_count": 0,
+          "runtime_expert_choice_count": 0,
+          "stale_owner_rate": null,
+          "step": 75,
+          "top2_execution_count": 0,
+          "top4_execution_count": 0
+        }
+      ],
+      "runtime_experts_per_token": 1,
+      "runtime_topk_execution": false,
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 6.863420009613037,
+          "mean_loss": 2.571919046342373,
+          "min_loss": 2.273947238922119,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 14.813945770263672,
+          "mean_loss": 11.644206404685974,
+          "min_loss": 6.976099491119385,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 6.863420009613037,
+          "mean_loss": 2.571919046342373,
+          "min_loss": 2.273947238922119,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 14.813945770263672,
+          "mean_loss": 11.644206404685974,
+          "min_loss": 6.976099491119385,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 13.323134422302246,
+          "mean_loss": 10.820296287536621,
+          "min_loss": 9.668989181518555,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 14.813945770263672,
+          "mean_loss": 11.232251346111298,
+          "min_loss": 6.976099491119385,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 1524.2410504361071,
+      "top1_invariants_clean": true,
+      "total_params": 300000000,
+      "unseen_structured_loss": 11.232251346111298,
+      "vram_peak": 1199062528
+    },
+    "switch_top1_300m": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "broad_lm_loss": 2.781601406633854,
+      "checkpoint_path": "checkpoints/benchmark_300m/vanilla_switch_top1_reference_300m/checkpoint.pt",
+      "code_heavy_loss": 12.925040006637573,
+      "config_path": "benchmark/reports/generated/training_300m_real_4k/vanilla_switch_top1_reference_300m/run_config.yaml",
+      "elapsed_seconds": 11.297310829162598,
+      "gutenberg_prose_loss": 2.781601406633854,
+      "json_schema_loss": 10.560967445373535,
+      "key": "switch_top1_300m",
+      "model_family": "vanilla_switch_top1_reference",
+      "model_variant": "vanilla_switch_top1_reference_300m",
+      "perplexity": 16.144855499267578,
+      "quality_per_active_flop": 5.706430775868981e-10,
+      "quality_per_active_param": 3.4238584655213888e-09,
+      "quality_per_ms": 0.6028395123339917,
+      "routing_snapshots": [],
+      "slice_summary": {
+        "broad_lm": {
+          "max_loss": 12.778247833251953,
+          "mean_loss": 2.781601406633854,
+          "min_loss": 2.336674690246582,
+          "window_count": 64
+        },
+        "code_heavy": {
+          "max_loss": 15.58360767364502,
+          "mean_loss": 12.925040006637573,
+          "min_loss": 9.247726440429688,
+          "window_count": 4
+        },
+        "gutenberg_prose": {
+          "max_loss": 12.778247833251953,
+          "mean_loss": 2.781601406633854,
+          "min_loss": 2.336674690246582,
+          "window_count": 64
+        },
+        "humaneval_like_heldout": {
+          "max_loss": 15.58360767364502,
+          "mean_loss": 12.925040006637573,
+          "min_loss": 9.247726440429688,
+          "window_count": 4
+        },
+        "json_schema": {
+          "max_loss": 11.368138313293457,
+          "mean_loss": 10.560967445373535,
+          "min_loss": 10.17562198638916,
+          "window_count": 4
+        },
+        "unseen_structured_spans": {
+          "max_loss": 15.58360767364502,
+          "mean_loss": 11.743003726005554,
+          "min_loss": 9.247726440429688,
+          "window_count": 8
+        }
+      },
+      "tokens_evaluated": 18944,
+      "tokens_per_second": 1676.859235482698,
+      "top1_invariants_clean": null,
+      "total_params": 300000000,
+      "unseen_structured_loss": 11.743003726005554,
+      "vram_peak": 1100439040
+    }
+  },
+  "schema_version": "1.0",
+  "seq_len": 128,
+  "status": "PVR_STRICT_TOP1_ACTIVE_COMPUTE_SUFFICIENCY_SUPPORTED",
+  "supported_conditions": {
+    "runtime_top2_little_loss_gain": true,
+    "runtime_top2_not_better_quality_per_flop": true,
+    "runtime_top4_little_loss_gain": true,
+    "runtime_top4_not_better_quality_per_flop": true,
+    "strict_top1_beats_dense_loss": true,
+    "strict_top1_beats_generic_top2_loss": true,
+    "strict_top1_beats_switch_loss": true,
+    "strict_top1_clean": true,
+    "strict_top1_pareto_efficient_active_flops": true,
+    "strict_top1_pareto_efficient_active_params": true
+  }
+}

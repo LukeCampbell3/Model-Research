@@ -1,0 +1,265 @@
+# PVR-EC-O 100M Genuine Benchmark Comparison
+
+Status: `GENUINE_BENCHMARK_COMPARISON_COMPLETE`
+
+This report distinguishes primary generalized baselines, public external positioning, and internal strong-router controls.
+Do not infer an architecture win from missing checkpoints, missing data, infrastructure execution, or internal control comparisons.
+
+Allowed comparison language:
+- PVR-EC-O does not yet beat generalized baselines.
+- PVR-EC-O beats generalized baselines but lags internal strong-router control.
+- PVR-EC-O matches internal strong-router control.
+- PVR-EC-O beats internal strong-router control.
+
+```json
+{
+  "benchmark_evidence": true,
+  "completed_model_count": 8,
+  "created_at": "2026-06-12T03:17:53.730777+00:00",
+  "model_count": 8,
+  "notes": "Reduced genuine benchmark comparison. Official broad NLP and coding benchmark adapters may still report NOT_RUN_NOT_IMPLEMENTED inside scorecards.",
+  "program_status": "PVR_EC_O_100M_GENUINE_BENCHMARK_COMPLETE",
+  "rankings": {
+    "compile_rate_descending": [
+      {
+        "compile_rate": 1.0,
+        "model": "dense_transformer_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "generic_top2_moe_reference_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "pvr_ec_o_full_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "pvr_ec_o_no_contrastive_geometry_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "pvr_ec_o_no_descriptor_operator_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "pvr_ec_o_no_prototypes_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "pvr_ec_o_shared_only_100m"
+      },
+      {
+        "compile_rate": 1.0,
+        "model": "vanilla_switch_top1_reference_100m"
+      }
+    ],
+    "lm_loss_ascending": [
+      {
+        "lm_loss": 212.63823318481445,
+        "model": "dense_transformer_100m"
+      },
+      {
+        "lm_loss": 349.44214630126953,
+        "model": "pvr_ec_o_no_prototypes_100m"
+      },
+      {
+        "lm_loss": 354.26753997802734,
+        "model": "pvr_ec_o_full_100m"
+      },
+      {
+        "lm_loss": 358.5408477783203,
+        "model": "pvr_ec_o_no_contrastive_geometry_100m"
+      },
+      {
+        "lm_loss": 374.1968574523926,
+        "model": "pvr_ec_o_no_descriptor_operator_100m"
+      },
+      {
+        "lm_loss": 392.418212890625,
+        "model": "pvr_ec_o_shared_only_100m"
+      },
+      {
+        "lm_loss": 404.91381072998047,
+        "model": "vanilla_switch_top1_reference_100m"
+      },
+      {
+        "lm_loss": 414.4829750061035,
+        "model": "generic_top2_moe_reference_100m"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "active_flops_per_token": 600000000,
+      "active_params_per_token": 100000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 200.27868843078613,
+      "comparison_group": "primary_generalized_baseline",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.12251688167452812,
+      "gpu_hours": null,
+      "json_schema_loss": 200.27868843078613,
+      "lm_loss": 212.63823318481445,
+      "math_heavy_loss": 200.27868843078613,
+      "model": "dense_transformer_100m",
+      "perplexity": null,
+      "quality_per_active_param": 4.702823123679975e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/dense_transformer_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 8162.140484905151,
+      "vram_peak": 350756864
+    },
+    {
+      "active_flops_per_token": 300000000,
+      "active_params_per_token": 50000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 387.4684715270996,
+      "comparison_group": "primary_generalized_reference_moe",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.9544701315462589,
+      "gpu_hours": null,
+      "json_schema_loss": 387.4684715270996,
+      "lm_loss": 414.4829750061035,
+      "math_heavy_loss": 387.4684715270996,
+      "model": "generic_top2_moe_reference_100m",
+      "perplexity": null,
+      "quality_per_active_param": 4.82528866226785e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/generic_top2_moe_reference_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1047.701721561451,
+      "vram_peak": 349355008
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 326.19229888916016,
+      "comparison_group": "pvr_ec_o_primary",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.669399625621736,
+      "gpu_hours": null,
+      "json_schema_loss": 326.19229888916016,
+      "lm_loss": 354.26753997802734,
+      "math_heavy_loss": 326.19229888916016,
+      "model": "pvr_ec_o_full_100m",
+      "perplexity": null,
+      "quality_per_active_param": 8.064929847425663e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/pvr_ec_o_full_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1493.8759475271643,
+      "vram_peak": 378668032
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 330.05680084228516,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.7395491702482104,
+      "gpu_hours": null,
+      "json_schema_loss": 330.05680084228516,
+      "lm_loss": 358.5408477783203,
+      "math_heavy_loss": 330.05680084228516,
+      "model": "pvr_ec_o_no_contrastive_geometry_100m",
+      "perplexity": null,
+      "quality_per_active_param": 7.968807110394796e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/pvr_ec_o_no_contrastive_geometry_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1352.175136190574,
+      "vram_peak": 378668032
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 353.3825492858887,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.7668596226722002,
+      "gpu_hours": null,
+      "json_schema_loss": 353.3825492858887,
+      "lm_loss": 374.1968574523926,
+      "math_heavy_loss": 353.3825492858887,
+      "model": "pvr_ec_o_no_descriptor_operator_100m",
+      "perplexity": null,
+      "quality_per_active_param": 7.635400458985306e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/pvr_ec_o_no_descriptor_operator_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1304.0196281496717,
+      "vram_peak": 350356480
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 326.5727195739746,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.6764399586245418,
+      "gpu_hours": null,
+      "json_schema_loss": 326.5727195739746,
+      "lm_loss": 349.44214630126953,
+      "math_heavy_loss": 326.5727195739746,
+      "model": "pvr_ec_o_no_prototypes_100m",
+      "perplexity": null,
+      "quality_per_active_param": 8.176297242289679e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/pvr_ec_o_no_prototypes_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1478.3278061121318,
+      "vram_peak": 377488384
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 367.26922607421875,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.19612221512943506,
+      "gpu_hours": null,
+      "json_schema_loss": 367.26922607421875,
+      "lm_loss": 392.418212890625,
+      "math_heavy_loss": 367.26922607421875,
+      "model": "pvr_ec_o_shared_only_100m",
+      "perplexity": null,
+      "quality_per_active_param": 7.280862007134214e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/pvr_ec_o_shared_only_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 5098.8614387208945,
+      "vram_peak": 411327488
+    },
+    {
+      "active_flops_per_token": 210000000,
+      "active_params_per_token": 35000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 377.73359298706055,
+      "comparison_group": "primary_generalized_reference_moe",
+      "compile_rate": 1.0,
+      "eval_latency_ms_per_token": 0.7942433003336191,
+      "gpu_hours": null,
+      "json_schema_loss": 377.73359298706055,
+      "lm_loss": 404.91381072998047,
+      "math_heavy_loss": 377.73359298706055,
+      "model": "vanilla_switch_top1_reference_100m",
+      "perplexity": null,
+      "quality_per_active_param": 7.056175367276278e-11,
+      "quality_per_gpu_hour": null,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_100m_real/scorecard_artifacts/scorecards/vanilla_switch_top1_reference_100m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1259.0600381267975,
+      "vram_peak": 349355008
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "GENUINE_BENCHMARK_COMPARISON_COMPLETE"
+}
+```

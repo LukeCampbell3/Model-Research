@@ -1,0 +1,90 @@
+{
+  "benchmark_evidence": false,
+  "blocked_claims": [
+    "PVR_TEACHER_INDEPENDENCE_SUPPORTED",
+    "PVR_FROM_SCRATCH_DENSE_GAP_CLOSED"
+  ],
+  "created_at": "2026-06-18T17:42:31.502095+00:00",
+  "decision_rule": "This audit can only support teacher independence if a real self-instilled curriculum artifact exists and can be compared against EAN replay, dense, and Switch references. Missing self-instilled artifacts keep teacher independence blocked.",
+  "experiment": "PVR_SELF_INSTILLED_TRUNK_CURRICULUM_VS_EAN_REPLAY",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "rows": [
+    {
+      "checkpoint_exists": false,
+      "checkpoint_path": null,
+      "config_exists": false,
+      "config_path": null,
+      "key": "pvr_random_full_scratch",
+      "status": "NOT_RUN_MISSING_ARTIFACT"
+    },
+    {
+      "checkpoint_exists": false,
+      "checkpoint_path": null,
+      "config_exists": false,
+      "config_path": null,
+      "key": "pvr_self_instilled_trunk_curriculum",
+      "status": "NOT_RUN_MISSING_ARTIFACT"
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/ean_init_300m_repeat_seed_42/pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_42/checkpoint.pt",
+      "config_exists": true,
+      "config_path": "benchmark/reports/generated/ean_init_300m_repeat_seed_42/pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_42/run_config.yaml",
+      "key": "pvr_ean",
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_42",
+      "status": "ARTIFACT_READY",
+      "total_params": 300000000
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_42/checkpoint.pt",
+      "config_exists": true,
+      "config_path": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+      "key": "pvr_ean_retention_gated_delta_replay_v1",
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_ean_retention_gated_delta_replay_v1_300m",
+      "status": "ARTIFACT_READY",
+      "total_params": 300000000
+    },
+    {
+      "active_flops_per_token": 1800000000,
+      "active_params_per_token": 300000000,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_300m/dense_transformer_300m/checkpoint.pt",
+      "config_exists": true,
+      "config_path": "benchmark/reports/generated/training_300m_real_4k/dense_transformer_300m/run_config.yaml",
+      "key": "dense_300m",
+      "model_family": "dense_transformer",
+      "model_variant": "dense_transformer_300m",
+      "status": "ARTIFACT_READY",
+      "total_params": 300000000
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_300m/vanilla_switch_top1_reference_300m/checkpoint.pt",
+      "config_exists": true,
+      "config_path": "benchmark/reports/generated/training_300m_real_4k/vanilla_switch_top1_reference_300m/run_config.yaml",
+      "key": "switch_300m",
+      "model_family": "vanilla_switch_top1_reference",
+      "model_variant": "vanilla_switch_top1_reference_300m",
+      "status": "ARTIFACT_READY",
+      "total_params": 300000000
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_SELF_INSTILLED_TRUNK_CURRICULUM_NOT_RUN_MISSING_ARTIFACTS",
+  "supported_conditions": {
+    "dense_reference_checkpoint_present": true,
+    "ean_replay_checkpoint_present": true,
+    "self_instilled_checkpoint_present": false,
+    "self_instilled_config_present": false,
+    "switch_reference_checkpoint_present": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "margin_0_05_to_0_10": {
+    "count": 0,
+    "mean_loss": null,
+    "median_loss": null
+  },
+  "margin_0_10_to_0_25": {
+    "count": 0,
+    "mean_loss": null,
+    "median_loss": null
+  },
+  "margin_ge_0_25": {
+    "count": 50,
+    "mean_loss": 6.38038519859314,
+    "median_loss": 3.3894704580307007
+  },
+  "margin_lt_0_05": {
+    "count": 0,
+    "mean_loss": null,
+    "median_loss": null
+  }
+}

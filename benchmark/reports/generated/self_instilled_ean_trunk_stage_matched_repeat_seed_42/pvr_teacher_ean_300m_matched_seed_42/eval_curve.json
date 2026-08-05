@@ -1,0 +1,119 @@
+{
+  "created_at": "2026-06-20T02:15:42.515275+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 13.506671607494354,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 100,
+      "phase": "full_training",
+      "step": 100,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 10.52640625834465,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 200,
+      "phase": "full_training",
+      "step": 200,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 9.909073799848557,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 300,
+      "phase": "full_training",
+      "step": 300,
+      "training_tokens_seen": 307200
+    },
+    {
+      "eval_loss": 9.696174696087837,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 400,
+      "phase": "full_training",
+      "step": 400,
+      "training_tokens_seen": 409600
+    },
+    {
+      "eval_loss": 9.516823545098305,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 500,
+      "phase": "full_training",
+      "step": 500,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 9.526409700512886,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 600,
+      "phase": "full_training",
+      "step": 600,
+      "training_tokens_seen": 614400
+    },
+    {
+      "eval_loss": 9.489920198917389,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 700,
+      "phase": "full_training",
+      "step": 700,
+      "training_tokens_seen": 716800
+    },
+    {
+      "eval_loss": 9.31693048775196,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 800,
+      "phase": "full_training",
+      "step": 800,
+      "training_tokens_seen": 819200
+    },
+    {
+      "eval_loss": 8.877223491668701,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 900,
+      "phase": "full_training",
+      "step": 900,
+      "training_tokens_seen": 921600
+    },
+    {
+      "eval_loss": 9.01755602657795,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1000,
+      "phase": "full_training",
+      "step": 1000,
+      "training_tokens_seen": 1024000
+    },
+    {
+      "eval_loss": 9.182382732629776,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1100,
+      "phase": "full_training",
+      "step": 1100,
+      "training_tokens_seen": 1126400
+    }
+  ],
+  "eval_window_count": 11,
+  "model": "pvr_teacher_ean_300m_matched_seed_42",
+  "schema_version": "1.0",
+  "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE"
+}

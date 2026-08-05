@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.37644524989445927,
+      "operator_control_margin": 0.37644524989445927,
+      "step": 10
+    },
+    {
+      "descriptor_control_margin": 0.37044490555490484,
+      "operator_control_margin": 0.37044490555490484,
+      "step": 20
+    },
+    {
+      "descriptor_control_margin": 0.38674699149123626,
+      "operator_control_margin": 0.38674699149123626,
+      "step": 30
+    },
+    {
+      "descriptor_control_margin": 0.3909492066013627,
+      "operator_control_margin": 0.3909492066013627,
+      "step": 40
+    },
+    {
+      "descriptor_control_margin": 0.3951285774091957,
+      "operator_control_margin": 0.3951285774091957,
+      "step": 50
+    },
+    {
+      "descriptor_control_margin": 0.3843320752366708,
+      "operator_control_margin": 0.3843320752366708,
+      "step": 60
+    },
+    {
+      "descriptor_control_margin": 0.38697150768348365,
+      "operator_control_margin": 0.38697150768348365,
+      "step": 70
+    },
+    {
+      "descriptor_control_margin": 0.39525434307688556,
+      "operator_control_margin": 0.39525434307688556,
+      "step": 80
+    },
+    {
+      "descriptor_control_margin": 0.39721848873341514,
+      "operator_control_margin": 0.39721848873341514,
+      "step": 90
+    },
+    {
+      "descriptor_control_margin": 0.37857988313407986,
+      "operator_control_margin": 0.37857988313407986,
+      "step": 100
+    }
+  ],
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_700m",
+  "schema_version": "1.0"
+}

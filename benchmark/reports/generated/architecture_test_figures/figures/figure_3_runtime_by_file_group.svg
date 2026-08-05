@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="700" viewBox="0 0 1040 700" role="img">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#172026}.title{font-size:24px;font-weight:700}.head{font-size:17px;font-weight:700}.small{font-size:13px}.axis{stroke:#5d6970;stroke-width:1}.grid{stroke:#d8dee3;stroke-width:1}.ok{fill:#27856f}.bad{fill:#b65a4b}.skip{fill:#b68a2e}.blue{fill:#2f6f9f}.panel{fill:#f7f9fb;stroke:#cbd4db}
+</style>
+<text x="40.0" y="48.0" class="title" text-anchor="start">Figure 3. Test Runtime by File Group</text>
+<text x="55.0" y="102.0" class="small" text-anchor="start">test_scaling_report_generation</text>
+<rect x="335" y="88" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="88" width="520.0" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="102.0" class="small" text-anchor="start">682.47s (1 tests)</text>
+<text x="55.0" y="132.0" class="small" text-anchor="start">tests.test_pvr_ec_nonlinear_overfit</text>
+<rect x="335" y="118" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="118" width="23.5" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="132.0" class="small" text-anchor="start">30.85s (38 tests)</text>
+<text x="55.0" y="162.0" class="small" text-anchor="start">tests.test_pvr_ec</text>
+<rect x="335" y="148" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="148" width="11.3" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="162.0" class="small" text-anchor="start">14.84s (217 tests)</text>
+<text x="55.0" y="192.0" class="small" text-anchor="start">tests.test_pvr_ec_nlp_stage1</text>
+<rect x="335" y="178" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="178" width="7.8" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="192.0" class="small" text-anchor="start">10.21s (37 tests)</text>
+<text x="55.0" y="222.0" class="small" text-anchor="start">test_model_creation_and_comparison</text>
+<rect x="335" y="208" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="208" width="6.0" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="222.0" class="small" text-anchor="start">7.83s (1 tests)</text>
+<text x="55.0" y="252.0" class="small" text-anchor="start">test_genuine_benchmark_program</text>
+<rect x="335" y="238" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="238" width="3.3" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="252.0" class="small" text-anchor="start">4.36s (4 tests)</text>
+<text x="55.0" y="282.0" class="small" text-anchor="start">test_scorecard_schema</text>
+<rect x="335" y="268" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="268" width="1.2" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="282.0" class="small" text-anchor="start">1.52s (1 tests)</text>
+<text x="55.0" y="312.0" class="small" text-anchor="start">test_routing_invariant_logging</text>
+<rect x="335" y="298" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="298" width="1.0" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="312.0" class="small" text-anchor="start">1.26s (1 tests)</text>
+<text x="55.0" y="342.0" class="small" text-anchor="start">test_model_size_matrix_generation</text>
+<rect x="335" y="328" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="328" width="0.9" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="342.0" class="small" text-anchor="start">1.23s (1 tests)</text>
+<text x="55.0" y="372.0" class="small" text-anchor="start">test_public_positioning_lane</text>
+<rect x="335" y="358" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="358" width="0.9" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="372.0" class="small" text-anchor="start">1.20s (1 tests)</text>
+<text x="55.0" y="402.0" class="small" text-anchor="start">test_no_custom_fixed_moe_in_primary_baseline</text>
+<rect x="335" y="388" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="388" width="0.9" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="402.0" class="small" text-anchor="start">1.17s (1 tests)</text>
+<text x="55.0" y="432.0" class="small" text-anchor="start">test_manifest_generation</text>
+<rect x="335" y="418" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="418" width="0.9" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="432.0" class="small" text-anchor="start">1.17s (1 tests)</text>
+<text x="55.0" y="462.0" class="small" text-anchor="start">test_no_runtimecoder_scope</text>
+<rect x="335" y="448" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="448" width="0.7" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="462.0" class="small" text-anchor="start">0.86s (1 tests)</text>
+<text x="55.0" y="492.0" class="small" text-anchor="start">test_no_smoke_tests_present</text>
+<rect x="335" y="478" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="478" width="0.6" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="492.0" class="small" text-anchor="start">0.82s (1 tests)</text>
+<text x="55.0" y="522.0" class="small" text-anchor="start">test_shared_approximation_bottleneck</text>
+<rect x="335" y="508" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="508" width="0.4" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="522.0" class="small" text-anchor="start">0.47s (7 tests)</text>
+<text x="55.0" y="552.0" class="small" text-anchor="start">tests.test_pvr_ec_family_preserving_router</text>
+<rect x="335" y="538" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="538" width="0.3" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="552.0" class="small" text-anchor="start">0.43s (26 tests)</text>
+<text x="55.0" y="582.0" class="small" text-anchor="start">tests.test_pvr_ec_failure_observatory</text>
+<rect x="335" y="568" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="568" width="0.2" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="582.0" class="small" text-anchor="start">0.33s (8 tests)</text>
+<text x="55.0" y="612.0" class="small" text-anchor="start">tests.test_pvr_ec_family_preservation</text>
+<rect x="335" y="598" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="598" width="0.1" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="612.0" class="small" text-anchor="start">0.16s (30 tests)</text>
+<text x="55.0" y="642.0" class="small" text-anchor="start">test_dense_mimic_experiment</text>
+<rect x="335" y="628" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="628" width="0.1" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="642.0" class="small" text-anchor="start">0.14s (2 tests)</text>
+<text x="55.0" y="672.0" class="small" text-anchor="start">tests.test_pvr_ec_ownership</text>
+<rect x="335" y="658" width="520" height="16" fill="#eef2f5"/>
+<rect x="335" y="658" width="0.1" height="16" fill="#2f6f9f"/>
+<text x="875.0" y="672.0" class="small" text-anchor="start">0.07s (42 tests)</text>
+</svg>

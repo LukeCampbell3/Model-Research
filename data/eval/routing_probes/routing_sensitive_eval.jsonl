@@ -1,0 +1,4 @@
+{"descriptor": "math", "expected_route_hint": "math_solve", "id": "same_question_different_descriptor", "operator": "solve", "prompt": "Descriptor: math\nOperator: solve\nQuestion: If x + 7 = 12, what is x?"}
+{"descriptor": "json_schema", "expected_route_hint": "json_validate", "id": "same_input_wrong_descriptor", "operator": "validate", "prompt": "Descriptor: json_schema\nOperator: validate\nInput: {\"name\": \"Ada\", \"age\": 37}"}
+{"descriptor": "logic", "expected_route_hint": "logic_negation", "id": "negation_flip", "operator": "negation", "prompt": "Descriptor: logic\nOperator: negation\nStatement: All tests passed. Negate the statement."}
+{"descriptor": "instruction", "expected_route_hint": "instruction_scope", "id": "delimiter_scope", "operator": "scope", "prompt": "Use only text inside <answer> tags. <ignore>red</ignore><answer>blue</answer>"}

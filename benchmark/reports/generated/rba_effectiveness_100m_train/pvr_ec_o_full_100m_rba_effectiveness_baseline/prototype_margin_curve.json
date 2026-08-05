@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_rba_effectiveness_baseline",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.37025951996232226,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.4076496937001745,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.4419962001120439,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.4579000888528147,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.44534183518650633,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_from_dense_seed_42",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.4776273318614888,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.5023460767940074,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.5072009247329939,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.5076721052694969,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.5021245928001008,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.5042922331316125,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.5008117814334886,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.5079931124237191,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.4999526891576049,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.5146222339875143,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

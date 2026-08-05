@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_full_compatible_shared_copy_seed_20260614",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.40130650938954204,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.4113313156946485,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.42662353081080556,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.4248094061986194,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.4264387841127852,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.41919968503376975,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.42622831814272405,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.4239672402472934,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.4061686376565679,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.4326305996316175,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

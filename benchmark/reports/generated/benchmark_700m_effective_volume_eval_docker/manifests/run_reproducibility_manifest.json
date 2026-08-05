@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-06-18T20:38:23.172509+00:00",
+  "environment": {
+    "cwd": "/workspace",
+    "machine": "x86_64",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.10.13"
+  },
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "hashes": {
+    "benchmark/configs/generated/benchmark_700m_suite.yaml": "d11b40f6f59a6935eb109cea843af553cce44f45c0305d9f3edac8241c666c5c"
+  },
+  "notes": "Suite execution reproducibility manifest.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "benchmark/configs/generated/benchmark_700m_suite.yaml"
+  ]
+}

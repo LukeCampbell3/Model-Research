@@ -1,0 +1,37 @@
+{
+  "experiment": "PVR_DESCRIPTOR_CURRICULUM_AS_SELF_INSTILLED_EAN_SCAFFOLD_SCREEN",
+  "hypothesis": "Descriptor curriculum creates self-instilled routeable geometry that reduces EAN dependence more than pure uniformity head",
+  "candidate_model_variant": "pvr_descriptor_curriculum_head_300m",
+  "schema_version": "1.0",
+  "training_tokens_per_model": 2150400,
+  "official_test_data_used_for_selection": false,
+  "fairness_note": "All models account for 2,150,400 recipe-total tokens. Generalized controls match both update phases and optimizer reset.",
+  "selection_rule": "Lowest heldout LM loss with nonzero router gradients, clean strict Top1, and no teacher checkpoint load for self-instilled variants.",
+  "success_label": "PVR_DESCRIPTOR_CURRICULUM_NARROWS_EAN_GAP",
+  "strong_label": "PVR_DESCRIPTOR_CURRICULUM_REPLACES_EAN_SCAFFOLD",
+  "model_configs": [
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_full_scratch_300m.yaml",
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_shared_warmup_no_head_300m.yaml",
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_uniformity_geometry_head_300m.yaml",
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_descriptor_curriculum_head_300m.yaml",
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_descriptor_plus_uniformity_head_300m.yaml",
+    "benchmark/configs/generated/descriptor_curriculum_ean_scaffold_screen/configs/pvr_teacher_ean_300m.yaml"
+  ],
+  "promotion_baselines": [
+    "pvr_teacher_ean_300m"
+  ],
+  "self_instilled_candidates": [
+    "pvr_full_scratch_300m",
+    "pvr_shared_warmup_no_head_300m",
+    "pvr_uniformity_geometry_head_300m",
+    "pvr_descriptor_curriculum_head_300m",
+    "pvr_descriptor_plus_uniformity_head_300m"
+  ],
+  "key_comparison": "pvr_descriptor_curriculum_head_300m vs pvr_teacher_ean_300m",
+  "invariants": {
+    "owners_per_token": 1.0,
+    "top2_executions": 0,
+    "top4_executions": 0,
+    "production_map_mutated": false
+  }
+}

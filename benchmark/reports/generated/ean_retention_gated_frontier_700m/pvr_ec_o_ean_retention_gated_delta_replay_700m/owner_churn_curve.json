@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_700m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 10
+    },
+    {
+      "owner_churn": null,
+      "step": 20
+    },
+    {
+      "owner_churn": null,
+      "step": 30
+    },
+    {
+      "owner_churn": null,
+      "step": 40
+    },
+    {
+      "owner_churn": null,
+      "step": 50
+    },
+    {
+      "owner_churn": null,
+      "step": 60
+    },
+    {
+      "owner_churn": null,
+      "step": 70
+    },
+    {
+      "owner_churn": null,
+      "step": 80
+    },
+    {
+      "owner_churn": null,
+      "step": 90
+    },
+    {
+      "owner_churn": null,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

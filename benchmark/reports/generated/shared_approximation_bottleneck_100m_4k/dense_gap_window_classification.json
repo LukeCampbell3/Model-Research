@@ -1,0 +1,386 @@
+{
+  "created_at": "2026-06-13T14:57:58.506228+00:00",
+  "dense_eval_curve_path": "benchmark/reports/generated/training_100m_real_4k/dense_transformer_100m/eval_curve.json",
+  "schema_version": "1.0",
+  "variants": {
+    "baseline": {
+      "bucket_counts": {
+        "dense_better_route_high_confidence": 1,
+        "dense_better_route_low_confidence": 0,
+        "pvr_better_route_high_confidence": 4,
+        "pvr_better_route_low_confidence": 5
+      },
+      "bucket_mean_pvr_minus_dense": {
+        "dense_better_route_high_confidence": 0.09550786018371582,
+        "dense_better_route_low_confidence": null,
+        "pvr_better_route_high_confidence": -0.23280388116836548,
+        "pvr_better_route_low_confidence": -1.483490800857544
+      },
+      "model": "pvr_ec_o_full_100m_baseline",
+      "route_margin_threshold": 0.6889458099709979,
+      "windows": {
+        "dense_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 3.025355339050293,
+            "pvr_eval_loss": 3.120863199234009,
+            "pvr_minus_dense_eval_loss": 0.09550786018371582,
+            "route_margin": 0.695590304438762,
+            "step": 1600
+          }
+        ],
+        "dense_better_route_low_confidence": [],
+        "pvr_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 7.615494728088379,
+            "pvr_eval_loss": 7.161859512329102,
+            "pvr_minus_dense_eval_loss": -0.45363521575927734,
+            "route_margin": 0.7011346730820757,
+            "step": 800
+          },
+          {
+            "dense_eval_loss": 4.236259460449219,
+            "pvr_eval_loss": 3.9534926414489746,
+            "pvr_minus_dense_eval_loss": -0.28276681900024414,
+            "route_margin": 0.7037658546226643,
+            "step": 1200
+          },
+          {
+            "dense_eval_loss": 3.01277756690979,
+            "pvr_eval_loss": 2.8235557079315186,
+            "pvr_minus_dense_eval_loss": -0.18922185897827148,
+            "route_margin": 0.6889458099709979,
+            "step": 2000
+          },
+          {
+            "dense_eval_loss": 2.396434783935547,
+            "pvr_eval_loss": 2.390843152999878,
+            "pvr_minus_dense_eval_loss": -0.005591630935668945,
+            "route_margin": 0.6953906612664772,
+            "step": 2800
+          }
+        ],
+        "pvr_better_route_low_confidence": [
+          {
+            "dense_eval_loss": 17.45244026184082,
+            "pvr_eval_loss": 15.424704551696777,
+            "pvr_minus_dense_eval_loss": -2.027735710144043,
+            "route_margin": 0.6832212297595106,
+            "step": 400
+          },
+          {
+            "dense_eval_loss": 3.1802210807800293,
+            "pvr_eval_loss": 3.0553829669952393,
+            "pvr_minus_dense_eval_loss": -0.12483811378479004,
+            "route_margin": 0.6848247693560552,
+            "step": 2400
+          },
+          {
+            "dense_eval_loss": 2.7959585189819336,
+            "pvr_eval_loss": 2.704496383666992,
+            "pvr_minus_dense_eval_loss": -0.0914621353149414,
+            "route_margin": 0.6849123911282126,
+            "step": 3200
+          },
+          {
+            "dense_eval_loss": 9.662761688232422,
+            "pvr_eval_loss": 6.821418762207031,
+            "pvr_minus_dense_eval_loss": -2.8413429260253906,
+            "route_margin": 0.6813479539414402,
+            "step": 3600
+          },
+          {
+            "dense_eval_loss": 11.834527969360352,
+            "pvr_eval_loss": 9.502452850341797,
+            "pvr_minus_dense_eval_loss": -2.3320751190185547,
+            "route_margin": 0.6486920290238535,
+            "step": 4000
+          }
+        ]
+      }
+    },
+    "gated_teacher_low_confidence_only": {
+      "bucket_counts": {
+        "dense_better_route_high_confidence": 1,
+        "dense_better_route_low_confidence": 0,
+        "pvr_better_route_high_confidence": 4,
+        "pvr_better_route_low_confidence": 5
+      },
+      "bucket_mean_pvr_minus_dense": {
+        "dense_better_route_high_confidence": 0.09051084518432617,
+        "dense_better_route_low_confidence": null,
+        "pvr_better_route_high_confidence": -0.2401484251022339,
+        "pvr_better_route_low_confidence": -1.4830417156219482
+      },
+      "model": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+      "route_margin_threshold": 0.6897909211353787,
+      "windows": {
+        "dense_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 3.025355339050293,
+            "pvr_eval_loss": 3.115866184234619,
+            "pvr_minus_dense_eval_loss": 0.09051084518432617,
+            "route_margin": 0.695540936171407,
+            "step": 1600
+          }
+        ],
+        "dense_better_route_low_confidence": [],
+        "pvr_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 7.615494728088379,
+            "pvr_eval_loss": 7.134860515594482,
+            "pvr_minus_dense_eval_loss": -0.4806342124938965,
+            "route_margin": 0.7005289561056998,
+            "step": 800
+          },
+          {
+            "dense_eval_loss": 4.236259460449219,
+            "pvr_eval_loss": 3.9498701095581055,
+            "pvr_minus_dense_eval_loss": -0.2863893508911133,
+            "route_margin": 0.7028858026266486,
+            "step": 1200
+          },
+          {
+            "dense_eval_loss": 3.01277756690979,
+            "pvr_eval_loss": 2.821526050567627,
+            "pvr_minus_dense_eval_loss": -0.19125151634216309,
+            "route_margin": 0.6897909211353787,
+            "step": 2000
+          },
+          {
+            "dense_eval_loss": 2.396434783935547,
+            "pvr_eval_loss": 2.394116163253784,
+            "pvr_minus_dense_eval_loss": -0.0023186206817626953,
+            "route_margin": 0.6963068891297249,
+            "step": 2800
+          }
+        ],
+        "pvr_better_route_low_confidence": [
+          {
+            "dense_eval_loss": 17.45244026184082,
+            "pvr_eval_loss": 15.433926582336426,
+            "pvr_minus_dense_eval_loss": -2.0185136795043945,
+            "route_margin": 0.6826633094775995,
+            "step": 400
+          },
+          {
+            "dense_eval_loss": 3.1802210807800293,
+            "pvr_eval_loss": 3.051046371459961,
+            "pvr_minus_dense_eval_loss": -0.12917470932006836,
+            "route_margin": 0.6859594995815618,
+            "step": 2400
+          },
+          {
+            "dense_eval_loss": 2.7959585189819336,
+            "pvr_eval_loss": 2.69991135597229,
+            "pvr_minus_dense_eval_loss": -0.09604716300964355,
+            "route_margin": 0.6862377368233865,
+            "step": 3200
+          },
+          {
+            "dense_eval_loss": 9.662761688232422,
+            "pvr_eval_loss": 6.827317714691162,
+            "pvr_minus_dense_eval_loss": -2.8354439735412598,
+            "route_margin": 0.6826445891298741,
+            "step": 3600
+          },
+          {
+            "dense_eval_loss": 11.834527969360352,
+            "pvr_eval_loss": 9.498498916625977,
+            "pvr_minus_dense_eval_loss": -2.336029052734375,
+            "route_margin": 0.6503071128390729,
+            "step": 4000
+          }
+        ]
+      }
+    },
+    "shared_capacity_plus": {
+      "bucket_counts": {
+        "dense_better_route_high_confidence": 1,
+        "dense_better_route_low_confidence": 0,
+        "pvr_better_route_high_confidence": 4,
+        "pvr_better_route_low_confidence": 5
+      },
+      "bucket_mean_pvr_minus_dense": {
+        "dense_better_route_high_confidence": 0.08497953414916992,
+        "dense_better_route_low_confidence": null,
+        "pvr_better_route_high_confidence": -1.5832471251487732,
+        "pvr_better_route_low_confidence": -1.0277795791625977
+      },
+      "model": "pvr_ec_o_full_100m_shared_capacity_plus",
+      "route_margin_threshold": 0.5215901164968576,
+      "windows": {
+        "dense_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 2.7959585189819336,
+            "pvr_eval_loss": 2.8809380531311035,
+            "pvr_minus_dense_eval_loss": 0.08497953414916992,
+            "route_margin": 0.5281103466453109,
+            "step": 3200
+          }
+        ],
+        "dense_better_route_low_confidence": [],
+        "pvr_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 3.1802210807800293,
+            "pvr_eval_loss": 2.9574759006500244,
+            "pvr_minus_dense_eval_loss": -0.22274518013000488,
+            "route_margin": 0.5218720367362645,
+            "step": 2400
+          },
+          {
+            "dense_eval_loss": 2.396434783935547,
+            "pvr_eval_loss": 2.3769874572753906,
+            "pvr_minus_dense_eval_loss": -0.01944732666015625,
+            "route_margin": 0.5310706297314027,
+            "step": 2800
+          },
+          {
+            "dense_eval_loss": 9.662761688232422,
+            "pvr_eval_loss": 6.66039514541626,
+            "pvr_minus_dense_eval_loss": -3.002366542816162,
+            "route_margin": 0.5262310776355056,
+            "step": 3600
+          },
+          {
+            "dense_eval_loss": 11.834527969360352,
+            "pvr_eval_loss": 8.746098518371582,
+            "pvr_minus_dense_eval_loss": -3.0884294509887695,
+            "route_margin": 0.5215901164968576,
+            "step": 4000
+          }
+        ],
+        "pvr_better_route_low_confidence": [
+          {
+            "dense_eval_loss": 17.45244026184082,
+            "pvr_eval_loss": 13.411945343017578,
+            "pvr_minus_dense_eval_loss": -4.040494918823242,
+            "route_margin": 0.4997859945675979,
+            "step": 400
+          },
+          {
+            "dense_eval_loss": 7.615494728088379,
+            "pvr_eval_loss": 7.270732879638672,
+            "pvr_minus_dense_eval_loss": -0.34476184844970703,
+            "route_margin": 0.5041651962286172,
+            "step": 800
+          },
+          {
+            "dense_eval_loss": 4.236259460449219,
+            "pvr_eval_loss": 3.7621569633483887,
+            "pvr_minus_dense_eval_loss": -0.4741024971008301,
+            "route_margin": 0.4785219444602262,
+            "step": 1200
+          },
+          {
+            "dense_eval_loss": 3.025355339050293,
+            "pvr_eval_loss": 2.990802049636841,
+            "pvr_minus_dense_eval_loss": -0.03455328941345215,
+            "route_margin": 0.5160179631008456,
+            "step": 1600
+          },
+          {
+            "dense_eval_loss": 3.01277756690979,
+            "pvr_eval_loss": 2.767792224884033,
+            "pvr_minus_dense_eval_loss": -0.24498534202575684,
+            "route_margin": 0.513240894957562,
+            "step": 2000
+          }
+        ]
+      }
+    },
+    "shared_trunk_init_from_dense": {
+      "bucket_counts": {
+        "dense_better_route_high_confidence": 0,
+        "dense_better_route_low_confidence": 0,
+        "pvr_better_route_high_confidence": 5,
+        "pvr_better_route_low_confidence": 5
+      },
+      "bucket_mean_pvr_minus_dense": {
+        "dense_better_route_high_confidence": null,
+        "dense_better_route_low_confidence": null,
+        "pvr_better_route_high_confidence": -4.008419179916382,
+        "pvr_better_route_low_confidence": -1.0316692352294923
+      },
+      "model": "pvr_ec_o_full_100m_shared_trunk_init_from_dense",
+      "route_margin_threshold": 0.4144882427499397,
+      "windows": {
+        "dense_better_route_high_confidence": [],
+        "dense_better_route_low_confidence": [],
+        "pvr_better_route_high_confidence": [
+          {
+            "dense_eval_loss": 17.45244026184082,
+            "pvr_eval_loss": 2.8336968421936035,
+            "pvr_minus_dense_eval_loss": -14.618743419647217,
+            "route_margin": 0.44588188856626704,
+            "step": 400
+          },
+          {
+            "dense_eval_loss": 7.615494728088379,
+            "pvr_eval_loss": 3.1063907146453857,
+            "pvr_minus_dense_eval_loss": -4.509104013442993,
+            "route_margin": 0.41511940529744606,
+            "step": 800
+          },
+          {
+            "dense_eval_loss": 3.1802210807800293,
+            "pvr_eval_loss": 2.578169345855713,
+            "pvr_minus_dense_eval_loss": -0.6020517349243164,
+            "route_margin": 0.41566665926560137,
+            "step": 2400
+          },
+          {
+            "dense_eval_loss": 2.396434783935547,
+            "pvr_eval_loss": 2.3476293087005615,
+            "pvr_minus_dense_eval_loss": -0.04880547523498535,
+            "route_margin": 0.4144882427499397,
+            "step": 2800
+          },
+          {
+            "dense_eval_loss": 2.7959585189819336,
+            "pvr_eval_loss": 2.532567262649536,
+            "pvr_minus_dense_eval_loss": -0.26339125633239746,
+            "route_margin": 0.41525607729514985,
+            "step": 3200
+          }
+        ],
+        "pvr_better_route_low_confidence": [
+          {
+            "dense_eval_loss": 4.236259460449219,
+            "pvr_eval_loss": 2.566321611404419,
+            "pvr_minus_dense_eval_loss": -1.6699378490447998,
+            "route_margin": 0.41345548280029715,
+            "step": 1200
+          },
+          {
+            "dense_eval_loss": 3.025355339050293,
+            "pvr_eval_loss": 2.438136100769043,
+            "pvr_minus_dense_eval_loss": -0.58721923828125,
+            "route_margin": 0.4103795038390672,
+            "step": 1600
+          },
+          {
+            "dense_eval_loss": 3.01277756690979,
+            "pvr_eval_loss": 2.4916954040527344,
+            "pvr_minus_dense_eval_loss": -0.5210821628570557,
+            "route_margin": 0.4068924798387646,
+            "step": 2000
+          },
+          {
+            "dense_eval_loss": 9.662761688232422,
+            "pvr_eval_loss": 8.132766723632812,
+            "pvr_minus_dense_eval_loss": -1.5299949645996094,
+            "route_margin": 0.4096117836258297,
+            "step": 3600
+          },
+          {
+            "dense_eval_loss": 11.834527969360352,
+            "pvr_eval_loss": 10.984416007995605,
+            "pvr_minus_dense_eval_loss": -0.8501119613647461,
+            "route_margin": 0.4023661313331104,
+            "step": 4000
+          }
+        ]
+      }
+    }
+  }
+}

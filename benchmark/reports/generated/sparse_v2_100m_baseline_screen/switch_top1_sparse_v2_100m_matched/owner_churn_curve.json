@@ -1,0 +1,5 @@
+{
+  "model": "switch_top1_sparse_v2_100m_matched",
+  "owner_churn_curve": [],
+  "schema_version": "1.0"
+}

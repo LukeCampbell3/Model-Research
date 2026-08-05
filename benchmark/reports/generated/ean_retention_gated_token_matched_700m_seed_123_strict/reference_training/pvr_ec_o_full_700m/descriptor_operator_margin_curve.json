@@ -1,0 +1,61 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.40777062440974987,
+      "operator_control_margin": 0.40777062440974987,
+      "step": 100
+    },
+    {
+      "descriptor_control_margin": 0.4058466573314945,
+      "operator_control_margin": 0.4058466573314945,
+      "step": 200
+    },
+    {
+      "descriptor_control_margin": 0.396925694825768,
+      "operator_control_margin": 0.396925694825768,
+      "step": 300
+    },
+    {
+      "descriptor_control_margin": 0.39468681309517706,
+      "operator_control_margin": 0.39468681309517706,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.3897296165196167,
+      "operator_control_margin": 0.3897296165196167,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": 0.38686161753867054,
+      "operator_control_margin": 0.38686161753867054,
+      "step": 600
+    },
+    {
+      "descriptor_control_margin": 0.3856821580848191,
+      "operator_control_margin": 0.3856821580848191,
+      "step": 700
+    },
+    {
+      "descriptor_control_margin": 0.3926654501010489,
+      "operator_control_margin": 0.3926654501010489,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.38391497414704645,
+      "operator_control_margin": 0.38391497414704645,
+      "step": 900
+    },
+    {
+      "descriptor_control_margin": 0.37913620307153906,
+      "operator_control_margin": 0.37913620307153906,
+      "step": 1000
+    },
+    {
+      "descriptor_control_margin": 0.3860932674833748,
+      "operator_control_margin": 0.3860932674833748,
+      "step": 1100
+    }
+  ],
+  "model": "pvr_ec_o_full_700m",
+  "schema_version": "1.0"
+}

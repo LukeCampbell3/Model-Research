@@ -1,0 +1,88 @@
+{
+  "created_at": "2026-06-12T03:13:11.271045+00:00",
+  "schema_version": "1.0",
+  "splits": [
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:10.600225+00:00",
+      "dataset_name": "gutenberg_frankenstein_heldout",
+      "document_count": 1,
+      "hash": "7810cd483cffcf2cc8a1d8f0d5807931e69d4f48cd14149b8c76f88af82fead3",
+      "license_or_usage_note": "Project Gutenberg public domain text; obey Gutenberg terms for redistribution.",
+      "path": "data/eval/broad_nlp/gutenberg_frankenstein_heldout.txt",
+      "source": "https://www.gutenberg.org/cache/epub/84/pg84.txt",
+      "split": "broad_nlp_heldout",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 78106
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:10.712323+00:00",
+      "dataset_name": "cpython_json_decoder",
+      "document_count": 39,
+      "hash": "f339376ba0304981fc6b35246472d950903987023a46810bbe224141801ae3e7",
+      "license_or_usage_note": "CPython source under PSF license.",
+      "path": "data/eval/broad_nlp/cpython_json_decoder.txt",
+      "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/json/decoder.py",
+      "split": "code_heavy_heldout",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 1618
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:10.825374+00:00",
+      "dataset_name": "the_algorithms_prime_numbers",
+      "document_count": 7,
+      "hash": "e097a327c2c8cdcf44064a78a1bc557cf44ae3bd08723c16bfd4d322b29712cd",
+      "license_or_usage_note": "TheAlgorithms/Python public repository; inspect upstream MIT license before redistribution.",
+      "path": "data/eval/broad_nlp/the_algorithms_prime_numbers.txt",
+      "source": "https://raw.githubusercontent.com/TheAlgorithms/Python/master/maths/prime_numbers.py",
+      "split": "math_heavy_heldout",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 413
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:11.107150+00:00",
+      "dataset_name": "json_schema_test_suite_type",
+      "document_count": 1,
+      "hash": "091aa31e688df20891de7884878b527745ddac0a3ced6d19a5ea4aa075dbbe00",
+      "license_or_usage_note": "JSON Schema Test Suite under upstream public repository license.",
+      "path": "data/eval/broad_nlp/json_schema_test_suite_type.txt",
+      "source": "https://raw.githubusercontent.com/json-schema-org/JSON-Schema-Test-Suite/main/tests/draft7/type.json",
+      "split": "json_schema_heldout",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 1156
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:11.246012+00:00",
+      "dataset_name": "humaneval_base",
+      "document_count": 1,
+      "hash": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+      "license_or_usage_note": "OpenAI HumanEval public repository; used as reduced coding function eval, not HumanEval+.",
+      "path": "data/eval/coding/humaneval_base.jsonl",
+      "source": "https://raw.githubusercontent.com/openai/human-eval/master/data/HumanEval.jsonl.gz",
+      "split": "coding_function_eval",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 28466
+    },
+    {
+      "contamination_notes": "Synthetic routing probes are excluded from broad capability evidence.",
+      "created_at": "2026-06-12T03:13:11.259225+00:00",
+      "dataset_name": "routing_sensitive_eval",
+      "document_count": 4,
+      "hash": "bd6efaec0a513a9caa6fbfa724619678eb214c37ea94ef6350022a393ea21cc6",
+      "license_or_usage_note": "Synthetic probes are allowed for routing-control diagnostics only, not broad NLP/coding substitution.",
+      "path": "data/eval/routing_probes/routing_sensitive_eval.jsonl",
+      "source": "repo-authored structured routing probes",
+      "split": "routing_sensitive_eval",
+      "split_method": "fixed deterministic routing-control probe set",
+      "token_count_estimate": 71
+    }
+  ],
+  "status": "REAL_REDUCED_EVAL_READY",
+  "subset_label": "GENUINE_REDUCED_EVAL",
+  "total_document_count": 53,
+  "total_token_count_estimate": 109830
+}

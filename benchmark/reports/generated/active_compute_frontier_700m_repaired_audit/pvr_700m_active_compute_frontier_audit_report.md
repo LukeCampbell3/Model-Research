@@ -1,0 +1,159 @@
+# PVR 700M Active Compute Frontier Audit
+
+Status: `PVR_700M_ACTIVE_COMPUTE_FRONTIER_NOT_SUPPORTED_INSUFFICIENT_TRAINING_VOLUME`
+
+| model | checkpoint | evidence | steps | train tokens | eval tokens | LM loss | active params/token | active FLOPs/token | Top1 clean |
+|---|---|---|---:|---:|---:|---:|---:|---:|---|
+| dense_transformer_700m | True | True | 1 | 4 | 1024 | 164.79977798461914 | 700000000 | 4200000000 | None |
+| vanilla_switch_top1_reference_700m | True | True | 1 | 4 | 1024 | 625.2606201171875 | 244999999 | 1469999994 | None |
+| generic_top2_moe_reference_700m | True | True | 1 | 4 | 1024 | 630.6828155517578 | 350000000 | 2100000000 | None |
+| pvr_ec_o_full_700m | True | True | 1 | 4 | 1024 | 509.9210739135742 | 244999999 | 1469999994 | True |
+
+```json
+{
+  "benchmark_evidence": false,
+  "created_at": "2026-06-18T18:54:06.884478+00:00",
+  "decision_rule": "Support requires real checkpoints, completed scorecards with benchmark_evidence=true, clean strict Top1 invariants for PVR, minimum training/eval volume, and PVR Pareto efficiency on active params and active FLOPs.",
+  "experiment": "PVR_700M_ACTIVE_COMPUTE_FRONTIER_AUDIT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "minimum_volume_thresholds": {
+    "min_eval_tokens": 50000,
+    "min_eval_windows": 10,
+    "min_heldout_eval_tokens": 10000,
+    "min_optimizer_steps": 1000,
+    "min_training_tokens": 1000000
+  },
+  "resource_guardrails": {
+    "model_materialization": "disabled",
+    "prevents_missing_checkpoint_claims": true,
+    "prevents_random_init_claims": true,
+    "reason": "700M audit only uses configs and completed scorecards unless checkpoints are present and an explicit eval runner is invoked. Meaningful volume thresholds prevent one-step checkpoint artifacts from becoming scale evidence."
+  },
+  "results_root": "benchmark/reports/generated/benchmark_700m_frontier_repaired_docker",
+  "rows": [
+    {
+      "active_flops_per_token": 4200000000,
+      "active_params_per_token": 700000000,
+      "benchmark_evidence": true,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_700m/dense_transformer_700m/checkpoint.pt",
+      "config_path": "benchmark/configs/generated/dense_transformer_700m.yaml",
+      "effective_batch_tokens": 4,
+      "eval_token_count": 1024,
+      "eval_window_count": 1,
+      "heldout_eval_token_count": 256,
+      "key": "dense_700m",
+      "lm_loss": 164.79977798461914,
+      "model_family": "dense_transformer",
+      "model_variant": "dense_transformer_700m",
+      "optimizer_steps": 1,
+      "perplexity": 3.729359048556272e+71,
+      "quality_per_active_flop": 1.4447546046904242e-12,
+      "quality_per_active_param": 8.668527628142545e-12,
+      "scorecard_exists": true,
+      "scorecard_path": "benchmark/reports/generated/benchmark_700m_frontier_repaired_docker/scorecards/dense_transformer_700m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 2040.567113789445,
+      "top1_invariants_clean": null,
+      "training_tokens_seen": 4,
+      "vram_peak": 2559198208
+    },
+    {
+      "active_flops_per_token": 1469999994,
+      "active_params_per_token": 244999999,
+      "benchmark_evidence": true,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_700m/vanilla_switch_top1_reference_700m/checkpoint.pt",
+      "config_path": "benchmark/configs/generated/vanilla_switch_top1_reference_700m.yaml",
+      "effective_batch_tokens": 4,
+      "eval_token_count": 1024,
+      "eval_window_count": 1,
+      "heldout_eval_token_count": 256,
+      "key": "switch_top1_700m",
+      "lm_loss": 625.2606201171875,
+      "model_family": "vanilla_switch_top1_reference",
+      "model_variant": "vanilla_switch_top1_reference_700m",
+      "optimizer_steps": 1,
+      "perplexity": 3.525632722146169e+271,
+      "quality_per_active_flop": 1.0879816987237425e-12,
+      "quality_per_active_param": 6.527890192342455e-12,
+      "scorecard_exists": true,
+      "scorecard_path": "benchmark/reports/generated/benchmark_700m_frontier_repaired_docker/scorecards/vanilla_switch_top1_reference_700m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 470.1744350583995,
+      "top1_invariants_clean": null,
+      "training_tokens_seen": 4,
+      "vram_peak": 2689106944
+    },
+    {
+      "active_flops_per_token": 2100000000,
+      "active_params_per_token": 350000000,
+      "benchmark_evidence": true,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_700m/generic_top2_moe_reference_700m/checkpoint.pt",
+      "config_path": "benchmark/configs/generated/generic_top2_moe_reference_700m.yaml",
+      "effective_batch_tokens": 4,
+      "eval_token_count": 1024,
+      "eval_window_count": 1,
+      "heldout_eval_token_count": 256,
+      "key": "generic_top2_700m",
+      "lm_loss": 630.6828155517578,
+      "model_family": "generic_top2_moe_reference",
+      "model_variant": "generic_top2_moe_reference_700m",
+      "optimizer_steps": 1,
+      "perplexity": 7.981171174249074e+273,
+      "quality_per_active_flop": 7.550395610095659e-13,
+      "quality_per_active_param": 4.530237366057395e-12,
+      "scorecard_exists": true,
+      "scorecard_path": "benchmark/reports/generated/benchmark_700m_frontier_repaired_docker/scorecards/generic_top2_moe_reference_700m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 473.00709097542955,
+      "top1_invariants_clean": null,
+      "training_tokens_seen": 4,
+      "vram_peak": 2689106944
+    },
+    {
+      "active_flops_per_token": 1469999994,
+      "active_params_per_token": 244999999,
+      "benchmark_evidence": true,
+      "checkpoint_exists": true,
+      "checkpoint_path": "checkpoints/benchmark_700m/pvr_ec_o_full_700m/checkpoint.pt",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_full_700m.yaml",
+      "effective_batch_tokens": 4,
+      "eval_token_count": 1024,
+      "eval_window_count": 1,
+      "heldout_eval_token_count": 256,
+      "key": "pvr_full_700m",
+      "lm_loss": 509.9210739135742,
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_ec_o_full_700m",
+      "optimizer_steps": 1,
+      "perplexity": 2.8569892538189374e+221,
+      "quality_per_active_flop": 1.334073342760995e-12,
+      "quality_per_active_param": 8.00444005656597e-12,
+      "scorecard_exists": true,
+      "scorecard_path": "benchmark/reports/generated/benchmark_700m_frontier_repaired_docker/scorecards/pvr_ec_o_full_700m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 632.3556695718441,
+      "top1_invariants_clean": true,
+      "training_tokens_seen": 4,
+      "vram_peak": 3038841856
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_700M_ACTIVE_COMPUTE_FRONTIER_NOT_SUPPORTED_INSUFFICIENT_TRAINING_VOLUME",
+  "supported_conditions": {
+    "all_checkpoints_present": true,
+    "all_min_eval_tokens_met": false,
+    "all_min_eval_windows_met": false,
+    "all_min_heldout_eval_tokens_met": false,
+    "all_min_optimizer_steps_met": false,
+    "all_min_training_tokens_met": false,
+    "all_scorecards_are_benchmark_evidence": true,
+    "all_scorecards_present": true,
+    "pvr_pareto_efficient_active_flops": true,
+    "pvr_pareto_efficient_active_params": true,
+    "pvr_top1_clean": true
+  }
+}
+```

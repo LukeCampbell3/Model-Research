@@ -1,0 +1,79 @@
+{
+  "eval_data": "data/eval/official_like_dev",
+  "experiment": "PVR_SHARED_SUBSTRATE_REPAIR_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_attention_norms_current_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_embeddings_only_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_embeddings_attention_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_embeddings_norms_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_full_transformer_random_ean_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_wider_attention_norms_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_deeper_attention_norms_300m.yaml",
+    "benchmark/configs/generated/pvr_shared_substrate_repair_screen/configs/pvr_shared_substrate_staged_warmup_attention_norms_300m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "rung_tokens": [
+    249856,
+    499712,
+    749568,
+    999424
+  ],
+  "schema_version": "1.0",
+  "selection_rule": "Official-like development loss plus routing health; final official bounded files remain untouched.",
+  "target_training_tokens": 1000448,
+  "training_data": "data/broad_nlp_train",
+  "variant_definitions": [
+    {
+      "attention_only_trunk": true,
+      "notes": "Current attention-only trunk with LayerNorm; authoritative sparse-v2 substrate baseline.",
+      "substrate_mode": "attention_norms",
+      "suffix": "attention_norms_current"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Token/position embedding coordinate system only; no contextual shared trunk.",
+      "substrate_mode": "embeddings_only",
+      "suffix": "embeddings_only"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Embeddings plus attention without trunk LayerNorm.",
+      "substrate_mode": "embeddings_attention",
+      "suffix": "embeddings_attention"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Embeddings plus normalization without contextual attention.",
+      "substrate_mode": "embeddings_norms",
+      "suffix": "embeddings_norms"
+    },
+    {
+      "attention_only_trunk": false,
+      "notes": "Randomly initialized dense-style attention+norm+FFN trunk; no teacher transfer.",
+      "substrate_mode": "full_transformer_random_ean",
+      "suffix": "full_transformer_random_ean"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Attention+norms trunk with wider shared residual path; active compute recorded explicitly.",
+      "shared_materialization_ffn_size": 768,
+      "substrate_mode": "attention_norms",
+      "suffix": "wider_attention_norms"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Deeper attention+norms trunk; active compute recorded explicitly.",
+      "num_layers": 28,
+      "substrate_mode": "attention_norms",
+      "suffix": "deeper_attention_norms"
+    },
+    {
+      "attention_only_trunk": true,
+      "notes": "Current substrate with residual experts disabled for the first ~250K tokens.",
+      "shared_warmup_steps": 244,
+      "substrate_mode": "attention_norms",
+      "suffix": "staged_warmup_attention_norms",
+      "training_curriculum": "shared_warmup_then_top1"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-07-15T13:58:36.562469+00:00",
+  "model": "dense_sparse_v2_300m_matched",
+  "routing_curve": [],
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

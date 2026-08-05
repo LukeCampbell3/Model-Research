@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 4,
+  "model": "dense_transformer_700m",
+  "optimizer_steps": 1,
+  "resource_reduction": {
+    "completed_eval_windows": 1,
+    "completed_steps": 1,
+    "completed_training_tokens": 4,
+    "estimated_steps_needed": 1,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 1,
+    "target_training_tokens": 4
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 1,
+  "target_steps": 1,
+  "target_training_tokens": 4,
+  "tokens_per_second": 0.2868812600465714,
+  "tokens_seen": 4,
+  "training_tokens_seen": 4,
+  "wall_clock_seconds": 13.943050861358643
+}

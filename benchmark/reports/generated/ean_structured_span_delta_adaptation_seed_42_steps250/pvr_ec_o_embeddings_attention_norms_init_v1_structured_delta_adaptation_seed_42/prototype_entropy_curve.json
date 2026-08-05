@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.015510711443027,
+      "step": 50
+    },
+    {
+      "prototype_entropy": 2.016835668085353,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.022392166588383,
+      "step": 150
+    },
+    {
+      "prototype_entropy": 2.015862848716212,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.015619610661529,
+      "step": 250
+    }
+  ],
+  "schema_version": "1.0"
+}

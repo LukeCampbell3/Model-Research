@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        261,
+        232,
+        417,
+        171,
+        81,
+        145,
+        71,
+        158
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        421,
+        187,
+        305,
+        183,
+        77,
+        127,
+        74,
+        162
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        416,
+        191,
+        280,
+        209,
+        71,
+        122,
+        71,
+        176
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        406,
+        197,
+        259,
+        220,
+        73,
+        137,
+        64,
+        180
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        391,
+        210,
+        265,
+        231,
+        79,
+        122,
+        61,
+        177
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        387,
+        212,
+        249,
+        231,
+        89,
+        125,
+        57,
+        186
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        402,
+        208,
+        248,
+        243,
+        75,
+        124,
+        60,
+        176
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        388,
+        225,
+        243,
+        252,
+        68,
+        108,
+        62,
+        190
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        413,
+        207,
+        243,
+        274,
+        64,
+        121,
+        43,
+        171
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        385,
+        210,
+        233,
+        272,
+        88,
+        117,
+        58,
+        173
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+  "schema_version": "1.0"
+}

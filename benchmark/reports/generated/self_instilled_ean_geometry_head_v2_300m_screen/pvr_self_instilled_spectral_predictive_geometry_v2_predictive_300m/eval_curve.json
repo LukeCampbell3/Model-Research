@@ -1,0 +1,119 @@
+{
+  "created_at": "2026-06-19T21:05:40.423573+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 46.204224586486816,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 100,
+      "phase": "geometry_active",
+      "step": 100,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 26.44645059108734,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 200,
+      "phase": "geometry_active",
+      "step": 200,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 20.406273365020752,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 300,
+      "phase": "geometry_active",
+      "step": 300,
+      "training_tokens_seen": 307200
+    },
+    {
+      "eval_loss": 18.030995190143585,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 400,
+      "phase": "geometry_active",
+      "step": 400,
+      "training_tokens_seen": 409600
+    },
+    {
+      "eval_loss": 16.818677842617035,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 500,
+      "phase": "geometry_decay",
+      "step": 500,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 16.109491378068924,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 600,
+      "phase": "geometry_decay",
+      "step": 600,
+      "training_tokens_seen": 614400
+    },
+    {
+      "eval_loss": 15.643487215042114,
+      "eval_tokens": 1024,
+      "head_active": true,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 700,
+      "phase": "geometry_decay",
+      "step": 700,
+      "training_tokens_seen": 716800
+    },
+    {
+      "eval_loss": 14.933726221323013,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": true,
+      "optimizer_step": 800,
+      "phase": "geometry_decay",
+      "step": 800,
+      "training_tokens_seen": 819200
+    },
+    {
+      "eval_loss": 13.123434722423553,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": true,
+      "optimizer_step": 900,
+      "phase": "expert_specialization",
+      "step": 900,
+      "training_tokens_seen": 921600
+    },
+    {
+      "eval_loss": 12.306663915514946,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": true,
+      "optimizer_step": 1000,
+      "phase": "expert_specialization",
+      "step": 1000,
+      "training_tokens_seen": 1024000
+    },
+    {
+      "eval_loss": 12.377762004733086,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": true,
+      "optimizer_step": 1100,
+      "phase": "expert_specialization",
+      "step": 1100,
+      "training_tokens_seen": 1126400
+    }
+  ],
+  "eval_window_count": 11,
+  "model": "pvr_self_instilled_spectral_predictive_geometry_v2_predictive_300m",
+  "schema_version": "1.0",
+  "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE"
+}

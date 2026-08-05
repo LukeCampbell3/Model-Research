@@ -1,9 +1,0 @@
-{
-  "status": "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
-  "statuses": [
-    "PARTIAL_PVR_EC_FAIR_DEPLOYMENT_VALIDATION",
-    "PVR_EC_DO_NOT_PROMOTE"
-  ],
-  "runtime_branching_enabled": false,
-  "branch_tickets_enabled": false
-}

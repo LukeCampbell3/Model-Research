@@ -1,7 +1,0 @@
-{
-  "expert_execution_mode": "FULLY_VECTORIZED",
-  "profile_deploy": false,
-  "no_hot_path_branch_tickets": true,
-  "no_runtime_branching": true,
-  "no_cuda_sync_inside_model_forward": true
-}

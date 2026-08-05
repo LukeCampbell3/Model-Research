@@ -1,0 +1,16 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "e803261aea6f39e63303cfbc737c758d2485900217b8fb65c0191b484a572957",
+  "checkpoint_path": "checkpoints/benchmark_100m/vanilla_switch_top1_reference_100m/checkpoint.pt",
+  "created_at": "2026-06-12T03:13:43.451354+00:00",
+  "error": null,
+  "mock_checkpoint": false,
+  "model": "vanilla_switch_top1_reference_100m",
+  "real_training_data": true,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "tokens_seen": 16,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ]
+}

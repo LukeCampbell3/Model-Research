@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_rba_effectiveness_baseline",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 200
+    },
+    {
+      "owner_churn": null,
+      "step": 400
+    },
+    {
+      "owner_churn": null,
+      "step": 600
+    },
+    {
+      "owner_churn": null,
+      "step": 800
+    },
+    {
+      "owner_churn": null,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

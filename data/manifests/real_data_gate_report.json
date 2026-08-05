@@ -1,0 +1,23 @@
+{
+  "errors": [],
+  "eval_token_count_estimate": 109830,
+  "min_eval_tokens": 200,
+  "min_train_tokens": 1000,
+  "required_dirs": [
+    "data/broad_nlp_train",
+    "data/eval/broad_nlp",
+    "data/eval/coding",
+    "data/eval/routing_probes"
+  ],
+  "required_manifests": [
+    "data/manifests/training_data_manifest.json",
+    "data/manifests/eval_manifest.json",
+    "data/manifests/contamination_scan_manifest.json",
+    "benchmark/manifests/training_data_manifest.json",
+    "benchmark/manifests/eval_manifest.json",
+    "benchmark/manifests/contamination_scan_manifest.json"
+  ],
+  "schema_version": "1.0",
+  "status": "REAL_DATA_GATE_READY",
+  "train_token_count_estimate": 267542
+}

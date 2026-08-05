@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Routing Scorecard",
+  "allOf": [{"$ref": "scorecard_schema.json"}],
+  "required": ["required_invariants", "scorecard"],
+  "properties": {
+    "required_invariants": {"type": "array", "items": {"type": "string"}},
+    "scorecard": {
+      "type": "object",
+      "required": ["owners_per_token", "prototype_entropy", "prototype_margin", "owner_churn", "expert_utilization", "monopoly_rate", "challenger_disagreement", "descriptor_margin", "operator_margin", "stale_owner_rate", "failure_mode_distribution", "top2_execution_count", "top4_execution_count", "runtime_dynamic_k_count", "runtime_expert_choice_count", "production_map_mutated"]
+    }
+  }
+}
+

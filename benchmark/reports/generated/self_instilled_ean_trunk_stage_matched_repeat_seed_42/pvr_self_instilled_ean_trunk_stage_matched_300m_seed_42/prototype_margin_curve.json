@@ -1,0 +1,90 @@
+{
+  "model": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.34483917844772805,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.33277028697921196,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.3263847837612654,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.3292713513073977,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.3316722517920425,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.3327737667641486,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.3350186517952049,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.34120187733788043,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.34589864595545805,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.34150864825884736,
+      "step": 4000
+    },
+    {
+      "prototype_margin": 0.33630896080527845,
+      "step": 4100
+    },
+    {
+      "prototype_margin": 0.337271240161499,
+      "step": 4200
+    },
+    {
+      "prototype_margin": 0.33678322386792087,
+      "step": 4300
+    },
+    {
+      "prototype_margin": 0.3343945413119703,
+      "step": 4400
+    },
+    {
+      "prototype_margin": 0.3367320322383118,
+      "step": 4500
+    },
+    {
+      "prototype_margin": 0.3414329801647303,
+      "step": 4600
+    },
+    {
+      "prototype_margin": 0.3386877579566014,
+      "step": 4700
+    },
+    {
+      "prototype_margin": 0.3368342113487112,
+      "step": 4800
+    },
+    {
+      "prototype_margin": 0.3379920633791092,
+      "step": 4900
+    },
+    {
+      "prototype_margin": 0.33899124333644676,
+      "step": 5000
+    },
+    {
+      "prototype_margin": 0.3389434806255546,
+      "step": 5100
+    }
+  ],
+  "schema_version": "1.0"
+}

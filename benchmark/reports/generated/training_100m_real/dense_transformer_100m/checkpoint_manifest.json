@@ -1,0 +1,16 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "7503b52aad5bb5af30217de6f1e53894c74984bf022f3de89808e423c74820f7",
+  "checkpoint_path": "checkpoints/benchmark_100m/dense_transformer_100m/checkpoint.pt",
+  "created_at": "2026-06-12T03:13:39.928939+00:00",
+  "error": null,
+  "mock_checkpoint": false,
+  "model": "dense_transformer_100m",
+  "real_training_data": true,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "tokens_seen": 16,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ]
+}

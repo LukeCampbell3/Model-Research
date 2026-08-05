@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-07-17T12:10:37.234230+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 96.77989196777344,
+      "eval_tokens": 64,
+      "optimizer_step": 20,
+      "step": 20,
+      "training_tokens_seen": 2560
+    },
+    {
+      "eval_loss": 44.29368591308594,
+      "eval_tokens": 64,
+      "optimizer_step": 40,
+      "step": 40,
+      "training_tokens_seen": 5120
+    },
+    {
+      "eval_loss": 26.496322631835938,
+      "eval_tokens": 64,
+      "optimizer_step": 60,
+      "step": 60,
+      "training_tokens_seen": 7680
+    },
+    {
+      "eval_loss": 20.180465698242188,
+      "eval_tokens": 64,
+      "optimizer_step": 80,
+      "step": 80,
+      "training_tokens_seen": 10240
+    },
+    {
+      "eval_loss": 12.401859283447266,
+      "eval_tokens": 64,
+      "optimizer_step": 100,
+      "step": 100,
+      "training_tokens_seen": 12800
+    }
+  ],
+  "eval_window_count": 5,
+  "model": "pvr_sparse_v2_official_like_aux0p0005_100m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

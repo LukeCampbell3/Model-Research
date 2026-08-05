@@ -1,0 +1,8 @@
+{
+  "model_configs": [
+    "benchmark/configs/generated/official_300m_bounded/configs/dense_transformer_300m_official_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/vanilla_switch_top1_reference_300m_official_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/generic_top2_moe_reference_300m_official_compute_matched.yaml"
+  ],
+  "schema_version": "1.0"
+}

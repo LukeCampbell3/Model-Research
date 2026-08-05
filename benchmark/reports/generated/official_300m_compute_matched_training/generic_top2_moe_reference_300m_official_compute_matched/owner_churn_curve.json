@@ -1,0 +1,5 @@
+{
+  "model": "generic_top2_moe_reference_300m_official_compute_matched",
+  "owner_churn_curve": [],
+  "schema_version": "1.0"
+}

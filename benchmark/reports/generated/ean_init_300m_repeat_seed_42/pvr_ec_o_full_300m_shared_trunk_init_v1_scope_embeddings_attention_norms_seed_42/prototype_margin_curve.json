@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_42",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.48131810200963326,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.5032085121929413,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.5097774834357551,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.5097517058893573,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.5057960008731849,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.5084109575812666,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.5050028397527058,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.5114177070160318,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.5027438329561846,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.5198498563307415,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

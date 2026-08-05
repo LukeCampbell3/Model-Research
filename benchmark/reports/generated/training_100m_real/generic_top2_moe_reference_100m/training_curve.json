@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-06-12T03:13:50.656867+00:00",
+  "loss_curve": [
+    {
+      "loss": 411.9217834472656,
+      "step": 1,
+      "tokens_seen": 16
+    }
+  ],
+  "model": "generic_top2_moe_reference_100m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

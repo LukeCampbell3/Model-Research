@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Benchmark Manifest",
+  "type": "object",
+  "required": ["schema_version", "created_at", "git_commit", "source_paths", "hashes", "environment", "notes"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "created_at": {"type": "string"},
+    "git_commit": {"type": "string"},
+    "source_paths": {"type": "array", "items": {"type": "string"}},
+    "hashes": {"type": "object"},
+    "environment": {"type": "object"},
+    "notes": {"type": "string"}
+  }
+}
+

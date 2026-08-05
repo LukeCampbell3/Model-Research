@@ -1,0 +1,61 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 100
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 200
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 300
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 600
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 700
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 900
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 1000
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 1100
+    }
+  ],
+  "model": "pvr_self_instilled_spectral_predictive_geometry_v2_balanced_300m",
+  "schema_version": "1.0"
+}

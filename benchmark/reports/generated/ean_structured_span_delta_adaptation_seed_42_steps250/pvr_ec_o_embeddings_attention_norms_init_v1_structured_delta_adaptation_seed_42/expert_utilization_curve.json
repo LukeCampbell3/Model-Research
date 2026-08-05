@@ -1,0 +1,71 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        307,
+        323,
+        497,
+        716,
+        239,
+        389,
+        274,
+        327
+      ],
+      "step": 50
+    },
+    {
+      "expert_utilization": [
+        304,
+        300,
+        502,
+        710,
+        241,
+        382,
+        285,
+        348
+      ],
+      "step": 100
+    },
+    {
+      "expert_utilization": [
+        332,
+        253,
+        500,
+        689,
+        260,
+        366,
+        304,
+        368
+      ],
+      "step": 150
+    },
+    {
+      "expert_utilization": [
+        299,
+        273,
+        482,
+        725,
+        253,
+        337,
+        311,
+        392
+      ],
+      "step": 200
+    },
+    {
+      "expert_utilization": [
+        288,
+        259,
+        459,
+        723,
+        267,
+        364,
+        291,
+        421
+      ],
+      "step": 250
+    }
+  ],
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "schema_version": "1.0"
+}

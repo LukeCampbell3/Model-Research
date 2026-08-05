@@ -1,0 +1,50 @@
+{
+  "model": "pvr_ec_o_ean_token_matched_700m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.41714187521938584,
+      "step": 100
+    },
+    {
+      "prototype_margin": 0.3979570048777532,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.39639715874000103,
+      "step": 300
+    },
+    {
+      "prototype_margin": 0.40137225619037054,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.3979574605473317,
+      "step": 500
+    },
+    {
+      "prototype_margin": 0.4030439981343079,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.3989710774676496,
+      "step": 700
+    },
+    {
+      "prototype_margin": 0.4091126436360355,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.4079195657141099,
+      "step": 900
+    },
+    {
+      "prototype_margin": 0.40123176883389533,
+      "step": 1000
+    },
+    {
+      "prototype_margin": 0.40466177200505626,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

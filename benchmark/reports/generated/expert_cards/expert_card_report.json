@@ -1,0 +1,1557 @@
+{
+  "candidate_config": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+  "created_at": "2026-06-18T15:45:21.955205+00:00",
+  "experiment": "PVR_EXPERT_CARD_REPORT_GENERATION",
+  "expert_cards": [
+    {
+      "activation_count": 16194,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 18.26600456237793,
+          "mean": 13.903002589941025,
+          "min": 7.303606033325195,
+          "p50": 14.914375305175781,
+          "p95": 18.0870304107666
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 0.6119989156723022,
+          "mean": 0.24908317625522614,
+          "min": 0.011456012725830078,
+          "p50": 0.24349337816238403,
+          "p95": 0.5853359699249268
+        }
+      },
+      "expert_id": "0",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, identifier, quote, other; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05370501484056955,
+      "mean_delta_norm": 13.062255749720709,
+      "mean_harm": -0.025727233276851284,
+      "mean_positive_benefit": 0.09614162754868279,
+      "mean_route_margin": 0.35207945049960176,
+      "positive_benefit_rate": 0.6517846115845375,
+      "prose_benefit": 171.0721426015759,
+      "structured_benefit": 656.915130804759,
+      "structured_prose_benefit_ratio": 3.8399889123660715,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 223.5679409288185,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 157.02121589798497,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 154.43051640192652,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 71.79091068980362,
+          "token_class": "other"
+        },
+        {
+          "benefit": 56.99294299725447,
+          "token_class": "brace_bracket_paren"
+        },
+        {
+          "benefit": 53.08792705895738,
+          "token_class": "newline"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -56.784182612396044,
+          "token_class": "space"
+        },
+        {
+          "benefit": -25.790789482804655,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 20.026878178119645,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 25.67837285995483,
+          "token_class": "number"
+        },
+        {
+          "benefit": 28.427181593608065,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 37.96993391960856,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 18.066368103027344,
+          "family": "broad_lm",
+          "route_margin": 0.24349337816238403,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 14.914375305175781,
+          "family": "broad_lm",
+          "route_margin": 0.011456012725830078,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 10.399097442626953,
+          "family": "json_schema",
+          "route_margin": 0.31355637311935425,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 9.670820236206055,
+          "family": "json_schema",
+          "route_margin": 0.5853359699249268,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 18.26600456237793,
+          "family": "json_schema",
+          "route_margin": 0.4235943555831909,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 18.0870304107666,
+          "family": "json_schema",
+          "route_margin": 0.35745885968208313,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 14.868946075439453,
+          "family": "json_schema",
+          "route_margin": 0.012494087219238281,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 7.8735575675964355,
+          "family": "json_schema",
+          "route_margin": 0.14937710762023926,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 18.03725814819336,
+          "family": "json_schema",
+          "route_margin": 0.5126282572746277,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.42559146881103516,
+          "delta_norm": 17.872426986694336,
+          "family": "json_schema",
+          "route_margin": 0.25519827008247375,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.214195251464844
+        }
+      ],
+      "total_assigned_benefit": 869.6990103281832
+    },
+    {
+      "activation_count": 13880,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 14.407355308532715,
+          "mean": 11.335158169269562,
+          "min": 7.100924015045166,
+          "p50": 14.313057899475098,
+          "p95": 14.38868522644043
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 0.7398184537887573,
+          "mean": 0.33521274849772453,
+          "min": 0.044027864933013916,
+          "p50": 0.29956305027008057,
+          "p95": 0.6131228804588318
+        }
+      },
+      "expert_id": "1",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, newline; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05358412834855889,
+      "mean_delta_norm": 10.796895326935935,
+      "mean_harm": -0.024083466979706526,
+      "mean_positive_benefit": 0.09757619030009541,
+      "mean_route_margin": 0.35888647763595327,
+      "positive_benefit_rate": 0.638400576368876,
+      "prose_benefit": 117.94023537352372,
+      "structured_benefit": 594.4802589720722,
+      "structured_prose_benefit_ratio": 5.040521218982801,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 163.359797292544,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 151.25674009323103,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 123.64388394479928,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 59.9441161163442,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 56.11398442551405,
+          "token_class": "other"
+        },
+        {
+          "benefit": 54.84331373187406,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -44.53482295619314,
+          "token_class": "space"
+        },
+        {
+          "benefit": -25.671516255941253,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 17.143415490786214,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 21.092705031236008,
+          "token_class": "number"
+        },
+        {
+          "benefit": 27.818417216806335,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 30.15799604356287,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 7.330848217010498,
+          "family": "broad_lm",
+          "route_margin": 0.29956305027008057,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 14.366406440734863,
+          "family": "broad_lm",
+          "route_margin": 0.291988730430603,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 14.313057899475098,
+          "family": "json_schema",
+          "route_margin": 0.38561248779296875,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14381763339042664,
+          "delta_norm": 9.876863479614258,
+          "family": "broad_lm",
+          "route_margin": 0.11163318157196045,
+          "token": "c",
+          "token_class": "prose_word",
+          "token_total_benefit": -3.4516232013702393
+        },
+        {
+          "assigned_benefit": -0.14381763339042664,
+          "delta_norm": 14.407355308532715,
+          "family": "broad_lm",
+          "route_margin": 0.26674365997314453,
+          "token": "c",
+          "token_class": "prose_word",
+          "token_total_benefit": -3.4516232013702393
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 14.353534698486328,
+          "family": "json_schema",
+          "route_margin": 0.35987240076065063,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 7.676216125488281,
+          "family": "json_schema",
+          "route_margin": 0.28156864643096924,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 7.812159538269043,
+          "family": "json_schema",
+          "route_margin": 0.044027864933013916,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 14.38868522644043,
+          "family": "json_schema",
+          "route_margin": 0.3348906636238098,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.42559146881103516,
+          "delta_norm": 9.553960800170898,
+          "family": "json_schema",
+          "route_margin": 0.10610616207122803,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.214195251464844
+        }
+      ],
+      "total_assigned_benefit": 743.7477014779975
+    },
+    {
+      "activation_count": 24373,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 19.876901626586914,
+          "mean": 12.108772218227386,
+          "min": 8.800647735595703,
+          "p50": 11.604266166687012,
+          "p95": 19.83881378173828
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 1.0311675071716309,
+          "mean": 0.4673074185848236,
+          "min": 0.007012426853179932,
+          "p50": 0.3731444478034973,
+          "p95": 1.0158721208572388
+        }
+      },
+      "expert_id": "2",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, other; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05371527152342145,
+      "mean_delta_norm": 12.818348594641737,
+      "mean_harm": -0.02524569046794252,
+      "mean_positive_benefit": 0.09761663886144385,
+      "mean_route_margin": 0.5045499488870622,
+      "positive_benefit_rate": 0.6426783736101424,
+      "prose_benefit": 223.19736113202464,
+      "structured_benefit": 1027.8614858082503,
+      "structured_prose_benefit_ratio": 4.605168630108734,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 296.87189562091004,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 246.68985684712786,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 220.2482383629936,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 108.78297688924776,
+          "token_class": "other"
+        },
+        {
+          "benefit": 104.58986664447768,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 88.797799543788,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -81.26248212088902,
+          "token_class": "space"
+        },
+        {
+          "benefit": -43.05156335715834,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 29.907237370808943,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 38.72510836521784,
+          "token_class": "number"
+        },
+        {
+          "benefit": 46.37499596768392,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 54.78257326036702,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 10.339085578918457,
+          "family": "broad_lm",
+          "route_margin": 0.3652651607990265,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 11.604266166687012,
+          "family": "broad_lm",
+          "route_margin": 0.3444712162017822,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 13.657981872558594,
+          "family": "broad_lm",
+          "route_margin": 0.4467126429080963,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 8.987576484680176,
+          "family": "broad_lm",
+          "route_margin": 0.18856492638587952,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 19.876901626586914,
+          "family": "broad_lm",
+          "route_margin": 1.0158721208572388,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 12.206803321838379,
+          "family": "json_schema",
+          "route_margin": 0.679313600063324,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 10.230634689331055,
+          "family": "json_schema",
+          "route_margin": 0.6278300285339355,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 13.295406341552734,
+          "family": "json_schema",
+          "route_margin": 0.3220507502555847,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 8.837514877319336,
+          "family": "json_schema",
+          "route_margin": 0.1730024814605713,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 19.83881378173828,
+          "family": "json_schema",
+          "route_margin": 1.0311675071716309,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        }
+      ],
+      "total_assigned_benefit": 1309.202312840351
+    },
+    {
+      "activation_count": 31521,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 22.630359649658203,
+          "mean": 15.397479236125946,
+          "min": 7.337386131286621,
+          "p50": 16.24778175354004,
+          "p95": 22.549673080444336
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 0.8679388761520386,
+          "mean": 0.5960098616778851,
+          "min": 0.009511888027191162,
+          "p50": 0.7100922465324402,
+          "p95": 0.7703670859336853
+        }
+      },
+      "expert_id": "3",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, newline; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05182877445541106,
+      "mean_delta_norm": 15.33122305269339,
+      "mean_harm": -0.02401665415159867,
+      "mean_positive_benefit": 0.09714921453835904,
+      "mean_route_margin": 0.532087572774383,
+      "positive_benefit_rate": 0.6259636432854288,
+      "prose_benefit": 269.89090842583454,
+      "structured_benefit": 1292.6877477699402,
+      "structured_prose_benefit_ratio": 4.789667630190545,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 377.9505207139716,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 326.80464029312145,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 269.79287517815885,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 129.19768036618694,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 126.38592330851682,
+          "token_class": "other"
+        },
+        {
+          "benefit": 115.53666921084107,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -100.51087315396147,
+          "token_class": "space"
+        },
+        {
+          "benefit": -62.81851902945587,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 44.40598078568775,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 50.37864041328433,
+          "token_class": "number"
+        },
+        {
+          "benefit": 58.09949615101032,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 60.91461429744971,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 8.273972511291504,
+          "family": "broad_lm",
+          "route_margin": 0.8679388761520386,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 16.316221237182617,
+          "family": "broad_lm",
+          "route_margin": 0.7289800047874451,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 22.630359649658203,
+          "family": "broad_lm",
+          "route_margin": 0.7522459030151367,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 21.80191421508789,
+          "family": "broad_lm",
+          "route_margin": 0.6114027500152588,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 16.190580368041992,
+          "family": "json_schema",
+          "route_margin": 0.7100922465324402,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 7.8891282081604,
+          "family": "json_schema",
+          "route_margin": 0.05824553966522217,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 7.6958909034729,
+          "family": "json_schema",
+          "route_margin": 0.7211551666259766,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 16.24778175354004,
+          "family": "json_schema",
+          "route_margin": 0.7649969458580017,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 22.538679122924805,
+          "family": "json_schema",
+          "route_margin": 0.6821215748786926,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 21.72295379638672,
+          "family": "json_schema",
+          "route_margin": 0.619948148727417,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        }
+      ],
+      "total_assigned_benefit": 1633.6947996090119
+    },
+    {
+      "activation_count": 11609,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 22.9853572845459,
+          "mean": 13.992617815732956,
+          "min": 7.402981281280518,
+          "p50": 10.291979789733887,
+          "p95": 22.87668800354004
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 1.2289636135101318,
+          "mean": 0.6302802544087172,
+          "min": 0.00852745771408081,
+          "p50": 0.5643401145935059,
+          "p95": 1.157224178314209
+        }
+      },
+      "expert_id": "4",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, newline; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.0574494639053708,
+      "mean_delta_norm": 16.168970971917066,
+      "mean_harm": -0.025520594585333744,
+      "mean_positive_benefit": 0.10047017180035508,
+      "mean_route_margin": 0.7820981349348406,
+      "positive_benefit_rate": 0.6585407873201826,
+      "prose_benefit": 123.17078125202667,
+      "structured_benefit": 515.3922927192868,
+      "structured_prose_benefit_ratio": 4.1843713864631065,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 154.14674661432687,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 114.22850751876823,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 111.11233570612933,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 54.60028381268633,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 52.81486257742049,
+          "token_class": "other"
+        },
+        {
+          "benefit": 43.88149103584392,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -36.65766617368581,
+          "token_class": "space"
+        },
+        {
+          "benefit": -18.76540925990174,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 14.538320938746132,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 17.208223720391597,
+          "token_class": "number"
+        },
+        {
+          "benefit": 21.3807941228151,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 26.495302634934564,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 8.011032104492188,
+          "family": "broad_lm",
+          "route_margin": 0.08765071630477905,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 10.291979789733887,
+          "family": "broad_lm",
+          "route_margin": 0.1490834355354309,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 22.74820899963379,
+          "family": "broad_lm",
+          "route_margin": 1.1534578800201416,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 8.753653526306152,
+          "family": "json_schema",
+          "route_margin": 0.4778738021850586,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 22.87668800354004,
+          "family": "json_schema",
+          "route_margin": 1.0910704135894775,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 7.402981281280518,
+          "family": "json_schema",
+          "route_margin": 0.5643401145935059,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 8.556255340576172,
+          "family": "json_schema",
+          "route_margin": 0.33876097202301025,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 22.751602172851562,
+          "family": "json_schema",
+          "route_margin": 1.0363757610321045,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 10.959671974182129,
+          "family": "json_schema",
+          "route_margin": 0.1521834135055542,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 9.019441604614258,
+          "family": "json_schema",
+          "route_margin": 1.2289636135101318,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        }
+      ],
+      "total_assigned_benefit": 666.9308264774496
+    },
+    {
+      "activation_count": 19432,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 22.21358299255371,
+          "mean": 13.542664915323257,
+          "min": 7.750196933746338,
+          "p50": 13.509611129760742,
+          "p95": 22.20932388305664
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 1.3253791332244873,
+          "mean": 0.6745301820337772,
+          "min": 0.07825720310211182,
+          "p50": 0.76362544298172,
+          "p95": 1.1355760097503662
+        }
+      },
+      "expert_id": "5",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, newline; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05413506385760564,
+      "mean_delta_norm": 14.184252050419607,
+      "mean_harm": -0.0235137974348626,
+      "mean_positive_benefit": 0.0994587105223705,
+      "mean_route_margin": 0.6196155940913302,
+      "positive_benefit_rate": 0.6314326883491148,
+      "prose_benefit": 167.4832967167421,
+      "structured_benefit": 831.4221370424815,
+      "structured_prose_benefit_ratio": 4.964209287381254,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 228.12142890815917,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 213.69783115387,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 166.03280864252437,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 89.07491169463458,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 87.11160759549415,
+          "token_class": "other"
+        },
+        {
+          "benefit": 70.56145406079781,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -59.09407232449547,
+          "token_class": "space"
+        },
+        {
+          "benefit": -35.60854034063707,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 27.46344043811164,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 31.859657367070504,
+          "token_class": "number"
+        },
+        {
+          "benefit": 33.73679759912199,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 41.80289016415678,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 8.427087783813477,
+          "family": "broad_lm",
+          "route_margin": 0.5227410793304443,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 14.634742736816406,
+          "family": "broad_lm",
+          "route_margin": 0.5854675769805908,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 22.151559829711914,
+          "family": "broad_lm",
+          "route_margin": 0.76362544298172,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 8.34851360321045,
+          "family": "json_schema",
+          "route_margin": 0.5195884704589844,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 9.063444137573242,
+          "family": "json_schema",
+          "route_margin": 0.07825720310211182,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 8.657865524291992,
+          "family": "json_schema",
+          "route_margin": 1.075549840927124,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 13.558156967163086,
+          "family": "json_schema",
+          "route_margin": 1.1355760097503662,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 22.21358299255371,
+          "family": "json_schema",
+          "route_margin": 0.9126418232917786,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 7.750196933746338,
+          "family": "json_schema",
+          "route_margin": 0.5909568667411804,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 12.848854064941406,
+          "family": "json_schema",
+          "route_margin": 0.7649803757667542,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        }
+      ],
+      "total_assigned_benefit": 1051.952560880993
+    },
+    {
+      "activation_count": 14796,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 22.205413818359375,
+          "mean": 15.30236902832985,
+          "min": 7.6731038093566895,
+          "p50": 13.150712013244629,
+          "p95": 22.164710998535156
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 0.7763402462005615,
+          "mean": 0.47434251196682453,
+          "min": 0.0019948482513427734,
+          "p50": 0.474479615688324,
+          "p95": 0.7732692956924438
+        }
+      },
+      "expert_id": "6",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, other; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.05306682790740744,
+      "mean_delta_norm": 15.07641079104182,
+      "mean_harm": -0.026004055717967357,
+      "mean_positive_benefit": 0.09655332895844618,
+      "mean_route_margin": 0.497448254607781,
+      "positive_benefit_rate": 0.6451743714517437,
+      "prose_benefit": 134.89457851179202,
+      "structured_benefit": 612.6271134429616,
+      "structured_prose_benefit_ratio": 4.541525094645726,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 184.55593682654793,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 153.38968388239533,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 137.3830584504952,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 65.21751862678205,
+          "token_class": "other"
+        },
+        {
+          "benefit": 55.566863244799876,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 52.569064841605766,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -50.7761994029471,
+          "token_class": "space"
+        },
+        {
+          "benefit": -26.447583775346494,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 19.616864581902806,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 20.523938616116833,
+          "token_class": "number"
+        },
+        {
+          "benefit": 24.302093240121952,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 30.253139719366988,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 8.196810722351074,
+          "family": "broad_lm",
+          "route_margin": 0.46002432703971863,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 13.150712013244629,
+          "family": "broad_lm",
+          "route_margin": 0.22599589824676514,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 22.149934768676758,
+          "family": "broad_lm",
+          "route_margin": 0.7349434494972229,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 7.6731038093566895,
+          "family": "json_schema",
+          "route_margin": 0.08606517314910889,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 12.516654968261719,
+          "family": "json_schema",
+          "route_margin": 0.725058913230896,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 9.388772010803223,
+          "family": "json_schema",
+          "route_margin": 0.0019948482513427734,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 13.236690521240234,
+          "family": "json_schema",
+          "route_margin": 0.2555248737335205,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 22.152965545654297,
+          "family": "json_schema",
+          "route_margin": 0.7676111459732056,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 13.131726264953613,
+          "family": "json_schema",
+          "route_margin": 0.22252517938613892,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 22.164710998535156,
+          "family": "json_schema",
+          "route_margin": 0.7763402462005615,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        }
+      ],
+      "total_assigned_benefit": 785.1767857180005
+    },
+    {
+      "activation_count": 15651,
+      "example_distributions": {
+        "delta_norm_examples": {
+          "count": 16,
+          "max": 24.224767684936523,
+          "mean": 17.236717104911804,
+          "min": 7.465703964233398,
+          "p50": 12.947617530822754,
+          "p95": 24.134075164794922
+        },
+        "route_margin_examples": {
+          "count": 16,
+          "max": 0.7768314480781555,
+          "mean": 0.5081388019025326,
+          "min": 0.1530340313911438,
+          "p50": 0.5175976753234863,
+          "p95": 0.7520334720611572
+        }
+      },
+      "expert_id": "7",
+      "interpretation": "structured/syntax residual; strongest benefit on prose_word, quote, identifier, newline; harm concentrated in space, indentation.",
+      "mean_assigned_benefit": 0.055189922037254376,
+      "mean_delta_norm": 15.922613975819091,
+      "mean_harm": -0.025743816057149805,
+      "mean_positive_benefit": 0.09883269209740513,
+      "mean_route_margin": 0.4619933549629165,
+      "positive_benefit_rate": 0.649670947543288,
+      "prose_benefit": 153.2604973380684,
+      "structured_benefit": 670.9415690854551,
+      "structured_prose_benefit_ratio": 4.3777854094096025,
+      "top_benefit_token_classes": [
+        {
+          "benefit": 203.8924884625396,
+          "token_class": "prose_word"
+        },
+        {
+          "benefit": 163.19524367650357,
+          "token_class": "quote"
+        },
+        {
+          "benefit": 147.67876479402176,
+          "token_class": "identifier"
+        },
+        {
+          "benefit": 71.28128746732693,
+          "token_class": "newline"
+        },
+        {
+          "benefit": 70.58749644157677,
+          "token_class": "other"
+        },
+        {
+          "benefit": 55.48728540415567,
+          "token_class": "brace_bracket_paren"
+        }
+      ],
+      "top_harm_token_classes": [
+        {
+          "benefit": -54.79792904535609,
+          "token_class": "space"
+        },
+        {
+          "benefit": -26.846155139152,
+          "token_class": "indentation"
+        },
+        {
+          "benefit": 20.75306393702823,
+          "token_class": "operator"
+        },
+        {
+          "benefit": 24.37033540010452,
+          "token_class": "number"
+        },
+        {
+          "benefit": 28.3011601340646,
+          "token_class": "json_value"
+        },
+        {
+          "benefit": 33.62580838054418,
+          "token_class": "function_signature"
+        }
+      ],
+      "top_negative_examples": [
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 12.893712043762207,
+          "family": "broad_lm",
+          "route_margin": 0.3393423557281494,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.17974231019616127,
+          "delta_norm": 24.101839065551758,
+          "family": "broad_lm",
+          "route_margin": 0.7300772666931152,
+          "token": "d",
+          "token_class": "prose_word",
+          "token_total_benefit": -4.3138154447078705
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 7.465703964233398,
+          "family": "json_schema",
+          "route_margin": 0.15647178888320923,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 12.777634620666504,
+          "family": "json_schema",
+          "route_margin": 0.44136732816696167,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        },
+        {
+          "assigned_benefit": -0.14390301704406738,
+          "delta_norm": 24.134075164794922,
+          "family": "json_schema",
+          "route_margin": 0.7768314480781555,
+          "token": "o",
+          "token_class": "json_value",
+          "token_total_benefit": -3.453672409057617
+        }
+      ],
+      "top_positive_examples": [
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 12.9307279586792,
+          "family": "json_schema",
+          "route_margin": 0.38366442918777466,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4434954325358073,
+          "delta_norm": 24.133909225463867,
+          "family": "json_schema",
+          "route_margin": 0.7520334720611572,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.643890380859375
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 12.863738059997559,
+          "family": "json_schema",
+          "route_margin": 0.2991443872451782,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.4348748524983724,
+          "delta_norm": 24.09161949157715,
+          "family": "json_schema",
+          "route_margin": 0.6932511925697327,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.436996459960938
+        },
+        {
+          "assigned_benefit": 0.42559146881103516,
+          "delta_norm": 12.8611421585083,
+          "family": "json_schema",
+          "route_margin": 0.3129814863204956,
+          "token": "\"",
+          "token_class": "quote",
+          "token_total_benefit": 10.214195251464844
+        }
+      ],
+      "total_assigned_benefit": 863.7774698050682
+    }
+  ],
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "interpretability_scope": "Post-hoc functional expert cards are supported by the probe report. They do not prove route-margin interpretability, semantic owner geometry, or expert-delta causality.",
+  "overall": {
+    "assignment_count": 147456,
+    "mean_assigned_benefit": 0.05373929488889463,
+    "mean_delta_norm": 14.191877876427801,
+    "mean_route_margin": 0.5117655237031108,
+    "positive_assignment_rate": 0.6404622395833334,
+    "total_assigned_benefit": 7924.181467136847
+  },
+  "rankings": {
+    "activation_count_desc": [
+      {
+        "activation_count": 31521,
+        "expert_id": "3"
+      },
+      {
+        "activation_count": 24373,
+        "expert_id": "2"
+      },
+      {
+        "activation_count": 19432,
+        "expert_id": "5"
+      },
+      {
+        "activation_count": 16194,
+        "expert_id": "0"
+      },
+      {
+        "activation_count": 15651,
+        "expert_id": "7"
+      },
+      {
+        "activation_count": 14796,
+        "expert_id": "6"
+      },
+      {
+        "activation_count": 13880,
+        "expert_id": "1"
+      },
+      {
+        "activation_count": 11609,
+        "expert_id": "4"
+      }
+    ],
+    "structured_prose_ratio_desc": [
+      {
+        "expert_id": "1",
+        "structured_prose_benefit_ratio": 5.040521218982801
+      },
+      {
+        "expert_id": "5",
+        "structured_prose_benefit_ratio": 4.964209287381254
+      },
+      {
+        "expert_id": "3",
+        "structured_prose_benefit_ratio": 4.789667630190545
+      },
+      {
+        "expert_id": "2",
+        "structured_prose_benefit_ratio": 4.605168630108734
+      },
+      {
+        "expert_id": "6",
+        "structured_prose_benefit_ratio": 4.541525094645726
+      },
+      {
+        "expert_id": "7",
+        "structured_prose_benefit_ratio": 4.3777854094096025
+      },
+      {
+        "expert_id": "4",
+        "structured_prose_benefit_ratio": 4.1843713864631065
+      },
+      {
+        "expert_id": "0",
+        "structured_prose_benefit_ratio": 3.8399889123660715
+      }
+    ],
+    "total_assigned_benefit_desc": [
+      {
+        "expert_id": "3",
+        "total_assigned_benefit": 1633.6947996090119
+      },
+      {
+        "expert_id": "2",
+        "total_assigned_benefit": 1309.202312840351
+      },
+      {
+        "expert_id": "5",
+        "total_assigned_benefit": 1051.952560880993
+      },
+      {
+        "expert_id": "0",
+        "total_assigned_benefit": 869.6990103281832
+      },
+      {
+        "expert_id": "7",
+        "total_assigned_benefit": 863.7774698050682
+      },
+      {
+        "expert_id": "6",
+        "total_assigned_benefit": 785.1767857180005
+      },
+      {
+        "expert_id": "1",
+        "total_assigned_benefit": 743.7477014779975
+      },
+      {
+        "expert_id": "4",
+        "total_assigned_benefit": 666.9308264774496
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "source_report": "benchmark/reports/generated/expert_function_probe_audit/expert_function_probe_audit_report.json",
+  "source_status": "PVR_EXPERT_FUNCTION_PROBE_SUPPORTED",
+  "status": "PVR_EXPERT_CARD_REPORT_GENERATION_COMPLETE"
+}

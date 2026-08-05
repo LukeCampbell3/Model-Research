@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#172026}.title{font-size:24px;font-weight:700}.head{font-size:17px;font-weight:700}.small{font-size:13px}.axis{stroke:#5d6970;stroke-width:1}.grid{stroke:#d8dee3;stroke-width:1}.ok{fill:#27856f}.bad{fill:#b65a4b}.skip{fill:#b68a2e}.blue{fill:#2f6f9f}.panel{fill:#f7f9fb;stroke:#cbd4db}
+</style>
+<text x="40.0" y="48.0" class="title" text-anchor="start">Figure 1. Architecture Test Verdict</text>
+<rect x="50" y="84" width="820" height="130" rx="8" fill="#f7f9fb" stroke="#cbd4db"/>
+<circle cx="105" cy="149" r="28" fill="#27856f"/>
+<text x="155.0" y="134.0" class="head" text-anchor="start">ARCHITECTURE_TEST_SUITE_PASSED</text>
+<text x="155.0" y="166.0" class="small" text-anchor="start">All collected architecture tests passed.</text>
+<rect x="60" y="270" width="240" height="68" rx="6" class="panel"/>
+<text x="78.0" y="297.0" class="small" text-anchor="start">Total</text>
+<text x="78.0" y="324.0" class="head" text-anchor="start">649</text>
+<rect x="340" y="270" width="240" height="68" rx="6" class="panel"/>
+<text x="358.0" y="297.0" class="small" text-anchor="start">Passed</text>
+<text x="358.0" y="324.0" class="head" text-anchor="start">649</text>
+<rect x="620" y="270" width="240" height="68" rx="6" class="panel"/>
+<text x="638.0" y="297.0" class="small" text-anchor="start">Failed/Error</text>
+<text x="638.0" y="324.0" class="head" text-anchor="start">0</text>
+<rect x="60" y="365" width="240" height="68" rx="6" class="panel"/>
+<text x="78.0" y="392.0" class="small" text-anchor="start">Skipped</text>
+<text x="78.0" y="419.0" class="head" text-anchor="start">0</text>
+<rect x="340" y="365" width="240" height="68" rx="6" class="panel"/>
+<text x="358.0" y="392.0" class="small" text-anchor="start">Pass Rate</text>
+<text x="358.0" y="419.0" class="head" text-anchor="start">100.0%</text>
+<rect x="620" y="365" width="240" height="68" rx="6" class="panel"/>
+<text x="638.0" y="392.0" class="small" text-anchor="start">Elapsed</text>
+<text x="638.0" y="419.0" class="head" text-anchor="start">767.4s</text>
+</svg>

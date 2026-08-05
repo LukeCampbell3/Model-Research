@@ -1,0 +1,69 @@
+{
+  "created_at": "2026-06-18T21:42:25.869427+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 3.861261526743571,
+      "optimizer_step": 10,
+      "step": 10,
+      "structured_unseen_loss": 14.948052406311035
+    },
+    {
+      "eval_loss": 3.85148016611735,
+      "optimizer_step": 20,
+      "step": 20,
+      "structured_unseen_loss": 14.28471052646637
+    },
+    {
+      "eval_loss": 3.823383887608846,
+      "optimizer_step": 30,
+      "step": 30,
+      "structured_unseen_loss": 13.84968614578247
+    },
+    {
+      "eval_loss": 3.850743850072225,
+      "optimizer_step": 40,
+      "step": 40,
+      "structured_unseen_loss": 13.28833556175232
+    },
+    {
+      "eval_loss": 3.816511313120524,
+      "optimizer_step": 50,
+      "step": 50,
+      "structured_unseen_loss": 12.76977026462555
+    },
+    {
+      "eval_loss": 3.8557907740275064,
+      "optimizer_step": 60,
+      "step": 60,
+      "structured_unseen_loss": 12.19683289527893
+    },
+    {
+      "eval_loss": 3.89534060160319,
+      "optimizer_step": 70,
+      "step": 70,
+      "structured_unseen_loss": 11.640046119689941
+    },
+    {
+      "eval_loss": 3.8989875316619873,
+      "optimizer_step": 80,
+      "step": 80,
+      "structured_unseen_loss": 11.278379797935486
+    },
+    {
+      "eval_loss": 3.924034754435221,
+      "optimizer_step": 90,
+      "step": 90,
+      "structured_unseen_loss": 10.790475904941559
+    },
+    {
+      "eval_loss": 3.9500439961751304,
+      "optimizer_step": 100,
+      "step": 100,
+      "structured_unseen_loss": 10.347443699836731
+    }
+  ],
+  "eval_window_count": 10,
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_700m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

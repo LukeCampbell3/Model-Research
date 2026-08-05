@@ -1,0 +1,50 @@
+{
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_300m_matched",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.39756245775303495,
+      "step": 100
+    },
+    {
+      "prototype_margin": 0.41559757925764035,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.4278373825145536,
+      "step": 300
+    },
+    {
+      "prototype_margin": 0.43944975250633433,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.45084447136711486,
+      "step": 500
+    },
+    {
+      "prototype_margin": 0.45730406818135333,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.46210006378532853,
+      "step": 700
+    },
+    {
+      "prototype_margin": 0.4641680733160077,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.4685713933504303,
+      "step": 900
+    },
+    {
+      "prototype_margin": 0.47137861424077226,
+      "step": 1000
+    },
+    {
+      "prototype_margin": 0.4712773829911991,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

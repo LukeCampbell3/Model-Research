@@ -1,0 +1,50 @@
+{
+  "model": "pvr_teacher_ean_300m_matched_seed_42",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 100
+    },
+    {
+      "owner_churn": 0.047526041666666664,
+      "step": 200
+    },
+    {
+      "owner_churn": 0.029947916666666668,
+      "step": 300
+    },
+    {
+      "owner_churn": 0.027994791666666668,
+      "step": 400
+    },
+    {
+      "owner_churn": 0.016927083333333332,
+      "step": 500
+    },
+    {
+      "owner_churn": 0.018229166666666668,
+      "step": 600
+    },
+    {
+      "owner_churn": 0.014322916666666666,
+      "step": 700
+    },
+    {
+      "owner_churn": 0.014973958333333334,
+      "step": 800
+    },
+    {
+      "owner_churn": 0.025390625,
+      "step": 900
+    },
+    {
+      "owner_churn": 0.017578125,
+      "step": 1000
+    },
+    {
+      "owner_churn": 0.014973958333333334,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

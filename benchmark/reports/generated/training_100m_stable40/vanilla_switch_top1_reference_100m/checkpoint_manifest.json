@@ -1,0 +1,21 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "ea5c907cb9f7b856fe742f9ffeb125078b8ecd537fe37f0206077e1011622f75",
+  "checkpoint_path": "checkpoints/benchmark_100m/vanilla_switch_top1_reference_100m/checkpoint.pt",
+  "created_at": "2026-06-12T03:42:22.723207+00:00",
+  "effective_batch_tokens": 64,
+  "error": null,
+  "eval_window_count": 4,
+  "mock_checkpoint": false,
+  "model": "vanilla_switch_top1_reference_100m",
+  "optimizer_steps": 40,
+  "real_training_data": true,
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "tokens_seen": 2560,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 2560
+}

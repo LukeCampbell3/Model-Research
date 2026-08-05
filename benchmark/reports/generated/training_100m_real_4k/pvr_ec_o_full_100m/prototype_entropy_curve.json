@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_100m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9904005402112113,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0000449070799435,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 1.9822841387428283,
+      "step": 1200
+    },
+    {
+      "prototype_entropy": 1.9985147513305026,
+      "step": 1600
+    },
+    {
+      "prototype_entropy": 2.0045274871478975,
+      "step": 2000
+    },
+    {
+      "prototype_entropy": 1.996812379811364,
+      "step": 2400
+    },
+    {
+      "prototype_entropy": 2.004844473301959,
+      "step": 2800
+    },
+    {
+      "prototype_entropy": 2.0052355647577444,
+      "step": 3200
+    },
+    {
+      "prototype_entropy": 2.0072634957757347,
+      "step": 3600
+    },
+    {
+      "prototype_entropy": 2.019556741610758,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

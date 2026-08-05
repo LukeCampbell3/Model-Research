@@ -1,0 +1,71 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        161,
+        302,
+        462,
+        167,
+        51,
+        172,
+        57,
+        164
+      ],
+      "step": 200
+    },
+    {
+      "expert_utilization": [
+        304,
+        279,
+        352,
+        173,
+        57,
+        149,
+        65,
+        157
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        347,
+        226,
+        341,
+        181,
+        58,
+        149,
+        61,
+        173
+      ],
+      "step": 600
+    },
+    {
+      "expert_utilization": [
+        423,
+        202,
+        293,
+        177,
+        75,
+        134,
+        70,
+        162
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        417,
+        203,
+        284,
+        191,
+        70,
+        140,
+        58,
+        173
+      ],
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "schema_version": "1.0"
+}

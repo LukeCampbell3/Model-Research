@@ -1,0 +1,18 @@
+{
+  "model": "pvr_sparse_v2_e24_shared512_expert176_100m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 2.808553061913699,
+      "step": 250
+    },
+    {
+      "prototype_margin": 3.9379095101418593,
+      "step": 500
+    },
+    {
+      "prototype_margin": 5.056805102271028,
+      "step": 950
+    }
+  ],
+  "schema_version": "1.0"
+}

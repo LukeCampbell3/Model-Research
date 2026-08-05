@@ -1,0 +1,25 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "12d378f48c058eb3ba15095a8832fdc2fe4a594588e6434e0bd8849b3eae02c8",
+  "checkpoint_path": "checkpoints/benchmark_100m/dense_transformer_100m/checkpoint.pt",
+  "created_at": "2026-06-12T03:55:56.166267+00:00",
+  "effective_batch_tokens": 256,
+  "error": null,
+  "eval_window_count": 10,
+  "mock_checkpoint": false,
+  "model": "dense_transformer_100m",
+  "optimizer_steps": 1000,
+  "real_training_data": true,
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 1000,
+  "target_training_tokens": 1000000,
+  "tier": "real_comparison",
+  "tokens_seen": 256000,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 256000
+}

@@ -1,0 +1,10 @@
+{
+  "effective_batch_tokens": 64,
+  "model": "pvr_ec_o_shared_only_100m",
+  "optimizer_steps": 20,
+  "schema_version": "1.0",
+  "tokens_per_second": 470.4354116068461,
+  "tokens_seen": 1280,
+  "training_tokens_seen": 1280,
+  "wall_clock_seconds": 2.72088360786438
+}

@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-07-15T13:58:36.562486+00:00",
+  "cuda_available": true,
+  "device": "cuda",
+  "environment": {
+    "cwd": "/workspace",
+    "machine": "x86_64",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.10.13"
+  },
+  "gpu_hours": 0.1006283731593026,
+  "schema_version": "1.0",
+  "tokens_per_second": 5936.032895888199,
+  "vram_peak": 6256303104,
+  "wall_clock_seconds": 362.2621433734894
+}

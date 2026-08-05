@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "2ebc13d5217bb1b67a3eb72a640dc8bb632f2aa1f14e731bc4ad64aa2e78daa3",
+  "checkpoint_path": "checkpoints/official_300m_compute_matched/generic_top2_moe_reference_300m_official_compute_matched/checkpoint.pt",
+  "created_at": "2026-06-20T13:07:15.515168+00:00",
+  "effective_batch_tokens": 1024,
+  "error": null,
+  "eval_window_count": 10,
+  "mock_checkpoint": false,
+  "model": "generic_top2_moe_reference_300m_official_compute_matched",
+  "optimizer_steps": 5100,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 5100,
+    "completed_training_tokens": 2150400,
+    "estimated_steps_needed": 5100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 2150400
+  },
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 5100,
+  "target_training_tokens": 2150400,
+  "tier": "official_300m_compute_matched",
+  "tokens_seen": 2150400,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 2150400
+}

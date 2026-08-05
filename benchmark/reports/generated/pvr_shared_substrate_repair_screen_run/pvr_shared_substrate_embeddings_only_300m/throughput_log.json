@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_shared_substrate_embeddings_only_300m",
+  "optimizer_steps": 977,
+  "resource_reduction": {
+    "completed_eval_windows": 4,
+    "completed_steps": 977,
+    "completed_training_tokens": 1000448,
+    "estimated_steps_needed": 977,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 4,
+    "target_training_tokens": 1000448
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 4,
+  "target_steps": 977,
+  "target_training_tokens": 1000448,
+  "tokens_per_second": 2041.3588594927414,
+  "tokens_seen": 1000448,
+  "training_tokens_seen": 1000448,
+  "wall_clock_seconds": 490.08923411369324
+}

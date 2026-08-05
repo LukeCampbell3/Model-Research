@@ -1,0 +1,111 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 1200
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 1600
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 2000
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 2400
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 2800
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 3200
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 3600
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4000
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4100
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4200
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4300
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4400
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4500
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4600
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4700
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4800
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 4900
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 5000
+    },
+    {
+      "descriptor_control_margin": null,
+      "operator_control_margin": null,
+      "step": 5100
+    }
+  ],
+  "model": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+  "schema_version": "1.0"
+}

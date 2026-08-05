@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        470,
+        233,
+        451,
+        510,
+        362,
+        381,
+        347,
+        318
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        315,
+        248,
+        533,
+        648,
+        284,
+        394,
+        350,
+        300
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        394,
+        262,
+        500,
+        590,
+        276,
+        384,
+        355,
+        311
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        409,
+        229,
+        537,
+        563,
+        273,
+        399,
+        339,
+        323
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        408,
+        268,
+        511,
+        540,
+        256,
+        403,
+        344,
+        342
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        418,
+        273,
+        529,
+        559,
+        245,
+        407,
+        332,
+        309
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        413,
+        263,
+        532,
+        563,
+        261,
+        399,
+        330,
+        311
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        402,
+        276,
+        510,
+        577,
+        258,
+        404,
+        315,
+        330
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        361,
+        266,
+        541,
+        620,
+        254,
+        411,
+        293,
+        326
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        368,
+        280,
+        500,
+        609,
+        241,
+        432,
+        327,
+        315
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_from_dense_seed_42",
+  "schema_version": "1.0"
+}

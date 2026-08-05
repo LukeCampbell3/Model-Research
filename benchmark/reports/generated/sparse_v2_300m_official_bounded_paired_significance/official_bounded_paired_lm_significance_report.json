@@ -1,0 +1,249 @@
+{
+  "baselines": [
+    {
+      "active_params_per_token_actual": 301318144,
+      "block_count": 256,
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/dense_sparse_v2_300m_matched.yaml",
+      "file_count": 8,
+      "mean_loss": 10.875021406449378,
+      "model_variant": "dense_sparse_v2_300m_matched",
+      "total_params_actual": 301318144
+    },
+    {
+      "active_params_per_token_actual": 174689824,
+      "block_count": 256,
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/switch_top1_sparse_v2_300m_matched.yaml",
+      "file_count": 8,
+      "mean_loss": 9.429242825135589,
+      "model_variant": "switch_top1_sparse_v2_300m_matched",
+      "total_params_actual": 300162304
+    },
+    {
+      "active_params_per_token_actual": 192614464,
+      "block_count": 256,
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/generic_top2_sparse_v2_300m_matched.yaml",
+      "file_count": 8,
+      "mean_loss": 9.727309678681195,
+      "model_variant": "generic_top2_sparse_v2_300m_matched",
+      "total_params_actual": 300162304
+    }
+  ],
+  "candidate": {
+    "active_params_per_token_actual": 191039968,
+    "block_count": 256,
+    "config_path": "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/pvr_teacher_independent_sparse_v2_300m.yaml",
+    "file_count": 8,
+    "mean_loss": 10.188022664748132,
+    "model_variant": "pvr_teacher_independent_sparse_v2_300m",
+    "total_params_actual": 300579328
+  },
+  "comparisons": [
+    {
+      "baseline": "dense_sparse_v2_300m_matched",
+      "block_bootstrap_ci95": [
+        -0.9439331293106079,
+        -0.441188040189445
+      ],
+      "candidate_active_params_delta": -110278176,
+      "candidate_minus_baseline_file_mean_loss": -0.6869987417012453,
+      "candidate_minus_baseline_mean_loss": -0.6869987417012453,
+      "file_bootstrap_ci95": [
+        -1.4469890538603067,
+        -0.08235012833029032
+      ],
+      "file_win_count": 7,
+      "paired_block_count": 256,
+      "paired_file_count": 8,
+      "per_file": {
+        "arc_challenge.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.4289066568017006,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "boolq.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.14758291840553284,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "gsm8k.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.5381333604454994,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "hellaswag.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.38632138073444366,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "humaneval.jsonl": {
+          "candidate_minus_baseline_mean_loss": -2.3108223900198936,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "mbpp.jsonl": {
+          "candidate_minus_baseline_mean_loss": -2.2692238092422485,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "mmlu.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.12431585043668747,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "winogrande.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.14849688112735748,
+          "candidate_win": true,
+          "paired_block_count": 32
+        }
+      },
+      "probability_candidate_better_block_bootstrap": 1.0,
+      "probability_candidate_better_file_bootstrap": 0.9934,
+      "significant_candidate_win_block_bootstrap": true,
+      "significant_candidate_win_file_bootstrap": true
+    },
+    {
+      "baseline": "switch_top1_sparse_v2_300m_matched",
+      "block_bootstrap_ci95": [
+        0.5656211078166962,
+        0.9475187631323934
+      ],
+      "candidate_active_params_delta": 16350144,
+      "candidate_minus_baseline_file_mean_loss": 0.7587798396125436,
+      "candidate_minus_baseline_mean_loss": 0.7587798396125436,
+      "file_bootstrap_ci95": [
+        0.3976497817784548,
+        1.147539421916008
+      ],
+      "file_win_count": 0,
+      "paired_block_count": 256,
+      "paired_file_count": 8,
+      "per_file": {
+        "arc_challenge.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.06908725202083588,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "boolq.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.10121451318264008,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "gsm8k.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.814670205116272,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "hellaswag.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.5317847579717636,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "humaneval.jsonl": {
+          "candidate_minus_baseline_mean_loss": 1.7558015063405037,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "mbpp.jsonl": {
+          "candidate_minus_baseline_mean_loss": 1.393540434539318,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "mmlu.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.7413188070058823,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "winogrande.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.6628212407231331,
+          "candidate_win": false,
+          "paired_block_count": 32
+        }
+      },
+      "probability_candidate_better_block_bootstrap": 0.0,
+      "probability_candidate_better_file_bootstrap": 0.0,
+      "significant_candidate_win_block_bootstrap": false,
+      "significant_candidate_win_file_bootstrap": false
+    },
+    {
+      "baseline": "generic_top2_sparse_v2_300m_matched",
+      "block_bootstrap_ci95": [
+        0.14120180811733007,
+        0.7928766654804349
+      ],
+      "candidate_active_params_delta": -1574496,
+      "candidate_minus_baseline_file_mean_loss": 0.46071298606693745,
+      "candidate_minus_baseline_mean_loss": 0.46071298606693745,
+      "file_bootstrap_ci95": [
+        -0.4916243888437748,
+        1.4173840023577213
+      ],
+      "file_win_count": 3,
+      "paired_block_count": 256,
+      "paired_file_count": 8,
+      "per_file": {
+        "arc_challenge.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.9075029268860817,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "boolq.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.4413645938038826,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "gsm8k.jsonl": {
+          "candidate_minus_baseline_mean_loss": -2.1796582639217377,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "hellaswag.jsonl": {
+          "candidate_minus_baseline_mean_loss": -0.03184354305267334,
+          "candidate_win": true,
+          "paired_block_count": 32
+        },
+        "humaneval.jsonl": {
+          "candidate_minus_baseline_mean_loss": 2.76401736587286,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "mbpp.jsonl": {
+          "candidate_minus_baseline_mean_loss": 1.8425701260566711,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "mmlu.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.34701399505138397,
+          "candidate_win": false,
+          "paired_block_count": 32
+        },
+        "winogrande.jsonl": {
+          "candidate_minus_baseline_mean_loss": 0.4774658754467964,
+          "candidate_win": false,
+          "paired_block_count": 32
+        }
+      },
+      "probability_candidate_better_block_bootstrap": 0.003,
+      "probability_candidate_better_file_bootstrap": 0.1744,
+      "significant_candidate_win_block_bootstrap": false,
+      "significant_candidate_win_file_bootstrap": false
+    }
+  ],
+  "created_at": "2026-07-15T15:27:59.434399+00:00",
+  "decision_rule": "Support requires file-bootstrap upper CI < 0 against every listed baseline.",
+  "files": [
+    "data/eval/official_300m_bounded/arc_challenge.jsonl",
+    "data/eval/official_300m_bounded/boolq.jsonl",
+    "data/eval/official_300m_bounded/gsm8k.jsonl",
+    "data/eval/official_300m_bounded/hellaswag.jsonl",
+    "data/eval/official_300m_bounded/humaneval.jsonl",
+    "data/eval/official_300m_bounded/mbpp.jsonl",
+    "data/eval/official_300m_bounded/mmlu.jsonl",
+    "data/eval/official_300m_bounded/winogrande.jsonl"
+  ],
+  "max_blocks_per_file": 32,
+  "official_full_benchmark": false,
+  "official_root": "data/eval/official_300m_bounded",
+  "schema_version": "1.0",
+  "seq_len": 64,
+  "status": "PVR_SPARSE_V2_300M_OFFICIAL_BOUNDED_PAIRED_ADVANTAGE_NOT_SUPPORTED"
+}

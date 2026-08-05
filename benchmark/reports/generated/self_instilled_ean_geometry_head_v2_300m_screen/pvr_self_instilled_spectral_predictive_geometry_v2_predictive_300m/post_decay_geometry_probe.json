@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-06-19T21:07:02.539070+00:00",
+  "head_used_for_inference": false,
+  "metrics": {
+    "activation_norm_cv": 0.9439072608947754,
+    "activation_norm_mean": 9.401798248291016,
+    "activation_norm_std": 8.874425888061523,
+    "covariance_loss": 0.023483017459511757,
+    "covariance_offdiag_energy": 1.4332896398627781e-06,
+    "cross_layer_predictive_loss": 0.19868920743465424,
+    "effective_rank": 4.523388385772705,
+    "geometry_head_gradient_norm": 0.0,
+    "geometry_weight_scale": 0.0,
+    "head_active": false,
+    "isotropy_score": 0.49960577487945557,
+    "layerwise_variance_floor": 1.9138407707214355,
+    "measurement_only": true,
+    "norm_scale_loss": 0.890670895576477,
+    "phase": "expert_specialization",
+    "reconstruction_loss": 0.936430811882019,
+    "redundancy_reduction_loss": 0.03431873023509979,
+    "sample_count": 3072,
+    "shared_trunk_gradient_norm": 0.0,
+    "spectral_loss": 0.40172111988067627,
+    "step": "post_decay_final",
+    "temporal_predictive_loss": 0.09875043481588364,
+    "total_geometry_loss": 0.026186680421233177,
+    "variance_loss": 0.14742302894592285
+  },
+  "schema_version": "1.0",
+  "status": "POST_DECAY_GEOMETRY_PROBE_COMPLETE"
+}

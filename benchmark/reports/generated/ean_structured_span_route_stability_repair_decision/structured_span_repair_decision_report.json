@@ -1,0 +1,53 @@
+{
+  "candidate": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_route_stability",
+  "comparison": {
+    "baseline_mean_eval_loss": 4.856676840782166,
+    "baseline_pvr_lm_loss": 3.422222343683243,
+    "dense_lm_loss": 3.305846790075302,
+    "ean_lm_loss": 3.010810148715973,
+    "repaired_lm_loss": 3.014079146385193,
+    "repaired_mean_eval_loss": 5.005123496055603,
+    "repaired_minus_baseline_lm_loss": -0.4081431972980498,
+    "repaired_minus_baseline_mean_eval_loss": 0.14844665527343714,
+    "repaired_minus_dense_lm_loss": -0.2917676436901089,
+    "repaired_minus_ean_lm_loss": 0.003268997669219953,
+    "top1_invariants_clean": true
+  },
+  "created_at": "2026-06-17T02:58:37.333208+00:00",
+  "decision": {
+    "architecture_change_recommended": false,
+    "both_structured_outliers_improved": false,
+    "next_recommended_step": "do not preserve scratch owners directly; try structured delta warmup or robust eval stratification only if needed",
+    "route_stability_auxiliary_supported": false,
+    "scorecard_regresses_vs_ean": true,
+    "scorecard_still_beats_dense": true,
+    "top1_invariants_clean": true
+  },
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "interpretation": "The training-only route-stability auxiliary preserved strict Top1 execution and still beat dense on the scorecard, but it slightly regressed EAN scorecard loss and failed to improve both structured outliers. Directly matching scratch-PVR owners on high-loss structured tokens is therefore too blunt.",
+  "schema_version": "1.0",
+  "source_report": "benchmark/reports/generated/ean_structured_span_route_stability_repair_seed_42/structured_span_repair_report.json",
+  "status": "PVR_EAN_STRUCTURED_SPAN_ROUTE_STABILITY_REPAIR_NOT_SUPPORTED",
+  "structured_windows": [
+    {
+      "baseline_loss": 8.865436553955078,
+      "dense_loss": 12.357633590698242,
+      "ean_delta_vs_baseline": 2.7385520935058594,
+      "ean_loss": 11.603988647460938,
+      "repair_minus_ean_delta": 0.050742149353027344,
+      "repaired_delta_vs_baseline": 2.7892942428588867,
+      "repaired_loss": 11.654730796813965,
+      "step": 3600
+    },
+    {
+      "baseline_loss": 11.067703247070312,
+      "dense_loss": 16.326175689697266,
+      "ean_delta_vs_baseline": 3.838240623474121,
+      "ean_loss": 14.905943870544434,
+      "repair_minus_ean_delta": -0.0019006729125976562,
+      "repaired_delta_vs_baseline": 3.8363399505615234,
+      "repaired_loss": 14.904043197631836,
+      "step": 4000
+    }
+  ]
+}

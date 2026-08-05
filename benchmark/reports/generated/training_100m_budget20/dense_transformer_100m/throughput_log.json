@@ -1,0 +1,10 @@
+{
+  "effective_batch_tokens": 64,
+  "model": "dense_transformer_100m",
+  "optimizer_steps": 20,
+  "schema_version": "1.0",
+  "tokens_per_second": 397.89501613381617,
+  "tokens_seen": 1280,
+  "training_tokens_seen": 1280,
+  "wall_clock_seconds": 3.2169289588928223
+}

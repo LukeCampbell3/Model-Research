@@ -1,0 +1,50 @@
+{
+  "model": "pvr_shared_warmup_no_geometry_head_300m_matched",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.3975484539502456,
+      "step": 100
+    },
+    {
+      "prototype_margin": 0.4155967742796444,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.4278388030118852,
+      "step": 300
+    },
+    {
+      "prototype_margin": 0.43944307827526546,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.4506887509802861,
+      "step": 500
+    },
+    {
+      "prototype_margin": 0.4572998305375222,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.4620946090144571,
+      "step": 700
+    },
+    {
+      "prototype_margin": 0.4641620020168678,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.4686892011207722,
+      "step": 900
+    },
+    {
+      "prototype_margin": 0.47141257782883866,
+      "step": 1000
+    },
+    {
+      "prototype_margin": 0.4712795959203504,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scaling Report",
+  "type": "object",
+  "required": ["schema_version", "status", "scaling_axes", "benchmark_evidence"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "status": {"type": "string"},
+    "benchmark_evidence": {"type": "boolean"},
+    "scaling_axes": {
+      "type": "object",
+      "required": ["capability_by_size", "efficiency_by_size", "routing_specialization_by_size", "coding_capability_by_size", "quality_per_active_param_by_size", "quality_per_gpu_hour_by_size", "code_score_per_active_flop_by_size"]
+    }
+  }
+}

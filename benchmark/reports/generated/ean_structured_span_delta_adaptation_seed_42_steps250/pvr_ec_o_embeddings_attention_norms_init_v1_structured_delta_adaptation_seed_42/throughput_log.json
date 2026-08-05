@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 256,
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "optimizer_steps": 250,
+  "resource_reduction": {
+    "completed_eval_windows": 5,
+    "completed_steps": 250,
+    "completed_training_tokens": 64000,
+    "estimated_steps_needed": 250,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 5,
+    "target_training_tokens": 64000
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 5,
+  "target_steps": 250,
+  "target_training_tokens": 64000,
+  "tokens_per_second": 1415.1836167507392,
+  "tokens_seen": 64000,
+  "training_tokens_seen": 64000,
+  "wall_clock_seconds": 45.22381353378296
+}

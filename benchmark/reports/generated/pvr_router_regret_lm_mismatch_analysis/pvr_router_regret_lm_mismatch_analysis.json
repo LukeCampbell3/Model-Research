@@ -1,0 +1,280 @@
+{
+  "baseline_variant": "pvr_router_regret_repair_baseline_no_regret_300m_1m_confirm",
+  "blocked_claims": [
+    "PVR_ROUTER_REGRET_REPAIR_1M_PROMOTION_SUPPORTED",
+    "PVR_ROUTE_MARGIN_CONFIDENCE_SUPPORTED",
+    "PVR_TEACHER_INDEPENDENCE_SUPPORTED",
+    "PVR_ARCHITECTURE_SUPERIORITY_SUPPORTED"
+  ],
+  "created_at": "2026-07-22T19:30:23.487761+00:00",
+  "decision": "PVR_REGRET_REPAIR_ROUTER_METRIC_IMPROVEMENT_LM_GATE_MISMATCH_CONFIRMED",
+  "eval_window_analysis": {
+    "final_repair_minus_baseline": 0.04692554473876953,
+    "mean_repair_minus_baseline": 0.29747772216796875,
+    "repair_wins": 0,
+    "rows": [
+      {
+        "baseline_eval_loss": 25.925764083862305,
+        "eval_tokens": 256,
+        "repair_eval_loss": 26.456392288208008,
+        "repair_minus_baseline": 0.5306282043457031,
+        "step": 244,
+        "training_tokens_seen": 249856
+      },
+      {
+        "baseline_eval_loss": 19.938337326049805,
+        "eval_tokens": 256,
+        "repair_eval_loss": 20.444303512573242,
+        "repair_minus_baseline": 0.5059661865234375,
+        "step": 488,
+        "training_tokens_seen": 499712
+      },
+      {
+        "baseline_eval_loss": 12.092264175415039,
+        "eval_tokens": 256,
+        "repair_eval_loss": 12.198655128479004,
+        "repair_minus_baseline": 0.10639095306396484,
+        "step": 732,
+        "training_tokens_seen": 749568
+      },
+      {
+        "baseline_eval_loss": 12.02232837677002,
+        "eval_tokens": 256,
+        "repair_eval_loss": 12.069253921508789,
+        "repair_minus_baseline": 0.04692554473876953,
+        "step": 976,
+        "training_tokens_seen": 999424
+      }
+    ],
+    "tokens_per_window": [
+      256
+    ],
+    "window_count": 4
+  },
+  "experiment": "PVR_ROUTER_REGRET_LM_MISMATCH_ANALYSIS",
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "key_deltas": {
+    "final_eval_loss_delta": 0.04692554473876953,
+    "mean_eval_loss_delta": 0.29747772216796875,
+    "oracle_router_regret_delta": -0.20840166567670942,
+    "oracle_selected_is_oracle_rate_delta": 0.07142857142857145,
+    "oracle_selected_loss_delta": -0.971287727355957,
+    "oracle_shared_only_loss_delta": -0.7915183476039331
+  },
+  "oracle_audit_analysis": {
+    "aggregate": {
+      "mean_router_regret": {
+        "baseline": 0.5773689632301934,
+        "repair": 0.36896729755348395,
+        "repair_minus_baseline": -0.20840166567670942
+      },
+      "mean_wrong_loss": {
+        "baseline": 14.597298622131348,
+        "repair": 13.838479723249163,
+        "repair_minus_baseline": -0.7588188988821845
+      },
+      "oracle_loss": {
+        "baseline": 13.819837978907994,
+        "repair": 13.056952340262276,
+        "repair_minus_baseline": -0.7628856386457183
+      },
+      "p95_router_regret": {
+        "baseline": 1.741575002670288,
+        "repair": 1.4463565349578857,
+        "repair_minus_baseline": -0.29521846771240234
+      },
+      "random_residual_loss": {
+        "baseline": 14.809074674333845,
+        "repair": 13.978005681719099,
+        "repair_minus_baseline": -0.8310689926147461
+      },
+      "random_wrong_loss": {
+        "baseline": 14.610214505876813,
+        "repair": 13.816878863743373,
+        "repair_minus_baseline": -0.7933356421334405
+      },
+      "selected_is_oracle_rate": {
+        "baseline": 0.296875,
+        "repair": 0.36830357142857145,
+        "repair_minus_baseline": 0.07142857142857145
+      },
+      "selected_is_top2_rate": {
+        "baseline": 0.40848214285714285,
+        "repair": 0.5044642857142857,
+        "repair_minus_baseline": 0.09598214285714285
+      },
+      "selected_loss": {
+        "baseline": 14.397207260131836,
+        "repair": 13.425919532775879,
+        "repair_minus_baseline": -0.971287727355957
+      },
+      "shared_only_loss": {
+        "baseline": 14.568434034075056,
+        "repair": 13.776915686471122,
+        "repair_minus_baseline": -0.7915183476039331
+      },
+      "shifted_wrong_loss": {
+        "baseline": 14.584815161568779,
+        "repair": 13.811635834830147,
+        "repair_minus_baseline": -0.7731793267386315
+      },
+      "shuffled_residual_loss": {
+        "baseline": 14.402964047023229,
+        "repair": 13.427950995309013,
+        "repair_minus_baseline": -0.9750130517142157
+      }
+    },
+    "per_file": [
+      {
+        "file": "boolean_qa.jsonl",
+        "oracle_loss_delta": -1.4594650268554688,
+        "router_regret_delta": -0.23123726865742356,
+        "selected_is_oracle_rate_delta": 0.09375,
+        "selected_is_top2_rate_delta": 0.0625,
+        "selected_loss_delta": -1.690704345703125,
+        "shared_only_loss_delta": -1.4801273345947266,
+        "token_count": 64
+      },
+      {
+        "file": "code_generation.jsonl",
+        "oracle_loss_delta": -0.5573825836181641,
+        "router_regret_delta": -0.22964896490884712,
+        "selected_is_oracle_rate_delta": 0.09375,
+        "selected_is_top2_rate_delta": 0.109375,
+        "selected_loss_delta": -0.7870321273803711,
+        "shared_only_loss_delta": -0.5847110748291016,
+        "token_count": 64
+      },
+      {
+        "file": "commonsense_completion.jsonl",
+        "oracle_loss_delta": -0.29982566833496094,
+        "router_regret_delta": -0.28449199977330863,
+        "selected_is_oracle_rate_delta": 0.125,
+        "selected_is_top2_rate_delta": 0.125,
+        "selected_loss_delta": -0.5843172073364258,
+        "shared_only_loss_delta": -0.3070640563964844,
+        "token_count": 64
+      },
+      {
+        "file": "general_knowledge.jsonl",
+        "oracle_loss_delta": -0.5769681930541992,
+        "router_regret_delta": -0.2210891500581056,
+        "selected_is_oracle_rate_delta": 0.078125,
+        "selected_is_top2_rate_delta": 0.140625,
+        "selected_loss_delta": -0.7980575561523438,
+        "shared_only_loss_delta": -0.6028594970703125,
+        "token_count": 64
+      },
+      {
+        "file": "mathematics.jsonl",
+        "oracle_loss_delta": -1.201096534729004,
+        "router_regret_delta": -0.13996536756167188,
+        "selected_is_oracle_rate_delta": 0.0,
+        "selected_is_top2_rate_delta": 0.046875,
+        "selected_loss_delta": -1.3410625457763672,
+        "shared_only_loss_delta": -1.254216194152832,
+        "token_count": 64
+      },
+      {
+        "file": "multiple_choice_reasoning.jsonl",
+        "oracle_loss_delta": -0.6248655319213867,
+        "router_regret_delta": -0.17931039235554636,
+        "selected_is_oracle_rate_delta": 0.046875,
+        "selected_is_top2_rate_delta": 0.109375,
+        "selected_loss_delta": -0.8041772842407227,
+        "shared_only_loss_delta": -0.656102180480957,
+        "token_count": 64
+      },
+      {
+        "file": "pronoun_coreference.jsonl",
+        "oracle_loss_delta": -0.6205959320068359,
+        "router_regret_delta": -0.1730685164220631,
+        "selected_is_oracle_rate_delta": 0.0625,
+        "selected_is_top2_rate_delta": 0.078125,
+        "selected_loss_delta": -0.7936630249023438,
+        "shared_only_loss_delta": -0.655548095703125,
+        "token_count": 64
+      }
+    ]
+  },
+  "reasoning": {
+    "eval_gate_alignment": "WEAK; training eval gate uses four single 256-token windows, while oracle audit covers seven official-like files with 64-token blocks.",
+    "lm_eval_effect": "NOT_SUPPORTED_FOR_PROMOTION; regret0p01 is slightly worse on all four training eval windows.",
+    "most_likely_diagnosis": "The regret objective improves final-block expert selection on the oracle-audit distribution but over-concentrates owner utilization and does not transfer to the tiny training-eval windows. The block is therefore an evaluation-alignment plus over-regularized-routing problem, not a useless-expert problem.",
+    "report_or_checkpoint_inconsistency": "NOT_SUPPORTED; exact checkpoints, no resume events, matched steps/tokens/windows.",
+    "router_metric_effect": "SUPPORTED; regret0p01 reduces final-block regret and increases selected-is-oracle/top2 rates.",
+    "routing_side_effect": "SUPPORTED; regret0p01 lowers owner entropy and increases monopoly rate, suggesting over-concentrated routing."
+  },
+  "recommendation": "Do not promote regret0p01. Replace the four-window LM gate with a full official-like micro/macro gate, then test lower or annealed regret weights with an entropy/monopoly retention constraint.",
+  "repair_variant": "pvr_router_regret_repair_regret0p01_300m_1m_confirm",
+  "routing_curve_analysis": {
+    "mean_monopoly_rate_delta": 0.09318033854166666,
+    "mean_owner_entropy_delta": -0.08465312244175416,
+    "rows": [
+      {
+        "baseline_monopoly_rate": 0.11962890625,
+        "baseline_owner_entropy": 2.6386903748332884,
+        "baseline_prototype_margin": 1.771497392966315,
+        "baseline_top_expert_tokens": 735,
+        "monopoly_rate_delta": 0.09716796875,
+        "owner_entropy_delta": -0.08819021283402328,
+        "prototype_margin_delta": -0.32764499397793156,
+        "repair_monopoly_rate": 0.216796875,
+        "repair_owner_entropy": 2.550500161999265,
+        "repair_prototype_margin": 1.4438523989883834,
+        "repair_top_expert_tokens": 1332,
+        "step": 244
+      },
+      {
+        "baseline_monopoly_rate": 0.12646484375,
+        "baseline_owner_entropy": 2.627843294765973,
+        "baseline_prototype_margin": 2.1810726481635356,
+        "baseline_top_expert_tokens": 777,
+        "monopoly_rate_delta": 0.09195963541666666,
+        "owner_entropy_delta": -0.0786059603019833,
+        "prototype_margin_delta": -0.3177276342115267,
+        "repair_monopoly_rate": 0.21842447916666666,
+        "repair_owner_entropy": 2.5492373344639896,
+        "repair_prototype_margin": 1.863345013952009,
+        "repair_top_expert_tokens": 1342,
+        "step": 488
+      },
+      {
+        "baseline_monopoly_rate": 0.12825520833333334,
+        "baseline_owner_entropy": 2.622613088500151,
+        "baseline_prototype_margin": 2.3642242060862677,
+        "baseline_top_expert_tokens": 788,
+        "monopoly_rate_delta": 0.091796875,
+        "owner_entropy_delta": -0.08763571267359627,
+        "prototype_margin_delta": -0.31192971201865793,
+        "repair_monopoly_rate": 0.22005208333333334,
+        "repair_owner_entropy": 2.534977375826555,
+        "repair_prototype_margin": 2.0522944940676098,
+        "repair_top_expert_tokens": 1352,
+        "step": 732
+      },
+      {
+        "baseline_monopoly_rate": 0.12760416666666666,
+        "baseline_owner_entropy": 2.6227757545510624,
+        "baseline_prototype_margin": 2.505653918207827,
+        "baseline_top_expert_tokens": 784,
+        "monopoly_rate_delta": 0.091796875,
+        "owner_entropy_delta": -0.08418060395741378,
+        "prototype_margin_delta": -0.30060014053257555,
+        "repair_monopoly_rate": 0.21940104166666666,
+        "repair_owner_entropy": 2.5385951505936486,
+        "repair_prototype_margin": 2.2050537776752512,
+        "repair_top_expert_tokens": 1348,
+        "step": 976
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "status": "PVR_ROUTER_REGRET_LM_MISMATCH_ANALYSIS_COMPLETE",
+  "status_labels": [
+    "PVR_ROUTER_REGRET_METRIC_IMPROVEMENT_SUPPORTED",
+    "PVR_ROUTER_REGRET_REPAIR_1M_LM_GATE_NOT_SUPPORTED",
+    "PVR_ROUTER_REPAIR_EVAL_ORACLE_ALIGNMENT_MISMATCH_CONFIRMED",
+    "PVR_ROUTER_REGRET_OBJECTIVE_OVER_CONCENTRATION_RISK_SUPPORTED"
+  ]
+}

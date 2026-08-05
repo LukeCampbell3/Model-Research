@@ -1,0 +1,12 @@
+{
+  "experiment": "PVR_SPARSE_V2_100M_BASELINE_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/dense_v2_100m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/switch_top1_sparse_v2_100m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/generic_top2_sparse_v2_100m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "training_tokens_per_model": 486400
+}

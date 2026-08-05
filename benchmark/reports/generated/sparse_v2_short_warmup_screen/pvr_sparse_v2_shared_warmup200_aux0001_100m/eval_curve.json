@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-06-21T04:57:01.858209+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 42.512939453125,
+      "eval_tokens": 64,
+      "optimizer_step": 250,
+      "phase": "matched_trunk_budget",
+      "step": 250,
+      "training_tokens_seen": 64000
+    },
+    {
+      "eval_loss": 12.134896278381348,
+      "eval_tokens": 64,
+      "optimizer_step": 500,
+      "phase": "matched_trunk_budget",
+      "step": 500,
+      "training_tokens_seen": 128000
+    },
+    {
+      "eval_loss": 5.832974910736084,
+      "eval_tokens": 64,
+      "optimizer_step": 950,
+      "phase": "matched_specialization_budget",
+      "step": 950,
+      "training_tokens_seen": 435200
+    }
+  ],
+  "eval_window_count": 3,
+  "model": "pvr_sparse_v2_shared_warmup200_aux0001_100m",
+  "schema_version": "1.0",
+  "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE"
+}

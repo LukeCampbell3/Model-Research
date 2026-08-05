@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        257,
+        153,
+        359,
+        210,
+        573,
+        442,
+        626,
+        452
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        262,
+        152,
+        351,
+        215,
+        602,
+        482,
+        580,
+        428
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        273,
+        179,
+        376,
+        242,
+        612,
+        457,
+        555,
+        378
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        280,
+        173,
+        368,
+        223,
+        647,
+        428,
+        565,
+        388
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        299,
+        184,
+        362,
+        247,
+        647,
+        442,
+        536,
+        355
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        264,
+        202,
+        376,
+        279,
+        670,
+        421,
+        533,
+        327
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        274,
+        193,
+        380,
+        248,
+        685,
+        426,
+        506,
+        360
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        255,
+        213,
+        358,
+        277,
+        679,
+        457,
+        508,
+        325
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        235,
+        198,
+        380,
+        249,
+        619,
+        494,
+        517,
+        380
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        264,
+        201,
+        368,
+        266,
+        621,
+        492,
+        495,
+        365
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_shared_ffn_bias_only_seed_20260614",
+  "schema_version": "1.0"
+}

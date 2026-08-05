@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "generic_top2_moe_reference_700m",
+  "optimizer_steps": 1100,
+  "resource_reduction": {
+    "completed_eval_windows": 11,
+    "completed_steps": 1100,
+    "completed_training_tokens": 1126400,
+    "estimated_steps_needed": 1100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 11,
+    "target_training_tokens": 1126400
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 11,
+  "target_steps": 1100,
+  "target_training_tokens": 1126400,
+  "tokens_per_second": 2144.1088372582694,
+  "tokens_seen": 1126400,
+  "training_tokens_seen": 1126400,
+  "wall_clock_seconds": 525.3464658260345
+}

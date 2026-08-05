@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PVR-EC-O Model Size Matrix",
+  "type": "object",
+  "required": ["schema_version", "created_at", "size_ladder", "models", "primary_generalized_baseline_suite", "internal_strong_router_control_suite", "rules"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "created_at": {"type": "string"},
+    "size_ladder": {"type": "array", "items": {"type": "string"}},
+    "models": {"type": "array", "items": {"type": "object"}},
+    "primary_generalized_baseline_suite": {"type": "array", "items": {"type": "string"}},
+    "internal_strong_router_control_suite": {"type": "array", "items": {"type": "string"}},
+    "rules": {"type": "object"}
+  }
+}
+

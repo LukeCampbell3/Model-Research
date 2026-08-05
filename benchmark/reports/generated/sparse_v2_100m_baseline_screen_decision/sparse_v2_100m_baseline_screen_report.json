@@ -1,0 +1,80 @@
+{
+  "candidate_comparisons": [
+    {
+      "baseline": "dense_v2_100m_matched",
+      "candidate_active_compute_win": true,
+      "candidate_minus_baseline_active_params": -81513984,
+      "candidate_minus_baseline_loss": 1.1002454794943333,
+      "candidate_quality_win": false
+    },
+    {
+      "baseline": "switch_top1_sparse_v2_100m_matched",
+      "candidate_active_compute_win": true,
+      "candidate_minus_baseline_active_params": -3090048,
+      "candidate_minus_baseline_loss": -0.03970080241560936,
+      "candidate_quality_win": true
+    },
+    {
+      "baseline": "generic_top2_sparse_v2_100m_matched",
+      "candidate_active_compute_win": true,
+      "candidate_minus_baseline_active_params": -14313216,
+      "candidate_minus_baseline_loss": 0.1314532868564129,
+      "candidate_quality_win": false
+    }
+  ],
+  "created_at": "2026-06-21T05:20:36.222079+00:00",
+  "official_test_data_used_for_selection": false,
+  "rows": [
+    {
+      "active_flops_per_token": 959104512,
+      "active_params_per_token_actual": 159850752,
+      "code_token_loss": 12.514086246490479,
+      "config_path": "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/dense_v2_100m_matched.yaml",
+      "json_token_loss": 12.514086246490479,
+      "lm_loss": 5.209805425256491,
+      "model_family": "dense_transformer",
+      "model_variant": "dense_v2_100m_matched",
+      "strict_top1": null,
+      "total_params_actual": 159850752
+    },
+    {
+      "active_flops_per_token": 555899904,
+      "active_params_per_token_actual": 92649984,
+      "code_token_loss": 11.831062618643045,
+      "config_path": "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/generic_top2_sparse_v2_100m_matched.yaml",
+      "json_token_loss": 11.831062618643045,
+      "lm_loss": 6.178597617894411,
+      "model_family": "generic_top2_moe_reference",
+      "model_variant": "generic_top2_sparse_v2_100m_matched",
+      "strict_top1": false,
+      "total_params_actual": 159988992
+    },
+    {
+      "active_flops_per_token": 470020608,
+      "active_params_per_token_actual": 78336768,
+      "code_token_loss": 13.224555648863316,
+      "config_path": "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml",
+      "json_token_loss": 13.224555648863316,
+      "lm_loss": 6.310050904750824,
+      "model_family": "pvr_ec_o",
+      "model_variant": "pvr_sparse_v2_full_from_start_aux001_100m",
+      "strict_top1": true,
+      "total_params_actual": 159997440
+    },
+    {
+      "active_flops_per_token": 488560896,
+      "active_params_per_token_actual": 81426816,
+      "code_token_loss": 12.068157505244017,
+      "config_path": "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/switch_top1_sparse_v2_100m_matched.yaml",
+      "json_token_loss": 12.068157505244017,
+      "lm_loss": 6.349751707166433,
+      "model_family": "vanilla_switch_top1_reference",
+      "model_variant": "switch_top1_sparse_v2_100m_matched",
+      "strict_top1": true,
+      "total_params_actual": 159988992
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_SPARSE_V2_100M_PARETO_SCREEN_NOT_SUPPORTED",
+  "training_tokens_per_model": 486400
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="360" viewBox="0 0 1040 360" role="img">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#172026}.title{font-size:24px;font-weight:700}.head{font-size:17px;font-weight:700}.small{font-size:13px}.axis{stroke:#5d6970;stroke-width:1}.grid{stroke:#d8dee3;stroke-width:1}.ok{fill:#27856f}.bad{fill:#b65a4b}.skip{fill:#b68a2e}.blue{fill:#2f6f9f}.panel{fill:#f7f9fb;stroke:#cbd4db}
+</style>
+<text x="40.0" y="48.0" class="title" text-anchor="start">Figure 5. Architecture Conclusion From Tests</text>
+<rect x="55" y="90" width="930" height="120" rx="8" fill="#eef8f2" stroke="#8ab99e"/>
+<text x="80.0" y="135.0" class="head" text-anchor="start">No failing or errored tests in collected architecture evidence.</text>
+<text x="80.0" y="170.0" class="small" text-anchor="start">Conclusion: ARCHITECTURE_TEST_SUITE_PASSED</text>
+</svg>

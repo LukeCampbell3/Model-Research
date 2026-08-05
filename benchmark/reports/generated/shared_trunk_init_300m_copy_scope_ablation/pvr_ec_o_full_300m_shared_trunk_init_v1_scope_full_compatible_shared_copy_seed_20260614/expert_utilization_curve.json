@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        504,
+        303,
+        242,
+        240,
+        276,
+        414,
+        525,
+        568
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        565,
+        357,
+        197,
+        276,
+        262,
+        376,
+        463,
+        576
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        556,
+        386,
+        230,
+        247,
+        257,
+        363,
+        469,
+        564
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        566,
+        387,
+        242,
+        242,
+        268,
+        374,
+        451,
+        542
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        578,
+        389,
+        233,
+        243,
+        250,
+        381,
+        437,
+        561
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        541,
+        437,
+        242,
+        227,
+        261,
+        370,
+        448,
+        546
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        536,
+        394,
+        235,
+        249,
+        258,
+        359,
+        490,
+        551
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        532,
+        415,
+        243,
+        243,
+        262,
+        369,
+        459,
+        549
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        585,
+        457,
+        284,
+        170,
+        219,
+        353,
+        452,
+        552
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        560,
+        404,
+        308,
+        197,
+        219,
+        388,
+        445,
+        551
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_full_compatible_shared_copy_seed_20260614",
+  "schema_version": "1.0"
+}

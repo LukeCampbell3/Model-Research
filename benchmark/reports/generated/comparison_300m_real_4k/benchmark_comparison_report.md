@@ -1,0 +1,457 @@
+# PVR-EC-O 100M Genuine Benchmark Comparison
+
+Status: `GENUINE_BENCHMARK_COMPARISON_COMPLETE`
+
+This report distinguishes primary generalized baselines, public external positioning, and internal strong-router controls.
+Do not infer an architecture win from missing checkpoints, missing data, infrastructure execution, or internal control comparisons.
+
+Allowed comparison language:
+- PVR-EC-O does not yet beat generalized baselines.
+- PVR-EC-O beats generalized baselines but lags internal strong-router control.
+- PVR-EC-O matches internal strong-router control.
+- PVR-EC-O beats internal strong-router control.
+
+```json
+{
+  "benchmark_evidence": true,
+  "completed_model_count": 8,
+  "created_at": "2026-06-13T08:52:55.313853+00:00",
+  "model_count": 8,
+  "notes": "Reduced genuine benchmark comparison. Official broad NLP and coding benchmark adapters may still report NOT_RUN_NOT_IMPLEMENTED inside scorecards.",
+  "program_status": "PVR_EC_O_300M_REAL_COMPARISON_COMPLETE",
+  "rankings": {
+    "compile_rate_descending": [
+      {
+        "compile_rate": 0.24390243902439024,
+        "model": "pvr_ec_o_no_descriptor_operator_300m"
+      },
+      {
+        "compile_rate": 0.09146341463414634,
+        "model": "pvr_ec_o_full_300m"
+      },
+      {
+        "compile_rate": 0.07317073170731707,
+        "model": "generic_top2_moe_reference_300m"
+      },
+      {
+        "compile_rate": 0.042682926829268296,
+        "model": "vanilla_switch_top1_reference_300m"
+      },
+      {
+        "compile_rate": 0.036585365853658534,
+        "model": "dense_transformer_300m"
+      },
+      {
+        "compile_rate": 0.036585365853658534,
+        "model": "pvr_ec_o_no_contrastive_geometry_300m"
+      },
+      {
+        "compile_rate": 0.006097560975609756,
+        "model": "pvr_ec_o_no_prototypes_300m"
+      },
+      {
+        "compile_rate": 0.0,
+        "model": "pvr_ec_o_shared_only_300m"
+      }
+    ],
+    "lm_loss_ascending": [
+      {
+        "lm_loss": 3.305846790075302,
+        "model": "dense_transformer_300m"
+      },
+      {
+        "lm_loss": 3.319429429769516,
+        "model": "vanilla_switch_top1_reference_300m"
+      },
+      {
+        "lm_loss": 3.3654595971107484,
+        "model": "generic_top2_moe_reference_300m"
+      },
+      {
+        "lm_loss": 3.4000540518760682,
+        "model": "pvr_ec_o_no_contrastive_geometry_300m"
+      },
+      {
+        "lm_loss": 3.4016210412979127,
+        "model": "pvr_ec_o_no_descriptor_operator_300m"
+      },
+      {
+        "lm_loss": 3.403077187538147,
+        "model": "pvr_ec_o_full_300m"
+      },
+      {
+        "lm_loss": 3.5351845955848695,
+        "model": "pvr_ec_o_no_prototypes_300m"
+      },
+      {
+        "lm_loss": 3.5605985891819,
+        "model": "pvr_ec_o_shared_only_300m"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "active_flops_per_token": 1800000000,
+      "active_params_per_token": 300000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 9.610573108196258,
+      "comparison_group": "primary_generalized_baseline",
+      "compile_rate": 0.036585365853658534,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 0.10768919251859188,
+      "eval_loss_slope": 1.2846301396687825,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.06876921388838027,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 9.610573108196258,
+      "lm_loss": 3.305846790075302,
+      "math_heavy_loss": 9.610573108196258,
+      "model": "dense_transformer_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 27.271625155473178,
+      "quality_per_active_flop": 1.68052420706073e-10,
+      "quality_per_active_param": 1.0083145242364378e-09,
+      "quality_per_gpu_hour": 4.398688601587214,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/dense_transformer_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 9285.982897748594,
+      "train_eval_gap": 13.54402232170105,
+      "train_loss_slope": -0.036485839587624413,
+      "training_tokens_per_second": 4136.21776898785,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1028209664
+    },
+    {
+      "active_flops_per_token": 900000000,
+      "active_params_per_token": 150000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 10.99941787481308,
+      "comparison_group": "primary_generalized_reference_moe",
+      "compile_rate": 0.07317073170731707,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 1.1731489468365908,
+      "eval_loss_slope": 0.5723044077555338,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.24784591509236228,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 10.99941787481308,
+      "lm_loss": 3.3654595971107484,
+      "math_heavy_loss": 10.99941787481308,
+      "model": "generic_top2_moe_reference_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 28.946798107084994,
+      "quality_per_active_flop": 3.301513742922368e-10,
+      "quality_per_active_param": 1.9809082457534208e-09,
+      "quality_per_gpu_hour": 1.1988748604239947,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/generic_top2_moe_reference_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 852.4066809218992,
+      "train_eval_gap": 12.220139026641846,
+      "train_loss_slope": -0.12082677139106707,
+      "training_tokens_per_second": 1147.6664617951978,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1075235840
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 9.912043117284774,
+      "comparison_group": "pvr_ec_o_primary",
+      "compile_rate": 0.09146341463414634,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 0.8255611779168248,
+      "eval_loss_slope": 0.9166243341233995,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.19953123933739134,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 9.912043117284774,
+      "lm_loss": 3.403077187538147,
+      "math_heavy_loss": 9.912043117284774,
+      "model": "pvr_ec_o_full_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 30.0564472145604,
+      "quality_per_active_flop": 4.66431262010214e-10,
+      "quality_per_active_param": 2.7985875720612837e-09,
+      "quality_per_gpu_hour": 1.4727102184212624,
+      "routing_diagnostics": {
+        "expert_gini": 0.18587239583333326,
+        "hard_invariants_validated": true,
+        "owner_entropy": 2.0244034779366817,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.48706147383200005,
+        "prototype_monopoly_rate": 0.20572916666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/pvr_ec_o_full_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1211.2972687540182,
+      "train_eval_gap": 10.723517894744873,
+      "train_loss_slope": -0.09974788111071194,
+      "training_tokens_per_second": 1425.5634625887915,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1173859328
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 7.702007080316544,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 0.036585365853658534,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 1.5159018663689494,
+      "eval_loss_slope": 0.6786940892537435,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.20054909222655826,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 7.702007080316544,
+      "lm_loss": 3.4000540518760682,
+      "math_heavy_loss": 7.702007080316544,
+      "model": "pvr_ec_o_no_contrastive_geometry_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 29.965719706991695,
+      "quality_per_active_flop": 4.668459862941745e-10,
+      "quality_per_active_param": 2.801075917765047e-09,
+      "quality_per_gpu_hour": 1.4665385322865163,
+      "routing_diagnostics": {
+        "expert_gini": 0.21337890625,
+        "hard_invariants_validated": true,
+        "owner_entropy": 2.002416783563625,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.4765127208302147,
+        "prototype_monopoly_rate": 0.23697916666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/pvr_ec_o_no_contrastive_geometry_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 659.673308797559,
+      "train_eval_gap": 9.1182279586792,
+      "train_loss_slope": -0.09865266437916852,
+      "training_tokens_per_second": 1418.328257118763,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1173859328
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 9.168277287483216,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 0.24390243902439024,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 9.584716949611902,
+      "eval_loss_slope": 1.0050794813368056,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.20021592749489678,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 9.168277287483216,
+      "lm_loss": 3.4016210412979127,
+      "math_heavy_loss": 9.168277287483216,
+      "model": "pvr_ec_o_no_descriptor_operator_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 30.01271248176527,
+      "quality_per_active_flop": 4.666309292042541e-10,
+      "quality_per_active_param": 2.7997855752255243e-09,
+      "quality_per_gpu_hour": 1.4683021929220548,
+      "routing_diagnostics": {
+        "expert_gini": 0.14599609375,
+        "hard_invariants_validated": true,
+        "owner_entropy": 2.0453100961811677,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.352704277431864,
+        "prototype_monopoly_rate": 0.17903645833333334,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/pvr_ec_o_no_descriptor_operator_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 104.3327627990612,
+      "train_eval_gap": 13.684281349182129,
+      "train_loss_slope": -0.10389546091242353,
+      "training_tokens_per_second": 1420.6883937927194,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1073196032
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 10.541668252944946,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 0.006097560975609756,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 0.8386063855141401,
+      "eval_loss_slope": 0.6501286824544271,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.2012053636709849,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 10.541668252944946,
+      "lm_loss": 3.5351845955848695,
+      "math_heavy_loss": 10.541668252944946,
+      "model": "pvr_ec_o_no_prototypes_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 34.30134600687449,
+      "quality_per_active_flop": 4.4900104772010647e-10,
+      "quality_per_active_param": 2.6940062863206387e-09,
+      "quality_per_gpu_hour": 1.40588031503088,
+      "routing_diagnostics": {
+        "expert_gini": 0.17985026041666674,
+        "hard_invariants_validated": true,
+        "owner_entropy": 2.0240077322611856,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.4478201060652888,
+        "prototype_monopoly_rate": 0.22591145833333334,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/pvr_ec_o_no_prototypes_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 1192.4545499220249,
+      "train_eval_gap": 8.98766541481018,
+      "train_loss_slope": -0.09809903110018608,
+      "training_tokens_per_second": 1413.7020964787687,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1170713600
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 10.143044120073318,
+      "comparison_group": "pvr_ec_o_ablation",
+      "compile_rate": 0.0,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 3.049644506536424,
+      "eval_loss_slope": 1.0146442784203424,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.09948724521531,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 10.143044120073318,
+      "lm_loss": 3.5605985891819,
+      "math_heavy_loss": 10.143044120073318,
+      "model": "pvr_ec_o_shared_only_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 35.184251755420995,
+      "quality_per_active_flop": 4.457962748522836e-10,
+      "quality_per_active_param": 2.6747776491137014e-09,
+      "quality_per_gpu_hour": 2.8229915558433682,
+      "routing_diagnostics": {
+        "expert_gini": 0.29231770833333326,
+        "hard_invariants_validated": true,
+        "owner_entropy": 1.9430355153723013,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.5356113728921628,
+        "prototype_monopoly_rate": 0.23697916666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/pvr_ec_o_shared_only_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 327.9070717444805,
+      "train_eval_gap": 10.060280084609985,
+      "train_loss_slope": -0.11007202843124493,
+      "training_tokens_per_second": 2859.104640286809,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1529723392
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "code_heavy_loss": 9.522902525663376,
+      "comparison_group": "primary_generalized_reference_moe",
+      "compile_rate": 0.042682926829268296,
+      "effective_batch_tokens": 256,
+      "eval_latency_ms_per_token": 1.0912473313510418,
+      "eval_loss_slope": 0.17820601993136936,
+      "eval_token_count": 51200,
+      "eval_window_count": 10,
+      "gpu_hours": 0.22973282701439326,
+      "heldout_eval_token_count": 12800,
+      "json_schema_loss": 9.522902525663376,
+      "lm_loss": 3.319429429769516,
+      "math_heavy_loss": 9.522902525663376,
+      "model": "vanilla_switch_top1_reference_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 27.644572887486042,
+      "quality_per_active_flop": 4.781850679114456e-10,
+      "quality_per_active_param": 2.8691104074686737e-09,
+      "quality_per_gpu_hour": 1.311334547610544,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/vanilla_switch_top1_reference_300m/merged_scorecard.json",
+      "status": "GENUINE_REDUCED_EVAL",
+      "tokens_per_second": 916.3825388346461,
+      "train_eval_gap": 9.940787553787231,
+      "train_loss_slope": -0.11707286907452648,
+      "training_tokens_per_second": 1238.153241489617,
+      "training_tokens_seen": 1024000,
+      "vram_peak": 1075235840
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "GENUINE_BENCHMARK_COMPARISON_COMPLETE"
+}
+```

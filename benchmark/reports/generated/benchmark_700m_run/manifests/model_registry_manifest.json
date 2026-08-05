@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-06-12T02:12:31.507160+00:00",
+  "environment": {
+    "cwd": "C:\\Users\\jcthi\\Code\\brain",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python": "3.11.9"
+  },
+  "git_commit": "68b36a5ceb130c263177e840f906b8c33ff2dd52",
+  "hashes": {
+    "benchmark\\configs\\generated\\benchmark_100m_suite.yaml": "e34d3dc94f96d285a65b4136a8d7a54aacdd2fe3f230a7373a8d47259ab19a32",
+    "benchmark\\configs\\generated\\benchmark_1_3b_suite.yaml": "e7c881c614c25a940dd1511b03353ce3857f379d72c46f93ee96d1d24b462686",
+    "benchmark\\configs\\generated\\benchmark_300m_suite.yaml": "d681b8638cc49253834428b06478f9cfaf66a68ead0c67128ea71812979361fe",
+    "benchmark\\configs\\generated\\benchmark_700m_suite.yaml": "d11b40f6f59a6935eb109cea843af553cce44f45c0305d9f3edac8241c666c5c",
+    "benchmark\\configs\\generated\\custom_fixed_moe_strong_router_700m.yaml": "c2ca943a20c588c9e954dd4f55a1a3e20686492e6d0f7cb6d42858b0f4e9a52f",
+    "benchmark\\configs\\generated\\dense_transformer_100m.yaml": "1a94b103662da7b6c3c831283bbb60a8dc355f5f4218ada3078b7975de61e9ae",
+    "benchmark\\configs\\generated\\dense_transformer_1_3b.yaml": "99781cdf375608ff5da06b1d4c0a285e4e46f18108fc977d9b54ca60e0f90f8d",
+    "benchmark\\configs\\generated\\dense_transformer_300m.yaml": "1ee77fa8d0712080cde85b048183fc24e17be621d8c382dd51e1a569c19203ae",
+    "benchmark\\configs\\generated\\dense_transformer_700m.yaml": "50155c217b1cfb69bde2a2afdeb89e6d12aff79aeaaa74e067541243d2d864e3",
+    "benchmark\\configs\\generated\\generic_top2_moe_reference_100m.yaml": "024aef6d6eb6a2f8ee68f8818d42aff0f32329225ab3a7837ccc14bafb92333a",
+    "benchmark\\configs\\generated\\generic_top2_moe_reference_300m.yaml": "21380db35d7b3a06d78d3e2ffddb6cba1685bc2abf28696ab360c6944bcf14e0",
+    "benchmark\\configs\\generated\\generic_top2_moe_reference_700m.yaml": "8b8de9884bba9e286deb10a7f34d4fe977f1c9f40acada1ee486af9919a4adc9",
+    "benchmark\\configs\\generated\\pvr_ec_o_full_100m.yaml": "5a013f95724cf5c5e3d3a78da20c1a71df2e373320641f662df01ee512ce97db",
+    "benchmark\\configs\\generated\\pvr_ec_o_full_1_3b.yaml": "22da1c07e02b6daec0e479d84ee07e41df29274ee28e53280c48ce27a5c3e371",
+    "benchmark\\configs\\generated\\pvr_ec_o_full_300m.yaml": "f569bc1ca2b29eaeeb7218752ec72bfa1cf2d8436765a5335a90b83d5191a864",
+    "benchmark\\configs\\generated\\pvr_ec_o_full_700m.yaml": "58417dc661774518ff4cc7fef91598500052f2d6647bc1c93155df5f9f496cff",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_contrastive_geometry_100m.yaml": "43ebebe88a763abf503d1fbfd8098494346c1135c1ab1d740787654338aa166f",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_contrastive_geometry_300m.yaml": "1d4d23bbbe36abc08442edde2f5646d5364c0adb8ba900af42f82082ec580483",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_contrastive_geometry_700m.yaml": "8890fd43490b817431de35db79bf6cd52de0f87161cb61e720a98b7011098c91",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_descriptor_operator_100m.yaml": "1cea34d410ab40c2ce8c4eb94f5b7248ed5f34bd94b6add576a12d74243e321f",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_descriptor_operator_300m.yaml": "1299fd0fc6c71bedd5c3331736e1cff28e54174aa17fa4d493992ea9b65f6096",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_descriptor_operator_700m.yaml": "3437c5863c19d42a4477cd097eed7932caf9358f94a4249b4ac9e7570201b977",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_prototypes_100m.yaml": "c626e048514184610b26baa1448820adc9e11095662d454dda1df0cc0117bbcf",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_prototypes_300m.yaml": "7992487b97302a4061ce97dcd568a7fa9efb8488916da6465d69a74462b17339",
+    "benchmark\\configs\\generated\\pvr_ec_o_no_prototypes_700m.yaml": "742affd627bc9d7c1d2aba2744fe4dd0ed73de86d4e7211a582760c0628db7f8",
+    "benchmark\\configs\\generated\\pvr_ec_o_shared_only_100m.yaml": "c15a6952fd6bfa29d8141158cbb1310c8284a5fe1b3edbc9ef208a9dbf1c51c9",
+    "benchmark\\configs\\generated\\pvr_ec_o_shared_only_300m.yaml": "981f21ff4703399fc412f55225582aa75c94679624d21060ce641dee1c8b6b72",
+    "benchmark\\configs\\generated\\pvr_ec_o_shared_only_700m.yaml": "8b5824f26ff303b4e0ae71741ecc2ea9f3e4f3ed1488d9eb599e4559f5d15e9d",
+    "benchmark\\configs\\generated\\vanilla_switch_top1_reference_100m.yaml": "d6d45c9a6b66e8df69ab3690efc5bb98975de24a0f75fd20e9616923498a8407",
+    "benchmark\\configs\\generated\\vanilla_switch_top1_reference_1_3b.yaml": "e48851d5444ef0c7e1a5d4f8fc7b3a89881b95cc18dbb616631ffc7d187b8a3d",
+    "benchmark\\configs\\generated\\vanilla_switch_top1_reference_300m.yaml": "7ea2052f3f98671b66aa85f2afa1565c103bf44093f636af585fbbffa55d9070",
+    "benchmark\\configs\\generated\\vanilla_switch_top1_reference_700m.yaml": "1912cf9fa9c260c55be0fcc17e37e86e4f5d9ea0aac118a30ba0d2e00d1ee69e"
+  },
+  "notes": "Generated model registry for broad-NLP and coding benchmark regime.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "benchmark\\configs\\generated"
+  ]
+}

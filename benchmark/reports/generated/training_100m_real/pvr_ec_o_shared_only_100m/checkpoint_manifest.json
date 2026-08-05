@@ -1,0 +1,16 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "5a6c6983b02a24d4240ce43ed1ccb9ccec366ddb10b53b586c2974592e1b7fed",
+  "checkpoint_path": "checkpoints/benchmark_100m/pvr_ec_o_shared_only_100m/checkpoint.pt",
+  "created_at": "2026-06-12T03:14:05.326472+00:00",
+  "error": null,
+  "mock_checkpoint": false,
+  "model": "pvr_ec_o_shared_only_100m",
+  "real_training_data": true,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "tokens_seen": 16,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ]
+}

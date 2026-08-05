@@ -1,0 +1,22 @@
+{
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 25
+    },
+    {
+      "owner_churn": null,
+      "step": 50
+    },
+    {
+      "owner_churn": null,
+      "step": 75
+    },
+    {
+      "owner_churn": null,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

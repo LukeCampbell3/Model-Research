@@ -1,0 +1,22 @@
+{
+  "model": "pvr_router_regret_repair_regret0p01_300m_1m_confirm",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.550500161999265,
+      "step": 244
+    },
+    {
+      "prototype_entropy": 2.5492373344639896,
+      "step": 488
+    },
+    {
+      "prototype_entropy": 2.534977375826555,
+      "step": 732
+    },
+    {
+      "prototype_entropy": 2.5385951505936486,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

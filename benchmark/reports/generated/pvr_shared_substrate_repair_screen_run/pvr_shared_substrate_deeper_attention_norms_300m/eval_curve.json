@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-07-22T14:07:24.933124+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 25.1055908203125,
+      "eval_tokens": 256,
+      "optimizer_step": 244,
+      "step": 244,
+      "training_tokens_seen": 249856
+    },
+    {
+      "eval_loss": 23.598554611206055,
+      "eval_tokens": 256,
+      "optimizer_step": 488,
+      "step": 488,
+      "training_tokens_seen": 499712
+    },
+    {
+      "eval_loss": 13.501855850219727,
+      "eval_tokens": 256,
+      "optimizer_step": 732,
+      "step": 732,
+      "training_tokens_seen": 749568
+    },
+    {
+      "eval_loss": 16.337766647338867,
+      "eval_tokens": 256,
+      "optimizer_step": 976,
+      "step": 976,
+      "training_tokens_seen": 999424
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "pvr_shared_substrate_deeper_attention_norms_300m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

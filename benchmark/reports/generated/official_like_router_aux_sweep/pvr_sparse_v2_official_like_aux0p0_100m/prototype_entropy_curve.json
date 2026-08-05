@@ -1,0 +1,26 @@
+{
+  "model": "pvr_sparse_v2_official_like_aux0p0_100m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 3.0121029638686387,
+      "step": 20
+    },
+    {
+      "prototype_entropy": 2.9011405021162573,
+      "step": 40
+    },
+    {
+      "prototype_entropy": 2.8535957569096064,
+      "step": 60
+    },
+    {
+      "prototype_entropy": 2.816193428967014,
+      "step": 80
+    },
+    {
+      "prototype_entropy": 2.781206628208885,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

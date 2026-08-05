@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        223,
+        215,
+        320,
+        153,
+        267,
+        399,
+        380,
+        91
+      ],
+      "step": 10
+    },
+    {
+      "expert_utilization": [
+        242,
+        198,
+        295,
+        178,
+        255,
+        437,
+        377,
+        66
+      ],
+      "step": 20
+    },
+    {
+      "expert_utilization": [
+        214,
+        194,
+        325,
+        188,
+        248,
+        420,
+        375,
+        84
+      ],
+      "step": 30
+    },
+    {
+      "expert_utilization": [
+        238,
+        201,
+        301,
+        145,
+        275,
+        422,
+        371,
+        95
+      ],
+      "step": 40
+    },
+    {
+      "expert_utilization": [
+        211,
+        196,
+        315,
+        158,
+        272,
+        423,
+        374,
+        99
+      ],
+      "step": 50
+    },
+    {
+      "expert_utilization": [
+        218,
+        171,
+        333,
+        173,
+        275,
+        392,
+        388,
+        98
+      ],
+      "step": 60
+    },
+    {
+      "expert_utilization": [
+        222,
+        177,
+        326,
+        191,
+        259,
+        406,
+        384,
+        83
+      ],
+      "step": 70
+    },
+    {
+      "expert_utilization": [
+        213,
+        182,
+        318,
+        166,
+        270,
+        420,
+        380,
+        99
+      ],
+      "step": 80
+    },
+    {
+      "expert_utilization": [
+        217,
+        169,
+        299,
+        172,
+        259,
+        453,
+        373,
+        106
+      ],
+      "step": 90
+    },
+    {
+      "expert_utilization": [
+        210,
+        208,
+        325,
+        149,
+        274,
+        406,
+        376,
+        100
+      ],
+      "step": 100
+    }
+  ],
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_700m",
+  "schema_version": "1.0"
+}

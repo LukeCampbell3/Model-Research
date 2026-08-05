@@ -1,0 +1,90 @@
+{
+  "model": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 400
+    },
+    {
+      "owner_churn": 0.17903645833333334,
+      "step": 800
+    },
+    {
+      "owner_churn": 0.09244791666666667,
+      "step": 1200
+    },
+    {
+      "owner_churn": 0.068359375,
+      "step": 1600
+    },
+    {
+      "owner_churn": 0.057291666666666664,
+      "step": 2000
+    },
+    {
+      "owner_churn": 0.041666666666666664,
+      "step": 2400
+    },
+    {
+      "owner_churn": 0.061197916666666664,
+      "step": 2800
+    },
+    {
+      "owner_churn": 0.037109375,
+      "step": 3200
+    },
+    {
+      "owner_churn": 0.051432291666666664,
+      "step": 3600
+    },
+    {
+      "owner_churn": 0.042317708333333336,
+      "step": 4000
+    },
+    {
+      "owner_churn": 0.048177083333333336,
+      "step": 4100
+    },
+    {
+      "owner_churn": 0.03125,
+      "step": 4200
+    },
+    {
+      "owner_churn": 0.036458333333333336,
+      "step": 4300
+    },
+    {
+      "owner_churn": 0.030598958333333332,
+      "step": 4400
+    },
+    {
+      "owner_churn": 0.057291666666666664,
+      "step": 4500
+    },
+    {
+      "owner_churn": 0.0859375,
+      "step": 4600
+    },
+    {
+      "owner_churn": 0.059244791666666664,
+      "step": 4700
+    },
+    {
+      "owner_churn": 0.032552083333333336,
+      "step": 4800
+    },
+    {
+      "owner_churn": 0.020833333333333332,
+      "step": 4900
+    },
+    {
+      "owner_churn": 0.020182291666666668,
+      "step": 5000
+    },
+    {
+      "owner_churn": 0.02734375,
+      "step": 5100
+    }
+  ],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,52 @@
+{
+  "assertions": {
+    "exact_line_or_text_overlap_with_final_official": 0,
+    "final_official_eval": false,
+    "may_guide_training": true,
+    "no_exact_overlap_with_final_official": true
+  },
+  "categories": [
+    {
+      "category": "multiple_choice_reasoning",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/multiple_choice_reasoning.jsonl"
+    },
+    {
+      "category": "boolean_qa",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/boolean_qa.jsonl"
+    },
+    {
+      "category": "mathematics",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/mathematics.jsonl"
+    },
+    {
+      "category": "commonsense_completion",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/commonsense_completion.jsonl"
+    },
+    {
+      "category": "code_generation",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/code_generation.jsonl"
+    },
+    {
+      "category": "general_knowledge",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/general_knowledge.jsonl"
+    },
+    {
+      "category": "pronoun_coreference",
+      "examples": 4,
+      "path": "data/eval/official_like_dev/pronoun_coreference.jsonl"
+    }
+  ],
+  "category_count": 7,
+  "created_at": "2026-07-17T12:01:23.652576+00:00",
+  "example_count": 28,
+  "final_official_root": "data/eval/official_300m_bounded",
+  "output_root": "data/eval/official_like_dev",
+  "schema_version": "1.0",
+  "status": "OFFICIAL_LIKE_DEVELOPMENT_SET_MATERIALIZED"
+}

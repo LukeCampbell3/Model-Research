@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-06-12T03:13:11.271033+00:00",
+  "schema_version": "1.0",
+  "splits": [
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:12:53.232131+00:00",
+      "dataset_name": "gutenberg_alice_wonderland",
+      "document_count": 1,
+      "hash": "01b38ea4c710a84bc18d0bd41271a5a1a92b94e97b2812f4dece97d4a694725e",
+      "license_or_usage_note": "Project Gutenberg public domain text; obey Gutenberg terms for redistribution.",
+      "path": "data/broad_nlp_train/gutenberg_alice_wonderland.txt",
+      "source": "https://www.gutenberg.org/cache/epub/11/pg11.txt",
+      "split": "broad_nlp_train",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 29569
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:12:58.078980+00:00",
+      "dataset_name": "gutenberg_sherlock_holmes",
+      "document_count": 1,
+      "hash": "922e2a12ccb43a4c9544c260b2166c6ad2097aeb5957faeee113f173bb857cd0",
+      "license_or_usage_note": "Project Gutenberg public domain text; obey Gutenberg terms for redistribution.",
+      "path": "data/broad_nlp_train/gutenberg_sherlock_holmes.txt",
+      "source": "https://www.gutenberg.org/cache/epub/1661/pg1661.txt",
+      "split": "broad_nlp_train",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 107558
+    },
+    {
+      "contamination_notes": "Source is public and hashed; overlap scan must be run before claiming clean contamination.",
+      "created_at": "2026-06-12T03:13:04.922006+00:00",
+      "dataset_name": "gutenberg_pride_and_prejudice",
+      "document_count": 1,
+      "hash": "74f2665d6e6925fc2c17dec644bec9e87df478a0f1836822125e8acbb3777806",
+      "license_or_usage_note": "Project Gutenberg public domain text; obey Gutenberg terms for redistribution.",
+      "path": "data/broad_nlp_train/gutenberg_pride_and_prejudice.txt",
+      "source": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+      "split": "broad_nlp_train",
+      "split_method": "fixed public reduced benchmark split by source file",
+      "token_count_estimate": 130415
+    }
+  ],
+  "status": "REAL_REDUCED_DATA_READY",
+  "subset_label": "GENUINE_REDUCED_TRAINING_DATA",
+  "total_document_count": 3,
+  "total_token_count_estimate": 267542
+}

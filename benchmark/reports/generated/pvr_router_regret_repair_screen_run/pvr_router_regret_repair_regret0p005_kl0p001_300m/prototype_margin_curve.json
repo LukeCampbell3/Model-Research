@@ -1,0 +1,14 @@
+{
+  "model": "pvr_router_regret_repair_regret0p005_kl0p001_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 1.5258158731691462,
+      "step": 244
+    },
+    {
+      "prototype_margin": 1.8833576134347823,
+      "step": 488
+    }
+  ],
+  "schema_version": "1.0"
+}

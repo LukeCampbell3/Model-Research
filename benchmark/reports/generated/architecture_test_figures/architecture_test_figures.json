@@ -1,0 +1,657 @@
+{
+  "architecture_conclusion": "All collected architecture tests passed.",
+  "area_counts": {
+    "benchmark_evidence": {
+      "passed": 15
+    },
+    "descriptor_control": {
+      "passed": 78
+    },
+    "final_gates": {
+      "passed": 222
+    },
+    "general": {
+      "passed": 6
+    },
+    "nlp_bridge": {
+      "passed": 48
+    },
+    "pvr_ec_core": {
+      "passed": 100
+    },
+    "routing": {
+      "passed": 127
+    },
+    "safety_invariants": {
+      "passed": 11
+    },
+    "scaling": {
+      "passed": 11
+    },
+    "training_diagnostics": {
+      "passed": 31
+    }
+  },
+  "created_at": "2026-06-27T01:57:25.517700+00:00",
+  "duration_by_file": [
+    {
+      "file_group": "test_scaling_report_generation",
+      "test_count": 1,
+      "time_seconds": 682.467
+    },
+    {
+      "file_group": "tests.test_pvr_ec_nonlinear_overfit",
+      "test_count": 38,
+      "time_seconds": 30.851999999999997
+    },
+    {
+      "file_group": "tests.test_pvr_ec",
+      "test_count": 217,
+      "time_seconds": 14.843999999999992
+    },
+    {
+      "file_group": "tests.test_pvr_ec_nlp_stage1",
+      "test_count": 37,
+      "time_seconds": 10.215
+    },
+    {
+      "file_group": "test_model_creation_and_comparison",
+      "test_count": 1,
+      "time_seconds": 7.834
+    },
+    {
+      "file_group": "test_genuine_benchmark_program",
+      "test_count": 4,
+      "time_seconds": 4.356
+    },
+    {
+      "file_group": "test_scorecard_schema",
+      "test_count": 1,
+      "time_seconds": 1.518
+    },
+    {
+      "file_group": "test_routing_invariant_logging",
+      "test_count": 1,
+      "time_seconds": 1.262
+    },
+    {
+      "file_group": "test_model_size_matrix_generation",
+      "test_count": 1,
+      "time_seconds": 1.227
+    },
+    {
+      "file_group": "test_public_positioning_lane",
+      "test_count": 1,
+      "time_seconds": 1.203
+    },
+    {
+      "file_group": "test_no_custom_fixed_moe_in_primary_baseline",
+      "test_count": 1,
+      "time_seconds": 1.168
+    },
+    {
+      "file_group": "test_manifest_generation",
+      "test_count": 1,
+      "time_seconds": 1.166
+    },
+    {
+      "file_group": "test_no_runtimecoder_scope",
+      "test_count": 1,
+      "time_seconds": 0.857
+    },
+    {
+      "file_group": "test_no_smoke_tests_present",
+      "test_count": 1,
+      "time_seconds": 0.816
+    },
+    {
+      "file_group": "test_shared_approximation_bottleneck",
+      "test_count": 7,
+      "time_seconds": 0.47000000000000003
+    },
+    {
+      "file_group": "tests.test_pvr_ec_family_preserving_router",
+      "test_count": 26,
+      "time_seconds": 0.42800000000000005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_failure_observatory",
+      "test_count": 8,
+      "time_seconds": 0.32600000000000007
+    },
+    {
+      "file_group": "tests.test_pvr_ec_family_preservation",
+      "test_count": 30,
+      "time_seconds": 0.15700000000000003
+    },
+    {
+      "file_group": "test_dense_mimic_experiment",
+      "test_count": 2,
+      "time_seconds": 0.145
+    },
+    {
+      "file_group": "tests.test_pvr_ec_ownership",
+      "test_count": 42,
+      "time_seconds": 0.07
+    },
+    {
+      "file_group": "test_shared_trunk_init_confirmation",
+      "test_count": 2,
+      "time_seconds": 0.062
+    },
+    {
+      "file_group": "test_dense_approximation_diagnostics",
+      "test_count": 2,
+      "time_seconds": 0.056
+    },
+    {
+      "file_group": "test_architecture_test_figures",
+      "test_count": 1,
+      "time_seconds": 0.049
+    },
+    {
+      "file_group": "test_shared_trunk_init_300m_repeat_summary",
+      "test_count": 1,
+      "time_seconds": 0.046
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3b_descriptor_fewshot",
+      "test_count": 10,
+      "time_seconds": 0.032
+    },
+    {
+      "file_group": "tests.test_pvr_ec_repaired_deployment_gate",
+      "test_count": 9,
+      "time_seconds": 0.029000000000000005
+    },
+    {
+      "file_group": "test_shared_trunk_copy_scope_ablation",
+      "test_count": 2,
+      "time_seconds": 0.029
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage4_small_nlp_bridge",
+      "test_count": 7,
+      "time_seconds": 0.024
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage5_research_nlp",
+      "test_count": 7,
+      "time_seconds": 0.019000000000000003
+    },
+    {
+      "file_group": "tests.test_pvr_ec_descriptor_semantic_identity_repair",
+      "test_count": 7,
+      "time_seconds": 0.016
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3c_operator_role_curriculum",
+      "test_count": 8,
+      "time_seconds": 0.015
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3c_descriptor_training",
+      "test_count": 7,
+      "time_seconds": 0.012
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3d_context_overflow",
+      "test_count": 5,
+      "time_seconds": 0.012
+    },
+    {
+      "file_group": "tests.test_pvr_ec_final_calibration_reliability",
+      "test_count": 4,
+      "time_seconds": 0.011
+    },
+    {
+      "file_group": "tests.test_pvr_ec_manifest_lock",
+      "test_count": 4,
+      "time_seconds": 0.011
+    },
+    {
+      "file_group": "tests.test_pvr_ec_final_deployment_gate",
+      "test_count": 9,
+      "time_seconds": 0.010000000000000002
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3b_failure_attribution",
+      "test_count": 12,
+      "time_seconds": 0.010000000000000002
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3d_combination_gate",
+      "test_count": 11,
+      "time_seconds": 0.01
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3f_descriptor_confirmation",
+      "test_count": 4,
+      "time_seconds": 0.01
+    },
+    {
+      "file_group": "tests.test_pvr_ec_final_research_gate",
+      "test_count": 9,
+      "time_seconds": 0.008
+    },
+    {
+      "file_group": "tests.test_pvr_ec_canary_rollout",
+      "test_count": 4,
+      "time_seconds": 0.006
+    },
+    {
+      "file_group": "tests.test_pvr_ec_production_shape_profile",
+      "test_count": 6,
+      "time_seconds": 0.006
+    },
+    {
+      "file_group": "tests.test_pvr_ec_release_package",
+      "test_count": 3,
+      "time_seconds": 0.006
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3c_fewshot_context",
+      "test_count": 5,
+      "time_seconds": 0.006
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3d_fewshot_valid",
+      "test_count": 5,
+      "time_seconds": 0.006
+    },
+    {
+      "file_group": "tests.test_pvr_ec_drift_monitoring",
+      "test_count": 6,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_final_qpm_memory",
+      "test_count": 3,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_release_freeze",
+      "test_count": 4,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_release_readiness",
+      "test_count": 5,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_repaired_descriptor_control",
+      "test_count": 4,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3b_transfer",
+      "test_count": 22,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3d_descriptor_semantics",
+      "test_count": 5,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3d_role_binding_valid",
+      "test_count": 4,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3e_context_ladder",
+      "test_count": 3,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3e_descriptor_curriculum",
+      "test_count": 4,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3e_gate",
+      "test_count": 7,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3e_meta_training",
+      "test_count": 3,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_stage3e_scaling_ladder",
+      "test_count": 4,
+      "time_seconds": 0.005
+    },
+    {
+      "file_group": "tests.test_pvr_ec_final_descriptor_control",
+      "test_count": 4,
+      "time_seconds": 0.004
+    },
+    {
+      "file_group": "test_report_status_language",
+      "test_count": 1,
+      "time_seconds": 0.001
+    },
+    {
+      "file_group": "tests.test_pvr_ec_same_input_wrong_descriptor",
+      "test_count": 5,
+      "time_seconds": 0.0
+    }
+  ],
+  "elapsed_seconds": 767.4423502999998,
+  "failed": 0,
+  "figures": [
+    {
+      "caption": "Architecture test verdict and high-level run metrics.",
+      "id": "Figure 1",
+      "path": "benchmark\\reports\\generated\\architecture_test_figures\\figures\\figure_1_architecture_test_verdict.svg"
+    },
+    {
+      "caption": "Pass, fail, and skip counts grouped by architecture area.",
+      "id": "Figure 2",
+      "path": "benchmark\\reports\\generated\\architecture_test_figures\\figures\\figure_2_area_coverage.svg"
+    },
+    {
+      "caption": "Aggregate pytest runtime by file group.",
+      "id": "Figure 3",
+      "path": "benchmark\\reports\\generated\\architecture_test_figures\\figures\\figure_3_runtime_by_file_group.svg"
+    },
+    {
+      "caption": "Slowest individual tests from the executed suite.",
+      "id": "Figure 4",
+      "path": "benchmark\\reports\\generated\\architecture_test_figures\\figures\\figure_4_slowest_tests.svg"
+    },
+    {
+      "caption": "Failure panel or final pass conclusion from the executed tests.",
+      "id": "Figure 5",
+      "path": "benchmark\\reports\\generated\\architecture_test_figures\\figures\\figure_5_failure_conclusion.svg"
+    }
+  ],
+  "git_commit": "b0a888f3ccf6f66f96567d0fd46a96cd4c8eaf5a",
+  "junit_xml": "benchmark\\reports\\generated\\architecture_test_figures\\pytest_junit.xml",
+  "pass_rate": 1.0,
+  "passed": 649,
+  "pytest_command": [
+    "C:\\Users\\jcthi\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+    "-m",
+    "pytest",
+    "tests",
+    "sparse_loop_moe/tests",
+    "--junitxml=benchmark\\reports\\generated\\architecture_test_figures\\pytest_junit.xml",
+    "--durations=0"
+  ],
+  "pytest_exit_code": 0,
+  "schema_version": "1.0",
+  "skipped": 0,
+  "slowest_tests": [
+    {
+      "area": "scaling",
+      "classname": "test_scaling_report_generation",
+      "file": "",
+      "id": "test_scaling_report_generation::test_scaling_report_can_compare_multiple_sizes",
+      "line": "",
+      "name": "test_scaling_report_can_compare_multiple_sizes",
+      "status": "passed",
+      "time_seconds": 682.467
+    },
+    {
+      "area": "general",
+      "classname": "test_model_creation_and_comparison",
+      "file": "",
+      "id": "test_model_creation_and_comparison::test_model_creation_and_comparison_reports",
+      "line": "",
+      "name": "test_model_creation_and_comparison_reports",
+      "status": "passed",
+      "time_seconds": 7.834
+    },
+    {
+      "area": "routing",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestFixedOwnerSpecialization",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestFixedOwnerSpecialization::test_fixed_owner_e0_learns_parity",
+      "line": "",
+      "name": "test_fixed_owner_e0_learns_parity",
+      "status": "passed",
+      "time_seconds": 4.81
+    },
+    {
+      "area": "benchmark_evidence",
+      "classname": "test_genuine_benchmark_program",
+      "file": "",
+      "id": "test_genuine_benchmark_program::test_genuine_program_blocks_without_real_data_and_checkpoints",
+      "line": "",
+      "name": "test_genuine_program_blocks_without_real_data_and_checkpoints",
+      "status": "passed",
+      "time_seconds": 4.356
+    },
+    {
+      "area": "nlp_bridge",
+      "classname": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability",
+      "file": "",
+      "id": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_loss_decreases_on_all_tasks",
+      "line": "",
+      "name": "test_loss_decreases_on_all_tasks",
+      "status": "passed",
+      "time_seconds": 4.085
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence::test_shared_only_vs_full_on_parity",
+      "line": "",
+      "name": "test_shared_only_vs_full_on_parity",
+      "status": "passed",
+      "time_seconds": 3.574
+    },
+    {
+      "area": "routing",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestExpertScaleEffects",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestExpertScaleEffects::test_sparse_only_model_can_learn",
+      "line": "",
+      "name": "test_sparse_only_model_can_learn",
+      "status": "passed",
+      "time_seconds": 2.435
+    },
+    {
+      "area": "nlp_bridge",
+      "classname": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability",
+      "file": "",
+      "id": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_grammar_lm",
+      "line": "",
+      "name": "test_model_learns_grammar_lm",
+      "status": "passed",
+      "time_seconds": 2.294
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence::test_memorization_control_passes",
+      "line": "",
+      "name": "test_memorization_control_passes",
+      "status": "passed",
+      "time_seconds": 2.106
+    },
+    {
+      "area": "final_gates",
+      "classname": "tests.test_pvr_ec.TestPVRECDeployment",
+      "file": "",
+      "id": "tests.test_pvr_ec.TestPVRECDeployment::test_benchmark_accepts_scale_schedule_cli",
+      "line": "",
+      "name": "test_benchmark_accepts_scale_schedule_cli",
+      "status": "passed",
+      "time_seconds": 1.721
+    },
+    {
+      "area": "training_diagnostics",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestEndToEndConvergence::test_pvr_full_loss_decreases_on_parity",
+      "line": "",
+      "name": "test_pvr_full_loss_decreases_on_parity",
+      "status": "passed",
+      "time_seconds": 1.692
+    },
+    {
+      "area": "nlp_bridge",
+      "classname": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability",
+      "file": "",
+      "id": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_char_shift",
+      "line": "",
+      "name": "test_model_learns_char_shift",
+      "status": "passed",
+      "time_seconds": 1.588
+    },
+    {
+      "area": "nlp_bridge",
+      "classname": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability",
+      "file": "",
+      "id": "tests.test_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_char_copy",
+      "line": "",
+      "name": "test_model_learns_char_copy",
+      "status": "passed",
+      "time_seconds": 1.573
+    },
+    {
+      "area": "benchmark_evidence",
+      "classname": "test_scorecard_schema",
+      "file": "",
+      "id": "test_scorecard_schema::test_scorecard_contains_schema_required_fields",
+      "line": "",
+      "name": "test_scorecard_contains_schema_required_fields",
+      "status": "passed",
+      "time_seconds": 1.518
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_nonlinear_report_has_required_fields",
+      "line": "",
+      "name": "test_nonlinear_report_has_required_fields",
+      "status": "passed",
+      "time_seconds": 1.466
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_markdown_report_is_readable",
+      "line": "",
+      "name": "test_markdown_report_is_readable",
+      "status": "passed",
+      "time_seconds": 1.455
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_repair_report_contains_recommendation",
+      "line": "",
+      "name": "test_repair_report_contains_recommendation",
+      "status": "passed",
+      "time_seconds": 1.44
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_scale_sweep_report_exists",
+      "line": "",
+      "name": "test_scale_sweep_report_exists",
+      "status": "passed",
+      "time_seconds": 1.435
+    },
+    {
+      "area": "routing",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_fixed_owner_report_exists_and_valid",
+      "line": "",
+      "name": "test_fixed_owner_report_exists_and_valid",
+      "status": "passed",
+      "time_seconds": 1.428
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestReportPipeline::test_report_status_is_valid_pvr_status",
+      "line": "",
+      "name": "test_report_status_is_valid_pvr_status",
+      "status": "passed",
+      "time_seconds": 1.416
+    },
+    {
+      "area": "pvr_ec_core",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestDenseBaselineLearns",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestDenseBaselineLearns::test_dense_learns_parity_in_200_steps",
+      "line": "",
+      "name": "test_dense_learns_parity_in_200_steps",
+      "status": "passed",
+      "time_seconds": 1.309
+    },
+    {
+      "area": "routing",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestExpertScaleEffects",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestExpertScaleEffects::test_scale_4_converges_faster_than_scale_1_on_identity",
+      "line": "",
+      "name": "test_scale_4_converges_faster_than_scale_1_on_identity",
+      "status": "passed",
+      "time_seconds": 1.293
+    },
+    {
+      "area": "routing",
+      "classname": "tests.test_pvr_ec_nonlinear_overfit.TestFixedOwnerSpecialization",
+      "file": "",
+      "id": "tests.test_pvr_ec_nonlinear_overfit.TestFixedOwnerSpecialization::test_fixed_owner_e0_learns_identity",
+      "line": "",
+      "name": "test_fixed_owner_e0_learns_identity",
+      "status": "passed",
+      "time_seconds": 1.274
+    },
+    {
+      "area": "routing",
+      "classname": "test_routing_invariant_logging",
+      "file": "",
+      "id": "test_routing_invariant_logging::test_routing_invariants_are_logged",
+      "line": "",
+      "name": "test_routing_invariants_are_logged",
+      "status": "passed",
+      "time_seconds": 1.262
+    },
+    {
+      "area": "scaling",
+      "classname": "test_model_size_matrix_generation",
+      "file": "",
+      "id": "test_model_size_matrix_generation::test_model_size_matrix_and_required_configs_exist",
+      "line": "",
+      "name": "test_model_size_matrix_and_required_configs_exist",
+      "status": "passed",
+      "time_seconds": 1.227
+    }
+  ],
+  "started_at": "2026-06-27T01:44:38.060043+00:00",
+  "status": "ARCHITECTURE_TEST_SUITE_PASSED",
+  "status_counts": {
+    "passed": 649
+  },
+  "stderr": "benchmark\\reports\\generated\\architecture_test_figures\\pytest_stderr.txt",
+  "stdout": "benchmark\\reports\\generated\\architecture_test_figures\\pytest_stdout.txt",
+  "tables": {
+    "duration_by_file": "benchmark\\reports\\generated\\architecture_test_figures\\data\\duration_by_file.csv",
+    "test_cases": "benchmark\\reports\\generated\\architecture_test_figures\\data\\test_cases.csv"
+  },
+  "test_roots": [
+    "tests",
+    "sparse_loop_moe/tests"
+  ],
+  "total_test_time_seconds": 761.9519999999973,
+  "total_tests": 649
+}

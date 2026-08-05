@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        304,
+        279,
+        352,
+        173,
+        57,
+        149,
+        65,
+        157
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        423,
+        202,
+        293,
+        177,
+        75,
+        134,
+        70,
+        162
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        426,
+        201,
+        270,
+        196,
+        68,
+        130,
+        68,
+        177
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        412,
+        194,
+        261,
+        215,
+        74,
+        141,
+        62,
+        177
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        397,
+        208,
+        266,
+        213,
+        83,
+        130,
+        63,
+        176
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        385,
+        215,
+        245,
+        212,
+        98,
+        139,
+        57,
+        185
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        409,
+        213,
+        242,
+        229,
+        70,
+        132,
+        60,
+        181
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        389,
+        223,
+        236,
+        234,
+        72,
+        127,
+        59,
+        196
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        411,
+        210,
+        239,
+        259,
+        62,
+        141,
+        40,
+        174
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        384,
+        216,
+        229,
+        252,
+        87,
+        135,
+        58,
+        175
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "schema_version": "1.0"
+}

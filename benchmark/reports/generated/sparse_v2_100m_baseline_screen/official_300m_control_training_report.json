@@ -1,0 +1,91 @@
+{
+  "created_at": "2026-06-21T05:18:51.928119+00:00",
+  "optimizer_reset_before_phase2": true,
+  "phase1": {
+    "batch_size": 4,
+    "seq_len": 64,
+    "steps": 700
+  },
+  "phase2": {
+    "batch_size": 16,
+    "seq_len": 64,
+    "steps": 300
+  },
+  "rows": [
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/checkpoint.pt",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/eval_curve.json",
+      "eval_window_count": 3,
+      "final_loss": 2.7279090881347656,
+      "gpu_hours": 0.030263671610090467,
+      "hardware_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/hardware_manifest.json",
+      "model_variant": "dense_v2_100m_matched",
+      "optimizer_steps": 1000,
+      "routing_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/routing_curve.json",
+      "routing_window_count": 0,
+      "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/throughput_log.json",
+      "tokens_seen": 486400,
+      "training_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/dense_v2_100m_matched/training_curve.json",
+      "training_tokens_seen": 486400,
+      "vram_peak": 3339042816
+    },
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/checkpoint.pt",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/eval_curve.json",
+      "eval_window_count": 3,
+      "final_loss": 3.752009630203247,
+      "gpu_hours": 0.0647921841012107,
+      "hardware_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/hardware_manifest.json",
+      "model_variant": "switch_top1_sparse_v2_100m_matched",
+      "optimizer_steps": 1000,
+      "routing_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/routing_curve.json",
+      "routing_window_count": 0,
+      "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/throughput_log.json",
+      "tokens_seen": 486400,
+      "training_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/switch_top1_sparse_v2_100m_matched/training_curve.json",
+      "training_tokens_seen": 486400,
+      "vram_peak": 3281045504
+    },
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/checkpoint.pt",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/eval_curve.json",
+      "eval_window_count": 3,
+      "final_loss": 3.616436719894409,
+      "gpu_hours": 0.07207082039780087,
+      "hardware_manifest": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/hardware_manifest.json",
+      "model_variant": "generic_top2_sparse_v2_100m_matched",
+      "optimizer_steps": 1000,
+      "routing_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/routing_curve.json",
+      "routing_window_count": 0,
+      "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/throughput_log.json",
+      "tokens_seen": 486400,
+      "training_curve": "benchmark/reports/generated/sparse_v2_100m_baseline_screen/generic_top2_sparse_v2_100m_matched/training_curve.json",
+      "training_tokens_seen": 486400,
+      "vram_peak": 3281792512
+    },
+    {
+      "checkpoint_path": "checkpoints/sparse_v2_curriculum_screen/pvr_sparse_v2_full_from_start_aux001_100m/checkpoint.pt",
+      "model_variant": "pvr_sparse_v2_full_from_start_aux001_100m",
+      "status": "REUSED_COMPLETE_CHECKPOINT"
+    }
+  ],
+  "schema_version": "1.0",
+  "seed": 123,
+  "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE",
+  "training_tokens_per_model": 486400
+}

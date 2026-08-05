@@ -1,0 +1,19 @@
+{
+  "candidate_model_variant": "pvr_self_instilled_ean_trunk_stage_matched_300m",
+  "fairness_note": "All models account for 2,150,400 recipe-total tokens. Generalized controls match both update phases and optimizer reset.",
+  "model_configs": [
+    "benchmark/configs/generated/official_300m_bounded/configs/dense_transformer_300m_official_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/vanilla_switch_top1_reference_300m_official_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/generic_top2_moe_reference_300m_official_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/pvr_full_scratch_300m_total_compute_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/pvr_teacher_ean_300m_matched.yaml",
+    "benchmark/configs/generated/official_300m_bounded/configs/pvr_self_instilled_ean_trunk_stage_matched_300m.yaml"
+  ],
+  "promotion_baselines": [
+    "dense_transformer_300m_official_compute_matched",
+    "vanilla_switch_top1_reference_300m_official_compute_matched",
+    "generic_top2_moe_reference_300m_official_compute_matched"
+  ],
+  "schema_version": "1.0",
+  "training_tokens_per_model": 2150400
+}

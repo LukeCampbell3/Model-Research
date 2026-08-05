@@ -1,0 +1,6 @@
+{
+  "created_at": "2026-06-13T05:16:22.027484+00:00",
+  "model": "dense_transformer_300m",
+  "routing_metrics_by_step": [],
+  "schema_version": "1.0"
+}

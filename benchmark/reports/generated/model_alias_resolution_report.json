@@ -1,0 +1,137 @@
+{
+  "available_model_variants": [
+    "dense_transformer_100m",
+    "dense_transformer_300m",
+    "generic_top2_moe_reference_100m",
+    "generic_top2_moe_reference_300m",
+    "pvr_ec_o_full_100m",
+    "pvr_ec_o_full_300m",
+    "pvr_ec_o_no_contrastive_geometry_100m",
+    "pvr_ec_o_no_contrastive_geometry_300m",
+    "pvr_ec_o_no_descriptor_operator_100m",
+    "pvr_ec_o_no_descriptor_operator_300m",
+    "pvr_ec_o_no_prototypes_100m",
+    "pvr_ec_o_no_prototypes_300m",
+    "pvr_ec_o_shared_only_100m",
+    "pvr_ec_o_shared_only_300m",
+    "vanilla_switch_top1_reference_100m",
+    "vanilla_switch_top1_reference_300m"
+  ],
+  "canonical_names": [
+    "dense_transformer",
+    "vanilla_switch_top1_reference",
+    "generic_top2_moe_reference",
+    "pvr_ec_o_full",
+    "pvr_ec_o_no_prototypes",
+    "pvr_ec_o_no_contrastive_geometry",
+    "pvr_ec_o_no_descriptor_operator",
+    "pvr_ec_o_shared_only"
+  ],
+  "created_at": "2026-06-13T13:18:21.464554+00:00",
+  "custom_fixed_moe_not_used_as_generic_baseline": true,
+  "resolutions": {
+    "dense_transformer": {
+      "aliases_considered": [
+        "dense_transformer",
+        "dense_baseline"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "dense_transformer_100m",
+        "dense_transformer_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "generic_top2_moe_reference": {
+      "aliases_considered": [
+        "generic_top2_moe_reference",
+        "top2_moe_reference"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "generic_top2_moe_reference_100m",
+        "generic_top2_moe_reference_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "pvr_ec_o_full": {
+      "aliases_considered": [
+        "pvr_ec_o_full",
+        "pvr_ec_deploy_top1",
+        "pvr_ec_ownership_top1_final_candidate_v1"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "pvr_ec_o_full_100m",
+        "pvr_ec_o_full_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "pvr_ec_o_no_contrastive_geometry": {
+      "aliases_considered": [
+        "pvr_ec_o_no_contrastive_geometry"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "pvr_ec_o_no_contrastive_geometry_100m",
+        "pvr_ec_o_no_contrastive_geometry_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "pvr_ec_o_no_descriptor_operator": {
+      "aliases_considered": [
+        "pvr_ec_o_no_descriptor_operator"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "pvr_ec_o_no_descriptor_operator_100m",
+        "pvr_ec_o_no_descriptor_operator_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "pvr_ec_o_no_prototypes": {
+      "aliases_considered": [
+        "pvr_ec_o_no_prototypes"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "pvr_ec_o_no_prototypes_100m",
+        "pvr_ec_o_no_prototypes_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "pvr_ec_o_shared_only": {
+      "aliases_considered": [
+        "pvr_ec_o_shared_only"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "pvr_ec_o_shared_only_100m",
+        "pvr_ec_o_shared_only_300m"
+      ],
+      "status": "RESOLVED"
+    },
+    "vanilla_switch_top1_reference": {
+      "aliases_considered": [
+        "vanilla_switch_top1_reference",
+        "switch_top1_reference",
+        "vanilla_switch"
+      ],
+      "internal_strong_router_or_legacy_control": false,
+      "missing_model_alias": null,
+      "resolved_variants": [
+        "vanilla_switch_top1_reference_100m",
+        "vanilla_switch_top1_reference_300m"
+      ],
+      "status": "RESOLVED"
+    }
+  },
+  "schema_version": "1.0"
+}

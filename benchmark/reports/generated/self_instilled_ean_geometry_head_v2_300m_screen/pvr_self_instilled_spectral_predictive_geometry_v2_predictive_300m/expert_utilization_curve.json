@@ -1,0 +1,149 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        165,
+        196,
+        92,
+        135,
+        341,
+        123,
+        280,
+        204
+      ],
+      "step": 100
+    },
+    {
+      "expert_utilization": [
+        126,
+        169,
+        98,
+        138,
+        348,
+        160,
+        299,
+        198
+      ],
+      "step": 200
+    },
+    {
+      "expert_utilization": [
+        143,
+        155,
+        109,
+        137,
+        341,
+        173,
+        291,
+        187
+      ],
+      "step": 300
+    },
+    {
+      "expert_utilization": [
+        136,
+        148,
+        142,
+        136,
+        319,
+        183,
+        284,
+        188
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        138,
+        148,
+        147,
+        135,
+        307,
+        184,
+        284,
+        193
+      ],
+      "step": 500
+    },
+    {
+      "expert_utilization": [
+        140,
+        147,
+        160,
+        132,
+        292,
+        184,
+        285,
+        196
+      ],
+      "step": 600
+    },
+    {
+      "expert_utilization": [
+        142,
+        148,
+        164,
+        133,
+        287,
+        181,
+        285,
+        196
+      ],
+      "step": 700
+    },
+    {
+      "expert_utilization": [
+        144,
+        147,
+        167,
+        133,
+        289,
+        178,
+        281,
+        197
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        145,
+        142,
+        166,
+        135,
+        297,
+        176,
+        277,
+        198
+      ],
+      "step": 900
+    },
+    {
+      "expert_utilization": [
+        144,
+        144,
+        158,
+        143,
+        308,
+        169,
+        280,
+        190
+      ],
+      "step": 1000
+    },
+    {
+      "expert_utilization": [
+        137,
+        142,
+        154,
+        140,
+        307,
+        170,
+        286,
+        200
+      ],
+      "step": 1100
+    }
+  ],
+  "model": "pvr_self_instilled_spectral_predictive_geometry_v2_predictive_300m",
+  "schema_version": "1.0"
+}

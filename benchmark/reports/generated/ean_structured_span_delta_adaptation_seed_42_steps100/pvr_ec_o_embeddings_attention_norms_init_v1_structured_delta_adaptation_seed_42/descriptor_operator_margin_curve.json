@@ -1,0 +1,26 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.5099256569762171,
+      "operator_control_margin": 0.5099256569762171,
+      "step": 25
+    },
+    {
+      "descriptor_control_margin": 0.5114471654233057,
+      "operator_control_margin": 0.5114471654233057,
+      "step": 50
+    },
+    {
+      "descriptor_control_margin": 0.5019663808852783,
+      "operator_control_margin": 0.5019663808852783,
+      "step": 75
+    },
+    {
+      "descriptor_control_margin": 0.5149003297362166,
+      "operator_control_margin": 0.5149003297362166,
+      "step": 100
+    }
+  ],
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "schema_version": "1.0"
+}

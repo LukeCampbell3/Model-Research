@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_no_prototypes_300m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 400
+    },
+    {
+      "owner_churn": null,
+      "step": 800
+    },
+    {
+      "owner_churn": null,
+      "step": 1200
+    },
+    {
+      "owner_churn": null,
+      "step": 1600
+    },
+    {
+      "owner_churn": null,
+      "step": 2000
+    },
+    {
+      "owner_churn": null,
+      "step": 2400
+    },
+    {
+      "owner_churn": null,
+      "step": 2800
+    },
+    {
+      "owner_churn": null,
+      "step": 3200
+    },
+    {
+      "owner_churn": null,
+      "step": 3600
+    },
+    {
+      "owner_churn": null,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

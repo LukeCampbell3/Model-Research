@@ -1,0 +1,50 @@
+{
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_300m_matched",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9994263091004734,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 1.9946738938641548,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0074071389995534,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.023949486608117,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0289600657778037,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.0344555511498514,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.03695082316009,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.0377886796039975,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.0354954522220785,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.032651558109272,
+      "step": 1000
+    },
+    {
+      "prototype_entropy": 2.0289254762039217,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

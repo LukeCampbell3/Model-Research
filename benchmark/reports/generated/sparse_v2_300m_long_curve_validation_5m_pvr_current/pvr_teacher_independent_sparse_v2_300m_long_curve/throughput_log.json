@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_teacher_independent_sparse_v2_300m_long_curve",
+  "optimizer_steps": 4883,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 4883,
+    "completed_training_tokens": 5000192,
+    "estimated_steps_needed": 4883,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 5000192
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 10,
+  "target_steps": 4883,
+  "target_training_tokens": 5000192,
+  "tokens_per_second": 215.4376206336935,
+  "tokens_seen": 5000192,
+  "training_tokens_seen": 5000192,
+  "wall_clock_seconds": 23209.46539092064
+}

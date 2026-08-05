@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_123",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.51253561998116,
+      "step": 10
+    },
+    {
+      "prototype_margin": 0.5098478589910277,
+      "step": 20
+    },
+    {
+      "prototype_margin": 0.5089411615214582,
+      "step": 30
+    },
+    {
+      "prototype_margin": 0.5157557572068375,
+      "step": 40
+    },
+    {
+      "prototype_margin": 0.5137826810508462,
+      "step": 50
+    },
+    {
+      "prototype_margin": 0.5121534759819042,
+      "step": 60
+    },
+    {
+      "prototype_margin": 0.5090495208933135,
+      "step": 70
+    },
+    {
+      "prototype_margin": 0.5112365385114875,
+      "step": 80
+    },
+    {
+      "prototype_margin": 0.515761267808557,
+      "step": 90
+    },
+    {
+      "prototype_margin": 0.5057297063370546,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

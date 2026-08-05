@@ -1,0 +1,46 @@
+{
+  "model": "pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.5579966163600227,
+      "step": 488
+    },
+    {
+      "prototype_entropy": 2.5695604305787296,
+      "step": 976
+    },
+    {
+      "prototype_entropy": 2.5491051999096186,
+      "step": 1464
+    },
+    {
+      "prototype_entropy": 2.529995484016445,
+      "step": 1952
+    },
+    {
+      "prototype_entropy": 2.592793923792225,
+      "step": 2440
+    },
+    {
+      "prototype_entropy": 2.581628683838264,
+      "step": 2928
+    },
+    {
+      "prototype_entropy": 2.5645588394951515,
+      "step": 3416
+    },
+    {
+      "prototype_entropy": 2.5919545400467263,
+      "step": 3904
+    },
+    {
+      "prototype_entropy": 2.591222728992026,
+      "step": 4392
+    },
+    {
+      "prototype_entropy": 2.538296106005502,
+      "step": 4880
+    }
+  ],
+  "schema_version": "1.0"
+}

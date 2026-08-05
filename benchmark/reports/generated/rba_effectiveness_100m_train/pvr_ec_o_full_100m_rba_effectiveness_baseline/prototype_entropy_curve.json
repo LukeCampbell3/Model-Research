@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_rba_effectiveness_baseline",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9756090886934363,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0068204577115583,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 1.989321503220134,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.0007074066480732,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.0232364322325402,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

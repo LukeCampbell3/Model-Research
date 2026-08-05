@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.40153485431316466,
+      "operator_control_margin": 0.40153485431316466,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.41142037892132066,
+      "operator_control_margin": 0.41142037892132066,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.42442535989054403,
+      "operator_control_margin": 0.42442535989054403,
+      "step": 1200
+    },
+    {
+      "descriptor_control_margin": 0.4217704654899232,
+      "operator_control_margin": 0.4217704654899232,
+      "step": 1600
+    },
+    {
+      "descriptor_control_margin": 0.4229973466766144,
+      "operator_control_margin": 0.4229973466766144,
+      "step": 2000
+    },
+    {
+      "descriptor_control_margin": 0.4170066242259054,
+      "operator_control_margin": 0.4170066242259054,
+      "step": 2400
+    },
+    {
+      "descriptor_control_margin": 0.4220260865719562,
+      "operator_control_margin": 0.4220260865719562,
+      "step": 2800
+    },
+    {
+      "descriptor_control_margin": 0.42259169134437496,
+      "operator_control_margin": 0.42259169134437496,
+      "step": 3200
+    },
+    {
+      "descriptor_control_margin": 0.40578454406446934,
+      "operator_control_margin": 0.40578454406446934,
+      "step": 3600
+    },
+    {
+      "descriptor_control_margin": 0.43262435802898835,
+      "operator_control_margin": 0.43262435802898835,
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_20260614",
+  "schema_version": "1.0"
+}

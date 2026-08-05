@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_attention_only_seed_20260614",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.3951953672367381,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.40969434142001165,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.38841228097347386,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.37137316264246084,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.3914755950681865,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.40527329055718536,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.42475964030988206,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.4225676291486404,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.4453826705745693,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.41999279441855225,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

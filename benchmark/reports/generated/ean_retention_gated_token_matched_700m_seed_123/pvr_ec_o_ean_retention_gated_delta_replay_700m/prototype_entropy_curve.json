@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_700m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.0526250431154867,
+      "step": 10
+    },
+    {
+      "prototype_entropy": 2.0601783480071445,
+      "step": 20
+    },
+    {
+      "prototype_entropy": 2.060594594432174,
+      "step": 30
+    },
+    {
+      "prototype_entropy": 2.0583915955305665,
+      "step": 40
+    },
+    {
+      "prototype_entropy": 2.0602176879263814,
+      "step": 50
+    },
+    {
+      "prototype_entropy": 2.0648534639895413,
+      "step": 60
+    },
+    {
+      "prototype_entropy": 2.0638603820247665,
+      "step": 70
+    },
+    {
+      "prototype_entropy": 2.0607274763312247,
+      "step": 80
+    },
+    {
+      "prototype_entropy": 2.0618147616116196,
+      "step": 90
+    },
+    {
+      "prototype_entropy": 2.055302894427467,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

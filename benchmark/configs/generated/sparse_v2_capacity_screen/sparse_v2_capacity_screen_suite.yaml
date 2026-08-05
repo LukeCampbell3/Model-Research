@@ -1,0 +1,14 @@
+{
+  "active_budget_ceiling": 92649984,
+  "experiment": "PVR_SPARSE_V2_CAPACITY_REALLOCATION_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared640_expert256_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared768_expert256_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e20_shared384_expert224_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e24_shared512_expert176_100m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "selection_rule": "Lowest non-test LM loss among strict Top1 variants below generic Top2 active parameters."
+}

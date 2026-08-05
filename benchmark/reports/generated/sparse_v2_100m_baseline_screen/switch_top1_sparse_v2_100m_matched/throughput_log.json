@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "switch_top1_sparse_v2_100m_matched",
+  "optimizer_steps": 1000,
+  "resource_reduction": {
+    "completed_eval_windows": 3,
+    "completed_steps": 1000,
+    "completed_training_tokens": 486400,
+    "estimated_steps_needed": 1000,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 3,
+    "target_training_tokens": 486400
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 3,
+  "target_steps": 1000,
+  "target_training_tokens": 486400,
+  "tokens_per_second": 2085.29953088256,
+  "tokens_seen": 486400,
+  "training_tokens_seen": 486400,
+  "wall_clock_seconds": 233.25186276435852
+}

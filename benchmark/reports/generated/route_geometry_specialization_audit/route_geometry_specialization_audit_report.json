@@ -1,0 +1,419 @@
+{
+  "benchmark_evidence_caveat": "Local reduced-file route geometry audit; perturbations are diagnostic transformations, not official benchmark adapters.",
+  "candidate_config": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+  "created_at": "2026-06-18T14:04:46.398024+00:00",
+  "decision_rule": "Support requires clean Top1 invariants, positive expert benefit, margin-predictive benefit, stable owner distributions under perturbation, family-specific owner distributions, and positive expert benefit across most owner/family groups.",
+  "device": "cuda",
+  "experiment": "PVR_ROUTE_GEOMETRY_SPECIALIZATION_AUDIT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "metrics": {
+    "expert_benefit": {
+      "high_margin_mean_benefit": 1.2614928628779822,
+      "low_margin_mean_benefit": 1.2392527541402132,
+      "mean_expert_benefit": 1.2503728085090977,
+      "route_margin_threshold": 0.5093669506410757,
+      "route_margin_vs_expert_benefit_correlation": -0.0030461610374467466
+    },
+    "family_specialization": {
+      "family_owner_histograms": {
+        "broad_lm": {
+          "0": 2897,
+          "1": 2218,
+          "2": 4113,
+          "3": 5077,
+          "4": 1993,
+          "5": 3117,
+          "6": 2544,
+          "7": 2617
+        },
+        "code_heavy": {
+          "0": 2629,
+          "1": 2381,
+          "2": 4192,
+          "3": 5148,
+          "4": 1962,
+          "5": 3184,
+          "6": 2431,
+          "7": 2649
+        },
+        "json_schema": {
+          "0": 2447,
+          "1": 2423,
+          "2": 4095,
+          "3": 5540,
+          "4": 1890,
+          "5": 3419,
+          "6": 2286,
+          "7": 2476
+        }
+      },
+      "mean_pairwise_family_owner_distance": 0.0008207663344793614,
+      "mean_pairwise_family_owner_similarity": 0.9991792336655206,
+      "pairwise_family_owner_similarity": [
+        {
+          "left": "broad_lm",
+          "owner_distribution_similarity": 0.999651563907414,
+          "right": "code_heavy"
+        },
+        {
+          "left": "broad_lm",
+          "owner_distribution_similarity": 0.9985086905591466,
+          "right": "json_schema"
+        },
+        {
+          "left": "code_heavy",
+          "owner_distribution_similarity": 0.9993774465300015,
+          "right": "json_schema"
+        }
+      ]
+    },
+    "owner_family_benefit": {
+      "eligible_group_count": 23,
+      "groups": {
+        "broad_lm::owner_0": {
+          "count": 121,
+          "mean_expert_benefit": 0.8684052268951392,
+          "mean_margin": 0.5185949935298156
+        },
+        "broad_lm::owner_1": {
+          "count": 10,
+          "mean_expert_benefit": 1.1226194620132446,
+          "mean_margin": 0.48729864601045847
+        },
+        "broad_lm::owner_2": {
+          "count": 177,
+          "mean_expert_benefit": 0.9280868317143116,
+          "mean_margin": 0.5177035300769685
+        },
+        "broad_lm::owner_3": {
+          "count": 563,
+          "mean_expert_benefit": 0.8423887353861509,
+          "mean_margin": 0.5072892517697284
+        },
+        "broad_lm::owner_4": {
+          "count": 16,
+          "mean_expert_benefit": 1.4271015413105488,
+          "mean_margin": 0.5183335730107501
+        },
+        "broad_lm::owner_5": {
+          "count": 71,
+          "mean_expert_benefit": 0.6878215931326427,
+          "mean_margin": 0.5260200502368414
+        },
+        "broad_lm::owner_6": {
+          "count": 37,
+          "mean_expert_benefit": 1.1414735635390152,
+          "mean_margin": 0.5157719164214155
+        },
+        "broad_lm::owner_7": {
+          "count": 29,
+          "mean_expert_benefit": 1.0810100712395947,
+          "mean_margin": 0.5123768208612657
+        },
+        "code_heavy::owner_0": {
+          "count": 68,
+          "mean_expert_benefit": 1.714653415934128,
+          "mean_margin": 0.5170875962494927
+        },
+        "code_heavy::owner_1": {
+          "count": 23,
+          "mean_expert_benefit": 1.4926255592347488,
+          "mean_margin": 0.5120349925119376
+        },
+        "code_heavy::owner_2": {
+          "count": 184,
+          "mean_expert_benefit": 1.610220146972848,
+          "mean_margin": 0.5170349247156358
+        },
+        "code_heavy::owner_3": {
+          "count": 597,
+          "mean_expert_benefit": 1.4533261782684717,
+          "mean_margin": 0.5065230092627591
+        },
+        "code_heavy::owner_4": {
+          "count": 13,
+          "mean_expert_benefit": 2.1729950446348925,
+          "mean_margin": 0.537005494754666
+        },
+        "code_heavy::owner_5": {
+          "count": 81,
+          "mean_expert_benefit": 2.034855039951242,
+          "mean_margin": 0.5119361055309696
+        },
+        "code_heavy::owner_6": {
+          "count": 31,
+          "mean_expert_benefit": 2.3427308470972124,
+          "mean_margin": 0.5257174581970259
+        },
+        "code_heavy::owner_7": {
+          "count": 27,
+          "mean_expert_benefit": 1.2619883528462164,
+          "mean_margin": 0.5126154583499386
+        },
+        "json_schema::owner_0": {
+          "count": 37,
+          "mean_expert_benefit": 1.8527004716766846,
+          "mean_margin": 0.5174554281675063
+        },
+        "json_schema::owner_1": {
+          "count": 18,
+          "mean_expert_benefit": 2.1769008470906153,
+          "mean_margin": 0.4940245504387551
+        },
+        "json_schema::owner_2": {
+          "count": 136,
+          "mean_expert_benefit": 1.9532185194959097,
+          "mean_margin": 0.5151665700238893
+        },
+        "json_schema::owner_3": {
+          "count": 734,
+          "mean_expert_benefit": 1.1030415059536776,
+          "mean_margin": 0.5137782518062096
+        },
+        "json_schema::owner_5": {
+          "count": 51,
+          "mean_expert_benefit": 1.637163579317869,
+          "mean_margin": 0.5097601696836694
+        },
+        "json_schema::owner_6": {
+          "count": 28,
+          "mean_expert_benefit": 0.9468250591307878,
+          "mean_margin": 0.5143247957984428
+        },
+        "json_schema::owner_7": {
+          "count": 15,
+          "mean_expert_benefit": 1.6529938141504923,
+          "mean_margin": 0.512520406395197
+        }
+      },
+      "positive_benefit_group_count": 23,
+      "positive_benefit_group_rate": 1.0
+    },
+    "perturbation_stability": {
+      "mean_owner_distribution_similarity": 0.999614203193357,
+      "min_owner_distribution_similarity": 0.9986307491517731,
+      "rows": [
+        {
+          "family": "broad_lm",
+          "full_loss_delta": 0.026600007609026477,
+          "owner_distribution_similarity": 0.999919036533195,
+          "route_margin_delta": 0.0017465626394065348,
+          "span_index": 0
+        },
+        {
+          "family": "broad_lm",
+          "full_loss_delta": 0.035005057230591774,
+          "owner_distribution_similarity": 0.9999444986249688,
+          "route_margin_delta": -0.0004051014208623638,
+          "span_index": 1
+        },
+        {
+          "family": "broad_lm",
+          "full_loss_delta": -0.013336978154216084,
+          "owner_distribution_similarity": 0.9997992791944292,
+          "route_margin_delta": 0.0027518007433775526,
+          "span_index": 2
+        },
+        {
+          "family": "broad_lm",
+          "full_loss_delta": 0.17095202854084723,
+          "owner_distribution_similarity": 0.9998742261245225,
+          "route_margin_delta": -0.007054063309623881,
+          "span_index": 3
+        },
+        {
+          "family": "code_heavy",
+          "full_loss_delta": 6.127509596990421,
+          "owner_distribution_similarity": 0.9988679100177862,
+          "route_margin_delta": -0.004105278186519845,
+          "span_index": 0
+        },
+        {
+          "family": "code_heavy",
+          "full_loss_delta": 4.873861553962342,
+          "owner_distribution_similarity": 0.999126046397399,
+          "route_margin_delta": 0.004920356914226542,
+          "span_index": 1
+        },
+        {
+          "family": "code_heavy",
+          "full_loss_delta": 7.560143288690597,
+          "owner_distribution_similarity": 0.9994163850667176,
+          "route_margin_delta": 0.008256988551389788,
+          "span_index": 2
+        },
+        {
+          "family": "code_heavy",
+          "full_loss_delta": 3.474082882050425,
+          "owner_distribution_similarity": 0.9986307491517731,
+          "route_margin_delta": 0.003693847279161333,
+          "span_index": 3
+        },
+        {
+          "family": "json_schema",
+          "full_loss_delta": 0.2143937191576697,
+          "owner_distribution_similarity": 0.999914661842313,
+          "route_margin_delta": -0.003261416228876435,
+          "span_index": 0
+        },
+        {
+          "family": "json_schema",
+          "full_loss_delta": -0.8023541736183688,
+          "owner_distribution_similarity": 0.9999866158037192,
+          "route_margin_delta": -0.0019721962138042892,
+          "span_index": 1
+        },
+        {
+          "family": "json_schema",
+          "full_loss_delta": 0.12429349834565073,
+          "owner_distribution_similarity": 0.9998957473284388,
+          "route_margin_delta": -0.0024213720971599795,
+          "span_index": 2
+        },
+        {
+          "family": "json_schema",
+          "full_loss_delta": 0.005473649594932795,
+          "owner_distribution_similarity": 0.9999952822350213,
+          "route_margin_delta": -0.00014650010901595678,
+          "span_index": 3
+        }
+      ]
+    },
+    "routing_snapshots": [
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5183323635040628,
+        "expert_utilization": [
+          349,
+          270,
+          485,
+          620,
+          241,
+          404,
+          345,
+          358
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.20182291666666666,
+        "operator_control_margin": 0.5183323635040628,
+        "owner_churn": null,
+        "owner_entropy": 2.037768461799472,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.037768461799472,
+        "prototype_margin": 0.5183323635040628,
+        "prototype_monopoly_rate": 0.20182291666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5130888865387533,
+        "expert_utilization": [
+          302,
+          329,
+          512,
+          701,
+          223,
+          409,
+          272,
+          324
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.22819010416666666,
+        "operator_control_margin": 0.5130888865387533,
+        "owner_churn": null,
+        "owner_entropy": 2.013830819174193,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.013830819174193,
+        "prototype_margin": 0.5130888865387533,
+        "prototype_monopoly_rate": 0.22819010416666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 25,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5152230673314383,
+        "expert_utilization": [
+          288,
+          296,
+          501,
+          728,
+          238,
+          427,
+          277,
+          317
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.23697916666666666,
+        "operator_control_margin": 0.5152230673314383,
+        "owner_churn": null,
+        "owner_entropy": 2.0080757147085775,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.0080757147085775,
+        "prototype_margin": 0.5152230673314383,
+        "prototype_monopoly_rate": 0.23697916666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 50,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5068799492582912,
+        "expert_utilization": [
+          372,
+          274,
+          519,
+          631,
+          242,
+          375,
+          321,
+          338
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.20540364583333334,
+        "operator_control_margin": 0.5068799492582912,
+        "owner_churn": null,
+        "owner_entropy": 2.0325072608582655,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.0325072608582655,
+        "prototype_margin": 0.5068799492582912,
+        "prototype_monopoly_rate": 0.20540364583333334,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 75,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      }
+    ],
+    "top1_invariants_clean": true
+  },
+  "schema_version": "1.0",
+  "seq_len": 128,
+  "spans_per_family": 8,
+  "status": "PVR_ROUTE_GEOMETRY_SPECIALIZATION_NOT_SUPPORTED",
+  "supported_conditions": {
+    "family_owner_specialization_present": false,
+    "high_margin_has_higher_benefit": true,
+    "mean_expert_benefit_positive": true,
+    "most_owner_family_groups_have_positive_benefit": true,
+    "owner_distribution_stable_under_perturbation": true,
+    "route_margin_benefit_correlation_positive": false,
+    "top1_invariants_clean": true
+  }
+}

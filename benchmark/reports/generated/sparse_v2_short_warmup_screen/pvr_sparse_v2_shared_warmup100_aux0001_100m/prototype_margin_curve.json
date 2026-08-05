@@ -1,0 +1,18 @@
+{
+  "model": "pvr_sparse_v2_shared_warmup100_aux0001_100m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 1.8364090539204578,
+      "step": 250
+    },
+    {
+      "prototype_margin": 3.818897638198299,
+      "step": 500
+    },
+    {
+      "prototype_margin": 5.240059996644656,
+      "step": 950
+    }
+  ],
+  "schema_version": "1.0"
+}

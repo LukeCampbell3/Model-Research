@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "537591f2677853ba3e2cfe37dc63c3b77e780ac3366322fa3b638e1c582de73a",
+  "checkpoint_path": "checkpoints/ean_structured_delta_replay_retention_gated_seed_123/pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_123/checkpoint.pt",
+  "created_at": "2026-06-17T04:05:21.991372+00:00",
+  "effective_batch_tokens": 512,
+  "error": null,
+  "eval_window_count": 10,
+  "mock_checkpoint": false,
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_123",
+  "optimizer_steps": 100,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 100,
+    "completed_training_tokens": 51200,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 51200
+  },
+  "routing_window_count": 10,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 100,
+  "target_training_tokens": 51200,
+  "tier": "ean_structured_delta_replay_retention_gated",
+  "tokens_seen": 51200,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 51200
+}

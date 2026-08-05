@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.016835668085353,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.015862848716212,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0223383465394136,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.019984547513925,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0109165886783407,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.0191449753974964,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.018194680375304,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.008071404182982,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.020487561650231,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.012783588783454,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

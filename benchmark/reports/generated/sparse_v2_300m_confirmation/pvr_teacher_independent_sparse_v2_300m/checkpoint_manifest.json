@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "ea3117356a0110fb9e619fb987c66c79e6a5fc0bb324f5c14ecfa7ba742e8003",
+  "checkpoint_path": "checkpoints/sparse_v2_300m_confirmation/pvr_teacher_independent_sparse_v2_300m/checkpoint.pt",
+  "created_at": "2026-07-15T13:51:27.140389+00:00",
+  "effective_batch_tokens": 512,
+  "error": null,
+  "eval_window_count": 10,
+  "mock_checkpoint": false,
+  "model": "pvr_teacher_independent_sparse_v2_300m",
+  "optimizer_steps": 4200,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 4200,
+    "completed_training_tokens": 2150400,
+    "estimated_steps_needed": 4200,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 2150400
+  },
+  "routing_window_count": 10,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 4200,
+  "target_training_tokens": 2150400,
+  "tier": "real_comparison",
+  "tokens_seen": 2150400,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 2150400
+}

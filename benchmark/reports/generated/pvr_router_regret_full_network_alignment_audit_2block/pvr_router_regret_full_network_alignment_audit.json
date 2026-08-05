@@ -1,0 +1,293 @@
+{
+  "created_at": "2026-08-04T21:29:45.355343+00:00",
+  "decision": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_NOT_SUPPORTED",
+  "device": "cuda",
+  "experiment": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_AUDIT",
+  "file_count": 7,
+  "file_wins_regret0p01": 0,
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "macro_delta_regret0p01_minus_baseline": 0.888661929539273,
+  "macro_loss": {
+    "baseline": 14.361885888235909,
+    "regret0p01": 15.250547817775182
+  },
+  "max_blocks_per_file": 2,
+  "micro_delta_regret0p01_minus_baseline": 0.888661929539273,
+  "micro_loss": {
+    "baseline": 14.361885888235909,
+    "regret0p01": 15.250547817775182
+  },
+  "official_like_root": "data/eval/official_like_dev",
+  "rows": [
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 17.779340744018555,
+          "loss_sum": 1137.8778076171875,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 14.581531524658203,
+          "loss_sum": 933.218017578125,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 16.18043613433838,
+      "baseline_loss_sum": 2071.0958251953125,
+      "baseline_tokens": 128,
+      "file": "boolean_qa.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 16.088638305664062,
+          "loss_sum": 1029.6728515625,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 17.288969039916992,
+          "loss_sum": 1106.4940185546875,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 16.688803672790527,
+      "regret0p01_loss_sum": 2136.1668701171875,
+      "regret0p01_minus_baseline": 0.5083675384521484,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.739110946655273,
+          "loss_sum": 879.3031005859375,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 16.08919906616211,
+          "loss_sum": 1029.708740234375,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 14.914155006408691,
+      "baseline_loss_sum": 1909.0118408203125,
+      "baseline_tokens": 128,
+      "file": "code_generation.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.952077865600586,
+          "loss_sum": 828.9329833984375,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 18.387866973876953,
+          "loss_sum": 1176.823486328125,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 15.66997241973877,
+      "regret0p01_loss_sum": 2005.7564697265625,
+      "regret0p01_minus_baseline": 0.7558174133300781,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.686284065246582,
+          "loss_sum": 811.9221801757812,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 13.794960021972656,
+          "loss_sum": 882.87744140625,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 13.24062204360962,
+      "baseline_loss_sum": 1694.7996215820312,
+      "baseline_tokens": 128,
+      "file": "commonsense_completion.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.101963996887207,
+          "loss_sum": 774.5256958007812,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 16.680055618286133,
+          "loss_sum": 1067.5235595703125,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 14.39100980758667,
+      "regret0p01_loss_sum": 1842.0492553710938,
+      "regret0p01_minus_baseline": 1.1503877639770508,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 14.186076164245605,
+          "loss_sum": 907.9088745117188,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 14.469623565673828,
+          "loss_sum": 926.055908203125,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 14.327849864959717,
+      "baseline_loss_sum": 1833.9647827148438,
+      "baseline_tokens": 128,
+      "file": "general_knowledge.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.388019561767578,
+          "loss_sum": 856.833251953125,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 17.461666107177734,
+          "loss_sum": 1117.546630859375,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 15.424842834472656,
+      "regret0p01_loss_sum": 1974.3798828125,
+      "regret0p01_minus_baseline": 1.0969929695129395,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 16.454639434814453,
+          "loss_sum": 1053.096923828125,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 13.701645851135254,
+          "loss_sum": 876.9053344726562,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 15.078142642974854,
+      "baseline_loss_sum": 1930.0022583007812,
+      "baseline_tokens": 128,
+      "file": "mathematics.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 15.113580703735352,
+          "loss_sum": 967.2691650390625,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 16.195905685424805,
+          "loss_sum": 1036.5379638671875,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 15.654743194580078,
+      "regret0p01_loss_sum": 2003.80712890625,
+      "regret0p01_minus_baseline": 0.5766005516052246,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.268646240234375,
+          "loss_sum": 849.193359375,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 12.716976165771484,
+          "loss_sum": 813.886474609375,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 12.99281120300293,
+      "baseline_loss_sum": 1663.079833984375,
+      "baseline_tokens": 128,
+      "file": "multiple_choice_reasoning.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.464466094970703,
+          "loss_sum": 797.725830078125,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 15.736817359924316,
+          "loss_sum": 1007.1563110351562,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 14.10064172744751,
+      "regret0p01_loss_sum": 1804.8821411132812,
+      "regret0p01_minus_baseline": 1.10783052444458,
+      "regret0p01_tokens": 128
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.666350364685059,
+          "loss_sum": 810.6464233398438,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 14.932018280029297,
+          "loss_sum": 955.649169921875,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 13.799184322357178,
+      "baseline_loss_sum": 1766.2955932617188,
+      "baseline_tokens": 128,
+      "file": "pronoun_coreference.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 11.872692108154297,
+          "loss_sum": 759.852294921875,
+          "tokens": 64
+        },
+        {
+          "block_idx": 1,
+          "loss": 17.77495002746582,
+          "loss_sum": 1137.5968017578125,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 14.823821067810059,
+      "regret0p01_loss_sum": 1897.4490966796875,
+      "regret0p01_minus_baseline": 1.0246367454528809,
+      "regret0p01_tokens": 128
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "Full-network LM loss on official-like development files only. Uses bounded first-block file coverage to align with the oracle/regret audit without touching final official bounded files.",
+  "seq_len": 64,
+  "status": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_AUDIT_COMPLETE"
+}

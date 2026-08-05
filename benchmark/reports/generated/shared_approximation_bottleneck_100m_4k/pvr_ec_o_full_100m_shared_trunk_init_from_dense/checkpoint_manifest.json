@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "e37296680c090e65adddb9121c4e542e4c22871b0def4ac1ff6a491e67f04af3",
+  "checkpoint_path": "checkpoints/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/checkpoint.pt",
+  "created_at": "2026-06-13T14:44:58.214099+00:00",
+  "effective_batch_tokens": 256,
+  "error": null,
+  "eval_window_count": 10,
+  "mock_checkpoint": false,
+  "model": "pvr_ec_o_full_100m_shared_trunk_init_from_dense",
+  "optimizer_steps": 4000,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 4000,
+    "completed_training_tokens": 1024000,
+    "estimated_steps_needed": 4000,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 1000000
+  },
+  "routing_window_count": 10,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 4000,
+  "target_training_tokens": 1000000,
+  "tier": "shared_approximation_bottleneck",
+  "tokens_seen": 1024000,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 1024000
+}

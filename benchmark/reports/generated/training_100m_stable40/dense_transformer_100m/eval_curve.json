@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-06-12T03:42:12.631782+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 163.42544555664062,
+      "eval_tokens": 64,
+      "optimizer_step": 10,
+      "step": 10,
+      "training_tokens_seen": 640
+    },
+    {
+      "eval_loss": 133.60658264160156,
+      "eval_tokens": 64,
+      "optimizer_step": 20,
+      "step": 20,
+      "training_tokens_seen": 1280
+    },
+    {
+      "eval_loss": 123.84906005859375,
+      "eval_tokens": 64,
+      "optimizer_step": 30,
+      "step": 30,
+      "training_tokens_seen": 1920
+    },
+    {
+      "eval_loss": 102.0782470703125,
+      "eval_tokens": 64,
+      "optimizer_step": 40,
+      "step": 40,
+      "training_tokens_seen": 2560
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "dense_transformer_100m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

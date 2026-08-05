@@ -1,0 +1,5 @@
+{
+  "model": "dense_transformer_300m_official_compute_matched",
+  "prototype_margin_curve": [],
+  "schema_version": "1.0"
+}

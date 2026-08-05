@@ -1,0 +1,71 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        112,
+        129,
+        124,
+        243,
+        183,
+        94,
+        314,
+        337
+      ],
+      "step": 200
+    },
+    {
+      "expert_utilization": [
+        221,
+        71,
+        104,
+        258,
+        177,
+        179,
+        267,
+        259
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        242,
+        60,
+        121,
+        324,
+        168,
+        147,
+        247,
+        227
+      ],
+      "step": 600
+    },
+    {
+      "expert_utilization": [
+        239,
+        68,
+        134,
+        316,
+        170,
+        138,
+        234,
+        237
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        219,
+        76,
+        164,
+        294,
+        173,
+        149,
+        226,
+        235
+      ],
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_rba_effectiveness_baseline",
+  "schema_version": "1.0"
+}

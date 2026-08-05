@@ -1,0 +1,21 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 2.4024229060548046,
+      "operator_control_margin": 2.4024229060548046,
+      "step": 250
+    },
+    {
+      "descriptor_control_margin": 3.5387574918568134,
+      "operator_control_margin": 3.5387574918568134,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": 4.793474236270413,
+      "operator_control_margin": 4.793474236270413,
+      "step": 950
+    }
+  ],
+  "model": "pvr_sparse_v2_full_from_start_aux001_100m",
+  "schema_version": "1.0"
+}

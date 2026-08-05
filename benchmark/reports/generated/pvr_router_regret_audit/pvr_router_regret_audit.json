@@ -1,0 +1,54 @@
+{
+  "claim_gates": {
+    "final_block_oracle_materially_beats_selected": true,
+    "final_block_selected_beats_mean_wrong": true,
+    "final_block_selected_beats_shared": true,
+    "full_network_greedy_oracle_materially_beats_selected": true,
+    "official_final_files_used_for_training_or_selection": false
+  },
+  "created_at": "2026-07-19T16:14:56.770881+00:00",
+  "diagnosis": "Router regret is material in diagnostic audits. Expert-bank capacity exists under oracle-style interventions, so router repair should precede scaling. Because the full-network audit is greedy and development-only, this does not prove a deployable oracle model or an official benchmark advantage.",
+  "experiment": "PVR_ROUTER_REGRET_AUDIT",
+  "final_block_official_summary": {
+    "mean_oracle_gap_to_second_best": 1.356952216476202,
+    "mean_router_regret": 1.469227062610173,
+    "mean_wrong_loss": 17.686156630516052,
+    "oracle_loss": 8.718795716762543,
+    "p95_router_regret": 5.583189487457275,
+    "random_residual_loss": 20.23269349336624,
+    "random_wrong_loss": 17.708617389202118,
+    "second_best_loss": 10.07574786990881,
+    "selected_is_oracle_rate": 0.17779541015625,
+    "selected_is_top2_rate": 0.34967041015625,
+    "selected_loss": 10.188022635877132,
+    "shared_only_loss": 13.41137558221817,
+    "shifted_wrong_loss": 22.860915899276733,
+    "shuffled_residual_loss": 10.28586482256651,
+    "token_count": 16384,
+    "worst_loss": 30.052434980869293
+  },
+  "full_network_official_like_dev_summary": {
+    "decision_count": 10752,
+    "greedy_full_network_oracle_loss": 5.548307282584054,
+    "greedy_oracle_improvement_over_selected": -4.248973710196359,
+    "mean_router_regret_across_block_decisions": 0.5827385857234335,
+    "p95_router_regret_block_decision_median_of_batches": 2.2053823471069336,
+    "selected_is_oracle_rate_across_block_decisions": 0.15187872023809523,
+    "selected_is_top2_rate_across_block_decisions": 0.2560453869047619,
+    "selected_loss": 9.797280992780413,
+    "token_count": 448
+  },
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "inputs": {
+    "final_block_official": "benchmark/reports/generated/pvr_final_block_expert_sweep_audit/pvr_final_block_expert_sweep_audit.json",
+    "full_network_official_like_dev": "benchmark/reports/generated/pvr_full_network_greedy_oracle_audit/pvr_full_network_greedy_oracle_audit.json"
+  },
+  "not_run_or_blocked": {
+    "frozen_official_full_network_oracle": "NOT_RUN_NOT_IMPLEMENTED",
+    "local_paired_heldout_full_network_oracle": "NOT_RUN_NOT_IMPLEMENTED",
+    "oracle_vs_comparators_on_identical_official_like_windows": "PARTIAL_DIAGNOSTIC_ONLY"
+  },
+  "schema_version": "1.0",
+  "scope": "Consolidates existing final-block frozen-official and greedy full-network official-like development audits. No training and no final official-file tuning.",
+  "status": "PVR_ROUTER_REGRET_BOTTLENECK_DIAGNOSTIC_SUPPORTED"
+}

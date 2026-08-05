@@ -1,0 +1,13 @@
+{
+  "fields_reserved": [
+    "owner_loss",
+    "challenger_loss",
+    "oracle_challenger_would_win",
+    "oracle_challenger_loss_delta",
+    "oracle_best_expert_if_evaluated"
+  ],
+  "not_benchmark_timed_inference": true,
+  "offline_only": true,
+  "schema_version": "1.0",
+  "status": "NOT_RUN_NOT_IMPLEMENTED"
+}

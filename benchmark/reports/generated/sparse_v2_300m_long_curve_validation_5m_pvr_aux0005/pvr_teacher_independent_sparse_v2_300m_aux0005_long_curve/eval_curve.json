@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-07-18T00:09:15.726547+00:00",
+  "eval_curve": [],
+  "eval_window_count": 0,
+  "model": "pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve",
+  "schema_version": "1.0",
+  "status": "TRAINING_FAILED"
+}

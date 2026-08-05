@@ -1,0 +1,31 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.8974641966099929,
+      "operator_control_margin": 0.8974641966099929,
+      "step": 200
+    },
+    {
+      "descriptor_control_margin": 1.433876946165886,
+      "operator_control_margin": 1.433876946165886,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.9214862837228187,
+      "operator_control_margin": 0.9214862837228187,
+      "step": 600
+    },
+    {
+      "descriptor_control_margin": 0.9208312009383613,
+      "operator_control_margin": 0.9208312009383613,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.3508201574829097,
+      "operator_control_margin": 0.3508201574829097,
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_route_conf_reg_0_01",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,26 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.3406741452454298,
+      "operator_control_margin": 0.3406741452454298,
+      "step": 244
+    },
+    {
+      "descriptor_control_margin": 0.19211150715636904,
+      "operator_control_margin": 0.19211150715636904,
+      "step": 488
+    },
+    {
+      "descriptor_control_margin": 0.25714675812560017,
+      "operator_control_margin": 0.25714675812560017,
+      "step": 732
+    },
+    {
+      "descriptor_control_margin": 0.31404117641917156,
+      "operator_control_margin": 0.31404117641917156,
+      "step": 976
+    }
+  ],
+  "model": "pvr_shared_substrate_staged_warmup_attention_norms_300m",
+  "schema_version": "1.0"
+}

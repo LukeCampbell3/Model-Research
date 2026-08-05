@@ -1,0 +1,26 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.21783376943979724,
+      "operator_control_margin": 0.21783376943979724,
+      "step": 244
+    },
+    {
+      "descriptor_control_margin": 0.2500273197462472,
+      "operator_control_margin": 0.2500273197462472,
+      "step": 488
+    },
+    {
+      "descriptor_control_margin": 0.336524703756974,
+      "operator_control_margin": 0.336524703756974,
+      "step": 732
+    },
+    {
+      "descriptor_control_margin": 0.3339781586934502,
+      "operator_control_margin": 0.3339781586934502,
+      "step": 976
+    }
+  ],
+  "model": "pvr_shared_substrate_wider_attention_norms_300m",
+  "schema_version": "1.0"
+}

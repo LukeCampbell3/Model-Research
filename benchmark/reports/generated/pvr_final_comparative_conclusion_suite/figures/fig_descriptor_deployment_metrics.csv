@@ -1,0 +1,5 @@
+metric,value
+descriptor_accuracy,0.9509153621107655
+descriptor_removed_accuracy,0.26575302596805295
+descriptor_control_margin,0.1873809863181042
+heldout_family_accuracy,

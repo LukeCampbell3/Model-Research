@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_20260614",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.025900229875856,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0245204178244927,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.026707266955155,
+      "step": 1200
+    },
+    {
+      "prototype_entropy": 2.0330814983162853,
+      "step": 1600
+    },
+    {
+      "prototype_entropy": 2.028650604422309,
+      "step": 2000
+    },
+    {
+      "prototype_entropy": 2.030915484037189,
+      "step": 2400
+    },
+    {
+      "prototype_entropy": 2.0279520620248084,
+      "step": 2800
+    },
+    {
+      "prototype_entropy": 2.033488307899986,
+      "step": 3200
+    },
+    {
+      "prototype_entropy": 2.0027938494767974,
+      "step": 3600
+    },
+    {
+      "prototype_entropy": 2.018366124493013,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

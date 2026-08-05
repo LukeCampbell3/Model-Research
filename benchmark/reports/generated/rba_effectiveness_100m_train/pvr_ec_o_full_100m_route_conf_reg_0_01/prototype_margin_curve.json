@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_route_conf_reg_0_01",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.8974641966099929,
+      "step": 200
+    },
+    {
+      "prototype_margin": 1.433876946165886,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.9214862837228187,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.9208312009383613,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.3508201574829097,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

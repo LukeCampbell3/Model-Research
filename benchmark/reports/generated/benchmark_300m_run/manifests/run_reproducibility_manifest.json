@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-06-12T02:14:23.511812+00:00",
+  "environment": {
+    "cwd": "C:\\Users\\jcthi\\Code\\brain",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python": "3.11.9"
+  },
+  "git_commit": "68b36a5ceb130c263177e840f906b8c33ff2dd52",
+  "hashes": {
+    "benchmark\\configs\\generated\\benchmark_300m_suite.yaml": "d681b8638cc49253834428b06478f9cfaf66a68ead0c67128ea71812979361fe"
+  },
+  "notes": "Suite execution reproducibility manifest.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "benchmark/configs/generated/benchmark_300m_suite.yaml"
+  ]
+}

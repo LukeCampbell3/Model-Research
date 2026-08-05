@@ -1,0 +1,24 @@
+{
+  "created_at": "2026-06-13T05:08:44.714098+00:00",
+  "environment": {
+    "cwd": "C:\\Users\\jcthi\\Code\\brain",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python": "3.11.9"
+  },
+  "git_commit": "7ffa5ad9b4ebedae0bee0691a09dedb0613156eb",
+  "hashes": {
+    "data\\eval\\broad_nlp\\cpython_json_decoder.txt": "f339376ba0304981fc6b35246472d950903987023a46810bbe224141801ae3e7",
+    "data\\eval\\broad_nlp\\gutenberg_frankenstein_heldout.txt": "7810cd483cffcf2cc8a1d8f0d5807931e69d4f48cd14149b8c76f88af82fead3",
+    "data\\eval\\broad_nlp\\json_schema_test_suite_type.txt": "091aa31e688df20891de7884878b527745ddac0a3ced6d19a5ea4aa075dbbe00",
+    "data\\eval\\broad_nlp\\the_algorithms_prime_numbers.txt": "e097a327c2c8cdcf44064a78a1bc557cf44ae3bd08723c16bfd4d322b29712cd",
+    "data\\eval\\coding\\humaneval_base.jsonl": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2"
+  },
+  "notes": "Evaluation data paths are declared; absence blocks benchmark evidence.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "data/eval/broad_nlp",
+    "data/eval/coding"
+  ]
+}

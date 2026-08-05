@@ -1,0 +1,5 @@
+{
+  "model": "dense_transformer_300m",
+  "owner_churn_curve": [],
+  "schema_version": "1.0"
+}

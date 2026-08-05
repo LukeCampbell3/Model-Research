@@ -1,0 +1,90 @@
+{
+  "model": "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 100
+    },
+    {
+      "owner_churn": 0.15755208333333334,
+      "step": 200
+    },
+    {
+      "owner_churn": 0.091796875,
+      "step": 300
+    },
+    {
+      "owner_churn": 0.07747395833333333,
+      "step": 400
+    },
+    {
+      "owner_churn": 0.061197916666666664,
+      "step": 500
+    },
+    {
+      "owner_churn": 0.049479166666666664,
+      "step": 600
+    },
+    {
+      "owner_churn": 0.05078125,
+      "step": 700
+    },
+    {
+      "owner_churn": 0.036458333333333336,
+      "step": 800
+    },
+    {
+      "owner_churn": 0.046875,
+      "step": 900
+    },
+    {
+      "owner_churn": 0.046875,
+      "step": 1000
+    },
+    {
+      "owner_churn": 0.08333333333333333,
+      "step": 1100
+    },
+    {
+      "owner_churn": 0.07747395833333333,
+      "step": 1200
+    },
+    {
+      "owner_churn": 0.046875,
+      "step": 1300
+    },
+    {
+      "owner_churn": 0.033203125,
+      "step": 1400
+    },
+    {
+      "owner_churn": 0.056640625,
+      "step": 1500
+    },
+    {
+      "owner_churn": 0.0546875,
+      "step": 1600
+    },
+    {
+      "owner_churn": 0.06380208333333333,
+      "step": 1700
+    },
+    {
+      "owner_churn": 0.042317708333333336,
+      "step": 1800
+    },
+    {
+      "owner_churn": 0.022786458333333332,
+      "step": 1900
+    },
+    {
+      "owner_churn": 0.0234375,
+      "step": 2000
+    },
+    {
+      "owner_churn": 0.028645833333333332,
+      "step": 2100
+    }
+  ],
+  "schema_version": "1.0"
+}

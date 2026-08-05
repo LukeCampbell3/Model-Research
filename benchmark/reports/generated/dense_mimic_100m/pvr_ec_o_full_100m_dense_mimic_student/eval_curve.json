@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-06-13T13:58:40.054158+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 44.73019027709961,
+      "eval_tokens": 128,
+      "optimizer_step": 200,
+      "step": 200,
+      "training_tokens_seen": 51200
+    },
+    {
+      "eval_loss": 18.58883285522461,
+      "eval_tokens": 128,
+      "optimizer_step": 400,
+      "step": 400,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 10.911685943603516,
+      "eval_tokens": 128,
+      "optimizer_step": 600,
+      "step": 600,
+      "training_tokens_seen": 153600
+    },
+    {
+      "eval_loss": 7.806808948516846,
+      "eval_tokens": 128,
+      "optimizer_step": 800,
+      "step": 800,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 7.963988304138184,
+      "eval_tokens": 128,
+      "optimizer_step": 1000,
+      "step": 1000,
+      "training_tokens_seen": 256000
+    }
+  ],
+  "eval_window_count": 5,
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

@@ -1,0 +1,19 @@
+{
+  "eval_data": "data/eval/official_like_dev",
+  "experiment": "PVR_ROUTER_REGRET_REPAIR_1M_CONFIRMATION",
+  "model_configs": [
+    "benchmark/configs/generated/pvr_router_regret_repair_1m_confirmation/configs/pvr_router_regret_repair_baseline_no_regret_300m_1m_confirm.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_1m_confirmation/configs/pvr_router_regret_repair_regret0p01_300m_1m_confirm.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "rung_tokens": [
+    249856,
+    499712,
+    749568,
+    999424
+  ],
+  "schema_version": "1.0",
+  "selection_rule": "Confirm supported regret0p01 repair against no-repair baseline on official_like_dev. Final official bounded files remain untouched.",
+  "target_training_tokens": 1000448,
+  "training_data": "data/broad_nlp_train"
+}

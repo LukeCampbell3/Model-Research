@@ -1,0 +1,56 @@
+{
+  "evidence_rule": "Only runs with real checkpoint, real data, routing diagnostics, contamination scan, and scorecards count as benchmark evidence.",
+  "models": [
+    {
+      "comparison_group": "primary_generalized_baseline",
+      "config_path": "benchmark/configs/generated/dense_transformer_100m.yaml",
+      "model_variant": "dense_transformer_100m"
+    },
+    {
+      "comparison_group": "primary_generalized_reference_moe",
+      "config_path": "benchmark/configs/generated/vanilla_switch_top1_reference_100m.yaml",
+      "model_variant": "vanilla_switch_top1_reference_100m"
+    },
+    {
+      "comparison_group": "pvr_ec_o_primary",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_full_100m.yaml",
+      "model_variant": "pvr_ec_o_full_100m"
+    },
+    {
+      "comparison_group": "primary_generalized_reference_moe",
+      "config_path": "benchmark/configs/generated/generic_top2_moe_reference_100m.yaml",
+      "model_variant": "generic_top2_moe_reference_100m"
+    },
+    {
+      "comparison_group": "pvr_ec_o_ablation",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_no_prototypes_100m.yaml",
+      "model_variant": "pvr_ec_o_no_prototypes_100m"
+    },
+    {
+      "comparison_group": "pvr_ec_o_ablation",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_no_contrastive_geometry_100m.yaml",
+      "model_variant": "pvr_ec_o_no_contrastive_geometry_100m"
+    },
+    {
+      "comparison_group": "pvr_ec_o_ablation",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_no_descriptor_operator_100m.yaml",
+      "model_variant": "pvr_ec_o_no_descriptor_operator_100m"
+    },
+    {
+      "comparison_group": "pvr_ec_o_ablation",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_shared_only_100m.yaml",
+      "model_variant": "pvr_ec_o_shared_only_100m"
+    }
+  ],
+  "required_artifacts": [
+    "scorecards",
+    "manifests",
+    "routing_diagnostics",
+    "contamination_scan",
+    "benchmark_report"
+  ],
+  "schema_version": "1.0",
+  "stage": "genuine_100m_architecture_benchmark",
+  "subset_label": "genuine_reduced_eval",
+  "suite_name": "pvr_ec_o_100m_genuine_architecture_benchmark"
+}

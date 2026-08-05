@@ -1,0 +1,5 @@
+{
+  "model": "dense_transformer_300m",
+  "prototype_entropy_curve": [],
+  "schema_version": "1.0"
+}

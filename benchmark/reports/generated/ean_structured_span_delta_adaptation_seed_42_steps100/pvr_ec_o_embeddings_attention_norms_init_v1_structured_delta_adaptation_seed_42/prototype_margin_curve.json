@@ -1,0 +1,22 @@
+{
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.5099256569762171,
+      "step": 25
+    },
+    {
+      "prototype_margin": 0.5114471654233057,
+      "step": 50
+    },
+    {
+      "prototype_margin": 0.5019663808852783,
+      "step": 75
+    },
+    {
+      "prototype_margin": 0.5149003297362166,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

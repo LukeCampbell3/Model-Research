@@ -1,0 +1,10 @@
+{
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

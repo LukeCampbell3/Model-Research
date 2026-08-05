@@ -1,0 +1,26 @@
+{
+  "model": "pvr_sparse_v2_official_like_aux0p0001_100m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 20
+    },
+    {
+      "owner_churn": null,
+      "step": 40
+    },
+    {
+      "owner_churn": null,
+      "step": 60
+    },
+    {
+      "owner_churn": null,
+      "step": 80
+    },
+    {
+      "owner_churn": null,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

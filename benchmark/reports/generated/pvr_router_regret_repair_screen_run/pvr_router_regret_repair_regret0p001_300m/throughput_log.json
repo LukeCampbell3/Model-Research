@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_router_regret_repair_regret0p001_300m",
+  "optimizer_steps": 489,
+  "resource_reduction": {
+    "completed_eval_windows": 2,
+    "completed_steps": 489,
+    "completed_training_tokens": 500736,
+    "estimated_steps_needed": 489,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 2,
+    "target_training_tokens": 500736
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 2,
+  "target_steps": 489,
+  "target_training_tokens": 500736,
+  "tokens_per_second": 1444.198755567044,
+  "tokens_seen": 500736,
+  "training_tokens_seen": 500736,
+  "wall_clock_seconds": 346.722359418869
+}

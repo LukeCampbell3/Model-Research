@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_route_conf_reg_0_01",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9988970603831056,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 1.9621507455934588,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 1.9635160675108485,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 1.9760642680503908,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.011617699701297,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

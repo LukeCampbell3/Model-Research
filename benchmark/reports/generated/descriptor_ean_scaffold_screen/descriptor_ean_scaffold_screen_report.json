@@ -1,0 +1,527 @@
+{
+  "all_top1_clean": true,
+  "created_at": "2026-06-21T21:08:00.224482+00:00",
+  "descriptor_gap_to_teacher": 0.1785069704055786,
+  "descriptor_lm_loss": 3.200647759437561,
+  "descriptor_narrows_gap": true,
+  "descriptor_replaces_ean": false,
+  "experiment": "PVR_DESCRIPTOR_CURRICULUM_AS_SELF_INSTILLED_EAN_SCAFFOLD_SCREEN",
+  "hard_invariants": {
+    "owners_per_token": 1.0,
+    "production_map_mutated": false,
+    "top2_executions": 0,
+    "top4_executions": 0
+  },
+  "results": [
+    {
+      "descriptor_curriculum_enabled": false,
+      "elapsed_s": 135.5060019493103,
+      "final_train_loss": 2.97990345954895,
+      "gap_to_teacher": 0.08582603931427002,
+      "lm_loss": 3.1079668283462523,
+      "mean_eval_loss": 3.1079668283462523,
+      "model_variant": "pvr_full_scratch_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": false,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "full_from_scratch",
+      "training_curve": [
+        {
+          "loss": 10.585919380187988,
+          "phase": "main",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 5.420352935791016,
+          "phase": "main",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 5.078566074371338,
+          "phase": "main",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 5.158981800079346,
+          "phase": "main",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 4.242809772491455,
+          "phase": "main",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.9609375,
+          "phase": "main",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 3.6663405895233154,
+          "phase": "main",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 3.671401262283325,
+          "phase": "main",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 3.4417600631713867,
+          "phase": "main",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 2.97990345954895,
+          "phase": "main",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": false
+    },
+    {
+      "descriptor_curriculum_enabled": false,
+      "elapsed_s": 143.89833617210388,
+      "final_train_loss": 2.9480714797973633,
+      "gap_to_teacher": -0.038900589942931774,
+      "lm_loss": 2.9832401990890505,
+      "mean_eval_loss": 2.9832401990890505,
+      "model_variant": "pvr_shared_warmup_no_head_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": false,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "shared_warmup_then_top1",
+      "training_curve": [
+        {
+          "loss": 8.421438217163086,
+          "phase": "warmup",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 5.328494071960449,
+          "phase": "warmup",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 4.813996315002441,
+          "phase": "warmup",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 4.389773845672607,
+          "phase": "warmup",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 4.74681282043457,
+          "phase": "warmup",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.5816421508789062,
+          "phase": "main",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 3.6408095359802246,
+          "phase": "main",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 4.0879292488098145,
+          "phase": "main",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 2.697671890258789,
+          "phase": "main",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 2.9480714797973633,
+          "phase": "main",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": false
+    },
+    {
+      "descriptor_curriculum_enabled": false,
+      "elapsed_s": 137.95626163482666,
+      "final_train_loss": 3.3442249298095703,
+      "gap_to_teacher": 0.1988725185394289,
+      "lm_loss": 3.221013307571411,
+      "mean_eval_loss": 3.221013307571411,
+      "model_variant": "pvr_uniformity_geometry_head_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": false,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "shared_warmup_then_uniformity_head_then_top1",
+      "training_curve": [
+        {
+          "loss": 9.775741577148438,
+          "phase": "warmup",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 5.184327602386475,
+          "phase": "warmup",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 4.975485324859619,
+          "phase": "warmup",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 4.7687835693359375,
+          "phase": "warmup",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 4.271231651306152,
+          "phase": "warmup",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.35786771774292,
+          "phase": "geometry",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 4.350347518920898,
+          "phase": "geometry",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 3.6186742782592773,
+          "phase": "geometry",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 3.1465141773223877,
+          "phase": "main",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 3.3442249298095703,
+          "phase": "main",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": true
+    },
+    {
+      "descriptor_curriculum_enabled": true,
+      "elapsed_s": 137.66323804855347,
+      "final_train_loss": 2.9140825271606445,
+      "gap_to_teacher": 0.1785069704055786,
+      "lm_loss": 3.200647759437561,
+      "mean_eval_loss": 3.200647759437561,
+      "model_variant": "pvr_descriptor_curriculum_head_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": false,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "shared_warmup_then_descriptor_curriculum_then_top1",
+      "training_curve": [
+        {
+          "loss": 10.337970733642578,
+          "phase": "warmup",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 6.240053176879883,
+          "phase": "warmup",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 4.361804008483887,
+          "phase": "warmup",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 5.5713114738464355,
+          "phase": "warmup",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 4.249640941619873,
+          "phase": "warmup",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.131031036376953,
+          "phase": "descriptor",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 3.7491841316223145,
+          "phase": "descriptor",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 3.142874002456665,
+          "phase": "descriptor",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 2.809755563735962,
+          "phase": "descriptor",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 2.9140825271606445,
+          "phase": "descriptor",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": false
+    },
+    {
+      "descriptor_curriculum_enabled": true,
+      "elapsed_s": 135.14938187599182,
+      "final_train_loss": 3.2262587547302246,
+      "gap_to_teacher": 0.14533970355987558,
+      "lm_loss": 3.167480492591858,
+      "mean_eval_loss": 3.167480492591858,
+      "model_variant": "pvr_descriptor_plus_uniformity_head_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": false,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "shared_warmup_then_descriptor_plus_uniformity_then_top1",
+      "training_curve": [
+        {
+          "loss": 10.344040870666504,
+          "phase": "warmup",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 5.724274158477783,
+          "phase": "warmup",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 5.359460830688477,
+          "phase": "warmup",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 6.711423873901367,
+          "phase": "warmup",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 3.826730966567993,
+          "phase": "warmup",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.4046618938446045,
+          "phase": "geometry",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 3.444166660308838,
+          "phase": "geometry",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 3.6599786281585693,
+          "phase": "geometry",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 3.6513121128082275,
+          "phase": "descriptor",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 3.2262587547302246,
+          "phase": "descriptor",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": true
+    },
+    {
+      "descriptor_curriculum_enabled": false,
+      "elapsed_s": 144.60755062103271,
+      "final_train_loss": 2.777714729309082,
+      "gap_to_teacher": 0.0,
+      "lm_loss": 3.0221407890319822,
+      "mean_eval_loss": 3.0221407890319822,
+      "model_variant": "pvr_teacher_ean_300m",
+      "param_count": 284757520,
+      "routing": {
+        "owner_entropy": 0.0,
+        "owners_per_token": 1.0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      "target_steps": 1000,
+      "teacher_checkpoint_loaded": true,
+      "tokens_seen": 256000,
+      "top1_clean": true,
+      "training_curriculum": "ean_init_then_top1",
+      "training_curve": [
+        {
+          "loss": 7.810550212860107,
+          "phase": "main",
+          "step": 100,
+          "tokens_seen": 25600
+        },
+        {
+          "loss": 6.8694586753845215,
+          "phase": "main",
+          "step": 200,
+          "tokens_seen": 51200
+        },
+        {
+          "loss": 5.295820713043213,
+          "phase": "main",
+          "step": 300,
+          "tokens_seen": 76800
+        },
+        {
+          "loss": 7.347217082977295,
+          "phase": "main",
+          "step": 400,
+          "tokens_seen": 102400
+        },
+        {
+          "loss": 3.9756577014923096,
+          "phase": "main",
+          "step": 500,
+          "tokens_seen": 128000
+        },
+        {
+          "loss": 3.729231834411621,
+          "phase": "main",
+          "step": 600,
+          "tokens_seen": 153600
+        },
+        {
+          "loss": 3.5519542694091797,
+          "phase": "main",
+          "step": 700,
+          "tokens_seen": 179200
+        },
+        {
+          "loss": 4.005852699279785,
+          "phase": "main",
+          "step": 800,
+          "tokens_seen": 204800
+        },
+        {
+          "loss": 3.254873037338257,
+          "phase": "main",
+          "step": 900,
+          "tokens_seen": 230400
+        },
+        {
+          "loss": 2.777714729309082,
+          "phase": "main",
+          "step": 1000,
+          "tokens_seen": 256000
+        }
+      ],
+      "uniformity_geometry_head_enabled": false
+    }
+  ],
+  "schema_version": "1.0",
+  "scratch_lm_loss": 3.1079668283462523,
+  "teacher_lm_loss": 3.0221407890319822,
+  "uniformity_gap_to_teacher": 0.1988725185394289,
+  "uniformity_lm_loss": 3.221013307571411,
+  "verdict": "PVR_DESCRIPTOR_CURRICULUM_NARROWS_EAN_GAP"
+}

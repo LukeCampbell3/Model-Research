@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        452,
+        315,
+        311,
+        417,
+        487,
+        347,
+        574,
+        169
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        391,
+        272,
+        346,
+        409,
+        440,
+        455,
+        596,
+        163
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        412,
+        320,
+        317,
+        418,
+        421,
+        460,
+        551,
+        173
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        405,
+        332,
+        334,
+        415,
+        423,
+        457,
+        544,
+        162
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        416,
+        353,
+        301,
+        412,
+        425,
+        459,
+        542,
+        164
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        399,
+        377,
+        316,
+        427,
+        415,
+        470,
+        509,
+        159
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        402,
+        337,
+        291,
+        454,
+        436,
+        501,
+        507,
+        144
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        387,
+        387,
+        298,
+        448,
+        417,
+        477,
+        504,
+        154
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        403,
+        450,
+        258,
+        445,
+        414,
+        508,
+        459,
+        135
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        413,
+        421,
+        305,
+        447,
+        390,
+        488,
+        468,
+        140
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_only_seed_20260614",
+  "schema_version": "1.0"
+}

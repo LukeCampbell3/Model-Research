@@ -1,0 +1,153 @@
+{
+  "assertions": {
+    "checkpoint_contains_exact_resume_state": false,
+    "displayed_checkpoint_hash_matches_manifest": true,
+    "displayed_final_eval_matches_raw": true,
+    "displayed_final_train_matches_raw": true,
+    "displayed_mean_eval_matches_raw": true,
+    "displayed_steps_match_raw": true,
+    "displayed_tokens_match_raw": true,
+    "manifest_checkpoint_hash_matches_file": true,
+    "report_row_present": true,
+    "set_a_matches_raw": true,
+    "set_b_matches_raw": false
+  },
+  "checkpoint_root": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve",
+  "claim_boundary": "The curve/report values are internally consistent for Set A. Exact-resume equivalence is not supported by this checkpoint because optimizer/RNG state is absent.",
+  "created_at": "2026-07-19T16:14:15.192659+00:00",
+  "decision": "PVR_5M_AUTHORITATIVE_VALUES_SET_A_STALE_SET_B_NOT_PRESENT_WEIGHT_ONLY_FINAL_CHECKPOINT",
+  "decision_report": "benchmark\\reports\\generated\\sparse_v2_300m_long_curve_validation_5m_decision\\sparse_v2_300m_long_curve_validation_5m_report.json",
+  "expected_set_a": {
+    "final_eval_loss": 10.112784385681152,
+    "final_train_loss": 1.962173342704773,
+    "mean_eval_loss": 11.337301993370057
+  },
+  "expected_set_b": {
+    "final_eval_loss": 12.128792762756348,
+    "final_train_loss": 1.9358503818511963,
+    "mean_eval_loss": 10.914688920974731
+  },
+  "experiment": "PVR_5M_EVIDENCE_CONSISTENCY_AUDIT",
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "raw_curve_summary": {
+    "checkpoint_hash": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+    "checkpoint_hash_matches_manifest": true,
+    "checkpoint_load_error": null,
+    "checkpoint_manifest_path": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve\\checkpoint_manifest.json",
+    "checkpoint_meta": {
+      "has_optimizer_state": false,
+      "has_rng_state": false,
+      "training_status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+    },
+    "checkpoint_path": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve\\checkpoint.pt",
+    "eval_curve_path": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve\\eval_curve.json",
+    "eval_window_count": 10,
+    "eval_windows": [
+      {
+        "eval_loss": 21.773025512695312,
+        "eval_tokens": 64,
+        "optimizer_step": 488,
+        "step": 488,
+        "training_tokens_seen": 499712
+      },
+      {
+        "eval_loss": 14.527545928955078,
+        "eval_tokens": 64,
+        "optimizer_step": 976,
+        "step": 976,
+        "training_tokens_seen": 999424
+      },
+      {
+        "eval_loss": 9.39953899383545,
+        "eval_tokens": 64,
+        "optimizer_step": 1464,
+        "step": 1464,
+        "training_tokens_seen": 1499136
+      },
+      {
+        "eval_loss": 10.125415802001953,
+        "eval_tokens": 64,
+        "optimizer_step": 1952,
+        "step": 1952,
+        "training_tokens_seen": 1998848
+      },
+      {
+        "eval_loss": 10.773747444152832,
+        "eval_tokens": 64,
+        "optimizer_step": 2440,
+        "step": 2440,
+        "training_tokens_seen": 2498560
+      },
+      {
+        "eval_loss": 18.317325592041016,
+        "eval_tokens": 64,
+        "optimizer_step": 2928,
+        "step": 2928,
+        "training_tokens_seen": 2998272
+      },
+      {
+        "eval_loss": 3.302612066268921,
+        "eval_tokens": 64,
+        "optimizer_step": 3416,
+        "step": 3416,
+        "training_tokens_seen": 3497984
+      },
+      {
+        "eval_loss": 5.520256996154785,
+        "eval_tokens": 64,
+        "optimizer_step": 3904,
+        "step": 3904,
+        "training_tokens_seen": 3997696
+      },
+      {
+        "eval_loss": 9.520767211914062,
+        "eval_tokens": 64,
+        "optimizer_step": 4392,
+        "step": 4392,
+        "training_tokens_seen": 4497408
+      },
+      {
+        "eval_loss": 10.112784385681152,
+        "eval_tokens": 64,
+        "optimizer_step": 4880,
+        "step": 4880,
+        "training_tokens_seen": 4997120
+      }
+    ],
+    "final_eval_loss": 10.112784385681152,
+    "final_train_loss": 1.962173342704773,
+    "manifest_checkpoint_hash": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+    "mean_eval_loss": 11.337301993370057,
+    "optimizer_steps": 4883,
+    "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+    "training_curve_path": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve\\training_curve.json",
+    "training_tokens_seen": 5000192
+  },
+  "report_row": {
+    "checkpoint_hash": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+    "checkpoint_status_caveat": "PVR final checkpoint metadata is inconsistent after timeout; curve/report artifacts are used for evidence.",
+    "eval_window_count": 10,
+    "final_eval_loss": 10.112784385681152,
+    "final_train_loss": 1.962173342704773,
+    "mean_eval_loss": 11.337301993370057,
+    "optimizer_steps": 4883,
+    "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+    "training_tokens_seen": 5000192,
+    "variant": "pvr_teacher_independent_sparse_v2_300m_long_curve"
+  },
+  "schema_version": "1.0",
+  "scope": "Audits current raw 5M artifacts and report lineage only; no model training or final official-file selection.",
+  "status": "PVR_5M_EVIDENCE_CONSISTENCY_AUDIT_COMPLETE",
+  "superseded_variants": [
+    {
+      "label": "Set B",
+      "status": "NOT_FOUND_IN_CURRENT_ARTIFACTS",
+      "values": {
+        "final_eval_loss": 12.128792762756348,
+        "final_train_loss": 1.9358503818511963,
+        "mean_eval_loss": 10.914688920974731
+      }
+    }
+  ],
+  "variant": "pvr_teacher_independent_sparse_v2_300m_long_curve"
+}

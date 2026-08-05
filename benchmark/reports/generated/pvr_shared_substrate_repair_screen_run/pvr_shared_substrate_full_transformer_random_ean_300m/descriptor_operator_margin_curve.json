@@ -1,0 +1,26 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 1.811650546992799,
+      "operator_control_margin": 1.811650546992799,
+      "step": 244
+    },
+    {
+      "descriptor_control_margin": 2.2513216344304965,
+      "operator_control_margin": 2.2513216344304965,
+      "step": 488
+    },
+    {
+      "descriptor_control_margin": 2.4626334003793695,
+      "operator_control_margin": 2.4626334003793695,
+      "step": 732
+    },
+    {
+      "descriptor_control_margin": 2.616085254444139,
+      "operator_control_margin": 2.616085254444139,
+      "step": 976
+    }
+  ],
+  "model": "pvr_shared_substrate_full_transformer_random_ean_300m",
+  "schema_version": "1.0"
+}

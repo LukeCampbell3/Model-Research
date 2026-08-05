@@ -1,0 +1,110 @@
+{
+  "claim_gates": {
+    "greedy_oracle_beats_selected": true,
+    "official_final_files_used": false,
+    "router_regret_present": true
+  },
+  "created_at": "2026-07-17T12:06:53.667082+00:00",
+  "experiment": "PVR_FULL_NETWORK_GREEDY_ORACLE_EXPERT_SELECTION",
+  "model_variant": "pvr_teacher_independent_sparse_v2_300m",
+  "overall": {
+    "decision_count": 10752,
+    "greedy_full_network_oracle_loss": 5.548307282584054,
+    "greedy_oracle_improvement_over_selected": -4.248973710196359,
+    "mean_router_regret_across_block_decisions": 0.5827385857234335,
+    "p95_router_regret_block_decision_median_of_batches": 2.2053823471069336,
+    "selected_is_oracle_rate_across_block_decisions": 0.15187872023809523,
+    "selected_is_top2_rate_across_block_decisions": 0.2560453869047619,
+    "selected_loss": 9.797280992780413,
+    "token_count": 448
+  },
+  "rows": [
+    {
+      "decision_count": 1536,
+      "file": "boolean_qa.jsonl",
+      "greedy_full_network_oracle_loss": 6.9465436935424805,
+      "greedy_oracle_improvement_over_selected": -4.573365211486816,
+      "mean_router_regret_across_block_decisions": 0.6282084316032152,
+      "p95_router_regret_block_decision_median_of_batches": 2.3773841857910156,
+      "selected_is_oracle_rate_across_block_decisions": 0.14713541666666666,
+      "selected_is_top2_rate_across_block_decisions": 0.22916666666666666,
+      "selected_loss": 11.519908905029297,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "code_generation.jsonl",
+      "greedy_full_network_oracle_loss": 5.420115947723389,
+      "greedy_oracle_improvement_over_selected": -4.041435718536377,
+      "mean_router_regret_across_block_decisions": 0.5431483898331974,
+      "p95_router_regret_block_decision_median_of_batches": 2.0822982788085938,
+      "selected_is_oracle_rate_across_block_decisions": 0.146484375,
+      "selected_is_top2_rate_across_block_decisions": 0.2584635416666667,
+      "selected_loss": 9.461551666259766,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "commonsense_completion.jsonl",
+      "greedy_full_network_oracle_loss": 4.778065204620361,
+      "greedy_oracle_improvement_over_selected": -3.8210864067077637,
+      "mean_router_regret_across_block_decisions": 0.5803001423419509,
+      "p95_router_regret_block_decision_median_of_batches": 2.0947060585021973,
+      "selected_is_oracle_rate_across_block_decisions": 0.162109375,
+      "selected_is_top2_rate_across_block_decisions": 0.2662760416666667,
+      "selected_loss": 8.599151611328125,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "general_knowledge.jsonl",
+      "greedy_full_network_oracle_loss": 5.498633861541748,
+      "greedy_oracle_improvement_over_selected": -4.444518566131592,
+      "mean_router_regret_across_block_decisions": 0.5841982388147368,
+      "p95_router_regret_block_decision_median_of_batches": 2.2053823471069336,
+      "selected_is_oracle_rate_across_block_decisions": 0.14518229166666666,
+      "selected_is_top2_rate_across_block_decisions": 0.251953125,
+      "selected_loss": 9.94315242767334,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "mathematics.jsonl",
+      "greedy_full_network_oracle_loss": 6.930014610290527,
+      "greedy_oracle_improvement_over_selected": -4.256285667419434,
+      "mean_router_regret_across_block_decisions": 0.6052081232361041,
+      "p95_router_regret_block_decision_median_of_batches": 2.4424514770507812,
+      "selected_is_oracle_rate_across_block_decisions": 0.14973958333333334,
+      "selected_is_top2_rate_across_block_decisions": 0.263671875,
+      "selected_loss": 11.186300277709961,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "multiple_choice_reasoning.jsonl",
+      "greedy_full_network_oracle_loss": 4.625448226928711,
+      "greedy_oracle_improvement_over_selected": -4.345059394836426,
+      "mean_router_regret_across_block_decisions": 0.5543367236320287,
+      "p95_router_regret_block_decision_median_of_batches": 1.9020357131958008,
+      "selected_is_oracle_rate_across_block_decisions": 0.16015625,
+      "selected_is_top2_rate_across_block_decisions": 0.2591145833333333,
+      "selected_loss": 8.970507621765137,
+      "token_count": 64
+    },
+    {
+      "decision_count": 1536,
+      "file": "pronoun_coreference.jsonl",
+      "greedy_full_network_oracle_loss": 4.639329433441162,
+      "greedy_oracle_improvement_over_selected": -4.2610650062561035,
+      "mean_router_regret_across_block_decisions": 0.5837700506028012,
+      "p95_router_regret_block_decision_median_of_batches": 2.2264087200164795,
+      "selected_is_oracle_rate_across_block_decisions": 0.15234375,
+      "selected_is_top2_rate_across_block_decisions": 0.263671875,
+      "selected_loss": 8.900394439697266,
+      "token_count": 64
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "Official-like development set only. Greedy blockwise full-network oracle; not exhaustive combinatorial oracle.",
+  "status": "PVR_FULL_NETWORK_GREEDY_ORACLE_EXPERT_SELECTION_COMPLETE"
+}

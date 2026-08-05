@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_staged_warmup_attention_norms_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.3406741452454298,
+      "step": 244
+    },
+    {
+      "prototype_margin": 0.19211150715636904,
+      "step": 488
+    },
+    {
+      "prototype_margin": 0.25714675812560017,
+      "step": 732
+    },
+    {
+      "prototype_margin": 0.31404117641917156,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,331 @@
+{
+  "created_at": "2026-06-12T03:43:07.006039+00:00",
+  "effective_batch_tokens": 64,
+  "loss_curve": [
+    {
+      "effective_batch_tokens": 64,
+      "loss": 365.83843994140625,
+      "optimizer_step": 1,
+      "step": 1,
+      "tokens_seen": 64,
+      "training_tokens_seen": 64
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 338.44305419921875,
+      "optimizer_step": 2,
+      "step": 2,
+      "tokens_seen": 128,
+      "training_tokens_seen": 128
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 363.1042785644531,
+      "optimizer_step": 3,
+      "step": 3,
+      "tokens_seen": 192,
+      "training_tokens_seen": 192
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 359.15948486328125,
+      "optimizer_step": 4,
+      "step": 4,
+      "tokens_seen": 256,
+      "training_tokens_seen": 256
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 351.57049560546875,
+      "optimizer_step": 5,
+      "step": 5,
+      "tokens_seen": 320,
+      "training_tokens_seen": 320
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 337.8208923339844,
+      "optimizer_step": 6,
+      "step": 6,
+      "tokens_seen": 384,
+      "training_tokens_seen": 384
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 335.639404296875,
+      "optimizer_step": 7,
+      "step": 7,
+      "tokens_seen": 448,
+      "training_tokens_seen": 448
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 329.118408203125,
+      "optimizer_step": 8,
+      "step": 8,
+      "tokens_seen": 512,
+      "training_tokens_seen": 512
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 338.4471740722656,
+      "optimizer_step": 9,
+      "step": 9,
+      "tokens_seen": 576,
+      "training_tokens_seen": 576
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 253.9190673828125,
+      "optimizer_step": 10,
+      "step": 10,
+      "tokens_seen": 640,
+      "training_tokens_seen": 640
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 278.0887451171875,
+      "optimizer_step": 11,
+      "step": 11,
+      "tokens_seen": 704,
+      "training_tokens_seen": 704
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 308.5006408691406,
+      "optimizer_step": 12,
+      "step": 12,
+      "tokens_seen": 768,
+      "training_tokens_seen": 768
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 314.4387512207031,
+      "optimizer_step": 13,
+      "step": 13,
+      "tokens_seen": 832,
+      "training_tokens_seen": 832
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 343.345703125,
+      "optimizer_step": 14,
+      "step": 14,
+      "tokens_seen": 896,
+      "training_tokens_seen": 896
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 317.51116943359375,
+      "optimizer_step": 15,
+      "step": 15,
+      "tokens_seen": 960,
+      "training_tokens_seen": 960
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 305.8507995605469,
+      "optimizer_step": 16,
+      "step": 16,
+      "tokens_seen": 1024,
+      "training_tokens_seen": 1024
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 254.21298217773438,
+      "optimizer_step": 17,
+      "step": 17,
+      "tokens_seen": 1088,
+      "training_tokens_seen": 1088
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 286.3602294921875,
+      "optimizer_step": 18,
+      "step": 18,
+      "tokens_seen": 1152,
+      "training_tokens_seen": 1152
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 245.22874450683594,
+      "optimizer_step": 19,
+      "step": 19,
+      "tokens_seen": 1216,
+      "training_tokens_seen": 1216
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 261.62725830078125,
+      "optimizer_step": 20,
+      "step": 20,
+      "tokens_seen": 1280,
+      "training_tokens_seen": 1280
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 260.8840637207031,
+      "optimizer_step": 21,
+      "step": 21,
+      "tokens_seen": 1344,
+      "training_tokens_seen": 1344
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 251.46771240234375,
+      "optimizer_step": 22,
+      "step": 22,
+      "tokens_seen": 1408,
+      "training_tokens_seen": 1408
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 257.49652099609375,
+      "optimizer_step": 23,
+      "step": 23,
+      "tokens_seen": 1472,
+      "training_tokens_seen": 1472
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 257.7054138183594,
+      "optimizer_step": 24,
+      "step": 24,
+      "tokens_seen": 1536,
+      "training_tokens_seen": 1536
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 256.3338928222656,
+      "optimizer_step": 25,
+      "step": 25,
+      "tokens_seen": 1600,
+      "training_tokens_seen": 1600
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 247.2144317626953,
+      "optimizer_step": 26,
+      "step": 26,
+      "tokens_seen": 1664,
+      "training_tokens_seen": 1664
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 231.07601928710938,
+      "optimizer_step": 27,
+      "step": 27,
+      "tokens_seen": 1728,
+      "training_tokens_seen": 1728
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 240.84832763671875,
+      "optimizer_step": 28,
+      "step": 28,
+      "tokens_seen": 1792,
+      "training_tokens_seen": 1792
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 248.7170867919922,
+      "optimizer_step": 29,
+      "step": 29,
+      "tokens_seen": 1856,
+      "training_tokens_seen": 1856
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 219.5663299560547,
+      "optimizer_step": 30,
+      "step": 30,
+      "tokens_seen": 1920,
+      "training_tokens_seen": 1920
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 218.486572265625,
+      "optimizer_step": 31,
+      "step": 31,
+      "tokens_seen": 1984,
+      "training_tokens_seen": 1984
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 222.49900817871094,
+      "optimizer_step": 32,
+      "step": 32,
+      "tokens_seen": 2048,
+      "training_tokens_seen": 2048
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 205.13536071777344,
+      "optimizer_step": 33,
+      "step": 33,
+      "tokens_seen": 2112,
+      "training_tokens_seen": 2112
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 208.0713653564453,
+      "optimizer_step": 34,
+      "step": 34,
+      "tokens_seen": 2176,
+      "training_tokens_seen": 2176
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 213.6544647216797,
+      "optimizer_step": 35,
+      "step": 35,
+      "tokens_seen": 2240,
+      "training_tokens_seen": 2240
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 198.91085815429688,
+      "optimizer_step": 36,
+      "step": 36,
+      "tokens_seen": 2304,
+      "training_tokens_seen": 2304
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 194.7175750732422,
+      "optimizer_step": 37,
+      "step": 37,
+      "tokens_seen": 2368,
+      "training_tokens_seen": 2368
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 186.6221923828125,
+      "optimizer_step": 38,
+      "step": 38,
+      "tokens_seen": 2432,
+      "training_tokens_seen": 2432
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 181.06361389160156,
+      "optimizer_step": 39,
+      "step": 39,
+      "tokens_seen": 2496,
+      "training_tokens_seen": 2496
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 189.33782958984375,
+      "optimizer_step": 40,
+      "step": 40,
+      "tokens_seen": 2560,
+      "training_tokens_seen": 2560
+    }
+  ],
+  "model": "pvr_ec_o_no_descriptor_operator_100m",
+  "optimizer_steps": 40,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "training_tokens_seen": 2560
+}

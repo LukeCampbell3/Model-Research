@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_no_contrastive_geometry_100m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 100
+    },
+    {
+      "owner_churn": null,
+      "step": 200
+    },
+    {
+      "owner_churn": null,
+      "step": 300
+    },
+    {
+      "owner_churn": null,
+      "step": 400
+    },
+    {
+      "owner_churn": null,
+      "step": 500
+    },
+    {
+      "owner_churn": null,
+      "step": 600
+    },
+    {
+      "owner_churn": null,
+      "step": 700
+    },
+    {
+      "owner_churn": null,
+      "step": 800
+    },
+    {
+      "owner_churn": null,
+      "step": 900
+    },
+    {
+      "owner_churn": null,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

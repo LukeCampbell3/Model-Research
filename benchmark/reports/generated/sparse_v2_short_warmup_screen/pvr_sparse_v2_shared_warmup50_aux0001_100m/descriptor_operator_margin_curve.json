@@ -1,0 +1,21 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 2.280367699684575,
+      "operator_control_margin": 2.280367699684575,
+      "step": 250
+    },
+    {
+      "descriptor_control_margin": 3.6218978129327297,
+      "operator_control_margin": 3.6218978129327297,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": 4.91361729024599,
+      "operator_control_margin": 4.91361729024599,
+      "step": 950
+    }
+  ],
+  "model": "pvr_sparse_v2_shared_warmup50_aux0001_100m",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,75 @@
+{
+  "families": [
+    {
+      "cluster_id": "residual_300m_1",
+      "descriptor_family": "pvr_ec_o_full_300m",
+      "dominant_challenger_expert": null,
+      "dominant_owner_expert": 4,
+      "mean_loss": 11.032198905944824,
+      "mean_owner_in_bounds": 0.4142563155511104,
+      "mean_route_margin": 0.4689214580236391,
+      "median_loss": 11.032198905944824,
+      "operator_family": "pvr_ec_o",
+      "oracle_challenger_win_rate": null,
+      "sample_count": 1,
+      "suggested_action": "prototype_repair_candidate"
+    },
+    {
+      "cluster_id": "residual_300m_2",
+      "descriptor_family": "pvr_ec_o_no_contrastive_geometry_300m",
+      "dominant_challenger_expert": null,
+      "dominant_owner_expert": 7,
+      "mean_loss": 5.802278518676758,
+      "mean_owner_in_bounds": 0.4757537497200922,
+      "mean_route_margin": 0.4815168409453084,
+      "median_loss": 5.802278518676758,
+      "operator_family": "pvr_ec_o",
+      "oracle_challenger_win_rate": null,
+      "sample_count": 1,
+      "suggested_action": "prototype_repair_candidate"
+    },
+    {
+      "cluster_id": "residual_300m_3",
+      "descriptor_family": "pvr_ec_o_no_descriptor_operator_300m",
+      "dominant_challenger_expert": null,
+      "dominant_owner_expert": 0,
+      "mean_loss": 7.675044496854146,
+      "mean_owner_in_bounds": 0.6036887257384366,
+      "mean_route_margin": 0.35629530496266343,
+      "median_loss": 5.9265456199646,
+      "operator_family": "pvr_ec_o",
+      "oracle_challenger_win_rate": null,
+      "sample_count": 6,
+      "suggested_action": "no_action"
+    },
+    {
+      "cluster_id": "residual_300m_4",
+      "descriptor_family": "pvr_ec_o_no_prototypes_300m",
+      "dominant_challenger_expert": null,
+      "dominant_owner_expert": 5,
+      "mean_loss": 7.184544324874878,
+      "mean_owner_in_bounds": 0.5366403988693111,
+      "mean_route_margin": 0.4305581890323083,
+      "median_loss": 5.963787078857422,
+      "operator_family": "pvr_ec_o",
+      "oracle_challenger_win_rate": null,
+      "sample_count": 5,
+      "suggested_action": "no_action"
+    },
+    {
+      "cluster_id": "residual_300m_5",
+      "descriptor_family": "pvr_ec_o_shared_only_300m",
+      "dominant_challenger_expert": null,
+      "dominant_owner_expert": 4,
+      "mean_loss": 14.355552673339844,
+      "mean_owner_in_bounds": 0.3540149747245571,
+      "mean_route_margin": 0.5213978757528821,
+      "median_loss": 14.355552673339844,
+      "operator_family": "pvr_ec_o",
+      "oracle_challenger_win_rate": null,
+      "sample_count": 1,
+      "suggested_action": "prototype_repair_candidate"
+    }
+  ],
+  "status": "DIAGNOSTIC_ONLY"
+}

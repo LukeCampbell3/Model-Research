@@ -1,0 +1,94 @@
+{
+  "created_at": "2026-06-21T05:40:29.042879+00:00",
+  "official_test_data_used_for_selection": false,
+  "rows": [
+    {
+      "active_params_per_token_actual": 89772288,
+      "below_top2_active_budget": true,
+      "code_token_loss": 12.028467614203691,
+      "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared768_expert256_100m.yaml",
+      "expert_ffn_size": 256,
+      "lm_loss": 5.829655904322863,
+      "model_variant": "pvr_sparse_v2_e16_shared768_expert256_100m",
+      "num_experts": 16,
+      "shared_ffn_size": 768,
+      "total_params_actual": 160735488
+    },
+    {
+      "active_params_per_token_actual": 83943744,
+      "below_top2_active_budget": true,
+      "code_token_loss": 12.706331636756659,
+      "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e24_shared512_expert176_100m.yaml",
+      "expert_ffn_size": 176,
+      "lm_loss": 5.989133283495903,
+      "model_variant": "pvr_sparse_v2_e24_shared512_expert176_100m",
+      "num_experts": 24,
+      "shared_ffn_size": 512,
+      "total_params_actual": 158817024
+    },
+    {
+      "active_params_per_token_actual": 87411456,
+      "below_top2_active_budget": true,
+      "code_token_loss": 13.001471277326345,
+      "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared640_expert256_100m.yaml",
+      "expert_ffn_size": 256,
+      "lm_loss": 6.123560708016157,
+      "model_variant": "pvr_sparse_v2_e16_shared640_expert256_100m",
+      "num_experts": 16,
+      "shared_ffn_size": 640,
+      "total_params_actual": 158374656
+    },
+    {
+      "active_params_per_token_actual": 82283904,
+      "below_top2_active_budget": true,
+      "code_token_loss": 12.591895665973425,
+      "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e20_shared384_expert224_100m.yaml",
+      "expert_ffn_size": 224,
+      "lm_loss": 6.175872594118118,
+      "model_variant": "pvr_sparse_v2_e20_shared384_expert224_100m",
+      "num_experts": 20,
+      "shared_ffn_size": 384,
+      "total_params_actual": 160956672
+    },
+    {
+      "active_params_per_token_actual": 78336768,
+      "below_top2_active_budget": true,
+      "code_token_loss": 13.224555648863316,
+      "config_path": "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml",
+      "expert_ffn_size": 192,
+      "lm_loss": 6.310050904750824,
+      "model_variant": "pvr_sparse_v2_full_from_start_aux001_100m",
+      "num_experts": 24,
+      "shared_ffn_size": 192,
+      "total_params_actual": 159997440
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_SPARSE_V2_CAPACITY_SCREEN_BEATS_TOP2",
+  "top2_reference": {
+    "active_flops_per_token": 555899904,
+    "active_params_per_token_actual": 92649984,
+    "code_token_loss": 11.831062618643045,
+    "config_path": "benchmark/configs/generated/sparse_v2_100m_baseline_screen/configs/generic_top2_sparse_v2_100m_matched.yaml",
+    "json_token_loss": 11.831062618643045,
+    "lm_loss": 6.178597617894411,
+    "model_family": "generic_top2_moe_reference",
+    "model_variant": "generic_top2_sparse_v2_100m_matched",
+    "strict_top1": false,
+    "total_params_actual": 159988992
+  },
+  "winner": {
+    "active_params_per_token_actual": 89772288,
+    "below_top2_active_budget": true,
+    "code_token_loss": 12.028467614203691,
+    "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared768_expert256_100m.yaml",
+    "expert_ffn_size": 256,
+    "lm_loss": 5.829655904322863,
+    "model_variant": "pvr_sparse_v2_e16_shared768_expert256_100m",
+    "num_experts": 16,
+    "shared_ffn_size": 768,
+    "total_params_actual": 160735488
+  },
+  "winner_delta_vs_original": -0.48039500042796135,
+  "winner_delta_vs_top2": -0.34894171357154846
+}

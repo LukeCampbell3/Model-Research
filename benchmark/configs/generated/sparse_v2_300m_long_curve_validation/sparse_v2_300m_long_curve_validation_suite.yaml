@@ -1,0 +1,15 @@
+{
+  "eval_data": "data/eval/official_like_dev",
+  "experiment": "PVR_SPARSE_V2_300M_LONG_CURVE_VALIDATION",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/dense_sparse_v2_300m_matched_long_curve.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/switch_top1_sparse_v2_300m_matched_long_curve.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/generic_top2_sparse_v2_300m_matched_long_curve.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/pvr_teacher_independent_sparse_v2_300m_long_curve.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "selection_rule": "Official-like dev learning curves only; final official files remain untouched.",
+  "training_data": "data/broad_nlp_train"
+}

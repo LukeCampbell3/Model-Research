@@ -1,0 +1,46 @@
+{
+  "model": "pvr_teacher_independent_sparse_v2_300m_long_curve",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.3277783223602455,
+      "step": 488
+    },
+    {
+      "prototype_margin": 0.4850269762003639,
+      "step": 976
+    },
+    {
+      "prototype_margin": 0.6020567604088379,
+      "step": 1464
+    },
+    {
+      "prototype_margin": 0.5604438022128306,
+      "step": 1952
+    },
+    {
+      "prototype_margin": 0.618794389301911,
+      "step": 2440
+    },
+    {
+      "prototype_margin": 0.6276216693416549,
+      "step": 2928
+    },
+    {
+      "prototype_margin": 0.6456527053378522,
+      "step": 3416
+    },
+    {
+      "prototype_margin": 0.7162926723152244,
+      "step": 3904
+    },
+    {
+      "prototype_margin": 0.6697222964042643,
+      "step": 4392
+    },
+    {
+      "prototype_margin": 0.7179532327475803,
+      "step": 4880
+    }
+  ],
+  "schema_version": "1.0"
+}

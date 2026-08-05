@@ -1,9 +1,0 @@
-# pvr_ec_release_package_report
-```json
-{
-  "status": "PVR_EC_RELEASE_PACKAGE_CREATED",
-  "package_dir": "evaluation/benchmark_results/pvr_release_hardening/release_packages/pvr_ec_descriptor_curriculum_final_candidate_v1_1",
-  "file_count": 16,
-  "package_size_mb": 1.906736
-}
-```

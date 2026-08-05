@@ -1,0 +1,209 @@
+{
+  "created_at": "2026-08-04T21:28:45.242860+00:00",
+  "decision": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_SUPPORTED",
+  "device": "cuda",
+  "experiment": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_AUDIT",
+  "file_count": 7,
+  "file_wins_regret0p01": 7,
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "macro_delta_regret0p01_minus_baseline": -0.9712870461600165,
+  "macro_loss": {
+    "baseline": 14.397206851414271,
+    "regret0p01": 13.425919805254255
+  },
+  "max_blocks_per_file": 1,
+  "micro_delta_regret0p01_minus_baseline": -0.9712870461600165,
+  "micro_loss": {
+    "baseline": 14.397206851414271,
+    "regret0p01": 13.425919805254255
+  },
+  "official_like_root": "data/eval/official_like_dev",
+  "rows": [
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 17.779340744018555,
+          "loss_sum": 1137.8778076171875,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 17.779340744018555,
+      "baseline_loss_sum": 1137.8778076171875,
+      "baseline_tokens": 64,
+      "file": "boolean_qa.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 16.088638305664062,
+          "loss_sum": 1029.6728515625,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 16.088638305664062,
+      "regret0p01_loss_sum": 1029.6728515625,
+      "regret0p01_minus_baseline": -1.6907024383544922,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.739110946655273,
+          "loss_sum": 879.3031005859375,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 13.739110946655273,
+      "baseline_loss_sum": 879.3031005859375,
+      "baseline_tokens": 64,
+      "file": "code_generation.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.952077865600586,
+          "loss_sum": 828.9329833984375,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 12.952077865600586,
+      "regret0p01_loss_sum": 828.9329833984375,
+      "regret0p01_minus_baseline": -0.7870330810546875,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.686284065246582,
+          "loss_sum": 811.9221801757812,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 12.686284065246582,
+      "baseline_loss_sum": 811.9221801757812,
+      "baseline_tokens": 64,
+      "file": "commonsense_completion.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.101963996887207,
+          "loss_sum": 774.5256958007812,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 12.101963996887207,
+      "regret0p01_loss_sum": 774.5256958007812,
+      "regret0p01_minus_baseline": -0.584320068359375,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 14.186076164245605,
+          "loss_sum": 907.9088745117188,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 14.186076164245605,
+      "baseline_loss_sum": 907.9088745117188,
+      "baseline_tokens": 64,
+      "file": "general_knowledge.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.388019561767578,
+          "loss_sum": 856.833251953125,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 13.388019561767578,
+      "regret0p01_loss_sum": 856.833251953125,
+      "regret0p01_minus_baseline": -0.7980566024780273,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 16.454639434814453,
+          "loss_sum": 1053.096923828125,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 16.454639434814453,
+      "baseline_loss_sum": 1053.096923828125,
+      "baseline_tokens": 64,
+      "file": "mathematics.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 15.113580703735352,
+          "loss_sum": 967.2691650390625,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 15.113580703735352,
+      "regret0p01_loss_sum": 967.2691650390625,
+      "regret0p01_minus_baseline": -1.3410587310791016,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 13.268646240234375,
+          "loss_sum": 849.193359375,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 13.268646240234375,
+      "baseline_loss_sum": 849.193359375,
+      "baseline_tokens": 64,
+      "file": "multiple_choice_reasoning.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.464466094970703,
+          "loss_sum": 797.725830078125,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 12.464466094970703,
+      "regret0p01_loss_sum": 797.725830078125,
+      "regret0p01_minus_baseline": -0.8041801452636719,
+      "regret0p01_tokens": 64
+    },
+    {
+      "baseline_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 12.666350364685059,
+          "loss_sum": 810.6464233398438,
+          "tokens": 64
+        }
+      ],
+      "baseline_loss": 12.666350364685059,
+      "baseline_loss_sum": 810.6464233398438,
+      "baseline_tokens": 64,
+      "file": "pronoun_coreference.jsonl",
+      "regret0p01_blocks": [
+        {
+          "block_idx": 0,
+          "loss": 11.872692108154297,
+          "loss_sum": 759.852294921875,
+          "tokens": 64
+        }
+      ],
+      "regret0p01_loss": 11.872692108154297,
+      "regret0p01_loss_sum": 759.852294921875,
+      "regret0p01_minus_baseline": -0.7936582565307617,
+      "regret0p01_tokens": 64
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "Full-network LM loss on official-like development files only. Uses bounded first-block file coverage to align with the oracle/regret audit without touching final official bounded files.",
+  "seq_len": 64,
+  "status": "PVR_ROUTER_REGRET_REPAIR_FULL_NETWORK_ALIGNMENT_AUDIT_COMPLETE"
+}

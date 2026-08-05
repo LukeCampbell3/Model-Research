@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-06-13T09:13:18.152421+00:00",
+  "model": "dense_transformer_500m",
+  "routing_curve": [],
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

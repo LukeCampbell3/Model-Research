@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 256,
+  "model": "pvr_ec_o_shared_only_300m",
+  "optimizer_steps": 4000,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 4000,
+    "completed_training_tokens": 1024000,
+    "estimated_steps_needed": 4000,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 1000000
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 10,
+  "target_steps": 4000,
+  "target_training_tokens": 1000000,
+  "tokens_per_second": 2859.104640286809,
+  "tokens_seen": 1024000,
+  "training_tokens_seen": 1024000,
+  "wall_clock_seconds": 358.15408277511597
+}

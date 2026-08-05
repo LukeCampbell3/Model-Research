@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "bd166ee1615319c2862c9eef6da4ebcf3a2f2d0e56bc370bf7f855aba83b13ff",
+  "checkpoint_path": "checkpoints/official_like_router_aux_sweep/pvr_sparse_v2_official_like_aux0p002_100m/checkpoint.pt",
+  "created_at": "2026-07-17T12:11:52.562919+00:00",
+  "effective_batch_tokens": 128,
+  "error": null,
+  "eval_window_count": 5,
+  "mock_checkpoint": false,
+  "model": "pvr_sparse_v2_official_like_aux0p002_100m",
+  "optimizer_steps": 100,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 5,
+    "completed_steps": 100,
+    "completed_training_tokens": 12800,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 5,
+    "target_training_tokens": 12800
+  },
+  "routing_window_count": 5,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 5,
+  "target_steps": 100,
+  "target_training_tokens": 12800,
+  "tier": "stable_learning",
+  "tokens_seen": 12800,
+  "training_data_paths": [
+    "data/eval/official_like_dev"
+  ],
+  "training_tokens_seen": 12800
+}

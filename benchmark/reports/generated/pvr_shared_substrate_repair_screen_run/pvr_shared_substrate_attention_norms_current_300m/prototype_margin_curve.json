@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_attention_norms_current_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.2643838129515643,
+      "step": 244
+    },
+    {
+      "prototype_margin": 0.32867423397207557,
+      "step": 488
+    },
+    {
+      "prototype_margin": 0.38966705232936266,
+      "step": 732
+    },
+    {
+      "prototype_margin": 0.4293489806053306,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

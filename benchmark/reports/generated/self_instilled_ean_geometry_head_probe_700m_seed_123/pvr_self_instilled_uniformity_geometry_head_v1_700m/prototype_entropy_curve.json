@@ -1,0 +1,10 @@
+{
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9509740904457873,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

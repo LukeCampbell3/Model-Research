@@ -1,0 +1,390 @@
+# Expert Benefit Localization Audit
+
+Status: `PVR_EXPERT_BENEFIT_LOCALIZATION_SUPPORTED`
+
+| metric | value |
+|---|---:|
+| mean expert benefit | 1.289743077333504 |
+| positive benefit rate | 0.6404622395833334 |
+| structured benefit share | 0.7014092899819664 |
+| structured concentration ratio | 1.6645263335840872 |
+| syntax benefit share | 0.6771559689150863 |
+| benefit per active FLOP | 2.0472112338627046e-09 |
+
+```json
+{
+  "benchmark_evidence_caveat": "Local reduced-file localization diagnostic with byte-level heuristic token classes.",
+  "candidate_config": "benchmark/reports/generated/ean_structured_delta_replay_retention_gated_seed_42/pvr_ec_o_ean_retention_gated_delta_replay_v1_300m_config.json",
+  "created_at": "2026-06-18T14:20:07.714465+00:00",
+  "decision_rule": "Support requires clean Top1 invariants, positive aggregate expert benefit, benefit concentrated in structured token classes, most structured classes positive, broad/prose stability not materially harmed, and nontrivial syntax-token benefit share.",
+  "device": "cuda",
+  "experiment": "PVR_EXPERT_BENEFIT_LOCALIZATION_AUDIT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "metrics": {
+    "benefit_concentration": {
+      "structured_benefit_concentration_ratio": 1.6645263335840872,
+      "structured_benefit_share": 0.7014092899819664,
+      "structured_positive_benefit": 6481.300591559582,
+      "structured_token_fraction": 0.42138671875,
+      "syntax_benefit_concentration_ratio": 1.6675135362782727,
+      "syntax_benefit_share": 0.6771559689150863,
+      "syntax_positive_benefit": 6257.190266214311,
+      "syntax_token_fraction": 0.4060872395833333,
+      "total_positive_benefit": 9240.397417214448
+    },
+    "broad_stability_classes": [
+      "indentation",
+      "prose_word",
+      "space"
+    ],
+    "family_summary": {
+      "broad_lm": {
+        "count": 2048,
+        "full_model_loss": 2.602931647311957,
+        "mean_expert_benefit": 0.939486332291713,
+        "positive_benefit_rate": 0.7158203125,
+        "shared_only_loss": 3.5424179796036697
+      },
+      "code_heavy": {
+        "count": 2048,
+        "full_model_loss": 15.134739768145664,
+        "mean_expert_benefit": 1.7725199405067542,
+        "positive_benefit_rate": 0.72216796875,
+        "shared_only_loss": 16.90725970865242
+      },
+      "json_schema": {
+        "count": 2048,
+        "full_model_loss": 11.513011943503443,
+        "mean_expert_benefit": 1.1572229592020449,
+        "positive_benefit_rate": 0.4833984375,
+        "shared_only_loss": 12.670234902705488
+      }
+    },
+    "overall": {
+      "active_flops_per_token": 630000000,
+      "benefit_per_active_flop": 2.0472112338627046e-09,
+      "full_model_loss": 9.750227786320353,
+      "mean_expert_benefit": 1.289743077333504,
+      "positive_benefit_rate": 0.6404622395833334,
+      "shared_only_loss": 11.039970863653858,
+      "token_count": 6144
+    },
+    "routing_snapshots": [
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5183323635040628,
+        "expert_utilization": [
+          349,
+          270,
+          485,
+          620,
+          241,
+          404,
+          345,
+          358
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.20182291666666666,
+        "operator_control_margin": 0.5183323635040628,
+        "owner_churn": null,
+        "owner_entropy": 2.037768461799472,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.037768461799472,
+        "prototype_margin": 0.5183323635040628,
+        "prototype_monopoly_rate": 0.20182291666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 0,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5130888865387533,
+        "expert_utilization": [
+          302,
+          329,
+          512,
+          701,
+          223,
+          409,
+          272,
+          324
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.22819010416666666,
+        "operator_control_margin": 0.5130888865387533,
+        "owner_churn": null,
+        "owner_entropy": 2.013830819174193,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.013830819174193,
+        "prototype_margin": 0.5130888865387533,
+        "prototype_monopoly_rate": 0.22819010416666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 25,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5152230673314383,
+        "expert_utilization": [
+          288,
+          296,
+          501,
+          728,
+          238,
+          427,
+          277,
+          317
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.23697916666666666,
+        "operator_control_margin": 0.5152230673314383,
+        "owner_churn": null,
+        "owner_entropy": 2.0080757147085775,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.0080757147085775,
+        "prototype_margin": 0.5152230673314383,
+        "prototype_monopoly_rate": 0.23697916666666666,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 50,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      },
+      {
+        "challenger_disagreement_rate": null,
+        "descriptor_control_margin": 0.5068799492582912,
+        "expert_utilization": [
+          372,
+          274,
+          519,
+          631,
+          242,
+          375,
+          321,
+          338
+        ],
+        "failure_mode_distribution": {},
+        "high_gap_monopoly_rate": 0.20540364583333334,
+        "operator_control_margin": 0.5068799492582912,
+        "owner_churn": null,
+        "owner_entropy": 2.0325072608582655,
+        "owners_per_token": 1.0,
+        "production_map_mutated": false,
+        "prototype_entropy": 2.0325072608582655,
+        "prototype_margin": 0.5068799492582912,
+        "prototype_monopoly_rate": 0.20540364583333334,
+        "runtime_dynamic_k_count": 0,
+        "runtime_expert_choice_count": 0,
+        "stale_owner_rate": null,
+        "step": 75,
+        "top2_execution_count": 0,
+        "top4_execution_count": 0
+      }
+    ],
+    "structured_classes": [
+      "brace_bracket_paren",
+      "comma_colon_semicolon",
+      "function_signature",
+      "identifier",
+      "json_key",
+      "json_value",
+      "newline",
+      "number",
+      "operator",
+      "quote",
+      "string_literal"
+    ],
+    "token_class_summary": {
+      "brace_bracket_paren": {
+        "benefit_per_active_flop": 7.008457205648724e-09,
+        "count": 122,
+        "full_model_loss": 39.64427821967201,
+        "mean_expert_benefit": 4.415328039558696,
+        "mean_harm": -0.2086980938911438,
+        "mean_positive_benefit": 4.49239514178286,
+        "positive_benefit_rate": 0.9836065573770492,
+        "shared_only_loss": 44.059606259230705,
+        "total_benefit": 538.6700208261609
+      },
+      "comma_colon_semicolon": {
+        "benefit_per_active_flop": 3.6148683698212995e-09,
+        "count": 173,
+        "full_model_loss": 5.210803893949255,
+        "mean_expert_benefit": 2.2773670729874187,
+        "mean_harm": -0.20463689168294272,
+        "mean_positive_benefit": 2.3211671429521896,
+        "positive_benefit_rate": 0.9826589595375722,
+        "shared_only_loss": 7.488170966936674,
+        "total_benefit": 393.9845036268234
+      },
+      "function_signature": {
+        "benefit_per_active_flop": 4.3616598815733686e-09,
+        "count": 115,
+        "full_model_loss": 22.456195467451344,
+        "mean_expert_benefit": 2.747845725391222,
+        "mean_harm": -0.7783484309911728,
+        "mean_positive_benefit": 3.01148640998056,
+        "positive_benefit_rate": 0.9304347826086956,
+        "shared_only_loss": 25.204041192842567,
+        "total_benefit": 316.00225841999054
+      },
+      "identifier": {
+        "benefit_per_active_flop": 1.9321782720549484e-09,
+        "count": 1095,
+        "full_model_loss": 3.1328184663569,
+        "mean_expert_benefit": 1.2172723113946173,
+        "mean_harm": -0.918900047433682,
+        "mean_positive_benefit": 1.6801096558074156,
+        "positive_benefit_rate": 0.821917808219178,
+        "shared_only_loss": 4.350090777751517,
+        "total_benefit": 1332.913180977106
+      },
+      "indentation": {
+        "benefit_per_active_flop": -4.6274482099707913e-10,
+        "count": 909,
+        "full_model_loss": 0.6316384843236084,
+        "mean_expert_benefit": -0.2915292372281599,
+        "mean_harm": -0.3104463760069636,
+        "mean_positive_benefit": 0.04048585154268206,
+        "positive_benefit_rate": 0.0539053905390539,
+        "shared_only_loss": 0.3401092470954485,
+        "total_benefit": -265.0000766403973
+      },
+      "json_key": {
+        "benefit_per_active_flop": 2.975630215637233e-09,
+        "count": 217,
+        "full_model_loss": 3.249056846590086,
+        "mean_expert_benefit": 1.8746470358514566,
+        "mean_harm": -1.0560643715517861,
+        "mean_positive_benefit": 2.3088265036149,
+        "positive_benefit_rate": 0.8709677419354839,
+        "shared_only_loss": 5.123703882441543,
+        "total_benefit": 406.7984067797661
+      },
+      "json_value": {
+        "benefit_per_active_flop": 1.991106186212966e-09,
+        "count": 214,
+        "full_model_loss": 3.228240389690221,
+        "mean_expert_benefit": 1.2543968973141686,
+        "mean_harm": -0.7837673426709242,
+        "mean_positive_benefit": 1.6666098896707042,
+        "positive_benefit_rate": 0.8317757009345794,
+        "shared_only_loss": 4.48263728700439,
+        "total_benefit": 268.4409360252321
+      },
+      "newline": {
+        "benefit_per_active_flop": 7.152623524567419e-09,
+        "count": 137,
+        "full_model_loss": 5.565983942761084,
+        "mean_expert_benefit": 4.506152820477475,
+        "mean_harm": null,
+        "mean_positive_benefit": 4.506152820477475,
+        "positive_benefit_rate": 1.0,
+        "shared_only_loss": 10.072136763238559,
+        "total_benefit": 617.342936405414
+      },
+      "number": {
+        "benefit_per_active_flop": 5.138318394218119e-09,
+        "count": 71,
+        "full_model_loss": 42.62125508214386,
+        "mean_expert_benefit": 3.237140588357415,
+        "mean_harm": -1.7044270833333333,
+        "mean_positive_benefit": 3.4551509268143596,
+        "positive_benefit_rate": 0.9577464788732394,
+        "shared_only_loss": 45.85839567050128,
+        "total_benefit": 229.83698177337646
+      },
+      "operator": {
+        "benefit_per_active_flop": 6.837925986638145e-09,
+        "count": 45,
+        "full_model_loss": 48.81174652311537,
+        "mean_expert_benefit": 4.307893371582031,
+        "mean_harm": -2.624516010284424,
+        "mean_positive_benefit": 4.465448130260814,
+        "positive_benefit_rate": 0.9777777777777777,
+        "shared_only_loss": 53.1196398946974,
+        "total_benefit": 193.8552017211914
+      },
+      "other": {
+        "benefit_per_active_flop": 8.311283900004628e-09,
+        "count": 122,
+        "full_model_loss": 57.39807421271868,
+        "mean_expert_benefit": 5.2361088570029155,
+        "mean_harm": null,
+        "mean_positive_benefit": 5.2361088570029155,
+        "positive_benefit_rate": 1.0,
+        "shared_only_loss": 62.634183069721594,
+        "total_benefit": 638.8052805543557
+      },
+      "prose_word": {
+        "benefit_per_active_flop": 1.822479567338799e-09,
+        "count": 1596,
+        "full_model_loss": 2.774756155859091,
+        "mean_expert_benefit": 1.1481621274234433,
+        "mean_harm": -0.6715737269090938,
+        "mean_positive_benefit": 1.5745967475802558,
+        "positive_benefit_rate": 0.8101503759398496,
+        "shared_only_loss": 3.922918283282534,
+        "total_benefit": 1832.4667553678155
+      },
+      "quote": {
+        "benefit_per_active_flop": 1.1855687985270334e-08,
+        "count": 204,
+        "full_model_loss": 121.96162233165666,
+        "mean_expert_benefit": 7.4690834307203104,
+        "mean_harm": null,
+        "mean_positive_benefit": 7.4690834307203104,
+        "positive_benefit_rate": 1.0,
+        "shared_only_loss": 129.43070576237696,
+        "total_benefit": 1523.6930198669434
+      },
+      "space": {
+        "benefit_per_active_flop": -8.285752391042753e-10,
+        "count": 928,
+        "full_model_loss": 1.650355805084912,
+        "mean_expert_benefit": -0.5220024006356935,
+        "mean_harm": -0.76384416650077,
+        "mean_positive_benefit": 0.44276421372928926,
+        "positive_benefit_rate": 0.20043103448275862,
+        "shared_only_loss": 1.1283534044492187,
+        "total_benefit": -484.41822778992355
+      },
+      "string_literal": {
+        "benefit_per_active_flop": 3.0838215842500335e-09,
+        "count": 196,
+        "full_model_loss": 12.022587326108193,
+        "mean_expert_benefit": 1.942807598077521,
+        "mean_harm": -0.9645010126488549,
+        "mean_positive_benefit": 2.4273590331985835,
+        "positive_benefit_rate": 0.8571428571428571,
+        "shared_only_loss": 13.965394924185714,
+        "total_benefit": 380.7902892231941
+      }
+    },
+    "top1_invariants_clean": true
+  },
+  "schema_version": "1.0",
+  "seq_len": 128,
+  "spans_per_family": 16,
+  "status": "PVR_EXPERT_BENEFIT_LOCALIZATION_SUPPORTED",
+  "supported_conditions": {
+    "broad_stability_not_materially_harmed": true,
+    "mean_expert_benefit_positive": true,
+    "most_structured_classes_positive": true,
+    "structured_benefit_concentrated": true,
+    "structured_benefit_share_high": true,
+    "syntax_benefit_share_nontrivial": true,
+    "top1_invariants_clean": true
+  }
+}
+```

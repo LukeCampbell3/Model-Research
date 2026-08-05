@@ -1,0 +1,83 @@
+{
+  "alias_resolution_table": {
+    "dense_transformer": [
+      "dense_transformer",
+      "dense_baseline"
+    ],
+    "generic_top2_moe_reference": [
+      "generic_top2_moe_reference",
+      "top2_moe_reference"
+    ],
+    "pvr_ec_o_full": [
+      "pvr_ec_o_full",
+      "pvr_ec_deploy_top1",
+      "pvr_ec_ownership_top1_final_candidate_v1"
+    ],
+    "pvr_ec_o_no_contrastive_geometry": [
+      "pvr_ec_o_no_contrastive_geometry"
+    ],
+    "pvr_ec_o_no_descriptor_operator": [
+      "pvr_ec_o_no_descriptor_operator"
+    ],
+    "pvr_ec_o_no_prototypes": [
+      "pvr_ec_o_no_prototypes"
+    ],
+    "pvr_ec_o_shared_only": [
+      "pvr_ec_o_shared_only"
+    ],
+    "vanilla_switch_top1_reference": [
+      "vanilla_switch_top1_reference",
+      "switch_top1_reference",
+      "vanilla_switch"
+    ]
+  },
+  "chosen_integration_paths": {
+    "offline_analysis": "benchmark/analysis/rba_route_usefulness.py",
+    "router_metadata": "benchmark/model_factory.py",
+    "routing_scorecard": "benchmark/runners/run_routing_diagnostics.py",
+    "training_regularization": "benchmark/runners/run_training.py"
+  },
+  "created_at": "2026-06-13T13:18:21.433076+00:00",
+  "created_new_paths": [
+    "benchmark/analysis/rba_route_usefulness.py",
+    "benchmark/analysis/route_loss_predictiveness.py",
+    "benchmark/runners/run_residual_miner.py"
+  ],
+  "discovered_config_paths": [
+    "benchmark\\configs\\generated\\benchmark_100m_suite.yaml",
+    "benchmark\\configs\\generated\\benchmark_300m_suite.yaml",
+    "benchmark\\configs\\generated\\benchmark_700m_suite.yaml"
+  ],
+  "discovered_diagnostics_runner_path": "benchmark\\runners\\run_routing_diagnostics.py",
+  "discovered_model_factory_path": "benchmark\\model_factory.py",
+  "discovered_pvr_router_path": "sparse_loop_moe\\src\\sparse_loop_moe\\models\\pvr_ec\\pvr_ec_router.py",
+  "discovered_test_paths": [
+    "tests\\test_challenger_maps.py",
+    "tests\\test_genuine_benchmark_program.py",
+    "tests\\test_in_bounds_head.py",
+    "tests\\test_manifest_generation.py",
+    "tests\\test_model_alias_resolution.py",
+    "tests\\test_model_creation_and_comparison.py",
+    "tests\\test_model_size_matrix_generation.py",
+    "tests\\test_no_custom_fixed_moe_in_primary_baseline.py",
+    "tests\\test_no_runtime_expert_spawning.py",
+    "tests\\test_no_runtime_topk_execution.py",
+    "tests\\test_no_runtimecoder_scope.py",
+    "tests\\test_no_smoke_tests_present.py",
+    "tests\\test_oracle_challenger_eval_offline_only.py",
+    "tests\\test_public_positioning_lane.py",
+    "tests\\test_pvr_top1_invariants_after_rba_additions.py",
+    "tests\\test_repo_path_mapping.py",
+    "tests\\test_report_status_language.py",
+    "tests\\test_residual_miner.py",
+    "tests\\test_route_confidence_regularization.py",
+    "tests\\test_route_loss_predictiveness.py",
+    "tests\\test_routing_invariant_logging.py",
+    "tests\\test_scaling_report_generation.py",
+    "tests\\test_scorecard_schema.py"
+  ],
+  "discovered_training_runner_path": "benchmark\\runners\\run_training.py",
+  "git_commit": "7ffa5ad9b4ebedae0bee0691a09dedb0613156eb",
+  "missing_expected_paths": [],
+  "schema_version": "1.0"
+}

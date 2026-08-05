@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "suite_name": "pvr_ec_o_100m_genuine_architecture_benchmark",
+  "stage": "genuine_100m_architecture_benchmark",
+  "subset_label": "genuine_reduced_eval",
+  "models": [
+    {
+      "model_variant": "dense_transformer_100m",
+      "config_path": "benchmark/configs/generated/dense_transformer_100m.yaml",
+      "comparison_group": "primary_generalized_baseline"
+    }
+  ],
+  "required_artifacts": ["scorecards", "manifests", "routing_diagnostics", "contamination_scan", "benchmark_report"],
+  "evidence_rule": "Only real checkpoint and data runs count as benchmark evidence."
+}

@@ -1,0 +1,22 @@
+{
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_delta_replay_generalization_seed_42",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.019075984411867,
+      "step": 25
+    },
+    {
+      "prototype_entropy": 2.015510711443027,
+      "step": 50
+    },
+    {
+      "prototype_entropy": 2.021197550295535,
+      "step": 75
+    },
+    {
+      "prototype_entropy": 2.016835668085353,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

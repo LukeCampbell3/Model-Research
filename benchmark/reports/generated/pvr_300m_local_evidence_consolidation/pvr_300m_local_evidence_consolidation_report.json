@@ -1,0 +1,379 @@
+{
+  "best_supported_claim": "At 300M local reduced-file scale, pvr_ec_o_ean_retention_gated_delta_replay_v1 achieves repeat-supported active-compute Pareto advantage under strict Top1 execution. Its selected expert path is inference-causally useful across two available replay-seed artifacts, with strongest effects on structured/syntax-heavy token classes.",
+  "blocked": [
+    {
+      "caveat": "Route margin should not be described as calibrated confidence.",
+      "evidence": [
+        "Margin/benefit correlation is negative near zero.",
+        "High-margin tokens do not beat low-margin tokens.",
+        "Margin quartiles are not monotonic."
+      ],
+      "label": "PVR_ROUTE_MARGIN_PREDICTS_EXPERT_BENEFIT_SUPPORTED",
+      "sources": [
+        "claim_proof_battery"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "caveat": "Owner IDs are not yet strongly human-interpretable.",
+      "evidence": [
+        "Family-level geometry audit fails.",
+        "Fine-grained route geometry audit fails strict gate.",
+        "Semantic owner geometry proof misses strict NMI/loss-bucket thresholds."
+      ],
+      "label": "PVR_ROUTE_GEOMETRY_SPECIALIZATION_SUPPORTED",
+      "sources": [
+        "route_geometry_specialization",
+        "route_geometry_finegrain",
+        "claim_proof_battery"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "caveat": "Replay appears broadly useful, not uniquely PVR-specific under this control.",
+      "evidence": [
+        "Cross-architecture replay control does not show PVR-specific replay advantage."
+      ],
+      "label": "PVR_REPLAY_ARCHITECTURE_SPECIFIC_ADVANTAGE_SUPPORTED",
+      "sources": [
+        "replay_cross_architecture"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "caveat": "Do not push this route-forcing repair path as supported.",
+      "evidence": [
+        "Benefit-weighted route induction worsens intended NMI/consistency metrics."
+      ],
+      "label": "PVR_BENEFIT_WEIGHTED_ROUTE_GEOMETRY_INDUCTION_SUPPORTED",
+      "sources": [
+        "benefit_weighted_route_induction"
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "caveat": "Current causality support is inference-time only.",
+      "evidence": [
+        "No training-causal intervention has been run."
+      ],
+      "label": "PVR_EXPERT_DELTA_TRAINING_CAUSALITY_SUPPORTED",
+      "sources": [
+        "claim_proof_battery",
+        "expert_delta_causality_repeat"
+      ],
+      "status": "BLOCKED"
+    }
+  ],
+  "candidate": "pvr_ec_o_ean_retention_gated_delta_replay_v1",
+  "candidate_status": "active-compute Pareto repeat-supported local candidate",
+  "created_at": "2026-06-18T16:17:44.292888+00:00",
+  "decision_next_steps": [
+    "Move to 700M active-compute frontier only if local 300M evidence is considered sufficient.",
+    "Implement official-style broad NLP/code adapters before claiming official benchmark support.",
+    "Do not spend more compute forcing route-margin or owner-geometry interpretability without a new mechanism."
+  ],
+  "evidence_summary": {
+    "active_compute_repeat": {
+      "missing_seeds": [
+        "777"
+      ],
+      "seed_results": [
+        {
+          "active_flops_per_token": 630000000,
+          "active_params_per_token": 105000000,
+          "broad_lm_loss": 2.571919046342373,
+          "seed": "42",
+          "status": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_SUPPORTED"
+        },
+        {
+          "active_flops_per_token": 630000000,
+          "active_params_per_token": 105000000,
+          "broad_lm_loss": 2.5479386039078236,
+          "seed": "123",
+          "status": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_SUPPORTED"
+        },
+        {
+          "active_flops_per_token": null,
+          "active_params_per_token": null,
+          "broad_lm_loss": null,
+          "seed": "777",
+          "status": "NOT_RUN_MISSING_ARTIFACT"
+        }
+      ],
+      "status": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_REPEAT_SUPPORTED"
+    },
+    "claim_proof_battery": {
+      "conditions": {
+        "causal::full_beats_shared": true,
+        "causal::structured_full_beats_shared": true,
+        "causal::structured_wrong_expert_harms": true,
+        "causal::wrong_expert_harms": true,
+        "causal::wrong_expert_worse_rate_high": true,
+        "expert_delta_causality_supported": true,
+        "margin::high_margin_beats_low_margin": false,
+        "margin::margin_correlation_positive": false,
+        "margin::margin_quartiles_monotonic": false,
+        "route_margin_interpretability_supported": false,
+        "semantic::owner_loss_bucket_lift_vs_shuffle": false,
+        "semantic::owner_syntax_lift_vs_shuffle": true,
+        "semantic::owner_token_class_lift_vs_shuffle": true,
+        "semantic::owner_token_class_nmi_substantial": false,
+        "semantic_owner_geometry_supported": false,
+        "top1_invariants_clean": true
+      },
+      "expert_delta_causality": {
+        "high_benefit_wrong_expert_harm": 2.0742133428091125,
+        "mean_full_vs_shared_benefit": 1.289743077333504,
+        "mean_wrong_expert_harm": 1.2417185518132754,
+        "structured_full_vs_shared_benefit": 2.404115576166546,
+        "structured_wrong_expert_harm": 2.017081891326066,
+        "structured_wrong_expert_worse_than_full_rate": 0.8435430463576159,
+        "wrong_expert_worse_than_full_rate": 0.7513020833333334
+      },
+      "route_margin": {
+        "benefit_by_margin_quartile": [
+          1.4305277972227664,
+          1.1581822187649335,
+          1.249198821288708,
+          1.3210634720576084
+        ],
+        "high_margin_mean_benefit": 1.285131146673158,
+        "low_margin_mean_benefit": 1.29435500799385,
+        "quartile_monotonic_non_decreasing": false,
+        "route_margin_vs_expert_benefit_correlation": -0.014088498830870655
+      },
+      "semantic_owner_geometry": {
+        "loss_bucket_nmi_lift_vs_shuffle": 0.006637766725560508,
+        "owner_loss_bucket_nmi": 0.007702028354570472,
+        "owner_syntax_region_nmi": 0.03142220850864993,
+        "owner_token_class_nmi": 0.03948897024673264,
+        "shuffled_owner_loss_bucket_nmi": 0.0010642616290099634,
+        "shuffled_owner_syntax_region_nmi": 0.004913466284749939,
+        "shuffled_owner_token_class_nmi": 0.005834628735651575,
+        "syntax_region_nmi_lift_vs_shuffle": 0.02650874222389999,
+        "token_class_nmi_lift_vs_shuffle": 0.033654341511081064
+      },
+      "status": "PVR_CLAIM_PROOF_BATTERY_PARTIAL_SUPPORTED"
+    },
+    "expert_benefit_localization": {
+      "concentration": {
+        "structured_benefit_concentration_ratio": 1.6645263335840872,
+        "structured_benefit_share": 0.7014092899819664,
+        "structured_positive_benefit": 6481.300591559582,
+        "structured_token_fraction": 0.42138671875,
+        "syntax_benefit_concentration_ratio": 1.6675135362782727,
+        "syntax_benefit_share": 0.6771559689150863,
+        "syntax_positive_benefit": 6257.190266214311,
+        "syntax_token_fraction": 0.4060872395833333,
+        "total_positive_benefit": 9240.397417214448
+      },
+      "overall": {
+        "active_flops_per_token": 630000000,
+        "benefit_per_active_flop": 2.0472112338627046e-09,
+        "full_model_loss": 9.750227786320353,
+        "mean_expert_benefit": 1.289743077333504,
+        "positive_benefit_rate": 0.6404622395833334,
+        "shared_only_loss": 11.039970863653858,
+        "token_count": 6144
+      },
+      "status": "PVR_EXPERT_BENEFIT_LOCALIZATION_SUPPORTED"
+    },
+    "expert_delta_causality_repeat": {
+      "missing_seeds": [
+        "777"
+      ],
+      "seed_results": [
+        {
+          "causal": {
+            "high_benefit_wrong_expert_harm": 2.0742133428091125,
+            "mean_full_vs_shared_benefit": 1.289743077333504,
+            "mean_wrong_expert_harm": 1.2417185518132754,
+            "structured_full_vs_shared_benefit": 2.404115576166546,
+            "structured_wrong_expert_harm": 2.017081891326066,
+            "structured_wrong_expert_worse_than_full_rate": 0.8435430463576159,
+            "wrong_expert_worse_than_full_rate": 0.7513020833333334
+          },
+          "seed": "42",
+          "status": "PVR_EXPERT_DELTA_CAUSALITY_REPEAT_SUPPORTED"
+        },
+        {
+          "causal": {
+            "high_benefit_wrong_expert_harm": 2.3457036181963073,
+            "mean_full_vs_shared_benefit": 1.463166709370757,
+            "mean_wrong_expert_harm": 1.3812738008129095,
+            "structured_full_vs_shared_benefit": 2.6533614143299236,
+            "structured_wrong_expert_harm": 2.2558057758002534,
+            "structured_wrong_expert_worse_than_full_rate": 0.8642384105960265,
+            "wrong_expert_worse_than_full_rate": 0.7322591145833334
+          },
+          "seed": "123",
+          "status": "PVR_EXPERT_DELTA_CAUSALITY_REPEAT_SUPPORTED"
+        },
+        {
+          "causal": null,
+          "seed": "777",
+          "status": "NOT_RUN_MISSING_ARTIFACT"
+        }
+      ],
+      "status": "PVR_EXPERT_DELTA_CAUSALITY_REPEAT_SUPPORTED"
+    },
+    "strict_top1": {
+      "conditions": {
+        "runtime_top2_little_loss_gain": true,
+        "runtime_top2_not_better_quality_per_flop": true,
+        "runtime_top4_little_loss_gain": true,
+        "runtime_top4_not_better_quality_per_flop": true,
+        "strict_top1_beats_dense_loss": true,
+        "strict_top1_beats_generic_top2_loss": true,
+        "strict_top1_beats_switch_loss": true,
+        "strict_top1_clean": true,
+        "strict_top1_pareto_efficient_active_flops": true,
+        "strict_top1_pareto_efficient_active_params": true
+      },
+      "escalation": {
+        "top2_added_active_flops": 61224048,
+        "top2_loss_gain_vs_strict": -0.12380173429846764,
+        "top4_added_active_flops": 183672144,
+        "top4_loss_gain_vs_strict": -0.24589266628026962
+      },
+      "status": "PVR_STRICT_TOP1_ACTIVE_COMPUTE_SUFFICIENCY_SUPPORTED"
+    }
+  },
+  "experiment": "PVR_EC_O_300M_LOCAL_EVIDENCE_CONSOLIDATION_REPORT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "not_tested": [
+    {
+      "caveat": "Local reduced-file evidence only.",
+      "evidence": [
+        "Official broad NLP adapters remain NOT_RUN_NOT_IMPLEMENTED."
+      ],
+      "label": "PVR_OFFICIAL_BROAD_NLP_SUPPORTED",
+      "sources": [],
+      "status": "NOT_TESTED"
+    },
+    {
+      "caveat": "Local reduced-file evidence only.",
+      "evidence": [
+        "Official code benchmark adapters remain NOT_RUN_NOT_IMPLEMENTED."
+      ],
+      "label": "PVR_OFFICIAL_CODE_BENCH_SUPPORTED",
+      "sources": [],
+      "status": "NOT_TESTED"
+    },
+    {
+      "caveat": "Do not claim from-scratch dense dominance.",
+      "evidence": [
+        "Current best candidate uses EAN teacher-initialized scaffold."
+      ],
+      "label": "PVR_FROM_SCRATCH_DENSE_GAP_CLOSED",
+      "sources": [],
+      "status": "NOT_TESTED"
+    },
+    {
+      "caveat": "Teacher independence remains an open research target.",
+      "evidence": [
+        "Current best candidate depends on dense-compatible EAN initialization."
+      ],
+      "label": "PVR_TEACHER_INDEPENDENCE_SUPPORTED",
+      "sources": [],
+      "status": "NOT_TESTED"
+    }
+  ],
+  "partially_supported": [
+    {
+      "caveat": "Do not claim semantic owner geometry specialization.",
+      "evidence": [
+        "Owner/token-class and owner/syntax NMI show lift over shuffled controls.",
+        "Signal is below strict semantic-geometry thresholds."
+      ],
+      "label": "PVR_ROUTE_GEOMETRY_PARTIAL_SIGNAL",
+      "sources": [
+        "claim_proof_battery",
+        "route_geometry_finegrain"
+      ],
+      "status": "PARTIAL"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_statuses": {
+    "active_compute_frontier": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_SUPPORTED",
+    "active_compute_frontier_repeat": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_REPEAT_SUPPORTED",
+    "benefit_weighted_route_induction": "PVR_BENEFIT_WEIGHTED_ROUTE_GEOMETRY_INDUCTION_NOT_SUPPORTED",
+    "causal_ablation": "PVR_EAN_RETENTION_REPLAY_CAUSAL_ABLATION_NOT_SUPPORTED",
+    "claim_proof_battery": "PVR_CLAIM_PROOF_BATTERY_PARTIAL_SUPPORTED",
+    "expert_benefit_localization": "PVR_EXPERT_BENEFIT_LOCALIZATION_SUPPORTED",
+    "expert_cards": "PVR_EXPERT_CARD_REPORT_GENERATION_COMPLETE",
+    "expert_delta_causality_repeat": "PVR_EXPERT_DELTA_CAUSALITY_REPEAT_SUPPORTED",
+    "expert_function_probe": "PVR_EXPERT_FUNCTION_PROBE_SUPPORTED",
+    "replay_cross_architecture": "PVR_REPLAY_ARCHITECTURE_SPECIFIC_ADVANTAGE_NOT_SUPPORTED",
+    "route_geometry_finegrain": "PVR_ROUTE_GEOMETRY_FINEGRAIN_NOT_SUPPORTED",
+    "route_geometry_specialization": "PVR_ROUTE_GEOMETRY_SPECIALIZATION_NOT_SUPPORTED",
+    "strict_top1_vs_top2": "PVR_STRICT_TOP1_ACTIVE_COMPUTE_SUFFICIENCY_SUPPORTED"
+  },
+  "status": "PVR_EC_O_300M_LOCAL_EVIDENCE_CONSOLIDATION_REPORT_COMPLETE",
+  "supported": [
+    {
+      "caveat": "Seed 777 is NOT_RUN_MISSING_ARTIFACT; local reduced-file audit only.",
+      "evidence": [
+        "Seed 42 and seed 123 candidate artifacts both pass active-compute Pareto gates.",
+        "Candidate remains at 105M active params/token and 630M active FLOPs/token."
+      ],
+      "label": "PVR_ACTIVE_COMPUTE_PARETO_ADVANTAGE_REPEAT_SUPPORTED",
+      "sources": [
+        "active_compute_frontier_repeat"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "caveat": "Runtime Top2/Top4 are eval-only controls, not trained candidates.",
+      "evidence": [
+        "Strict Top1 beats dense, Switch Top1, and generic Top2 on local broad LM.",
+        "Runtime Top2/Top4 PVR escalation worsens loss and quality/FLOP."
+      ],
+      "label": "PVR_STRICT_TOP1_ACTIVE_COMPUTE_SUFFICIENCY_SUPPORTED",
+      "sources": [
+        "strict_top1_vs_top2"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "caveat": "Byte-level heuristic token classes; local reduced files.",
+      "evidence": [
+        "Expert benefit is positive overall and concentrated in structured/syntax-heavy classes.",
+        "Structured benefit share exceeds structured token fraction."
+      ],
+      "label": "PVR_EXPERT_BENEFIT_LOCALIZATION_SUPPORTED",
+      "sources": [
+        "expert_benefit_localization"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "caveat": "Post-hoc attribution, not causal proof by itself.",
+      "evidence": [
+        "All global experts are active and positive in post-hoc assigned benefit.",
+        "Expert cards expose top benefit/harm classes and examples."
+      ],
+      "label": "PVR_EXPERT_FUNCTION_PROBE_SUPPORTED",
+      "sources": [
+        "expert_function_probe",
+        "expert_cards"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "caveat": "Inference-time causal support over seeds 42 and 123; seed 777 missing; not training-causal proof.",
+      "evidence": [
+        "Full model beats shared-only on both available replay seeds.",
+        "Wrong-expert intervention harms loss on both available replay seeds.",
+        "Structured classes show strongest repeated harm."
+      ],
+      "label": "PVR_EXPERT_DELTA_CAUSALITY_REPEAT_SUPPORTED",
+      "sources": [
+        "claim_proof_battery",
+        "expert_delta_causality_repeat"
+      ],
+      "status": "SUPPORTED"
+    }
+  ]
+}

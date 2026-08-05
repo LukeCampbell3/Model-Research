@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "f212dc0c87c8f728445546099229909c02f940b6e76886886e9dcf727b092ed8",
+  "checkpoint_path": "checkpoints/self_instilled_ean_geometry_head_probe_700m_seed_123/pvr_self_instilled_uniformity_geometry_head_v1_700m/checkpoint.pt",
+  "created_at": "2026-06-19T15:06:19.758386+00:00",
+  "effective_batch_tokens": 1024,
+  "error": null,
+  "eval_window_count": 1,
+  "mock_checkpoint": false,
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "optimizer_steps": 100,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 1,
+    "completed_steps": 100,
+    "completed_training_tokens": 102400,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 1,
+    "target_training_tokens": 102400
+  },
+  "routing_window_count": 1,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 1,
+  "target_steps": 100,
+  "target_training_tokens": 102400,
+  "tier": "real_comparison",
+  "tokens_seen": 102400,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 102400
+}

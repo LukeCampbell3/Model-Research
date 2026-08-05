@@ -1,0 +1,9 @@
+metric,value
+total_tests_passed,28
+descriptor_accuracy,0.9509153621107655
+descriptor_control_margin,0.1873809863181042
+descriptor_removed_accuracy,0.26575302596805295
+descriptor_ablation_drop,0.6851623361427126
+heldout_family_accuracy,
+production_shape_pass_rate,1.0
+peak_gpu_memory_mb,1424.616448

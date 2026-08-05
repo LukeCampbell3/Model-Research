@@ -1,0 +1,14 @@
+{
+  "experiment": "PVR_SPARSE_V2_SHORT_WARMUP_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_short_warmup_screen/configs/pvr_sparse_v2_shared_warmup50_aux0001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_short_warmup_screen/configs/pvr_sparse_v2_shared_warmup100_aux0001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_short_warmup_screen/configs/pvr_sparse_v2_shared_warmup200_aux0001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_short_warmup_screen/configs/pvr_sparse_v2_shared_warmup350_aux0001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_short_warmup_screen/configs/pvr_sparse_v2_shared_warmup100_aux001_100m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "selection_rule": "Lowest non-test Frankenstein heldout LM loss with nonzero router gradients and clean Top1."
+}

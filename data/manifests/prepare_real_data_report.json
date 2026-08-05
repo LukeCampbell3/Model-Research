@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-06-12T03:13:11.295563+00:00",
+  "data_root": "data",
+  "eval_split_count": 6,
+  "eval_token_count_estimate": 109830,
+  "manifests": {
+    "contamination": "data/manifests/contamination_scan_manifest.json",
+    "eval": "data/manifests/eval_manifest.json",
+    "training": "data/manifests/training_data_manifest.json"
+  },
+  "status": "REAL_REDUCED_DATA_READY",
+  "training_split_count": 3,
+  "training_token_count_estimate": 267542
+}

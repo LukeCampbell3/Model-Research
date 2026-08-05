@@ -1,0 +1,13 @@
+{
+  "experiment": "PVR_SPARSE_V2_TEACHER_FREE_CURRICULUM_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_full_from_start_aux001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_shared_then_top1_aux0_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_shared_then_top1_aux0001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_shared_then_top1_aux001_100m.yaml",
+    "benchmark/configs/generated/sparse_v2_curriculum_screen/configs/pvr_sparse_v2_shared_then_top1_no_prototypes_100m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "schema_version": "1.0",
+  "selection_rule": "Lowest Frankenstein heldout LM loss with nonzero router gradients and clean strict Top1."
+}

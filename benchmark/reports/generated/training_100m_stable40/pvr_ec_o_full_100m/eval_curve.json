@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-06-12T03:42:31.516906+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 293.95660400390625,
+      "eval_tokens": 64,
+      "optimizer_step": 10,
+      "step": 10,
+      "training_tokens_seen": 640
+    },
+    {
+      "eval_loss": 257.679443359375,
+      "eval_tokens": 64,
+      "optimizer_step": 20,
+      "step": 20,
+      "training_tokens_seen": 1280
+    },
+    {
+      "eval_loss": 196.44078063964844,
+      "eval_tokens": 64,
+      "optimizer_step": 30,
+      "step": 30,
+      "training_tokens_seen": 1920
+    },
+    {
+      "eval_loss": 149.65176391601562,
+      "eval_tokens": 64,
+      "optimizer_step": 40,
+      "step": 40,
+      "training_tokens_seen": 2560
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "pvr_ec_o_full_100m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

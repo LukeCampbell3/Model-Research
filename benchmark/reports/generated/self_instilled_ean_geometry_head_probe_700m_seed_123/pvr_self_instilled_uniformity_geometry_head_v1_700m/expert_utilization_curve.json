@@ -1,0 +1,19 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        63,
+        189,
+        309,
+        161,
+        324,
+        231,
+        239,
+        532
+      ],
+      "step": 100
+    }
+  ],
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "schema_version": "1.0"
+}

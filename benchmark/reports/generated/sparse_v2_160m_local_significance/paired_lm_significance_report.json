@@ -1,0 +1,74 @@
+{
+  "baselines": [
+    {
+      "active_params_per_token_actual": 159850752,
+      "mean_loss": 3.0087544238194823,
+      "model_variant": "dense_v2_100m_matched",
+      "total_params_actual": 159850752
+    },
+    {
+      "active_params_per_token_actual": 81426816,
+      "mean_loss": 4.044212410226464,
+      "model_variant": "switch_top1_sparse_v2_100m_matched",
+      "total_params_actual": 159988992
+    },
+    {
+      "active_params_per_token_actual": 92649984,
+      "mean_loss": 3.868457516655326,
+      "model_variant": "generic_top2_sparse_v2_100m_matched",
+      "total_params_actual": 159988992
+    }
+  ],
+  "candidate": {
+    "active_params_per_token_actual": 89772288,
+    "mean_loss": 3.3736109281890094,
+    "model_variant": "pvr_sparse_v2_e16_shared768_expert256_100m",
+    "total_params_actual": 160735488
+  },
+  "comparisons": [
+    {
+      "baseline": "dense_v2_100m_matched",
+      "candidate_active_params_delta": -70078464,
+      "candidate_minus_baseline_mean_loss": 0.3648565043695271,
+      "ci95": [
+        0.3220788692124188,
+        0.41136553045362234
+      ],
+      "paired_block_count": 512,
+      "probability_candidate_better": 0.0,
+      "significant_candidate_win": false
+    },
+    {
+      "baseline": "switch_top1_sparse_v2_100m_matched",
+      "candidate_active_params_delta": 8345472,
+      "candidate_minus_baseline_mean_loss": -0.6706014820374548,
+      "ci95": [
+        -0.705924276728183,
+        -0.6360938283614814
+      ],
+      "paired_block_count": 512,
+      "probability_candidate_better": 1.0,
+      "significant_candidate_win": true
+    },
+    {
+      "baseline": "generic_top2_sparse_v2_100m_matched",
+      "candidate_active_params_delta": -2877696,
+      "candidate_minus_baseline_mean_loss": -0.49484658846631646,
+      "ci95": [
+        -0.5298057002946734,
+        -0.45891587948426604
+      ],
+      "paired_block_count": 512,
+      "probability_candidate_better": 1.0,
+      "significant_candidate_win": true
+    }
+  ],
+  "corpus_path": "data/eval/broad_nlp/gutenberg_frankenstein_heldout.txt",
+  "created_at": "2026-06-21T05:44:30.431642+00:00",
+  "decision_rule": "Support requires paired block-bootstrap upper CI < 0 against both Switch Top1 and generic Top2.",
+  "official_test_data_used": false,
+  "paired_block_count": 512,
+  "schema_version": "1.0",
+  "seq_len": 64,
+  "status": "PVR_SPARSE_V2_LOCAL_SIGNIFICANCE_SUPPORTED"
+}

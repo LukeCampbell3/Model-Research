@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "model_family": "required",
+  "model_variant": "required",
+  "model_size_label": "100m|300m|700m|1_3b",
+  "total_params": 0,
+  "active_params_per_token": 0,
+  "active_flops_estimate": 0,
+  "num_layers": 0,
+  "hidden_size": 0,
+  "num_heads": 0,
+  "num_experts_if_applicable": 0,
+  "experts_active_per_token": 0,
+  "context_length": 4096,
+  "training_tokens": 0,
+  "batch_tokens": 0,
+  "optimizer": "adamw",
+  "scheduler": "cosine_with_warmup",
+  "eval_suite": [],
+  "output_path": "benchmark/reports/generated/<model>",
+  "comparison_group": "primary_generalized_baseline|primary_generalized_reference_moe|pvr_ec_o_primary|pvr_ec_o_ablation|internal_strong_router_control|external_positioning_only",
+  "is_primary_baseline": false,
+  "is_internal_strong_router_control": false,
+  "checkpoint_path": "checkpoints/<model>/model.safetensors",
+  "training_data_paths": ["data/broad_nlp_train"],
+  "eval_data_paths": ["data/eval/broad_nlp", "data/eval/coding"]
+}
+

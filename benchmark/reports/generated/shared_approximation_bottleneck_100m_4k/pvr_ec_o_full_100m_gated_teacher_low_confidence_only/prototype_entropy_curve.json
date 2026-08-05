@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.939071432029553,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 1.9251055381639584,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 1.928320680831533,
+      "step": 1200
+    },
+    {
+      "prototype_entropy": 1.9376343602734185,
+      "step": 1600
+    },
+    {
+      "prototype_entropy": 1.9393438872725124,
+      "step": 2000
+    },
+    {
+      "prototype_entropy": 1.9475999563968025,
+      "step": 2400
+    },
+    {
+      "prototype_entropy": 1.9332140624747542,
+      "step": 2800
+    },
+    {
+      "prototype_entropy": 1.9299471187081803,
+      "step": 3200
+    },
+    {
+      "prototype_entropy": 1.8995782389225095,
+      "step": 3600
+    },
+    {
+      "prototype_entropy": 1.9411253789615157,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

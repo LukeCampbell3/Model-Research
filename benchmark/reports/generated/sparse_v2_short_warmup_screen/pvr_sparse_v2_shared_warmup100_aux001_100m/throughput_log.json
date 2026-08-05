@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_sparse_v2_shared_warmup100_aux001_100m",
+  "optimizer_steps": 1000,
+  "resource_reduction": {
+    "completed_eval_windows": 3,
+    "completed_steps": 1000,
+    "completed_training_tokens": 486400,
+    "estimated_steps_needed": 1000,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 3,
+    "target_training_tokens": 486400
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 3,
+  "target_steps": 1000,
+  "target_training_tokens": 486400,
+  "tokens_per_second": 2296.1955723037977,
+  "tokens_seen": 486400,
+  "training_tokens_seen": 486400,
+  "wall_clock_seconds": 211.8286464214325
+}

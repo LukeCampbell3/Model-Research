@@ -1,0 +1,214 @@
+{
+  "created_at": "2026-06-20T02:48:45.587956+00:00",
+  "decision_rule": "Teacher independence requires candidate <= matched teacher-EAN at both seeds with exact stage accounting and clean strict Top1.",
+  "experiment": "PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_REPEAT",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "schema_version": "1.0",
+  "seed42_routing_health": {
+    "all_routing_health_gates_pass": true,
+    "conditions": {
+      "full_vs_shared_benefit_positive": true,
+      "owner_churn_measured": true,
+      "owner_entropy_positive": true,
+      "prototype_monopoly_bounded": true,
+      "routing_windows_complete": true,
+      "structured_token_benefit_positive": true,
+      "wrong_expert_harm_positive": true
+    },
+    "final": {
+      "expert_utilization": [
+        91,
+        116,
+        283,
+        70,
+        335,
+        145,
+        275,
+        221
+      ],
+      "full_vs_shared_benefit": 0.09064922481775284,
+      "optimizer_step": 5100,
+      "owner_churn": 0.02734375,
+      "owner_entropy": 1.956776141608676,
+      "owners_per_token": 1.0,
+      "phase": "strict_top1_specialization",
+      "prototype_entropy": 1.956776141608676,
+      "prototype_margin": 0.3389434806255546,
+      "prototype_monopoly_rate": 0.21809895833333334,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 5100,
+      "structured_token_benefit": 0.20172646641731262,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0,
+      "wrong_expert_harm": 0.24558678269386292
+    },
+    "top1_clean": true
+  },
+  "seed42_rows": {
+    "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_repeat_seed_42/pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+      "lm_loss": 2.959834396839142,
+      "model_variant": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+      "perplexity": 19.294776214985003,
+      "quality_per_active_flop": 5.362805395452847e-10,
+      "quality_per_active_param": 3.2176832372717085e-09,
+      "tokens_per_second": 895.4936296879638,
+      "top1_invariants_clean": true,
+      "vram_peak": 1182379008
+    },
+    "pvr_teacher_ean_300m_matched_seed_42": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_repeat_seed_42/pvr_teacher_ean_300m_matched_seed_42/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_teacher_ean_300m_matched_seed_42",
+      "lm_loss": 3.1149719065549424,
+      "model_variant": "pvr_teacher_ean_300m_matched_seed_42",
+      "perplexity": 22.532797320699125,
+      "quality_per_active_flop": 5.095717184355255e-10,
+      "quality_per_active_param": 3.057430310613153e-09,
+      "tokens_per_second": 1048.714169387661,
+      "top1_invariants_clean": true,
+      "vram_peak": 1182379008
+    }
+  },
+  "seed42_training_manifests": {
+    "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "24384e0fc5299c3aa5af0078ae275bc2a15c5a0a300fce945b900f9a8a132848",
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_repeat_seed_42/pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42/checkpoint.pt",
+      "created_at": "2026-06-20T02:34:26.583739+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 21,
+      "mock_checkpoint": false,
+      "model": "pvr_self_instilled_ean_trunk_stage_matched_300m_seed_42",
+      "optimizer_steps": 5100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 21,
+        "completed_steps": 5100,
+        "completed_training_tokens": 2150400,
+        "estimated_steps_needed": 5100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 21,
+        "target_training_tokens": 2150400
+      },
+      "routing_window_count": 21,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 21,
+      "target_steps": 5100,
+      "target_training_tokens": 2150400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 2150400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 2150400
+    },
+    "pvr_teacher_ean_300m_matched_seed_42": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "c5607d36bb2c99f9a6ffe930f57267524ae59791a385963a864e776dca842268",
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_repeat_seed_42/pvr_teacher_ean_300m_matched_seed_42/checkpoint.pt",
+      "created_at": "2026-06-20T02:15:42.515312+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 11,
+      "mock_checkpoint": false,
+      "model": "pvr_teacher_ean_300m_matched_seed_42",
+      "optimizer_steps": 1100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 11,
+        "completed_steps": 1100,
+        "completed_training_tokens": 1126400,
+        "estimated_steps_needed": 1100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 11,
+        "target_training_tokens": 1126400
+      },
+      "routing_window_count": 11,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 11,
+      "target_steps": 1100,
+      "target_training_tokens": 1126400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 1126400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 1126400
+    }
+  },
+  "seed_gates": {
+    "123": {
+      "no_teacher_checkpoint_loaded_into_candidate": true,
+      "pretrain_stage_matched": true,
+      "routing_health_clean": true,
+      "specialization_stage_matched": true,
+      "top1_clean": true,
+      "total_tokens_matched": true
+    },
+    "42": {
+      "no_teacher_checkpoint_loaded_into_candidate": true,
+      "pretrain_stage_matched": true,
+      "routing_health_clean": true,
+      "specialization_stage_matched": true,
+      "top1_clean": true,
+      "total_tokens_matched": true
+    }
+  },
+  "seed_rows": {
+    "123": {
+      "candidate_loss": 2.883972329752786,
+      "teacher_loss": 3.110029940702477
+    },
+    "42": {
+      "candidate_loss": 2.959834396839142,
+      "teacher_loss": 3.1149719065549424
+    }
+  },
+  "seed_support": {
+    "123": {
+      "candidate_delta_vs_teacher": -0.22605761094969123,
+      "candidate_matches_or_beats_teacher": true,
+      "no_teacher_checkpoint_loaded_into_candidate": true,
+      "pretrain_stage_matched": true,
+      "routing_health_clean": true,
+      "seed_supported": true,
+      "specialization_stage_matched": true,
+      "top1_clean": true,
+      "total_tokens_matched": true
+    },
+    "42": {
+      "candidate_delta_vs_teacher": -0.15513750971580054,
+      "candidate_matches_or_beats_teacher": true,
+      "no_teacher_checkpoint_loaded_into_candidate": true,
+      "pretrain_stage_matched": true,
+      "routing_health_clean": true,
+      "seed_supported": true,
+      "specialization_stage_matched": true,
+      "top1_clean": true,
+      "total_tokens_matched": true
+    }
+  },
+  "seeds": [
+    123,
+    42
+  ],
+  "status": "PVR_TEACHER_INDEPENDENCE_SUPPORTED",
+  "teacher_checkpoint_loaded_into_candidate": false
+}

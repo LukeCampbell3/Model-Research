@@ -1,0 +1,50 @@
+{
+  "model": "pvr_teacher_ean_300m_matched",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.0355965196644488,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.0428944255943047,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0483499616519327,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.04614581630169,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0474802889771553,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.051662435539608,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.0537042337506852,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.0504357896391103,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.0491907301479615,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.0328110817172154,
+      "step": 1000
+    },
+    {
+      "prototype_entropy": 2.033451458358645,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

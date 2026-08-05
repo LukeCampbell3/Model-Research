@@ -1,0 +1,21 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 2.808553061913699,
+      "operator_control_margin": 2.808553061913699,
+      "step": 250
+    },
+    {
+      "descriptor_control_margin": 3.9379095101418593,
+      "operator_control_margin": 3.9379095101418593,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": 5.056805102271028,
+      "operator_control_margin": 5.056805102271028,
+      "step": 950
+    }
+  ],
+  "model": "pvr_sparse_v2_e24_shared512_expert176_100m",
+  "schema_version": "1.0"
+}

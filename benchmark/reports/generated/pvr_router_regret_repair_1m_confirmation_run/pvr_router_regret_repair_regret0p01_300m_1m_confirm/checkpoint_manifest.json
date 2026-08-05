@@ -1,0 +1,38 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "453001de41f2cab385fd27752981cf72d3bc113f28d8a945a418bd8066ee4000",
+  "checkpoint_kind": "exact",
+  "checkpoint_path": "checkpoints/pvr_router_regret_repair_1m_confirmation/pvr_router_regret_repair_regret0p01_300m_1m_confirm/checkpoint.pt",
+  "created_at": "2026-07-22T15:46:40.530738+00:00",
+  "effective_batch_tokens": 1024,
+  "error": null,
+  "eval_window_count": 4,
+  "exact_resume_state_required_for_continuation": true,
+  "mock_checkpoint": false,
+  "model": "pvr_router_regret_repair_regret0p01_300m_1m_confirm",
+  "optimizer_steps": 977,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 4,
+    "completed_steps": 977,
+    "completed_training_tokens": 1000448,
+    "estimated_steps_needed": 977,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 4,
+    "target_training_tokens": 1000448
+  },
+  "resume_events": [],
+  "routing_window_count": 4,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 4,
+  "target_steps": 977,
+  "target_training_tokens": 1000448,
+  "tier": "real_comparison",
+  "tokens_seen": 1000448,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 1000448
+}

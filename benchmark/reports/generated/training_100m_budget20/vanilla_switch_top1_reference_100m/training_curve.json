@@ -1,0 +1,171 @@
+{
+  "created_at": "2026-06-12T03:27:35.881137+00:00",
+  "effective_batch_tokens": 64,
+  "loss_curve": [
+    {
+      "effective_batch_tokens": 64,
+      "loss": 410.1968688964844,
+      "optimizer_step": 1,
+      "step": 1,
+      "tokens_seen": 64,
+      "training_tokens_seen": 64
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 377.68853759765625,
+      "optimizer_step": 2,
+      "step": 2,
+      "tokens_seen": 128,
+      "training_tokens_seen": 128
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 408.93194580078125,
+      "optimizer_step": 3,
+      "step": 3,
+      "tokens_seen": 192,
+      "training_tokens_seen": 192
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 403.4125671386719,
+      "optimizer_step": 4,
+      "step": 4,
+      "tokens_seen": 256,
+      "training_tokens_seen": 256
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 405.63458251953125,
+      "optimizer_step": 5,
+      "step": 5,
+      "tokens_seen": 320,
+      "training_tokens_seen": 320
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 380.4919738769531,
+      "optimizer_step": 6,
+      "step": 6,
+      "tokens_seen": 384,
+      "training_tokens_seen": 384
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 383.3646545410156,
+      "optimizer_step": 7,
+      "step": 7,
+      "tokens_seen": 448,
+      "training_tokens_seen": 448
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 378.8591613769531,
+      "optimizer_step": 8,
+      "step": 8,
+      "tokens_seen": 512,
+      "training_tokens_seen": 512
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 376.6534729003906,
+      "optimizer_step": 9,
+      "step": 9,
+      "tokens_seen": 576,
+      "training_tokens_seen": 576
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 284.06781005859375,
+      "optimizer_step": 10,
+      "step": 10,
+      "tokens_seen": 640,
+      "training_tokens_seen": 640
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 318.0369567871094,
+      "optimizer_step": 11,
+      "step": 11,
+      "tokens_seen": 704,
+      "training_tokens_seen": 704
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 359.0286865234375,
+      "optimizer_step": 12,
+      "step": 12,
+      "tokens_seen": 768,
+      "training_tokens_seen": 768
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 373.97833251953125,
+      "optimizer_step": 13,
+      "step": 13,
+      "tokens_seen": 832,
+      "training_tokens_seen": 832
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 363.99737548828125,
+      "optimizer_step": 14,
+      "step": 14,
+      "tokens_seen": 896,
+      "training_tokens_seen": 896
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 364.100830078125,
+      "optimizer_step": 15,
+      "step": 15,
+      "tokens_seen": 960,
+      "training_tokens_seen": 960
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 333.9527587890625,
+      "optimizer_step": 16,
+      "step": 16,
+      "tokens_seen": 1024,
+      "training_tokens_seen": 1024
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 290.63653564453125,
+      "optimizer_step": 17,
+      "step": 17,
+      "tokens_seen": 1088,
+      "training_tokens_seen": 1088
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 315.13330078125,
+      "optimizer_step": 18,
+      "step": 18,
+      "tokens_seen": 1152,
+      "training_tokens_seen": 1152
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 276.2626953125,
+      "optimizer_step": 19,
+      "step": 19,
+      "tokens_seen": 1216,
+      "training_tokens_seen": 1216
+    },
+    {
+      "effective_batch_tokens": 64,
+      "loss": 301.2297058105469,
+      "optimizer_step": 20,
+      "step": 20,
+      "tokens_seen": 1280,
+      "training_tokens_seen": 1280
+    }
+  ],
+  "model": "vanilla_switch_top1_reference_100m",
+  "optimizer_steps": 20,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "training_tokens_seen": 1280
+}

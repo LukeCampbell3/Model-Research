@@ -1,0 +1,4 @@
+{"category": "mathematics", "final_official_eval": false, "id": "mathematics_000", "may_guide_training": true, "source": "synthetic_official_like_dev_v1", "text": "Compute: 17 + 28 = 45. Therefore the final answer is 45."}
+{"category": "mathematics", "final_official_eval": false, "id": "mathematics_001", "may_guide_training": true, "source": "synthetic_official_like_dev_v1", "text": "A box has 6 rows of 7 bolts. Total bolts: 6 * 7 = 42."}
+{"category": "mathematics", "final_official_eval": false, "id": "mathematics_002", "may_guide_training": true, "source": "synthetic_official_like_dev_v1", "text": "If a train travels 30 miles in half an hour, its speed is 60 miles per hour."}
+{"category": "mathematics", "final_official_eval": false, "id": "mathematics_003", "may_guide_training": true, "source": "synthetic_official_like_dev_v1", "text": "Solve for x: x + 9 = 14. Subtract 9 from both sides, x = 5."}

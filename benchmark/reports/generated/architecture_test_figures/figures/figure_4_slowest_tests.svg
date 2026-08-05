@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#172026}.title{font-size:24px;font-weight:700}.head{font-size:17px;font-weight:700}.small{font-size:13px}.axis{stroke:#5d6970;stroke-width:1}.grid{stroke:#d8dee3;stroke-width:1}.ok{fill:#27856f}.bad{fill:#b65a4b}.skip{fill:#b68a2e}.blue{fill:#2f6f9f}.panel{fill:#f7f9fb;stroke:#cbd4db}
+</style>
+<text x="40.0" y="48.0" class="title" text-anchor="start">Figure 4. Slowest Individual Tests</text>
+<text x="55.0" y="105.0" class="small" text-anchor="start">test_scaling_report_generation::test_scaling_report_can_compare_multiple_sizes</text>
+<rect x="680" y="90" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="90" width="260.0" height="18" fill="#b68a2e"/>
+<text x="960.0" y="105.0" class="small" text-anchor="start">682.467s</text>
+<text x="55.0" y="139.0" class="small" text-anchor="start">test_model_creation_and_comparison::test_model_creation_and_comparison_reports</text>
+<rect x="680" y="124" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="124" width="3.0" height="18" fill="#b68a2e"/>
+<text x="960.0" y="139.0" class="small" text-anchor="start">7.834s</text>
+<text x="55.0" y="173.0" class="small" text-anchor="start">...ear_overfit.TestFixedOwnerSpecialization::test_fixed_owner_e0_learns_parity</text>
+<rect x="680" y="158" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="158" width="1.8" height="18" fill="#b68a2e"/>
+<text x="960.0" y="173.0" class="small" text-anchor="start">4.810s</text>
+<text x="55.0" y="207.0" class="small" text-anchor="start">...mark_program::test_genuine_program_blocks_without_real_data_and_checkpoints</text>
+<rect x="680" y="192" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="192" width="1.7" height="18" fill="#b68a2e"/>
+<text x="960.0" y="207.0" class="small" text-anchor="start">4.356s</text>
+<text x="55.0" y="241.0" class="small" text-anchor="start">...r_ec_nlp_stage1.TestNLPStage1Learnability::test_loss_decreases_on_all_tasks</text>
+<rect x="680" y="226" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="226" width="1.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="241.0" class="small" text-anchor="start">4.085s</text>
+<text x="55.0" y="275.0" class="small" text-anchor="start">...nlinear_overfit.TestEndToEndConvergence::test_shared_only_vs_full_on_parity</text>
+<rect x="680" y="260" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="260" width="1.4" height="18" fill="#b68a2e"/>
+<text x="960.0" y="275.0" class="small" text-anchor="start">3.574s</text>
+<text x="55.0" y="309.0" class="small" text-anchor="start">..._nonlinear_overfit.TestExpertScaleEffects::test_sparse_only_model_can_learn</text>
+<rect x="680" y="294" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="294" width="0.9" height="18" fill="#b68a2e"/>
+<text x="960.0" y="309.0" class="small" text-anchor="start">2.435s</text>
+<text x="55.0" y="343.0" class="small" text-anchor="start">...t_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_grammar_lm</text>
+<rect x="680" y="328" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="328" width="0.9" height="18" fill="#b68a2e"/>
+<text x="960.0" y="343.0" class="small" text-anchor="start">2.294s</text>
+<text x="55.0" y="377.0" class="small" text-anchor="start">...nonlinear_overfit.TestEndToEndConvergence::test_memorization_control_passes</text>
+<rect x="680" y="362" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="362" width="0.8" height="18" fill="#b68a2e"/>
+<text x="960.0" y="377.0" class="small" text-anchor="start">2.106s</text>
+<text x="55.0" y="411.0" class="small" text-anchor="start">....test_pvr_ec.TestPVRECDeployment::test_benchmark_accepts_scale_schedule_cli</text>
+<rect x="680" y="396" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="396" width="0.7" height="18" fill="#b68a2e"/>
+<text x="960.0" y="411.0" class="small" text-anchor="start">1.721s</text>
+<text x="55.0" y="445.0" class="small" text-anchor="start">...ear_overfit.TestEndToEndConvergence::test_pvr_full_loss_decreases_on_parity</text>
+<rect x="680" y="430" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="430" width="0.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="445.0" class="small" text-anchor="start">1.692s</text>
+<text x="55.0" y="479.0" class="small" text-anchor="start">...t_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_char_shift</text>
+<rect x="680" y="464" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="464" width="0.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="479.0" class="small" text-anchor="start">1.588s</text>
+<text x="55.0" y="513.0" class="small" text-anchor="start">...st_pvr_ec_nlp_stage1.TestNLPStage1Learnability::test_model_learns_char_copy</text>
+<rect x="680" y="498" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="498" width="0.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="513.0" class="small" text-anchor="start">1.573s</text>
+<text x="55.0" y="547.0" class="small" text-anchor="start">test_scorecard_schema::test_scorecard_contains_schema_required_fields</text>
+<rect x="680" y="532" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="532" width="0.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="547.0" class="small" text-anchor="start">1.518s</text>
+<text x="55.0" y="581.0" class="small" text-anchor="start">...inear_overfit.TestReportPipeline::test_nonlinear_report_has_required_fields</text>
+<rect x="680" y="566" width="260" height="18" fill="#eef2f5"/>
+<rect x="680" y="566" width="0.6" height="18" fill="#b68a2e"/>
+<text x="960.0" y="581.0" class="small" text-anchor="start">1.466s</text>
+</svg>

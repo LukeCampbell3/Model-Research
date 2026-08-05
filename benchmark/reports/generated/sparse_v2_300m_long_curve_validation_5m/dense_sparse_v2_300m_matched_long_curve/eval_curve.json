@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-07-17T12:30:17.744166+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 15.520458221435547,
+      "eval_tokens": 64,
+      "optimizer_step": 488,
+      "step": 488,
+      "training_tokens_seen": 499712
+    },
+    {
+      "eval_loss": 12.649873733520508,
+      "eval_tokens": 64,
+      "optimizer_step": 976,
+      "step": 976,
+      "training_tokens_seen": 999424
+    },
+    {
+      "eval_loss": 14.369222640991211,
+      "eval_tokens": 64,
+      "optimizer_step": 1464,
+      "step": 1464,
+      "training_tokens_seen": 1499136
+    },
+    {
+      "eval_loss": 8.186094284057617,
+      "eval_tokens": 64,
+      "optimizer_step": 1952,
+      "step": 1952,
+      "training_tokens_seen": 1998848
+    },
+    {
+      "eval_loss": 9.62028694152832,
+      "eval_tokens": 64,
+      "optimizer_step": 2440,
+      "step": 2440,
+      "training_tokens_seen": 2498560
+    },
+    {
+      "eval_loss": 16.607891082763672,
+      "eval_tokens": 64,
+      "optimizer_step": 2928,
+      "step": 2928,
+      "training_tokens_seen": 2998272
+    },
+    {
+      "eval_loss": 4.035876274108887,
+      "eval_tokens": 64,
+      "optimizer_step": 3416,
+      "step": 3416,
+      "training_tokens_seen": 3497984
+    },
+    {
+      "eval_loss": 5.886882305145264,
+      "eval_tokens": 64,
+      "optimizer_step": 3904,
+      "step": 3904,
+      "training_tokens_seen": 3997696
+    },
+    {
+      "eval_loss": 9.146927833557129,
+      "eval_tokens": 64,
+      "optimizer_step": 4392,
+      "step": 4392,
+      "training_tokens_seen": 4497408
+    },
+    {
+      "eval_loss": 9.947757720947266,
+      "eval_tokens": 64,
+      "optimizer_step": 4880,
+      "step": 4880,
+      "training_tokens_seen": 4997120
+    }
+  ],
+  "eval_window_count": 10,
+  "model": "dense_sparse_v2_300m_matched_long_curve",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

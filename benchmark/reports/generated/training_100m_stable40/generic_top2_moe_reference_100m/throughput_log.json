@@ -1,0 +1,10 @@
+{
+  "effective_batch_tokens": 64,
+  "model": "generic_top2_moe_reference_100m",
+  "optimizer_steps": 40,
+  "schema_version": "1.0",
+  "tokens_per_second": 312.1520274948216,
+  "tokens_seen": 2560,
+  "training_tokens_seen": 2560,
+  "wall_clock_seconds": 8.20113205909729
+}

@@ -1,0 +1,325 @@
+# Self-Instilled EAN Trunk Stage-Matched Screen
+
+Screen: `PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_SCREEN_COMPLETE`
+Decision: `PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_TEACHER_GAP_CLOSED_SINGLE_SEED`
+
+| model | LM loss |
+|---|---:|
+| pvr_full_scratch_300m_matched | 4.152685380711848 |
+| pvr_teacher_ean_300m_matched | 3.110029940702477 |
+| pvr_self_instilled_ean_trunk_only_300m_total_compute_matched | 3.1338969700190487 |
+| pvr_self_instilled_ean_trunk_stage_matched_300m | 2.883972329752786 |
+
+```json
+{
+  "accounting": {
+    "candidate_pretrain_effective_batch_tokens": 256,
+    "candidate_pretrain_steps": 4000,
+    "candidate_pretrain_tokens": 1024000,
+    "candidate_specialization_effective_batch_tokens": 1024,
+    "candidate_specialization_steps": 1100,
+    "candidate_specialization_tokens": 1126400,
+    "candidate_total_tokens": 2150400,
+    "teacher_dense_effective_batch_tokens": 256,
+    "teacher_dense_optimizer_steps": 4000,
+    "teacher_downstream_optimizer_steps": 1100,
+    "teacher_downstream_tokens": 1126400,
+    "teacher_inherited_dense_tokens": 1024000,
+    "teacher_total_tokens": 2150400
+  },
+  "candidate": "pvr_self_instilled_ean_trunk_stage_matched_300m",
+  "created_at": "2026-06-20T02:03:27.030788+00:00",
+  "decision_rule": "Closure requires stage-wise token, optimizer-step, and effective-batch matching to the teacher recipe, no teacher load, and clean Top1.",
+  "experiment": "PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_SCREEN",
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "phase_eval_summary": {
+    "ean_trunk_only_pretrain": {
+      "final_eval_loss": 8.00079770386219,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "mean_eval_loss": 11.327830359339714,
+      "window_count": 10
+    },
+    "strict_top1_specialization": {
+      "final_eval_loss": 6.807229042053223,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "mean_eval_loss": 7.145108752629974,
+      "window_count": 11
+    }
+  },
+  "routing_health": {
+    "all_routing_health_gates_pass": true,
+    "conditions": {
+      "full_vs_shared_benefit_positive": true,
+      "owner_churn_measured": true,
+      "owner_entropy_positive": true,
+      "prototype_monopoly_bounded": true,
+      "routing_windows_complete": true,
+      "structured_token_benefit_positive": true,
+      "wrong_expert_harm_positive": true
+    },
+    "final": {
+      "expert_utilization": [
+        86,
+        227,
+        239,
+        55,
+        256,
+        189,
+        240,
+        244
+      ],
+      "full_vs_shared_benefit": 0.25213825702667236,
+      "optimizer_step": 5100,
+      "owner_churn": 0.0234375,
+      "owner_entropy": 1.9914072029314738,
+      "owners_per_token": 1.0,
+      "phase": "strict_top1_specialization",
+      "prototype_entropy": 1.9914072029314738,
+      "prototype_margin": 0.36024364086430677,
+      "prototype_monopoly_rate": 0.16666666666666666,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 5100,
+      "structured_token_benefit": 0.894888162612915,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0,
+      "wrong_expert_harm": 0.42568373680114746
+    },
+    "top1_clean": true
+  },
+  "rows": {
+    "pvr_full_scratch_300m_matched": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_geometry_head_300m_matched_volume_screen/pvr_full_scratch_300m_matched/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_full_scratch_300m_matched",
+      "lm_loss": 4.152685380711848,
+      "model_variant": "pvr_full_scratch_300m_matched",
+      "perplexity": 63.604573663708,
+      "quality_per_active_flop": 3.8223497370501356e-10,
+      "quality_per_active_param": 2.2934098422300814e-09,
+      "tokens_per_second": 1100.83345898865,
+      "top1_invariants_clean": true,
+      "vram_peak": 1971427328
+    },
+    "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_only_total_compute_300m/pvr_self_instilled_ean_trunk_only_300m_total_compute_matched/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched",
+      "lm_loss": 3.1338969700190487,
+      "model_variant": "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched",
+      "perplexity": 22.963292667190238,
+      "quality_per_active_flop": 5.064945026868383e-10,
+      "quality_per_active_param": 3.03896701612103e-09,
+      "tokens_per_second": 958.3455709013296,
+      "top1_invariants_clean": true,
+      "vram_peak": 1969726464
+    },
+    "pvr_self_instilled_ean_trunk_stage_matched_300m": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_300m/pvr_self_instilled_ean_trunk_stage_matched_300m/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_self_instilled_ean_trunk_stage_matched_300m",
+      "lm_loss": 2.883972329752786,
+      "model_variant": "pvr_self_instilled_ean_trunk_stage_matched_300m",
+      "perplexity": 17.885178082579266,
+      "quality_per_active_flop": 5.503872457187031e-10,
+      "quality_per_active_param": 3.302323474312219e-09,
+      "tokens_per_second": 949.057210441243,
+      "top1_invariants_clean": true,
+      "vram_peak": 1976529920
+    },
+    "pvr_teacher_ean_300m_matched": {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "benchmark_evidence": true,
+      "checkpoint_path": "checkpoints/self_instilled_ean_geometry_head_300m_matched_volume_screen/pvr_teacher_ean_300m_matched/checkpoint.pt",
+      "eval_token_count": 50176,
+      "heldout_eval_token_count": 12544,
+      "key": "pvr_teacher_ean_300m_matched",
+      "lm_loss": 3.110029940702477,
+      "model_variant": "pvr_teacher_ean_300m_matched",
+      "perplexity": 22.4217157126157,
+      "quality_per_active_flop": 5.103814489139793e-10,
+      "quality_per_active_param": 3.0622886934838754e-09,
+      "tokens_per_second": 1184.565685898699,
+      "top1_invariants_clean": true,
+      "vram_peak": 1182379008
+    }
+  },
+  "schema_version": "1.0",
+  "screen_status": "PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_SCREEN_COMPLETE",
+  "seed": 123,
+  "status": "PVR_SELF_INSTILLED_EAN_TRUNK_STAGE_MATCHED_TEACHER_GAP_CLOSED_SINGLE_SEED",
+  "supported_conditions": {
+    "beats_prior_trunk_only": true,
+    "matches_or_beats_teacher": true,
+    "no_teacher_checkpoint_loaded": true,
+    "optimizer_reset_at_boundary": true,
+    "pretrain_effective_batch_tokens_matched": true,
+    "pretrain_optimizer_steps_matched": true,
+    "pretrain_tokens_matched": true,
+    "routing_health_clean": true,
+    "specialization_optimizer_steps_matched": true,
+    "specialization_tokens_matched": true,
+    "teacher_gap_closed_fraction": 1.2168095060700586,
+    "top1_clean": true,
+    "total_tokens_matched": true
+  },
+  "teacher_checkpoint_loaded_into_candidate": false,
+  "training_manifests": {
+    "pvr_full_scratch_300m_matched": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "ac3199918385a55f87927ce8c4f3f7033ba9dba5ac0993544e08300dd8fa1183",
+      "checkpoint_path": "checkpoints/self_instilled_ean_geometry_head_300m_matched_volume_screen/pvr_full_scratch_300m_matched/checkpoint.pt",
+      "created_at": "2026-06-19T19:08:19.251160+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 11,
+      "mock_checkpoint": false,
+      "model": "pvr_full_scratch_300m_matched",
+      "optimizer_steps": 1100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 11,
+        "completed_steps": 1100,
+        "completed_training_tokens": 1126400,
+        "estimated_steps_needed": 1100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 11,
+        "target_training_tokens": 1126400
+      },
+      "routing_window_count": 11,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 11,
+      "target_steps": 1100,
+      "target_training_tokens": 1126400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 1126400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 1126400
+    },
+    "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "09fd63b53f0e06e2c4770bbe2acf0ee47b060bc0b9bc70b4bcade68f5d092c44",
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_only_total_compute_300m/pvr_self_instilled_ean_trunk_only_300m_total_compute_matched/checkpoint.pt",
+      "created_at": "2026-06-20T01:27:43.208663+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 21,
+      "mock_checkpoint": false,
+      "model": "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched",
+      "optimizer_steps": 2100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 21,
+        "completed_steps": 2100,
+        "completed_training_tokens": 2150400,
+        "estimated_steps_needed": 2100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 21,
+        "target_training_tokens": 2150400
+      },
+      "routing_window_count": 21,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 21,
+      "target_steps": 2100,
+      "target_training_tokens": 2150400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 2150400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 2150400
+    },
+    "pvr_self_instilled_ean_trunk_stage_matched_300m": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "d69bb466d15917fb3a5732b8762f10c095529d1fdd6828aa9c4dfa833211aaf3",
+      "checkpoint_path": "checkpoints/self_instilled_ean_trunk_stage_matched_300m/pvr_self_instilled_ean_trunk_stage_matched_300m/checkpoint.pt",
+      "created_at": "2026-06-20T01:55:41.083169+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 21,
+      "mock_checkpoint": false,
+      "model": "pvr_self_instilled_ean_trunk_stage_matched_300m",
+      "optimizer_steps": 5100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 21,
+        "completed_steps": 5100,
+        "completed_training_tokens": 2150400,
+        "estimated_steps_needed": 5100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 21,
+        "target_training_tokens": 2150400
+      },
+      "routing_window_count": 21,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 21,
+      "target_steps": 5100,
+      "target_training_tokens": 2150400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 2150400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 2150400
+    },
+    "pvr_teacher_ean_300m_matched": {
+      "checkpoint_exists": true,
+      "checkpoint_hash": "e11f33418625f73dcb111a3cd418d53f1dfc94a7af558c6115ac1df40e9fa611",
+      "checkpoint_path": "checkpoints/self_instilled_ean_geometry_head_300m_matched_volume_screen/pvr_teacher_ean_300m_matched/checkpoint.pt",
+      "created_at": "2026-06-19T19:28:41.051360+00:00",
+      "effective_batch_tokens": 1024,
+      "error": null,
+      "eval_window_count": 11,
+      "mock_checkpoint": false,
+      "model": "pvr_teacher_ean_300m_matched",
+      "optimizer_steps": 1100,
+      "real_training_data": true,
+      "resource_reduction": {
+        "completed_eval_windows": 11,
+        "completed_steps": 1100,
+        "completed_training_tokens": 1126400,
+        "estimated_steps_needed": 1100,
+        "reason_for_reduction": "",
+        "status": "NONE",
+        "target_eval_windows": 11,
+        "target_training_tokens": 1126400
+      },
+      "routing_window_count": 11,
+      "schema_version": "1.0",
+      "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE",
+      "target_eval_windows": 11,
+      "target_steps": 1100,
+      "target_training_tokens": 1126400,
+      "tier": "matched_volume_screen",
+      "tokens_seen": 1126400,
+      "training_data_paths": [
+        "data/broad_nlp_train"
+      ],
+      "training_tokens_seen": 1126400
+    }
+  }
+}
+```

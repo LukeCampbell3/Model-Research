@@ -1,0 +1,26 @@
+{
+  "model": "pvr_sparse_v2_official_like_aux0p0_100m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.25176721058475476,
+      "step": 20
+    },
+    {
+      "prototype_margin": 0.23368142518059662,
+      "step": 40
+    },
+    {
+      "prototype_margin": 0.25646323757246137,
+      "step": 60
+    },
+    {
+      "prototype_margin": 0.2340212269918993,
+      "step": 80
+    },
+    {
+      "prototype_margin": 0.2645868990415086,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

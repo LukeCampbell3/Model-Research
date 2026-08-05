@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 512,
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_42",
+  "optimizer_steps": 100,
+  "resource_reduction": {
+    "completed_eval_windows": 10,
+    "completed_steps": 100,
+    "completed_training_tokens": 51200,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 10,
+    "target_training_tokens": 51200
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 10,
+  "target_steps": 100,
+  "target_training_tokens": 51200,
+  "tokens_per_second": 260.4715605032842,
+  "tokens_seen": 51200,
+  "training_tokens_seen": 51200,
+  "wall_clock_seconds": 196.56656527519226
+}

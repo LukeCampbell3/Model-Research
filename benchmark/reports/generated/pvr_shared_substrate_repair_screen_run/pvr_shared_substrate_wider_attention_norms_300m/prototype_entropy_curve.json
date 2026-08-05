@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_wider_attention_norms_300m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.627556973767919,
+      "step": 244
+    },
+    {
+      "prototype_entropy": 2.6310998516521793,
+      "step": 488
+    },
+    {
+      "prototype_entropy": 2.6249823179586063,
+      "step": 732
+    },
+    {
+      "prototype_entropy": 2.6350372053960633,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

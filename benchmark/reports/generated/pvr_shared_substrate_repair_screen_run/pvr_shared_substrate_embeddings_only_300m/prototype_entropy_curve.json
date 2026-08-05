@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_embeddings_only_300m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.678464147941388,
+      "step": 244
+    },
+    {
+      "prototype_entropy": 2.658691384005849,
+      "step": 488
+    },
+    {
+      "prototype_entropy": 2.644393992169229,
+      "step": 732
+    },
+    {
+      "prototype_entropy": 2.621898451476946,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

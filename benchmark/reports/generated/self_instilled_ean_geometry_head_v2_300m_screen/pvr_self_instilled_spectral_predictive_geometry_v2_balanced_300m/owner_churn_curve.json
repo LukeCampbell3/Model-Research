@@ -1,0 +1,50 @@
+{
+  "model": "pvr_self_instilled_spectral_predictive_geometry_v2_balanced_300m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 100
+    },
+    {
+      "owner_churn": 0.13997395833333334,
+      "step": 200
+    },
+    {
+      "owner_churn": 0.1015625,
+      "step": 300
+    },
+    {
+      "owner_churn": 0.0703125,
+      "step": 400
+    },
+    {
+      "owner_churn": 0.032552083333333336,
+      "step": 500
+    },
+    {
+      "owner_churn": 0.028645833333333332,
+      "step": 600
+    },
+    {
+      "owner_churn": 0.016276041666666668,
+      "step": 700
+    },
+    {
+      "owner_churn": 0.012369791666666666,
+      "step": 800
+    },
+    {
+      "owner_churn": 0.030598958333333332,
+      "step": 900
+    },
+    {
+      "owner_churn": 0.033854166666666664,
+      "step": 1000
+    },
+    {
+      "owner_churn": 0.0234375,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

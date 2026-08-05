@@ -1,0 +1,136 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        317,
+        453,
+        382,
+        62,
+        507,
+        309,
+        357,
+        685
+      ],
+      "step": 400
+    },
+    {
+      "expert_utilization": [
+        300,
+        455,
+        400,
+        54,
+        480,
+        321,
+        369,
+        693
+      ],
+      "step": 800
+    },
+    {
+      "expert_utilization": [
+        301,
+        475,
+        395,
+        70,
+        479,
+        287,
+        379,
+        686
+      ],
+      "step": 1200
+    },
+    {
+      "expert_utilization": [
+        288,
+        469,
+        418,
+        81,
+        476,
+        293,
+        361,
+        686
+      ],
+      "step": 1600
+    },
+    {
+      "expert_utilization": [
+        291,
+        456,
+        389,
+        77,
+        490,
+        258,
+        405,
+        706
+      ],
+      "step": 2000
+    },
+    {
+      "expert_utilization": [
+        294,
+        452,
+        395,
+        90,
+        487,
+        270,
+        372,
+        712
+      ],
+      "step": 2400
+    },
+    {
+      "expert_utilization": [
+        309,
+        461,
+        368,
+        92,
+        501,
+        251,
+        377,
+        713
+      ],
+      "step": 2800
+    },
+    {
+      "expert_utilization": [
+        312,
+        471,
+        366,
+        94,
+        494,
+        242,
+        392,
+        701
+      ],
+      "step": 3200
+    },
+    {
+      "expert_utilization": [
+        307,
+        429,
+        375,
+        82,
+        497,
+        283,
+        385,
+        714
+      ],
+      "step": 3600
+    },
+    {
+      "expert_utilization": [
+        317,
+        444,
+        350,
+        94,
+        510,
+        261,
+        381,
+        715
+      ],
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_ean_structured_route_stability_seed_42",
+  "schema_version": "1.0"
+}

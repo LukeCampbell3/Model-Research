@@ -1,0 +1,327 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-8.4.2, pluggy-1.6.0
+rootdir: C:\Users\jcthi\Code\brain\sparse_loop_moe
+configfile: pyproject.toml
+plugins: anyio-3.7.1, hypothesis-6.148.7, asyncio-0.26.0, mock-3.15.1
+asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 649 items
+
+sparse_loop_moe\test_architecture_test_figures.py .                      [  0%]
+sparse_loop_moe\test_dense_approximation_diagnostics.py ..               [  0%]
+sparse_loop_moe\test_dense_mimic_experiment.py ..                        [  0%]
+sparse_loop_moe\test_genuine_benchmark_program.py ....                   [  1%]
+sparse_loop_moe\test_manifest_generation.py .                            [  1%]
+sparse_loop_moe\test_model_creation_and_comparison.py .                  [  1%]
+sparse_loop_moe\test_model_size_matrix_generation.py .                   [  1%]
+sparse_loop_moe\test_no_custom_fixed_moe_in_primary_baseline.py .        [  2%]
+sparse_loop_moe\test_no_runtimecoder_scope.py .                          [  2%]
+sparse_loop_moe\test_no_smoke_tests_present.py .                         [  2%]
+sparse_loop_moe\test_public_positioning_lane.py .                        [  2%]
+sparse_loop_moe\test_report_status_language.py .                         [  2%]
+sparse_loop_moe\test_routing_invariant_logging.py .                      [  2%]
+sparse_loop_moe\test_scaling_report_generation.py .                      [  2%]
+sparse_loop_moe\test_scorecard_schema.py .                               [  3%]
+sparse_loop_moe\test_shared_approximation_bottleneck.py .......          [  4%]
+sparse_loop_moe\test_shared_trunk_copy_scope_ablation.py ..              [  4%]
+sparse_loop_moe\test_shared_trunk_init_300m_repeat_summary.py .          [  4%]
+sparse_loop_moe\test_shared_trunk_init_confirmation.py ..                [  4%]
+sparse_loop_moe\tests\test_pvr_ec.py ................................... [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+......................................                                   [ 38%]
+sparse_loop_moe\tests\test_pvr_ec_canary_rollout.py ....                 [ 38%]
+sparse_loop_moe\tests\test_pvr_ec_descriptor_semantic_identity_repair.py . [ 39%]
+......                                                                   [ 40%]
+sparse_loop_moe\tests\test_pvr_ec_drift_monitoring.py ......             [ 40%]
+sparse_loop_moe\tests\test_pvr_ec_failure_observatory.py ........        [ 42%]
+sparse_loop_moe\tests\test_pvr_ec_family_preservation.py ............... [ 44%]
+...............                                                          [ 46%]
+sparse_loop_moe\tests\test_pvr_ec_family_preserving_router.py .......... [ 48%]
+................                                                         [ 50%]
+sparse_loop_moe\tests\test_pvr_ec_final_calibration_reliability.py ....  [ 51%]
+sparse_loop_moe\tests\test_pvr_ec_final_deployment_gate.py .........     [ 52%]
+sparse_loop_moe\tests\test_pvr_ec_final_descriptor_control.py ....       [ 53%]
+sparse_loop_moe\tests\test_pvr_ec_final_qpm_memory.py ...                [ 53%]
+sparse_loop_moe\tests\test_pvr_ec_final_research_gate.py .........       [ 55%]
+sparse_loop_moe\tests\test_pvr_ec_manifest_lock.py ....                  [ 55%]
+sparse_loop_moe\tests\test_pvr_ec_nlp_stage1.py ........................ [ 59%]
+.............                                                            [ 61%]
+sparse_loop_moe\tests\test_pvr_ec_nonlinear_overfit.py ................. [ 64%]
+.....................                                                    [ 67%]
+sparse_loop_moe\tests\test_pvr_ec_ownership.py ......................... [ 71%]
+.................                                                        [ 73%]
+sparse_loop_moe\tests\test_pvr_ec_production_shape_profile.py ......     [ 74%]
+sparse_loop_moe\tests\test_pvr_ec_release_freeze.py ....                 [ 75%]
+sparse_loop_moe\tests\test_pvr_ec_release_package.py ...                 [ 75%]
+sparse_loop_moe\tests\test_pvr_ec_release_readiness.py .....             [ 76%]
+sparse_loop_moe\tests\test_pvr_ec_repaired_deployment_gate.py .........  [ 78%]
+sparse_loop_moe\tests\test_pvr_ec_repaired_descriptor_control.py ....    [ 78%]
+sparse_loop_moe\tests\test_pvr_ec_same_input_wrong_descriptor.py .....   [ 79%]
+sparse_loop_moe\tests\test_pvr_ec_stage3b_descriptor_fewshot.py ........ [ 80%]
+..                                                                       [ 81%]
+sparse_loop_moe\tests\test_pvr_ec_stage3b_failure_attribution.py ....... [ 82%]
+.....                                                                    [ 82%]
+sparse_loop_moe\tests\test_pvr_ec_stage3b_transfer.py .................. [ 85%]
+....                                                                     [ 86%]
+sparse_loop_moe\tests\test_pvr_ec_stage3c_descriptor_training.py ....... [ 87%]
+                                                                         [ 87%]
+sparse_loop_moe\tests\test_pvr_ec_stage3c_fewshot_context.py .....       [ 88%]
+sparse_loop_moe\tests\test_pvr_ec_stage3c_operator_role_curriculum.py .. [ 88%]
+......                                                                   [ 89%]
+sparse_loop_moe\tests\test_pvr_ec_stage3d_combination_gate.py .......... [ 90%]
+.                                                                        [ 91%]
+sparse_loop_moe\tests\test_pvr_ec_stage3d_context_overflow.py .....      [ 91%]
+sparse_loop_moe\tests\test_pvr_ec_stage3d_descriptor_semantics.py .....  [ 92%]
+sparse_loop_moe\tests\test_pvr_ec_stage3d_fewshot_valid.py .....         [ 93%]
+sparse_loop_moe\tests\test_pvr_ec_stage3d_role_binding_valid.py ....     [ 93%]
+sparse_loop_moe\tests\test_pvr_ec_stage3e_context_ladder.py ...          [ 94%]
+sparse_loop_moe\tests\test_pvr_ec_stage3e_descriptor_curriculum.py ....  [ 95%]
+sparse_loop_moe\tests\test_pvr_ec_stage3e_gate.py .......                [ 96%]
+sparse_loop_moe\tests\test_pvr_ec_stage3e_meta_training.py ...           [ 96%]
+sparse_loop_moe\tests\test_pvr_ec_stage3e_scaling_ladder.py ....         [ 97%]
+sparse_loop_moe\tests\test_pvr_ec_stage3f_descriptor_confirmation.py ... [ 97%]
+.                                                                        [ 97%]
+sparse_loop_moe\tests\test_pvr_ec_stage4_small_nlp_bridge.py .......     [ 98%]
+sparse_loop_moe\tests\test_pvr_ec_stage5_research_nlp.py .......         [100%]
+
+============================== warnings summary ===============================
+test_model_creation_and_comparison.py::test_model_creation_and_comparison_reports
+test_scaling_report_generation.py::test_scaling_report_can_compare_multiple_sizes
+test_shared_approximation_bottleneck.py::test_copy_compatible_dense_weights_to_pvr_copies_embeddings
+test_shared_approximation_bottleneck.py::test_copy_compatible_dense_weights_to_pvr_supports_embeddings_only_scope
+test_shared_approximation_bottleneck.py::test_copy_compatible_dense_weights_to_pvr_rejects_unknown_scope
+  C:\Users\jcthi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\jcthi\Code\brain\benchmark\reports\generated\architecture_test_figures\pytest_junit.xml -
+============================== slowest durations ==============================
+682.47s call     test_scaling_report_generation.py::test_scaling_report_can_compare_multiple_sizes
+7.83s call     test_model_creation_and_comparison.py::test_model_creation_and_comparison_reports
+4.81s call     tests/test_pvr_ec_nonlinear_overfit.py::TestFixedOwnerSpecialization::test_fixed_owner_e0_learns_parity
+4.35s call     test_genuine_benchmark_program.py::test_genuine_program_blocks_without_real_data_and_checkpoints
+4.08s call     tests/test_pvr_ec_nlp_stage1.py::TestNLPStage1Learnability::test_loss_decreases_on_all_tasks
+3.57s call     tests/test_pvr_ec_nonlinear_overfit.py::TestEndToEndConvergence::test_shared_only_vs_full_on_parity
+2.44s call     tests/test_pvr_ec_nonlinear_overfit.py::TestExpertScaleEffects::test_sparse_only_model_can_learn
+2.29s call     tests/test_pvr_ec_nlp_stage1.py::TestNLPStage1Learnability::test_model_learns_grammar_lm
+2.11s call     tests/test_pvr_ec_nonlinear_overfit.py::TestEndToEndConvergence::test_memorization_control_passes
+1.72s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_benchmark_accepts_scale_schedule_cli
+1.69s call     tests/test_pvr_ec_nonlinear_overfit.py::TestEndToEndConvergence::test_pvr_full_loss_decreases_on_parity
+1.59s call     tests/test_pvr_ec_nlp_stage1.py::TestNLPStage1Learnability::test_model_learns_char_shift
+1.57s call     tests/test_pvr_ec_nlp_stage1.py::TestNLPStage1Learnability::test_model_learns_char_copy
+1.52s call     test_scorecard_schema.py::test_scorecard_contains_schema_required_fields
+1.46s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_nonlinear_report_has_required_fields
+1.45s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_markdown_report_is_readable
+1.44s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_repair_report_contains_recommendation
+1.43s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_scale_sweep_report_exists
+1.43s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_fixed_owner_report_exists_and_valid
+1.41s setup    tests/test_pvr_ec_nonlinear_overfit.py::TestReportPipeline::test_report_status_is_valid_pvr_status
+1.31s call     tests/test_pvr_ec_nonlinear_overfit.py::TestDenseBaselineLearns::test_dense_learns_parity_in_200_steps
+1.29s call     tests/test_pvr_ec_nonlinear_overfit.py::TestExpertScaleEffects::test_scale_4_converges_faster_than_scale_1_on_identity
+1.27s call     tests/test_pvr_ec_nonlinear_overfit.py::TestFixedOwnerSpecialization::test_fixed_owner_e0_learns_identity
+1.26s call     test_routing_invariant_logging.py::test_routing_invariants_are_logged
+1.23s call     test_model_size_matrix_generation.py::test_model_size_matrix_and_required_configs_exist
+1.20s call     test_public_positioning_lane.py::test_public_models_are_external_positioning_only
+1.19s call     tests/test_pvr_ec_nonlinear_overfit.py::TestEndToEndConvergence::test_pvr_full_learns_identity_control
+1.17s call     tests/test_pvr_ec_nonlinear_overfit.py::TestFixedOwnerSpecialization::test_round_robin_learns_identity
+1.17s call     test_no_custom_fixed_moe_in_primary_baseline.py::test_custom_fixed_moe_is_only_internal_control
+1.16s call     test_manifest_generation.py::test_manifests_are_generated_and_hashable
+0.86s call     test_no_runtimecoder_scope.py::test_no_runtimecoder_or_runtime_workflow_scope_in_benchmark
+0.85s call     tests/test_pvr_ec_nonlinear_overfit.py::TestDenseBaselineLearns::test_dense_learns_nonlinear_lookup
+0.82s call     test_no_smoke_tests_present.py::test_no_smoke_benchmark_artifacts_or_flags
+0.62s call     tests/test_pvr_ec_nlp_stage1.py::TestRoutingUnderNLPInputs::test_different_contexts_produce_different_routing
+0.36s call     test_shared_approximation_bottleneck.py::test_shared_capacity_plus_uses_explicit_shared_ffn_size
+0.33s call     tests/test_pvr_ec_family_preserving_router.py::TestFullPipelineIntegration::test_training_with_candidate_router_reduces_loss
+0.27s call     tests/test_pvr_ec_nonlinear_overfit.py::TestDenseBaselineLearns::test_dense_learns_identity_quickly
+0.25s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_overfit_diagnostic_reports_are_written
+0.24s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_residual_alignment_report_written
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_repair_selection_prefers_low_complexity_when_scores_tie
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_family_scale_sweep_contains_all_families
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_family_failure_decomposition_contains_listops_scan_dyck
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_token_to_sequence_transfer_ratio_is_finite
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_segment_residual_metrics_are_finite
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_residual_help_harm_rates_sum_to_one
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_readout_variants_register_as_diagnostic
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_transfer_confirmation_report_written
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_benchmark_transfer_repair_report_written
+0.23s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_segment_residual_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_conditional_scale_oracle_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_decision_token_metrics_exist_by_family
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_repair_selection_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_transfer_profile_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_conditional_scale_is_marked_diagnostic_only
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_scale_does_not_change_owner_ids_unless_expected
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_family_scale_sweep_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_curriculum_repair_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_route_stability_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_token_to_sequence_transfer_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_loss_credit_repair_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_decision_token_credit_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_family_failure_decomposition_report_written
+0.22s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_output_readout_report_written
+0.21s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_scale_report_written
+0.18s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_pvr_deployment_report_is_written
+0.16s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_root_cause_reports_are_written
+0.16s call     tests/test_pvr_ec_failure_observatory.py::test_observatory_reports_and_nlp_bridge_plan
+0.16s call     tests/test_pvr_ec_nonlinear_overfit.py::TestGradientFlow::test_expert_gradients_differentiated_across_experts
+0.16s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_loss_calibration_report_written
+0.16s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_learning_separation_gap_is_reported
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_per_family_metrics_are_reported
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_only_ablation_has_metrics
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_root_cause_report_fields_are_recorded
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_root_cause_labels_are_valid_and_promotion_blocked
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_ownership_integration_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_training_dynamics_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_shared_sparse_ablation_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_shared_only_ablation_has_metrics
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_owner_change_success_null_when_no_changes
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_latency_p95_p50_ratio_reported
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_root_cause_loop_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_promotion_stays_blocked_without_clean_evidence
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_root_cause_summary_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_latency_stability_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_task_fit_report_written
+0.15s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_calibration_metrics_are_reported
+0.14s call     test_dense_mimic_experiment.py::test_summarize_effectiveness_uses_loss_decision_rule
+0.14s call     tests/test_pvr_ec_family_preservation.py::TestFamilyMetricsOnTrainedModel::test_family_metrics_after_training
+0.13s call     tests/test_pvr_ec.py::test_final_deployment_gate_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_logit_direction_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_direction_by_family_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECMoE::test_shared_logits_shape_matches_combined_logits
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_direction_confirmation_keeps_top1_only
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_direction_metrics_are_computed
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_direction_repair_selection_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_auxiliary_loss_sweep_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_auxiliary_sweep_selects_helpful_variant
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_calibration_constrained_sparse_aux_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_sparse_direction_transfer_confirmation_report_written
+0.11s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_calibration_constrained_selector_prefers_lower_ece_close_capability
+0.08s call     tests/test_pvr_ec.py::TestPVRECRouter::test_hard_bucket_does_not_become_default
+0.08s call     tests/test_pvr_ec.py::test_qpm_failed_shapes_block_deployment_promotion
+0.07s call     tests/test_pvr_ec.py::test_unexplained_collapse_blocks_nlp_research
+0.07s call     tests/test_pvr_ec.py::test_forward_purity_failure_blocks_nlp_research
+0.07s call     tests/test_pvr_ec.py::test_deployment_vs_research_verdict_report_written
+0.06s call     test_shared_trunk_init_confirmation.py::test_shared_trunk_init_aggregate_requires_repeat_seed
+0.06s call     tests/test_pvr_ec.py::test_promotion_gate_passes_on_clean_fixture
+0.06s call     tests/test_pvr_ec.py::test_nlp_bridge_ladder_plan_written
+0.06s call     tests/test_pvr_ec.py::test_qpm_blocked_but_classified_allows_research_ready_with_blockers
+0.06s call     tests/test_pvr_ec.py::test_nlp_research_readiness_report_written
+0.05s call     tests/test_pvr_ec.py::test_deployment_blocked_but_research_ready_fixture_passes
+0.05s call     tests/test_pvr_ec.py::test_collapse_count_blocks_deployment_promotion
+0.05s call     test_shared_approximation_bottleneck.py::test_summarize_matrix_reports_supported_variant
+0.05s call     tests/test_pvr_ec_failure_observatory.py::test_known_collapse_classification_prefers_owner_prototype_collapse
+0.05s call     test_dense_approximation_diagnostics.py::test_dense_approximation_report_writes_outputs
+0.05s call     tests/test_pvr_ec.py::test_owners_per_token_equals_one_after_all_repairs
+0.05s call     test_shared_trunk_init_300m_repeat_summary.py::test_repeat_summary_marks_scorecard_supported_eval_curve_mixed
+0.04s call     tests/test_pvr_ec.py::test_qpm_formula_audit_report_written
+0.04s call     tests/test_pvr_ec_failure_observatory.py::test_replay_payload_scores_known_failure_repeatability
+0.04s call     tests/test_pvr_ec.py::test_Top2_Top4_execution_zero_after_all_repairs
+0.04s call     tests/test_pvr_ec.py::test_qpm_failing_shape_replay_report_written
+0.04s call     tests/test_pvr_ec_failure_observatory.py::test_qpm_runtime_rows_create_shape_regression_without_top2
+0.04s call     test_architecture_test_figures.py::test_architecture_test_figures_parse_junit_and_write_svg
+0.04s call     tests/test_pvr_ec.py::test_family_regression_gate_report_written
+0.04s call     tests/test_pvr_ec.py::test_selected_variant_requires_revalidation
+0.04s call     tests/test_pvr_ec.py::test_shape_qpm_runtime_repair_report_written
+0.04s call     tests/test_pvr_ec.py::test_owners_per_token_equals_one
+0.04s call     tests/test_pvr_ec.py::test_reliability_proxy_gate_report_written
+0.04s call     tests/test_pvr_ec.py::test_forced_action_not_used
+0.04s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_quality_per_ms_regression
+0.04s call     tests/test_pvr_ec.py::test_quality_per_ms_memory_gate_report_written
+0.04s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_capacity_fairness_reports_are_written
+0.04s call     tests/test_pvr_ec.py::test_qpm_shape_regression_report_written
+0.04s call     tests/test_pvr_ec.py::test_reliability_calibration_repair_report_written
+0.04s call     tests/test_pvr_ec.py::test_forward_purity_preserved_after_repair
+0.04s call     tests/test_pvr_ec.py::test_final_calibration_sweep_report_written
+0.04s call     tests/test_pvr_ec.py::test_qpm_report_contains_all_15_shapes
+0.04s call     tests/test_pvr_ec.py::test_forward_does_not_write_files
+0.04s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_family_collapse
+0.04s call     tests/test_pvr_ec.py::test_qpm_memory_repair_report_written
+0.04s call     tests/test_pvr_ec.py::test_oracle_owner_not_used
+0.04s call     tests/test_pvr_ec.py::test_forward_does_not_run_replay
+0.04s call     tests/test_pvr_ec.py::test_top2_top4_execution_zero_after_repair
+0.04s call     tests/test_pvr_ec.py::test_forward_has_no_cpu_transfer_reported
+0.04s call     tests/test_pvr_ec.py::test_final_candidate_forward_purity_report_written
+0.04s call     tests/test_pvr_ec.py::test_top2_top4_execution_zero_but_top2_score_allowed
+0.03s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_capacity_architecture_report_detects_aliases
+0.03s call     tests/test_pvr_ec_family_preserving_router.py::TestCandidateMapLifecycle::test_save_and_load_round_trip
+0.02s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_calibration_regression
+0.02s call     tests/test_pvr_ec_failure_observatory.py::test_runtime_purity_attribution_blocks_research
+0.02s call     test_shared_approximation_bottleneck.py::test_gated_teacher_loss_masks_high_loss_or_low_margin_tokens
+0.02s call     tests/test_pvr_ec.py::TestPVRECRouter::test_every_token_gets_top1_primary_owner
+0.02s call     tests/test_pvr_ec_nonlinear_overfit.py::TestGradientFlow::test_optimizer_updates_expert_parameters
+0.02s call     tests/test_pvr_ec.py::TestPVRECModel::test_model_backward_passes
+0.02s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_expert_parameters_require_grad_and_update_after_step
+0.02s call     test_shared_trunk_copy_scope_ablation.py::test_copy_scope_row_requires_loss_improvement_and_route_stability
+0.02s call     tests/test_pvr_ec_nlp_stage1.py::TestLengthGeneralization::test_model_handles_length_variation
+0.01s call     tests/test_pvr_ec.py::test_minimax_candidate_selection_report_written
+0.01s call     tests/test_pvr_ec.py::TestPVRECMoE::test_dense_all_experts_trains_all_experts
+0.01s call     test_shared_approximation_bottleneck.py::test_dense_gap_window_classification_buckets_dense_and_pvr_wins
+0.01s call     tests/test_pvr_ec.py::TestMergeabilityAndTickets::test_reports_include_record_driven_metrics_and_statuses
+0.01s call     tests/test_pvr_ec.py::test_collapse_case_replay_report_written
+0.01s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_missing_reproducibility_manifest
+0.01s call     tests/test_pvr_ec.py::test_selected_candidate_config_hash_changes
+0.01s call     tests/test_pvr_ec_nonlinear_overfit.py::TestGradientFlow::test_shared_gradients_nonzero
+0.01s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_matched_wall_clock_failure
+0.01s call     tests/test_pvr_ec.py::test_multiseed_confirmation_report_written
+0.01s call     tests/test_pvr_ec_nlp_stage1.py::TestRoutingUnderNLPInputs::test_top1_invariant_holds_on_nlp_tasks
+0.01s call     tests/test_pvr_ec.py::test_matched_step_report_written
+0.01s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_expert_gradient_norm_nonzero_on_toy_loss
+0.01s call     tests/test_pvr_ec.py::test_repeatability_collapse_isolation_report_written
+0.01s call     tests/test_pvr_ec.py::test_v1_2_requires_full_revalidation
+0.01s call     tests/test_pvr_ec.py::test_stability_repair_sweep_report_written
+0.01s call     tests/test_pvr_ec.py::test_promotion_gate_blocks_on_repeatability_failure
+0.01s call     tests/test_pvr_ec.py::TestBaselinePreservation::test_fixed_moe_looped_reference_still_works
+0.01s call     tests/test_pvr_ec.py::TestPVRECMoE::test_pack_by_expert_not_per_token
+0.01s call     tests/test_pvr_ec.py::test_calibration_proxy_blocks_deployment_promotion
+0.01s call     tests/test_pvr_ec_nonlinear_overfit.py::TestGradientFlow::test_expert_gradients_nonzero_after_backward
+0.01s call     tests/test_pvr_ec.py::TestBaselinePreservation::test_fixed_moe_still_works
+0.01s call     tests/test_pvr_ec.py::TestPVRECDeployment::test_deploy_forward_static_hot_path_rules
+0.01s call     tests/test_pvr_ec.py::test_longer_training_report_written
+0.01s call     tests/test_pvr_ec.py::test_matched_wall_clock_report_written
+0.01s call     tests/test_pvr_ec_ownership.py::TestOwnershipBiasSweep::test_ownership_bias_sweep_writes_report
+0.01s call     test_shared_trunk_copy_scope_ablation.py::test_baseline_from_seed_report_loads_matched_lm_scorecard
+0.01s call     tests/test_pvr_ec.py::TestPVRECRouter::test_load_bias_is_capped
+0.01s call     tests/test_pvr_ec.py::TestPVRECModel::test_model_interface_compatible_with_benchmark
+0.01s call     tests/test_pvr_ec_family_preserving_router.py::TestFamilyPreservingScore::test_produces_exactly_one_owner_per_token
+0.01s call     tests/test_pvr_ec.py::TestBaselinePreservation::test_adaptive_moe_still_works
+0.01s call     tests/test_pvr_ec_ownership.py::TestOwnershipReports::test_action_rate_report_has_required_fields
+0.01s call     tests/test_pvr_ec_family_preserving_router.py::TestFullPipelineIntegration::test_full_pipeline_produces_valid_routing
+0.01s call     tests/test_pvr_ec_ownership.py::TestOwnershipMapExecution::test_apply_ownership_bias_is_tensor_only
+0.01s call     tests/test_pvr_ec.py::test_v1_and_v1_1_not_mutated
+0.01s call     test_shared_approximation_bottleneck.py::test_copy_compatible_dense_weights_to_pvr_copies_embeddings
+0.01s call     tests/test_pvr_ec.py::TestBaselinePreservation::test_benchmark_registers_fair_fixed_moe_variants
+0.01s call     tests/test_pvr_ec.py::TestPVRECModel::test_model_exposes_pvr_diagnostics_for_benchmark_reports
+0.01s call     tests/test_pvr_ec_nlp_stage1.py::TestRoutingUnderNLPInputs::test_no_top2_execution_on_nlp_tasks
+0.01s call     tests/test_pvr_ec.py::test_calibration_sweep_variant_creates_new_config_not_mutate_v1
+0.01s call     tests/test_pvr_ec.py::TestPVRECModel::test_model_forward_with_targets_produces_loss
+0.01s call     tests/test_pvr_ec.py::TestBaselinePreservation::test_fixed_moe_vectorized_matches_looped_reference
+0.01s call     tests/test_pvr_ec.py::TestPVRECModel::test_model_forward_produces_logits
+0.01s call     tests/test_pvr_ec_repaired_deployment_gate.py::TestRepairedGate::test_repaired_multiseed_report_written
+0.01s call     tests/test_pvr_ec_family_preserving_router.py::TestFullPipelineIntegration::test_pipeline_with_save_load
+0.01s call     tests/test_pvr_ec_final_calibration_reliability.py::TestCalibration::test_calibration_reliability_report_written
+0.01s call     tests/test_pvr_ec_repaired_deployment_gate.py::TestRepairedGate::test_repaired_calibration_report_written
+0.01s call     tests/test_pvr_ec_family_preserving_router.py::TestExpertChoiceTeacherEvidence::test_teacher_evidence_is_offline_only
+0.01s setup    test_architecture_test_figures.py::test_architecture_test_figures_parse_junit_and_write_svg
+0.01s call     tests/test_pvr_ec_nonlinear_overfit.py::TestExpertScaleEffects::test_higher_scale_produces_larger_sparse_norm
+0.01s call     tests/test_pvr_ec_stage3b_descriptor_fewshot.py::TestFewShotConditioning::test_fewshot_does_not_violate_forward_purity
+0.01s call     tests/test_pvr_ec_ownership.py::TestOwnershipReports::test_all_required_reports_are_written
+0.01s call     tests/test_pvr_ec_stage3c_fewshot_context.py::TestFewshotContext::test_fewshot_context_contains_demonstrations
+0.01s call     tests/test_pvr_ec_canary_rollout.py::TestCanary::test_canary_rollout_report_written
+0.01s call     tests/test_pvr_ec_stage3b_descriptor_fewshot.py::TestRoleBinding::test_role_binding_accuracy_reported
+0.01s call     tests/test_pvr_ec_ownership.py::TestFrozenCandidateMap::test_frozen_candidate_uses_selected_calibrated_config
+0.01s call     tests/test_pvr_ec.py::test_diagnostic_logits_not_retained_in_inference_timing
+0.01s call     tests/test_pvr_ec.py::test_final_candidate_config_loads
+0.01s call     tests/test_pvr_ec_stage3d_context_overflow.py::TestOverflowRepair::test_no_nan_in_fewshot
+0.01s call     tests/test_pvr_ec_descriptor_semantic_identity_repair.py::TestInvariants::test_owners_per_token_one
+0.01s call     tests/test_pvr_ec_family_preserving_router.py::TestExpertChoiceTeacherEvidence::test_evidence_produces_required_metrics
+0.01s call     tests/test_pvr_ec_final_deployment_gate.py::TestDeploymentGate::test_deployment_gate_report_written
+0.01s call     tests/test_pvr_ec_descriptor_semantic_identity_repair.py::TestRepairSweep::test_semantic_repair_sweep_report_written
+0.01s call     tests/test_pvr_ec_stage3e_context_ladder.py::TestContextLadder::test_report_written
+0.01s call     tests/test_pvr_ec.py::TestPVRECMoE::test_sparse_auxiliary_losses_are_finite[sparse_ce_0_03]
+0.01s call     tests/test_pvr_ec_stage3d_combination_gate.py::TestResearchGate::test_gate_report_written
+0.01s call     tests/test_pvr_ec_stage3d_fewshot_valid.py::TestFewshotValid::test_report_written
+0.01s call     tests/test_pvr_ec_final_qpm_memory.py::TestQPMMemory::test_qpm_memory_report_written
+0.01s call     tests/test_pvr_ec_stage3b_descriptor_fewshot.py::TestDescriptorConditioning::test_descriptor_does_not_regress_seen_tasks
+
+(1721 durations < 0.005s hidden.  Use -vv to show these durations.)
+================= 649 passed, 5 warnings in 765.64s (0:12:45) =================

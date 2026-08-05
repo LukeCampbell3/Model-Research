@@ -1,0 +1,5 @@
+{
+  "model": "vanilla_switch_top1_reference_100m",
+  "prototype_margin_curve": [],
+  "schema_version": "1.0"
+}

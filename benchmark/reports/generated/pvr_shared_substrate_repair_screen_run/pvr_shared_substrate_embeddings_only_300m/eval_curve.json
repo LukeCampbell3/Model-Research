@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-07-22T13:23:19.095474+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 49.57918930053711,
+      "eval_tokens": 256,
+      "optimizer_step": 244,
+      "step": 244,
+      "training_tokens_seen": 249856
+    },
+    {
+      "eval_loss": 34.583251953125,
+      "eval_tokens": 256,
+      "optimizer_step": 488,
+      "step": 488,
+      "training_tokens_seen": 499712
+    },
+    {
+      "eval_loss": 19.326231002807617,
+      "eval_tokens": 256,
+      "optimizer_step": 732,
+      "step": 732,
+      "training_tokens_seen": 749568
+    },
+    {
+      "eval_loss": 19.63642120361328,
+      "eval_tokens": 256,
+      "optimizer_step": 976,
+      "step": 976,
+      "training_tokens_seen": 999424
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "pvr_shared_substrate_embeddings_only_300m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

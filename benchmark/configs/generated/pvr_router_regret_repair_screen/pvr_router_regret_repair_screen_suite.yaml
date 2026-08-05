@@ -1,0 +1,59 @@
+{
+  "eval_data": "data/eval/official_like_dev",
+  "experiment": "PVR_ROUTER_REGRET_REPAIR_SCREEN",
+  "model_configs": [
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_baseline_no_regret_300m.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_regret0p001_300m.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_regret0p005_300m.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_regret0p01_300m.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_kl0p005_300m.yaml",
+    "benchmark/configs/generated/pvr_router_regret_repair_screen/configs/pvr_router_regret_repair_regret0p005_kl0p001_300m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "rung_tokens": [
+    249856,
+    499712
+  ],
+  "schema_version": "1.0",
+  "selection_rule": "Official-like development loss plus final-block router regret and strict Top1. Final official bounded files remain untouched.",
+  "target_training_tokens": 500736,
+  "training_data": "data/broad_nlp_train",
+  "variant_definitions": [
+    {
+      "notes": "Full random Transformer substrate winner with no regret-weighted router repair.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.0,
+      "suffix": "baseline_no_regret"
+    },
+    {
+      "notes": "Light expected-regret router objective.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.001,
+      "suffix": "regret0p001"
+    },
+    {
+      "notes": "Medium expected-regret router objective.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.005,
+      "suffix": "regret0p005"
+    },
+    {
+      "notes": "Strong expected-regret router objective.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.01,
+      "suffix": "regret0p01"
+    },
+    {
+      "notes": "Soft oracle KL target without expected-regret term.",
+      "router_oracle_kl_weight": 0.005,
+      "router_regret_aux_weight": 0.0,
+      "suffix": "kl0p005"
+    },
+    {
+      "notes": "Medium expected-regret plus light soft-oracle KL.",
+      "router_oracle_kl_weight": 0.001,
+      "router_regret_aux_weight": 0.005,
+      "suffix": "regret0p005_kl0p001"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "candidate": "pvr_ec_o_full_shared_trunk_init_v1",
+  "comparison_scope": [
+    "dense_transformer_300m",
+    "vanilla_switch_top1_reference_300m",
+    "generic_top2_moe_reference_300m",
+    "pvr_ec_o_full_300m_baseline",
+    "pvr_ec_o_full_shared_trunk_init_v1"
+  ],
+  "created_at": "2026-06-14T17:56:45.535340+00:00",
+  "git_commit": "5c61a4cb1d93ca182847b75483687d1c344bc328",
+  "interpretation": "The candidate has the best LM loss in this comparison and preserves the 105M active-parameter/630M active-FLOP Top1 PVR execution estimate. Its proof remains a teacher-initialized sparse transfer claim, not a from-scratch architecture dominance claim.",
+  "rankings": {
+    "lm_loss_ascending": [
+      {
+        "lm_loss": 3.0314649403095246,
+        "model": "pvr_ec_o_full_shared_trunk_init_v1"
+      },
+      {
+        "lm_loss": 3.305846790075302,
+        "model": "dense_transformer_300m"
+      },
+      {
+        "lm_loss": 3.319429429769516,
+        "model": "vanilla_switch_top1_reference_300m"
+      },
+      {
+        "lm_loss": 3.3654595971107484,
+        "model": "generic_top2_moe_reference_300m"
+      },
+      {
+        "lm_loss": 3.5067039370536803,
+        "model": "pvr_ec_o_full_300m_baseline"
+      }
+    ],
+    "quality_per_active_flop_descending": [
+      {
+        "model": "pvr_ec_o_full_shared_trunk_init_v1",
+        "quality_per_active_flop": 5.236087563458734e-10
+      },
+      {
+        "model": "vanilla_switch_top1_reference_300m",
+        "quality_per_active_flop": 4.781850679114456e-10
+      },
+      {
+        "model": "pvr_ec_o_full_300m_baseline",
+        "quality_per_active_flop": 4.526477329692202e-10
+      },
+      {
+        "model": "generic_top2_moe_reference_300m",
+        "quality_per_active_flop": 3.301513742922368e-10
+      },
+      {
+        "model": "dense_transformer_300m",
+        "quality_per_active_flop": 1.68052420706073e-10
+      }
+    ],
+    "quality_per_active_param_descending": [
+      {
+        "model": "pvr_ec_o_full_shared_trunk_init_v1",
+        "quality_per_active_param": 3.14165253807524e-09
+      },
+      {
+        "model": "vanilla_switch_top1_reference_300m",
+        "quality_per_active_param": 2.8691104074686737e-09
+      },
+      {
+        "model": "pvr_ec_o_full_300m_baseline",
+        "quality_per_active_param": 2.715886397815321e-09
+      },
+      {
+        "model": "generic_top2_moe_reference_300m",
+        "quality_per_active_param": 1.9809082457534208e-09
+      },
+      {
+        "model": "dense_transformer_300m",
+        "quality_per_active_param": 1.0083145242364378e-09
+      }
+    ]
+  },
+  "rows": [
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "checkpoint_path": "checkpoints/shared_trunk_init_300m_confirmation/pvr_ec_o_full_300m_shared_trunk_init_from_dense_seed_20260614/checkpoint.pt",
+      "eval_token_count": 51200,
+      "eval_vram_peak": 1173859328,
+      "heldout_eval_token_count": 12800,
+      "lm_loss": 3.0314649403095246,
+      "model": "pvr_ec_o_full_shared_trunk_init_v1",
+      "optimizer_steps": 4000,
+      "perplexity": 20.727575019203204,
+      "quality_per_active_flop": 5.236087563458734e-10,
+      "quality_per_active_param": 3.14165253807524e-09,
+      "routing_diagnostics": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": -0.2771320343017578,
+          "mean_eval_loss_delta_vs_baseline": -0.5217703104019167,
+          "mean_owner_entropy_delta_vs_baseline": 0.02867260400388827,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": -0.03831380208333335,
+          "mean_route_margin_delta_vs_baseline": 0.010296393473314902
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.5827107429504395,
+        "loss_supported": true,
+        "mean_eval_loss": 4.99695086479187,
+        "mean_owner_entropy": 2.026020207624019,
+        "mean_prototype_monopoly_rate": 0.1822265625,
+        "mean_route_margin": 0.4155197867137152,
+        "model": "pvr_ec_o_full_300m_shared_trunk_init_from_dense_seed_20260614",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark\\reports\\generated\\shared_trunk_init_300m_confirmation\\lm_eval\\pvr_ec_o_full_300m_shared_trunk_init_from_dense_seed_20260614_nlp_scorecard.json",
+      "source": "shared_trunk_init_300m_confirmation",
+      "tokens_per_second": 1227.0559141268477,
+      "training_tokens_per_second": 1393.9637494405943,
+      "training_tokens_seen": 1024000,
+      "training_vram_peak": 6266845184
+    },
+    {
+      "active_flops_per_token": 1800000000,
+      "active_params_per_token": 300000000,
+      "eval_token_count": 51200,
+      "eval_vram_peak": 1028209664,
+      "heldout_eval_token_count": 12800,
+      "lm_loss": 3.305846790075302,
+      "model": "dense_transformer_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 27.271625155473178,
+      "quality_per_active_flop": 1.68052420706073e-10,
+      "quality_per_active_param": 1.0083145242364378e-09,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/dense_transformer_300m/merged_scorecard.json",
+      "source": "comparison_300m_real_4k",
+      "tokens_per_second": 9285.982897748594,
+      "training_tokens_per_second": 4136.21776898785,
+      "training_tokens_seen": 1024000,
+      "training_vram_peak": null
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "eval_token_count": 51200,
+      "eval_vram_peak": 1075235840,
+      "heldout_eval_token_count": 12800,
+      "lm_loss": 3.319429429769516,
+      "model": "vanilla_switch_top1_reference_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 27.644572887486042,
+      "quality_per_active_flop": 4.781850679114456e-10,
+      "quality_per_active_param": 2.8691104074686737e-09,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/vanilla_switch_top1_reference_300m/merged_scorecard.json",
+      "source": "comparison_300m_real_4k",
+      "tokens_per_second": 916.3825388346461,
+      "training_tokens_per_second": 1238.153241489617,
+      "training_tokens_seen": 1024000,
+      "training_vram_peak": null
+    },
+    {
+      "active_flops_per_token": 900000000,
+      "active_params_per_token": 150000000,
+      "eval_token_count": 51200,
+      "eval_vram_peak": 1075235840,
+      "heldout_eval_token_count": 12800,
+      "lm_loss": 3.3654595971107484,
+      "model": "generic_top2_moe_reference_300m",
+      "optimizer_steps": 4000,
+      "perplexity": 28.946798107084994,
+      "quality_per_active_flop": 3.301513742922368e-10,
+      "quality_per_active_param": 1.9809082457534208e-09,
+      "routing_diagnostics": {
+        "expert_gini": null,
+        "hard_invariants_validated": null,
+        "owner_entropy": null,
+        "owners_per_token": null,
+        "prototype_margin": null,
+        "prototype_monopoly_rate": null,
+        "runtime_dynamic_k_count": null,
+        "runtime_expert_choice_count": null,
+        "top2_execution_count": null,
+        "top4_execution_count": null
+      },
+      "routing_window_count": 0,
+      "scorecard_path": "benchmark/reports/generated/genuine_program_300m_real_4k/scorecard_artifacts/scorecards/generic_top2_moe_reference_300m/merged_scorecard.json",
+      "source": "comparison_300m_real_4k",
+      "tokens_per_second": 852.4066809218992,
+      "training_tokens_per_second": 1147.6664617951978,
+      "training_tokens_seen": 1024000,
+      "training_vram_peak": null
+    },
+    {
+      "active_flops_per_token": 630000000,
+      "active_params_per_token": 105000000,
+      "checkpoint_path": "checkpoints/shared_trunk_init_300m_confirmation/pvr_ec_o_full_300m_baseline_seed_20260614/checkpoint.pt",
+      "eval_token_count": 51200,
+      "eval_vram_peak": 1173859328,
+      "heldout_eval_token_count": 12800,
+      "lm_loss": 3.5067039370536803,
+      "model": "pvr_ec_o_full_300m_baseline",
+      "optimizer_steps": 4000,
+      "perplexity": 33.33820167993399,
+      "quality_per_active_flop": 4.526477329692202e-10,
+      "quality_per_active_param": 2.715886397815321e-09,
+      "routing_diagnostics": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": 0.0,
+          "mean_eval_loss_delta_vs_baseline": 0.0,
+          "mean_owner_entropy_delta_vs_baseline": 0.0,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": 0.0,
+          "mean_route_margin_delta_vs_baseline": 0.0
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.8598427772521973,
+        "loss_supported": false,
+        "mean_eval_loss": 5.518721175193787,
+        "mean_owner_entropy": 1.9973476036201305,
+        "mean_prototype_monopoly_rate": 0.22054036458333334,
+        "mean_route_margin": 0.4052233932404003,
+        "model": "pvr_ec_o_full_300m_baseline_seed_20260614",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      },
+      "routing_window_count": 10,
+      "scorecard_path": "benchmark\\reports\\generated\\shared_trunk_init_300m_confirmation\\lm_eval\\pvr_ec_o_full_300m_baseline_seed_20260614_nlp_scorecard.json",
+      "source": "shared_trunk_init_300m_confirmation",
+      "tokens_per_second": 1103.8225731024338,
+      "training_tokens_per_second": 1182.291309924924,
+      "training_tokens_seen": 1024000,
+      "training_vram_peak": 5749131264
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_SHARED_TRUNK_INIT_V1_ACTIVE_COMPUTE_AUDIT_COMPLETE"
+}

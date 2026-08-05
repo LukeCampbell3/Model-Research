@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-06-17T04:05:21.991273+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 2.549566999077797,
+      "optimizer_step": 10,
+      "step": 10,
+      "structured_unseen_loss": 12.61005026102066,
+      "training_tokens_seen": 5120
+    },
+    {
+      "eval_loss": 2.5690285451710224,
+      "optimizer_step": 20,
+      "step": 20,
+      "structured_unseen_loss": 11.997175931930542,
+      "training_tokens_seen": 10240
+    },
+    {
+      "eval_loss": 2.5380444787442684,
+      "optimizer_step": 30,
+      "step": 30,
+      "structured_unseen_loss": 11.841387033462524,
+      "training_tokens_seen": 15360
+    },
+    {
+      "eval_loss": 2.551963947713375,
+      "optimizer_step": 40,
+      "step": 40,
+      "structured_unseen_loss": 11.551232278347015,
+      "training_tokens_seen": 20480
+    },
+    {
+      "eval_loss": 2.5435631200671196,
+      "optimizer_step": 50,
+      "step": 50,
+      "structured_unseen_loss": 11.462156295776367,
+      "training_tokens_seen": 25600
+    },
+    {
+      "eval_loss": 2.5633019506931305,
+      "optimizer_step": 60,
+      "step": 60,
+      "structured_unseen_loss": 11.376922249794006,
+      "training_tokens_seen": 30720
+    },
+    {
+      "eval_loss": 2.5530199743807316,
+      "optimizer_step": 70,
+      "step": 70,
+      "structured_unseen_loss": 11.283502101898193,
+      "training_tokens_seen": 35840
+    },
+    {
+      "eval_loss": 2.549755435436964,
+      "optimizer_step": 80,
+      "step": 80,
+      "structured_unseen_loss": 11.273473799228668,
+      "training_tokens_seen": 40960
+    },
+    {
+      "eval_loss": 2.545712236315012,
+      "optimizer_step": 90,
+      "step": 90,
+      "structured_unseen_loss": 11.178402602672577,
+      "training_tokens_seen": 46080
+    },
+    {
+      "eval_loss": 2.5479386039078236,
+      "optimizer_step": 100,
+      "step": 100,
+      "structured_unseen_loss": 11.037029147148132,
+      "training_tokens_seen": 51200
+    }
+  ],
+  "eval_window_count": 10,
+  "model": "pvr_ec_o_ean_retention_gated_delta_replay_v1_seed_123",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

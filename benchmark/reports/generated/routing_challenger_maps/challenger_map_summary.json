@@ -1,0 +1,48 @@
+{
+  "actual_runtime_execution_unchanged": true,
+  "challenger_disagreement_rate": null,
+  "challenger_in_bounds_rate": null,
+  "confidence_source": "trained_in_bounds_head_when_available_else_margin_proxy",
+  "created_at": "2026-06-13T13:18:21.464554+00:00",
+  "hard_invariants": {
+    "checked_models": [
+      "pvr_ec_o_full_300m",
+      "pvr_ec_o_no_contrastive_geometry_300m",
+      "pvr_ec_o_no_descriptor_operator_300m",
+      "pvr_ec_o_no_prototypes_300m",
+      "pvr_ec_o_shared_only_300m"
+    ],
+    "failures": [],
+    "required_fields": [
+      "owners_per_token",
+      "top2_execution_count",
+      "top4_execution_count",
+      "runtime_dynamic_k_count",
+      "runtime_expert_choice_count",
+      "production_map_mutated"
+    ],
+    "status": "COMPLETED"
+  },
+  "high_in_bounds_rate": 0.24,
+  "high_margin_rate": 1.0,
+  "in_bounds_auc_for_loss_prediction": 0.2288,
+  "in_bounds_loss_correlation": 0.15605151924400393,
+  "low_in_bounds_rate": 0.12,
+  "low_margin_rate": 0.0,
+  "margin_auc_for_loss_prediction": 0.48,
+  "margin_loss_correlation": -0.00896701748042059,
+  "mean_owner_in_bounds": 0.5283176422387725,
+  "mean_route_margin": 0.45399073898508513,
+  "median_owner_in_bounds": 0.5000000000000006,
+  "median_route_margin": 0.47147572656467673,
+  "mode": "score_only",
+  "oracle_challenger_mean_loss_delta": null,
+  "oracle_challenger_win_rate": null,
+  "oracle_eval_offline_only": true,
+  "oracle_eval_status": "NOT_RUN_NOT_IMPLEMENTED",
+  "owner_vs_challenger_in_bounds_gap": 0.05663528447754506,
+  "schema_version": "1.0",
+  "size": "300m",
+  "status": "DIAGNOSTIC_ONLY",
+  "window_count": 50
+}

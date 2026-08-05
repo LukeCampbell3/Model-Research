@@ -1,0 +1,46 @@
+{
+  "model": "pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 488
+    },
+    {
+      "owner_churn": null,
+      "step": 976
+    },
+    {
+      "owner_churn": null,
+      "step": 1464
+    },
+    {
+      "owner_churn": null,
+      "step": 1952
+    },
+    {
+      "owner_churn": null,
+      "step": 2440
+    },
+    {
+      "owner_churn": null,
+      "step": 2928
+    },
+    {
+      "owner_churn": null,
+      "step": 3416
+    },
+    {
+      "owner_churn": null,
+      "step": 3904
+    },
+    {
+      "owner_churn": null,
+      "step": 4392
+    },
+    {
+      "owner_churn": null,
+      "step": 4880
+    }
+  ],
+  "schema_version": "1.0"
+}

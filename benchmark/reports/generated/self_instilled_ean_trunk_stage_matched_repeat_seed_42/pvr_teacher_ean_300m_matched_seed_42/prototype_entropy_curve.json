@@ -1,0 +1,50 @@
+{
+  "model": "pvr_teacher_ean_300m_matched_seed_42",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.0617010232810733,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.0601428585442,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0615967331203526,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.059726768871531,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.06010004909846,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.0609700432513707,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.059830583374356,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.060639970014309,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.0577315548890436,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.056923519736099,
+      "step": 1000
+    },
+    {
+      "prototype_entropy": 2.058957718642583,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

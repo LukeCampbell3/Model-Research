@@ -1,0 +1,22 @@
+{
+  "model": "pvr_router_regret_repair_baseline_no_regret_300m_1m_confirm",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 244
+    },
+    {
+      "owner_churn": null,
+      "step": 488
+    },
+    {
+      "owner_churn": null,
+      "step": 732
+    },
+    {
+      "owner_churn": null,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

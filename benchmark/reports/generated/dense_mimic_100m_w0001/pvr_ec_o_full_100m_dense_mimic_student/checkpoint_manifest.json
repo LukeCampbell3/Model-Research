@@ -1,0 +1,35 @@
+{
+  "checkpoint_exists": true,
+  "checkpoint_hash": "272dd18a2fa3bccb91f74456551db96b2a1a672dad9c85bcb8248a5b3239c917",
+  "checkpoint_path": "checkpoints/dense_mimic_100m_w0001/pvr_ec_o_full_100m_dense_mimic_student/checkpoint.pt",
+  "created_at": "2026-06-13T14:02:08.603632+00:00",
+  "effective_batch_tokens": 256,
+  "error": null,
+  "eval_window_count": 5,
+  "mock_checkpoint": false,
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "optimizer_steps": 1000,
+  "real_training_data": true,
+  "resource_reduction": {
+    "completed_eval_windows": 5,
+    "completed_steps": 1000,
+    "completed_training_tokens": 256000,
+    "estimated_steps_needed": 4000,
+    "reason_for_reduction": "Run executed with explicit local budget below real-comparison target.",
+    "status": "RESOURCE_REDUCED_BUDGET",
+    "target_eval_windows": 10,
+    "target_training_tokens": 1000000
+  },
+  "routing_window_count": 5,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+  "target_eval_windows": 10,
+  "target_steps": 4000,
+  "target_training_tokens": 1000000,
+  "tier": "dense_mimic_diagnostic",
+  "tokens_seen": 256000,
+  "training_data_paths": [
+    "data/broad_nlp_train"
+  ],
+  "training_tokens_seen": 256000
+}

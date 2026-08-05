@@ -1,0 +1,95 @@
+{
+  "assertions": {
+    "exact_resume_state_available_for_all_completed_rows": false,
+    "failed_rows_non_comparable": true,
+    "weight_only_resume_non_equivalent_confirmed": true
+  },
+  "comparison_status": "PVR_5M_COMPARISON_HAS_WEIGHT_ONLY_CHECKPOINT_CAVEAT",
+  "created_at": "2026-07-19T16:14:15.192659+00:00",
+  "decision_report": "benchmark/reports/generated/sparse_v2_300m_long_curve_validation_5m_decision/sparse_v2_300m_long_curve_validation_5m_report.json",
+  "experiment": "PVR_RESUME_VALIDITY_AUDIT",
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "interpretation": "Legacy final checkpoints are loadable for evaluation but do not contain enough optimizer/RNG state to prove exact interrupted continuation.",
+  "rows": [
+    {
+      "checkpoint_hash_reported": "7e0d8a6e5587037ada5a77099d32b13ad48bcef3f8e98319bf85112638142f5b",
+      "checkpoint_metadata": {
+        "exists": false
+      },
+      "checkpoint_path": "__missing_checkpoint_path__",
+      "optimizer_steps": 4883,
+      "resume_validity": "RESUME_STATE_UNKNOWN_OR_MISSING",
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "generic_top2_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash_reported": "c3b9866ce11379858d21cc94fa1ea9d21e03e55988482e043064b6da706a524f",
+      "checkpoint_metadata": {
+        "exists": false
+      },
+      "checkpoint_path": "__missing_checkpoint_path__",
+      "optimizer_steps": 4883,
+      "resume_validity": "RESUME_STATE_UNKNOWN_OR_MISSING",
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "switch_top1_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash_reported": "176c04b85e3cbba9a9a9103a10cdfe4941c0a0891d66421b29abbaacc7c7f3c9",
+      "checkpoint_metadata": {
+        "exists": false
+      },
+      "checkpoint_path": "__missing_checkpoint_path__",
+      "optimizer_steps": 4883,
+      "resume_validity": "RESUME_STATE_UNKNOWN_OR_MISSING",
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "dense_sparse_v2_300m_matched_long_curve"
+    },
+    {
+      "checkpoint_hash_reported": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+      "checkpoint_metadata": {
+        "checkpoint_kind": "WEIGHT_ONLY_LEGACY",
+        "config_hash": null,
+        "exact_resume_capable": false,
+        "exists": true,
+        "has_model_state": true,
+        "has_numpy_rng_state": false,
+        "has_optimizer_state": false,
+        "has_python_rng_state": false,
+        "has_scaler_state": false,
+        "has_scheduler_state": false,
+        "has_torch_cpu_rng_state": false,
+        "has_torch_cuda_rng_state": false,
+        "optimizer_steps": null,
+        "resume_mode": null,
+        "sha256": "b45c4e0ac10002c6e94821348ccc1f6b05d6ed1ca039f0a0d185b29883fd7c50",
+        "source_git_commit": null,
+        "training_status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+        "training_tokens_seen": null,
+        "weight_only": true
+      },
+      "checkpoint_path": "checkpoints\\sparse_v2_300m_long_curve_validation\\pvr_teacher_independent_sparse_v2_300m_long_curve\\checkpoint.pt",
+      "optimizer_steps": 4883,
+      "resume_validity": "WEIGHT_ONLY_CHECKPOINT_NON_EQUIVALENT_FOR_EXACT_RESUME",
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "training_tokens_seen": 5000192,
+      "variant": "pvr_teacher_independent_sparse_v2_300m_long_curve"
+    },
+    {
+      "checkpoint_hash_reported": "7bde18a8c0bd8cb9ed1c88d513ccb7cbc3ed25955a21bb31e65feaf1096285c7",
+      "checkpoint_metadata": {
+        "exists": false
+      },
+      "checkpoint_path": "__missing_checkpoint_path__",
+      "optimizer_steps": 414,
+      "resume_validity": "TRAINING_FAILED_NON_COMPARABLE",
+      "status": "TRAINING_FAILED",
+      "training_tokens_seen": 423936,
+      "variant": "pvr_teacher_independent_sparse_v2_300m_aux0005_long_curve"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "PVR_WEIGHT_ONLY_RESUME_NON_EQUIVALENT_CONFIRMED"
+}

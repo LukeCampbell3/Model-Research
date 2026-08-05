@@ -1,0 +1,18 @@
+{
+  "model": "pvr_sparse_v2_shared_warmup200_aux0001_100m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 250
+    },
+    {
+      "owner_churn": null,
+      "step": 500
+    },
+    {
+      "owner_churn": null,
+      "step": 950
+    }
+  ],
+  "schema_version": "1.0"
+}

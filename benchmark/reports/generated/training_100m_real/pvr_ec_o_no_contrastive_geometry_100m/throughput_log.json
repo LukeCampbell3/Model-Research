@@ -1,0 +1,7 @@
+{
+  "model": "pvr_ec_o_no_contrastive_geometry_100m",
+  "schema_version": "1.0",
+  "tokens_per_second": 6.840380270831049,
+  "tokens_seen": 16,
+  "wall_clock_seconds": 2.3390512466430664
+}

@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_full_transformer_random_ean_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 1.811650546992799,
+      "step": 244
+    },
+    {
+      "prototype_margin": 2.2513216344304965,
+      "step": 488
+    },
+    {
+      "prototype_margin": 2.4626334003793695,
+      "step": 732
+    },
+    {
+      "prototype_margin": 2.616085254444139,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

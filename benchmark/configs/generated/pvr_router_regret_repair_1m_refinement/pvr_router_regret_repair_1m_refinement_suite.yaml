@@ -1,0 +1,39 @@
+{
+  "baseline_reference_report": "benchmark/reports/generated/pvr_router_regret_repair_1m_confirmation/pvr_router_repair_screen.json",
+  "eval_data": "data/eval/official_like_dev",
+  "experiment": "PVR_ROUTER_REGRET_REPAIR_1M_REFINEMENT",
+  "model_configs": [
+    "benchmark/configs/generated/pvr_router_regret_repair_1m_refinement/configs/pvr_router_regret_repair_regret0p005_300m_1m_refine.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "rung_tokens": [
+    249856,
+    499712,
+    749568,
+    999424
+  ],
+  "schema_version": "1.0",
+  "selection_rule": "Compare lower regret weights against the completed 1M no-regret baseline. Final official bounded files remain untouched.",
+  "target_training_tokens": 1000448,
+  "training_data": "data/broad_nlp_train",
+  "variant_definitions": [
+    {
+      "notes": "Lower expected-regret weight after regret0p01 reduced regret but missed 1M eval.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.0025,
+      "suffix": "regret0p0025"
+    },
+    {
+      "notes": "Best final-block regret tradeoff from the 500K screen, retested at 1M.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.005,
+      "suffix": "regret0p005"
+    },
+    {
+      "notes": "Intermediate expected-regret weight between 0.005 and the failed 0.01 confirmation.",
+      "router_oracle_kl_weight": 0.0,
+      "router_regret_aux_weight": 0.0075,
+      "suffix": "regret0p0075"
+    }
+  ]
+}

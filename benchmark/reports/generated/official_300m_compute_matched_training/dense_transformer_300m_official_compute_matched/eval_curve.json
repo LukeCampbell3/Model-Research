@@ -1,0 +1,121 @@
+{
+  "created_at": "2026-06-20T12:12:05.007346+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 26.08211898803711,
+      "eval_tokens": 64,
+      "optimizer_step": 100,
+      "phase": "matched_trunk_budget",
+      "step": 100,
+      "training_tokens_seen": 25600
+    },
+    {
+      "eval_loss": 24.822574615478516,
+      "eval_tokens": 64,
+      "optimizer_step": 200,
+      "phase": "matched_trunk_budget",
+      "step": 200,
+      "training_tokens_seen": 51200
+    },
+    {
+      "eval_loss": 9.491523742675781,
+      "eval_tokens": 64,
+      "optimizer_step": 300,
+      "phase": "matched_trunk_budget",
+      "step": 300,
+      "training_tokens_seen": 76800
+    },
+    {
+      "eval_loss": 4.6084089279174805,
+      "eval_tokens": 64,
+      "optimizer_step": 400,
+      "phase": "matched_trunk_budget",
+      "step": 400,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 3.776045560836792,
+      "eval_tokens": 64,
+      "optimizer_step": 500,
+      "phase": "matched_trunk_budget",
+      "step": 500,
+      "training_tokens_seen": 128000
+    },
+    {
+      "eval_loss": 3.2048144340515137,
+      "eval_tokens": 64,
+      "optimizer_step": 1000,
+      "phase": "matched_trunk_budget",
+      "step": 1000,
+      "training_tokens_seen": 256000
+    },
+    {
+      "eval_loss": 2.7146847248077393,
+      "eval_tokens": 64,
+      "optimizer_step": 1500,
+      "phase": "matched_trunk_budget",
+      "step": 1500,
+      "training_tokens_seen": 384000
+    },
+    {
+      "eval_loss": 2.5737667083740234,
+      "eval_tokens": 64,
+      "optimizer_step": 2000,
+      "phase": "matched_trunk_budget",
+      "step": 2000,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 2.77645206451416,
+      "eval_tokens": 64,
+      "optimizer_step": 2500,
+      "phase": "matched_trunk_budget",
+      "step": 2500,
+      "training_tokens_seen": 640000
+    },
+    {
+      "eval_loss": 2.6260430812835693,
+      "eval_tokens": 64,
+      "optimizer_step": 3000,
+      "phase": "matched_trunk_budget",
+      "step": 3000,
+      "training_tokens_seen": 768000
+    },
+    {
+      "eval_loss": 2.8993356227874756,
+      "eval_tokens": 64,
+      "optimizer_step": 3500,
+      "phase": "matched_trunk_budget",
+      "step": 3500,
+      "training_tokens_seen": 896000
+    },
+    {
+      "eval_loss": 2.5503602027893066,
+      "eval_tokens": 64,
+      "optimizer_step": 4000,
+      "phase": "matched_trunk_budget",
+      "step": 4000,
+      "training_tokens_seen": 1024000
+    },
+    {
+      "eval_loss": 2.402388095855713,
+      "eval_tokens": 64,
+      "optimizer_step": 4500,
+      "phase": "matched_specialization_budget",
+      "step": 4500,
+      "training_tokens_seen": 1536000
+    },
+    {
+      "eval_loss": 2.252485513687134,
+      "eval_tokens": 64,
+      "optimizer_step": 5000,
+      "phase": "matched_specialization_budget",
+      "step": 5000,
+      "training_tokens_seen": 2048000
+    }
+  ],
+  "eval_window_count": 14,
+  "model": "dense_transformer_300m_official_compute_matched",
+  "schema_version": "1.0",
+  "status": "PVR_300M_OFFICIAL_CONTROL_TRAINING_COMPLETE"
+}

@@ -1,0 +1,5 @@
+{
+  "model": "dense_sparse_v2_300m_matched",
+  "owner_churn_curve": [],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "optimizer_steps": 100,
+  "resource_reduction": {
+    "completed_eval_windows": 1,
+    "completed_steps": 100,
+    "completed_training_tokens": 102400,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 1,
+    "target_training_tokens": 102400
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 1,
+  "target_steps": 100,
+  "target_training_tokens": 102400,
+  "tokens_per_second": 1769.3290468199216,
+  "tokens_seen": 102400,
+  "training_tokens_seen": 102400,
+  "wall_clock_seconds": 57.87504601478577
+}

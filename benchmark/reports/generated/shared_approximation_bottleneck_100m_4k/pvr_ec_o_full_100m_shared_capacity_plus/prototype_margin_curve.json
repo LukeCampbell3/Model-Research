@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_100m_shared_capacity_plus",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.4997859945675979,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.5041651962286172,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.4785219444602262,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.5160179631008456,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.513240894957562,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.5218720367362645,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.5310706297314027,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.5281103466453109,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.5262310776355056,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.5215901164968576,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

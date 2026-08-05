@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_wider_attention_norms_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.21783376943979724,
+      "step": 244
+    },
+    {
+      "prototype_margin": 0.2500273197462472,
+      "step": 488
+    },
+    {
+      "prototype_margin": 0.336524703756974,
+      "step": 732
+    },
+    {
+      "prototype_margin": 0.3339781586934502,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

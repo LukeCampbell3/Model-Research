@@ -1,0 +1,37 @@
+{
+  "candidate_model_variant": "pvr_teacher_independent_sparse_v2_300m",
+  "decision_rule": "Candidate support requires benchmark evidence, clean Top1 routing, and paired/significant advantage against sparse baselines. This bounded suite cannot unlock full official claims.",
+  "experiment": "PVR_SPARSE_V2_300M_OFFICIAL_BOUNDED_BENCHMARK",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/dense_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/switch_top1_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/generic_top2_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/pvr_teacher_independent_sparse_v2_300m.yaml"
+  ],
+  "models": [
+    {
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/dense_sparse_v2_300m_matched.yaml",
+      "variant": "dense_sparse_v2_300m_matched"
+    },
+    {
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/switch_top1_sparse_v2_300m_matched.yaml",
+      "variant": "switch_top1_sparse_v2_300m_matched"
+    },
+    {
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/generic_top2_sparse_v2_300m_matched.yaml",
+      "variant": "generic_top2_sparse_v2_300m_matched"
+    },
+    {
+      "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/pvr_teacher_independent_sparse_v2_300m.yaml",
+      "variant": "pvr_teacher_independent_sparse_v2_300m"
+    }
+  ],
+  "promotion_baselines": [
+    "dense_sparse_v2_300m_matched",
+    "switch_top1_sparse_v2_300m_matched",
+    "generic_top2_sparse_v2_300m_matched"
+  ],
+  "schema_version": "1.0",
+  "scope": "Bounded deterministic official-data slices; not full official leaderboard evidence.",
+  "training_tokens_per_model": 2150400
+}

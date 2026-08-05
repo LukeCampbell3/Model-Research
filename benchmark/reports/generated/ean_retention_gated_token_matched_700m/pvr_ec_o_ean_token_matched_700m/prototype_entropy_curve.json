@@ -1,0 +1,50 @@
+{
+  "model": "pvr_ec_o_ean_token_matched_700m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.0092500364979244,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.017799987283382,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0212556130679533,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.0279953595756215,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0285035845584884,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.0180775158134723,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.022679464803577,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.0246752091644806,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.0150586491563223,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.0209951325885878,
+      "step": 1000
+    },
+    {
+      "prototype_entropy": 2.0256339605895386,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-07-15T14:23:02.224342+00:00",
+  "environment": {
+    "cwd": "/workspace",
+    "machine": "x86_64",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.10.13"
+  },
+  "git_commit": "bce74c6d7a7bd91cbe8b197f6bc5d37b6b22c457",
+  "hashes": {
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/sparse_v2_300m_official_bounded_suite.yaml": "bf8cc83f1653696ef4246d8baa4f6e523fea84687edc9f8e456f34d9977c7f88"
+  },
+  "notes": "Suite execution reproducibility manifest.",
+  "schema_version": "1.0",
+  "source_paths": [
+    "benchmark/configs/generated/sparse_v2_300m_official_bounded/sparse_v2_300m_official_bounded_suite.yaml"
+  ]
+}

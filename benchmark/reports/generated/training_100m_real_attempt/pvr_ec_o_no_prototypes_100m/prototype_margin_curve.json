@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_no_prototypes_100m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.4091975308450249,
+      "step": 100
+    },
+    {
+      "prototype_margin": 0.48988588743183453,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.5082407265193373,
+      "step": 300
+    },
+    {
+      "prototype_margin": 0.5648786193390455,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.6133073494323374,
+      "step": 500
+    },
+    {
+      "prototype_margin": 0.6273515403421092,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.6187693347213402,
+      "step": 700
+    },
+    {
+      "prototype_margin": 0.6124054840183817,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.6184831751525053,
+      "step": 900
+    },
+    {
+      "prototype_margin": 0.6175652148813242,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

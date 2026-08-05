@@ -1,0 +1,5 @@
+{
+  "model": "dense_v2_100m_matched",
+  "prototype_entropy_curve": [],
+  "schema_version": "1.0"
+}

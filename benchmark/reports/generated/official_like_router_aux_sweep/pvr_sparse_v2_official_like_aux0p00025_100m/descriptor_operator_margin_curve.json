@@ -1,0 +1,31 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.28140066385579604,
+      "operator_control_margin": 0.28140066385579604,
+      "step": 20
+    },
+    {
+      "descriptor_control_margin": 0.2954786019011711,
+      "operator_control_margin": 0.2954786019011711,
+      "step": 40
+    },
+    {
+      "descriptor_control_margin": 0.34276897405895096,
+      "operator_control_margin": 0.34276897405895096,
+      "step": 60
+    },
+    {
+      "descriptor_control_margin": 0.43302171436759335,
+      "operator_control_margin": 0.43302171436759335,
+      "step": 80
+    },
+    {
+      "descriptor_control_margin": 0.5144484111030275,
+      "operator_control_margin": 0.5144484111030275,
+      "step": 100
+    }
+  ],
+  "model": "pvr_sparse_v2_official_like_aux0p00025_100m",
+  "schema_version": "1.0"
+}

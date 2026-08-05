@@ -1,0 +1,5 @@
+{
+  "model": "generic_top2_moe_reference_500m",
+  "prototype_entropy_curve": [],
+  "schema_version": "1.0"
+}

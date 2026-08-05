@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-06-16T22:34:23.492201+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 2.977794647216797,
+      "eval_tokens": 128,
+      "optimizer_step": 400,
+      "step": 400,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 3.829427480697632,
+      "eval_tokens": 128,
+      "optimizer_step": 800,
+      "step": 800,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 2.646646022796631,
+      "eval_tokens": 128,
+      "optimizer_step": 1200,
+      "step": 1200,
+      "training_tokens_seen": 307200
+    },
+    {
+      "eval_loss": 2.684967517852783,
+      "eval_tokens": 128,
+      "optimizer_step": 1600,
+      "step": 1600,
+      "training_tokens_seen": 409600
+    },
+    {
+      "eval_loss": 2.6035351753234863,
+      "eval_tokens": 128,
+      "optimizer_step": 2000,
+      "step": 2000,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 2.7061450481414795,
+      "eval_tokens": 128,
+      "optimizer_step": 2400,
+      "step": 2400,
+      "training_tokens_seen": 614400
+    },
+    {
+      "eval_loss": 2.393781900405884,
+      "eval_tokens": 128,
+      "optimizer_step": 2800,
+      "step": 2800,
+      "training_tokens_seen": 716800
+    },
+    {
+      "eval_loss": 2.57053542137146,
+      "eval_tokens": 128,
+      "optimizer_step": 3200,
+      "step": 3200,
+      "training_tokens_seen": 819200
+    },
+    {
+      "eval_loss": 12.614545822143555,
+      "eval_tokens": 128,
+      "optimizer_step": 3600,
+      "step": 3600,
+      "training_tokens_seen": 921600
+    },
+    {
+      "eval_loss": 14.757974624633789,
+      "eval_tokens": 128,
+      "optimizer_step": 4000,
+      "step": 4000,
+      "training_tokens_seen": 1024000
+    }
+  ],
+  "eval_window_count": 10,
+  "model": "pvr_ec_o_full_300m_shared_trunk_init_v1_scope_embeddings_attention_norms_seed_20260614",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

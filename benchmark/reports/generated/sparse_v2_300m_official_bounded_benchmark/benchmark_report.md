@@ -1,0 +1,134 @@
+# PVR-EC-O Genuine Benchmark Suite Report
+
+Status: `GENUINE_REDUCED_EVAL`
+
+This report distinguishes primary generalized baselines, public external positioning, and internal strong-router controls.
+Do not infer an architecture win from missing checkpoints, missing data, infrastructure execution, or internal control comparisons.
+
+Allowed comparison language:
+- PVR-EC-O does not yet beat generalized baselines.
+- PVR-EC-O beats generalized baselines but lags internal strong-router control.
+- PVR-EC-O matches internal strong-router control.
+- PVR-EC-O beats internal strong-router control.
+
+```json
+{
+  "benchmark_evidence_count": 4,
+  "copied_manifests": [
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/contamination_scan_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/eval_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/hardware_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/model_registry_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/model_size_matrix_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/reproducibility_manifest.json",
+    "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/manifests/training_data_manifest.json"
+  ],
+  "invalid_claims_blocked": [
+    "script execution is not benchmark evidence",
+    "missing checkpoints are not model results",
+    "custom_fixed_moe_strong_router is not a generic MoE baseline"
+  ],
+  "limit": 32,
+  "model_results": [
+    {
+      "artifacts": {
+        "coding_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/dense_sparse_v2_300m_matched/coding_scorecard.json",
+        "contamination_scan": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/contamination/dense_sparse_v2_300m_matched.json",
+        "merged_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/dense_sparse_v2_300m_matched/merged_scorecard.json",
+        "nlp_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/dense_sparse_v2_300m_matched/nlp_scorecard.json",
+        "routing_diagnostics": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/routing_diagnostics/dense_sparse_v2_300m_matched.json"
+      },
+      "benchmark_evidence": true,
+      "comparison_group": "primary_generalized_baseline",
+      "model_variant": "dense_sparse_v2_300m_matched",
+      "status": "GENUINE_REDUCED_EVAL"
+    },
+    {
+      "artifacts": {
+        "coding_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/switch_top1_sparse_v2_300m_matched/coding_scorecard.json",
+        "contamination_scan": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/contamination/switch_top1_sparse_v2_300m_matched.json",
+        "merged_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/switch_top1_sparse_v2_300m_matched/merged_scorecard.json",
+        "nlp_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/switch_top1_sparse_v2_300m_matched/nlp_scorecard.json",
+        "routing_diagnostics": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/routing_diagnostics/switch_top1_sparse_v2_300m_matched.json"
+      },
+      "benchmark_evidence": true,
+      "comparison_group": "primary_generalized_reference_moe",
+      "model_variant": "switch_top1_sparse_v2_300m_matched",
+      "status": "GENUINE_REDUCED_EVAL"
+    },
+    {
+      "artifacts": {
+        "coding_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/generic_top2_sparse_v2_300m_matched/coding_scorecard.json",
+        "contamination_scan": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/contamination/generic_top2_sparse_v2_300m_matched.json",
+        "merged_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/generic_top2_sparse_v2_300m_matched/merged_scorecard.json",
+        "nlp_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/generic_top2_sparse_v2_300m_matched/nlp_scorecard.json",
+        "routing_diagnostics": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/routing_diagnostics/generic_top2_sparse_v2_300m_matched.json"
+      },
+      "benchmark_evidence": true,
+      "comparison_group": "primary_generalized_reference_moe",
+      "model_variant": "generic_top2_sparse_v2_300m_matched",
+      "status": "GENUINE_REDUCED_EVAL"
+    },
+    {
+      "artifacts": {
+        "coding_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/pvr_teacher_independent_sparse_v2_300m/coding_scorecard.json",
+        "contamination_scan": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/contamination/pvr_teacher_independent_sparse_v2_300m.json",
+        "merged_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/pvr_teacher_independent_sparse_v2_300m/merged_scorecard.json",
+        "nlp_scorecard": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/scorecards/pvr_teacher_independent_sparse_v2_300m/nlp_scorecard.json",
+        "routing_diagnostics": "benchmark/reports/generated/sparse_v2_300m_official_bounded_benchmark/routing_diagnostics/pvr_teacher_independent_sparse_v2_300m.json"
+      },
+      "benchmark_evidence": true,
+      "comparison_group": "pvr_ec_o_primary",
+      "model_variant": "pvr_teacher_independent_sparse_v2_300m",
+      "status": "GENUINE_REDUCED_EVAL"
+    }
+  ],
+  "required_artifacts_generated": {
+    "benchmark_report": true,
+    "contamination_scan": true,
+    "manifests": true,
+    "routing_diagnostics": true,
+    "scorecards": true
+  },
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_EVAL",
+  "suite": {
+    "candidate_model_variant": "pvr_teacher_independent_sparse_v2_300m",
+    "decision_rule": "Candidate support requires benchmark evidence, clean Top1 routing, and paired/significant advantage against sparse baselines. This bounded suite cannot unlock full official claims.",
+    "experiment": "PVR_SPARSE_V2_300M_OFFICIAL_BOUNDED_BENCHMARK",
+    "model_configs": [
+      "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/dense_sparse_v2_300m_matched.yaml",
+      "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/switch_top1_sparse_v2_300m_matched.yaml",
+      "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/generic_top2_sparse_v2_300m_matched.yaml",
+      "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/pvr_teacher_independent_sparse_v2_300m.yaml"
+    ],
+    "models": [
+      {
+        "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/dense_sparse_v2_300m_matched.yaml",
+        "variant": "dense_sparse_v2_300m_matched"
+      },
+      {
+        "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/switch_top1_sparse_v2_300m_matched.yaml",
+        "variant": "switch_top1_sparse_v2_300m_matched"
+      },
+      {
+        "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/generic_top2_sparse_v2_300m_matched.yaml",
+        "variant": "generic_top2_sparse_v2_300m_matched"
+      },
+      {
+        "config_path": "benchmark/configs/generated/sparse_v2_300m_official_bounded/configs/pvr_teacher_independent_sparse_v2_300m.yaml",
+        "variant": "pvr_teacher_independent_sparse_v2_300m"
+      }
+    ],
+    "promotion_baselines": [
+      "dense_sparse_v2_300m_matched",
+      "switch_top1_sparse_v2_300m_matched",
+      "generic_top2_sparse_v2_300m_matched"
+    ],
+    "schema_version": "1.0",
+    "scope": "Bounded deterministic official-data slices; not full official leaderboard evidence.",
+    "training_tokens_per_model": 2150400
+  },
+  "valid_claim": "Genuine benchmark evidence produced for models with real checkpoints and data."
+}
+```

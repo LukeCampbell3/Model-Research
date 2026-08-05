@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.40936847867124015,
+      "operator_control_margin": 0.40936847867124015,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.3850336152141348,
+      "operator_control_margin": 0.3850336152141348,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.39101566956170636,
+      "operator_control_margin": 0.39101566956170636,
+      "step": 1200
+    },
+    {
+      "descriptor_control_margin": 0.38609672677765566,
+      "operator_control_margin": 0.38609672677765566,
+      "step": 1600
+    },
+    {
+      "descriptor_control_margin": 0.38439395324634723,
+      "operator_control_margin": 0.38439395324634723,
+      "step": 2000
+    },
+    {
+      "descriptor_control_margin": 0.37488331281721393,
+      "operator_control_margin": 0.37488331281721393,
+      "step": 2400
+    },
+    {
+      "descriptor_control_margin": 0.376157344571506,
+      "operator_control_margin": 0.376157344571506,
+      "step": 2800
+    },
+    {
+      "descriptor_control_margin": 0.38146987192366005,
+      "operator_control_margin": 0.38146987192366005,
+      "step": 3200
+    },
+    {
+      "descriptor_control_margin": 0.37734339956659824,
+      "operator_control_margin": 0.37734339956659824,
+      "step": 3600
+    },
+    {
+      "descriptor_control_margin": 0.3865693250429883,
+      "operator_control_margin": 0.3865693250429883,
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_500m",
+  "schema_version": "1.0"
+}

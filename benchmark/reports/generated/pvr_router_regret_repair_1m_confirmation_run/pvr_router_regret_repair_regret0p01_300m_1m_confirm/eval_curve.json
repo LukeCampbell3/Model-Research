@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-07-22T15:46:40.530714+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 26.456392288208008,
+      "eval_tokens": 256,
+      "optimizer_step": 244,
+      "step": 244,
+      "training_tokens_seen": 249856
+    },
+    {
+      "eval_loss": 20.444303512573242,
+      "eval_tokens": 256,
+      "optimizer_step": 488,
+      "step": 488,
+      "training_tokens_seen": 499712
+    },
+    {
+      "eval_loss": 12.198655128479004,
+      "eval_tokens": 256,
+      "optimizer_step": 732,
+      "step": 732,
+      "training_tokens_seen": 749568
+    },
+    {
+      "eval_loss": 12.069253921508789,
+      "eval_tokens": 256,
+      "optimizer_step": 976,
+      "step": 976,
+      "training_tokens_seen": 999424
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "pvr_router_regret_repair_regret0p01_300m_1m_confirm",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

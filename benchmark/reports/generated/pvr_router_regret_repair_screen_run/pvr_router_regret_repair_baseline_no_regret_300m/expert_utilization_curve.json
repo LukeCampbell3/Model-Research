@@ -1,0 +1,48 @@
+{
+  "expert_utilization_curve": [
+    {
+      "expert_utilization": [
+        351,
+        574,
+        72,
+        297,
+        138,
+        789,
+        1067,
+        514,
+        565,
+        388,
+        70,
+        327,
+        325,
+        140,
+        272,
+        255
+      ],
+      "step": 244
+    },
+    {
+      "expert_utilization": [
+        349,
+        545,
+        64,
+        304,
+        115,
+        841,
+        1078,
+        548,
+        565,
+        369,
+        55,
+        308,
+        321,
+        133,
+        292,
+        257
+      ],
+      "step": 488
+    }
+  ],
+  "model": "pvr_router_regret_repair_baseline_no_regret_300m",
+  "schema_version": "1.0"
+}

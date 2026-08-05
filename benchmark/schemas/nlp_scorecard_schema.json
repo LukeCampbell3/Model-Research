@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NLP Scorecard",
+  "allOf": [{"$ref": "scorecard_schema.json"}],
+  "required": ["scorecard"],
+  "properties": {
+    "scorecard": {
+      "type": "object",
+      "required": ["lm_loss", "perplexity", "mmlu_pro", "gpqa", "bbh", "musr", "math_lvl_5", "ifeval", "truthfulqa", "calibration_ece", "brier_score", "prompt_sensitivity"]
+    }
+  }
+}
+

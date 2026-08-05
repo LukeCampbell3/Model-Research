@@ -1,0 +1,86 @@
+{
+  "created_at": "2026-06-19T04:13:48.465978+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 28.977861404418945,
+      "eval_tokens": 64,
+      "optimizer_step": 100,
+      "step": 100,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 25.622026443481445,
+      "eval_tokens": 64,
+      "optimizer_step": 200,
+      "step": 200,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 5.806636810302734,
+      "eval_tokens": 64,
+      "optimizer_step": 300,
+      "step": 300,
+      "training_tokens_seen": 307200
+    },
+    {
+      "eval_loss": 3.7802047729492188,
+      "eval_tokens": 64,
+      "optimizer_step": 400,
+      "step": 400,
+      "training_tokens_seen": 409600
+    },
+    {
+      "eval_loss": 2.8116559982299805,
+      "eval_tokens": 64,
+      "optimizer_step": 500,
+      "step": 500,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 3.2740440368652344,
+      "eval_tokens": 64,
+      "optimizer_step": 600,
+      "step": 600,
+      "training_tokens_seen": 614400
+    },
+    {
+      "eval_loss": 2.559016227722168,
+      "eval_tokens": 64,
+      "optimizer_step": 700,
+      "step": 700,
+      "training_tokens_seen": 716800
+    },
+    {
+      "eval_loss": 4.516655445098877,
+      "eval_tokens": 64,
+      "optimizer_step": 800,
+      "step": 800,
+      "training_tokens_seen": 819200
+    },
+    {
+      "eval_loss": 3.605192184448242,
+      "eval_tokens": 64,
+      "optimizer_step": 900,
+      "step": 900,
+      "training_tokens_seen": 921600
+    },
+    {
+      "eval_loss": 2.537368059158325,
+      "eval_tokens": 64,
+      "optimizer_step": 1000,
+      "step": 1000,
+      "training_tokens_seen": 1024000
+    },
+    {
+      "eval_loss": 3.3280086517333984,
+      "eval_tokens": 64,
+      "optimizer_step": 1100,
+      "step": 1100,
+      "training_tokens_seen": 1126400
+    }
+  ],
+  "eval_window_count": 11,
+  "model": "pvr_ec_o_full_700m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

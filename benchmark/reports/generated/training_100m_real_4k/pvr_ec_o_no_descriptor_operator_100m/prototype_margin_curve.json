@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_no_descriptor_operator_100m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.41916108611621894,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.40453845366816193,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.36028301437787985,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 0.3481910297317275,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 0.3428958617684354,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 0.34829246993225144,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 0.36502996684187866,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 0.3607227601557194,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 0.36604132869979367,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 0.35250193882287323,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

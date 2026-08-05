@@ -1,0 +1,120 @@
+{
+  "blocked_labels": [
+    "PVR_PHASE_3_14_PROMOTION_SCALE_COMPLETE",
+    "PVR_TEACHER_INDEPENDENCE_SUPPORTED",
+    "PVR_OFFICIAL_BROAD_NLP_SUPPORTED",
+    "PVR_OFFICIAL_CODE_BENCH_SUPPORTED",
+    "PVR_LARGER_BUDGET_CURVES_COMPLETE",
+    "MATCHED_INFORMATION_ROUTING_ATTRIBUTION_VALIDATION_COMPLETE"
+  ],
+  "created_at": "2026-07-17T12:13:34.327051+00:00",
+  "experiment": "PVR_PHASE_3_14_BOUNDED_COMPLETION",
+  "phase_status": {
+    "phase_10_domain_robustness": {
+      "status": "NOT_IMPLEMENTED_REQUIRES_PERTURBATION_GENERATOR"
+    },
+    "phase_11_official_validation": {
+      "final_official_files_untouched_for_training": true,
+      "status": "CORRECTED_AGGREGATION_AND_BOUNDARY_COMPLETE"
+    },
+    "phase_12_comparator_integrity": {
+      "assertions": {
+        "all_sparse_comparators_valid": true,
+        "official_final_files_used": false
+      },
+      "status": "SPARSE_COMPARATOR_RUNTIME_INTEGRITY_AUDIT_COMPLETE"
+    },
+    "phase_13_larger_budget_curves": {
+      "status": "NOT_RUN_EXPENSIVE_SCALE_WORK_REMAINS"
+    },
+    "phase_14_matched_information_matrix": {
+      "status": "NOT_RUN_EXPENSIVE_COMPARATOR_MATRIX_REMAINS"
+    },
+    "phase_3_shared_substrate": {
+      "source_status": "PVR_SPARSE_V2_CAPACITY_SCREEN_BEATS_TOP2",
+      "status": "BOUNDED_EXISTING_CAPACITY_SCREEN_COMPLETE",
+      "winner": {
+        "active_params_per_token_actual": 89772288,
+        "below_top2_active_budget": true,
+        "code_token_loss": 12.028467614203691,
+        "config_path": "benchmark/configs/generated/sparse_v2_capacity_screen/configs/pvr_sparse_v2_e16_shared768_expert256_100m.yaml",
+        "expert_ffn_size": 256,
+        "lm_loss": 5.829655904322863,
+        "model_variant": "pvr_sparse_v2_e16_shared768_expert256_100m",
+        "num_experts": 16,
+        "shared_ffn_size": 768,
+        "total_params_actual": 160735488
+      }
+    },
+    "phase_4_router_regret_training": {
+      "overall": {
+        "decision_count": 10752,
+        "greedy_full_network_oracle_loss": 5.548307282584054,
+        "greedy_oracle_improvement_over_selected": -4.248973710196359,
+        "mean_router_regret_across_block_decisions": 0.5827385857234335,
+        "p95_router_regret_block_decision_median_of_batches": 2.2053823471069336,
+        "selected_is_oracle_rate_across_block_decisions": 0.15187872023809523,
+        "selected_is_top2_rate_across_block_decisions": 0.2560453869047619,
+        "selected_loss": 9.797280992780413,
+        "token_count": 448
+      },
+      "source_status": "PVR_FULL_NETWORK_GREEDY_ORACLE_EXPERT_SELECTION_COMPLETE",
+      "status": "DIAGNOSTIC_TARGETS_AVAILABLE_TRAINING_OBJECTIVE_NOT_YET_PROMOTION_VALIDATED"
+    },
+    "phase_5_auxiliary_sweep": {
+      "claim_gates": {
+        "all_models_completed": true,
+        "official_final_files_used": false,
+        "resource_reduction_none": true,
+        "strict_top1_clean_for_winner": true
+      },
+      "status": "PVR_OFFICIAL_LIKE_ROUTER_AUX_SWEEP_COMPLETE",
+      "winner": {
+        "eval_window_count": 5,
+        "final_loss": 9.030747413635254,
+        "model_variant": "pvr_sparse_v2_official_like_aux0p0005_100m",
+        "optimizer_steps": 100,
+        "owner_entropy": 2.833504634739077,
+        "owners_per_token": 1.0,
+        "prototype_margin": 0.5894314691734811,
+        "prototype_monopoly_rate": 0.12369791666666667,
+        "routing_aux_weight": 0.0005,
+        "top2_execution_count": 0,
+        "training_tokens_seen": 12800
+      }
+    },
+    "phase_6_general_residual_expert": {
+      "reason": "Router-regret evidence is now available; general residual expert should be tested as a separate architecture change after regret-aware targets.",
+      "status": "NOT_IMPLEMENTED_ARCHITECTURE_CHANGE_DEFERRED"
+    },
+    "phase_7_router_uncertainty_calibration": {
+      "reason": "Calibration requires held-out oracle/regret labels; greedy oracle audit now provides the label source on official-like dev.",
+      "status": "NOT_IMPLEMENTED_FEATURES_IDENTIFIED"
+    },
+    "phase_8_staged_curriculum": {
+      "curriculum_status": "PVR_SPARSE_V2_CURRICULUM_SCREEN_NOT_SUPPORTED",
+      "status": "BOUNDED_EXISTING_CURRICULUM_SCREENS_COMPLETE",
+      "warmup_status": "PVR_SPARSE_V2_CURRICULUM_SCREEN_NOT_SUPPORTED"
+    },
+    "phase_9_official_like_mixtures": {
+      "boundary_assertions": {
+        "current_local_roots_have_no_exact_line_overlap_with_final": true,
+        "final_official_files_present": true,
+        "final_official_may_guide_training": false,
+        "official_like_development_set_ready": true
+      },
+      "status": "OFFICIAL_LIKE_DEVELOPMENT_SET_MATERIALIZED"
+    }
+  },
+  "schema_version": "1.0",
+  "scope": "Reduced/bounded execution and existing-screen consolidation. This does not promote broad official superiority or teacher independence.",
+  "status": "PVR_PHASE_3_14_BOUNDED_EXECUTION_COMPLETE",
+  "supported_labels": [
+    "OFFICIAL_EVALUATION_BOUNDARY_FROZEN",
+    "OFFICIAL_LIKE_DEVELOPMENT_SET_MATERIALIZED",
+    "PVR_FULL_NETWORK_GREEDY_ORACLE_EXPERT_SELECTION_COMPLETE",
+    "SPARSE_COMPARATOR_RUNTIME_INTEGRITY_AUDIT_COMPLETE",
+    "PVR_OFFICIAL_LIKE_ROUTER_AUX_SWEEP_COMPLETE",
+    "PVR_PHASE_3_14_BOUNDED_EXECUTION_COMPLETE"
+  ]
+}

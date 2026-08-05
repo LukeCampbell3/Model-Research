@@ -1,0 +1,97 @@
+{
+  "created_at": "2026-06-12T03:42:58.654733+00:00",
+  "model": "pvr_ec_o_no_contrastive_geometry_100m",
+  "routing_curve": [
+    {
+      "expert_utilization": [
+        138,
+        108,
+        76,
+        67,
+        117,
+        59,
+        130,
+        73
+      ],
+      "optimizer_step": 10,
+      "owners_per_token": 1.0,
+      "production_map_mutated": false,
+      "prototype_margin": 0.3972638537234161,
+      "prototype_monopoly_rate": 0.1796875,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 10,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0
+    },
+    {
+      "expert_utilization": [
+        143,
+        81,
+        81,
+        69,
+        103,
+        58,
+        169,
+        64
+      ],
+      "optimizer_step": 20,
+      "owners_per_token": 1.0,
+      "production_map_mutated": false,
+      "prototype_margin": 0.39079161832341924,
+      "prototype_monopoly_rate": 0.22005208333333334,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 20,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0
+    },
+    {
+      "expert_utilization": [
+        136,
+        80,
+        85,
+        56,
+        120,
+        54,
+        179,
+        58
+      ],
+      "optimizer_step": 30,
+      "owners_per_token": 1.0,
+      "production_map_mutated": false,
+      "prototype_margin": 0.38784610920508084,
+      "prototype_monopoly_rate": 0.23307291666666666,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 30,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0
+    },
+    {
+      "expert_utilization": [
+        137,
+        68,
+        96,
+        86,
+        105,
+        38,
+        186,
+        52
+      ],
+      "optimizer_step": 40,
+      "owners_per_token": 1.0,
+      "production_map_mutated": false,
+      "prototype_margin": 0.4065829488487604,
+      "prototype_monopoly_rate": 0.2421875,
+      "runtime_dynamic_k_count": 0,
+      "runtime_expert_choice_count": 0,
+      "step": 40,
+      "top2_execution_count": 0,
+      "top4_execution_count": 0
+    }
+  ],
+  "routing_window_count": 4,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

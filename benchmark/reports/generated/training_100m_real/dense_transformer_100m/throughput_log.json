@@ -1,0 +1,7 @@
+{
+  "model": "dense_transformer_100m",
+  "schema_version": "1.0",
+  "tokens_per_second": 5.674251685351457,
+  "tokens_seen": 16,
+  "wall_clock_seconds": 2.8197550773620605
+}

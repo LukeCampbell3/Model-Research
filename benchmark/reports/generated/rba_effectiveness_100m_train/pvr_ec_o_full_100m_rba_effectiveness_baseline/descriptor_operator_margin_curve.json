@@ -1,0 +1,31 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.37025951996232226,
+      "operator_control_margin": 0.37025951996232226,
+      "step": 200
+    },
+    {
+      "descriptor_control_margin": 0.4076496937001745,
+      "operator_control_margin": 0.4076496937001745,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.4419962001120439,
+      "operator_control_margin": 0.4419962001120439,
+      "step": 600
+    },
+    {
+      "descriptor_control_margin": 0.4579000888528147,
+      "operator_control_margin": 0.4579000888528147,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.44534183518650633,
+      "operator_control_margin": 0.44534183518650633,
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_rba_effectiveness_baseline",
+  "schema_version": "1.0"
+}

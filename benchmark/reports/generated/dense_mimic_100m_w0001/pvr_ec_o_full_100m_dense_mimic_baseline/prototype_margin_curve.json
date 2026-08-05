@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_dense_mimic_baseline",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.6519005166968176,
+      "step": 200
+    },
+    {
+      "prototype_margin": 0.6832212297595106,
+      "step": 400
+    },
+    {
+      "prototype_margin": 0.6772202502712995,
+      "step": 600
+    },
+    {
+      "prototype_margin": 0.7011346730820757,
+      "step": 800
+    },
+    {
+      "prototype_margin": 0.6955638073365359,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

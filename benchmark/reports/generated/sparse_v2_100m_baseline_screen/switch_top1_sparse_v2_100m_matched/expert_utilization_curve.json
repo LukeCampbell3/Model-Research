@@ -1,0 +1,5 @@
+{
+  "expert_utilization_curve": [],
+  "model": "switch_top1_sparse_v2_100m_matched",
+  "schema_version": "1.0"
+}

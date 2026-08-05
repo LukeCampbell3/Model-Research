@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-07-15T14:13:35.031553+00:00",
+  "model": "switch_top1_sparse_v2_300m_matched",
+  "routing_curve": [],
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

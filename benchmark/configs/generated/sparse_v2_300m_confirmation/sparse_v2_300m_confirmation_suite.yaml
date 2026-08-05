@@ -1,0 +1,14 @@
+{
+  "candidate_model_variant": "pvr_teacher_independent_sparse_v2_300m",
+  "experiment": "PVR_TEACHER_INDEPENDENT_SPARSE_V2_300M_CONFIRMATION",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/dense_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/switch_top1_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/generic_top2_sparse_v2_300m_matched.yaml",
+    "benchmark/configs/generated/sparse_v2_300m_confirmation/configs/pvr_teacher_independent_sparse_v2_300m.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "promotion_rule": "Candidate must significantly beat Switch and Top2 on paired heldout loss, remain below Top2 active params, keep strict Top1 clean, and show no teacher checkpoint load.",
+  "schema_version": "1.0",
+  "training_tokens_per_model": 2150400
+}

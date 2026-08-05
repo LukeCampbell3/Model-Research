@@ -1,0 +1,31 @@
+{
+  "evidence_rule": "Only runs with real checkpoint, real data, routing diagnostics, contamination scan, and scorecards count as benchmark evidence.",
+  "models": [
+    {
+      "comparison_group": "primary_generalized_baseline",
+      "config_path": "benchmark/configs/generated/dense_transformer_1_3b.yaml",
+      "model_variant": "dense_transformer_1_3b"
+    },
+    {
+      "comparison_group": "primary_generalized_reference_moe",
+      "config_path": "benchmark/configs/generated/vanilla_switch_top1_reference_1_3b.yaml",
+      "model_variant": "vanilla_switch_top1_reference_1_3b"
+    },
+    {
+      "comparison_group": "pvr_ec_o_primary",
+      "config_path": "benchmark/configs/generated/pvr_ec_o_full_1_3b.yaml",
+      "model_variant": "pvr_ec_o_full_1_3b"
+    }
+  ],
+  "required_artifacts": [
+    "scorecards",
+    "manifests",
+    "routing_diagnostics",
+    "contamination_scan",
+    "benchmark_report"
+  ],
+  "schema_version": "1.0",
+  "stage": "genuine_1_3b_architecture_benchmark",
+  "subset_label": "genuine_reduced_eval",
+  "suite_name": "pvr_ec_o_1_3b_genuine_architecture_benchmark"
+}

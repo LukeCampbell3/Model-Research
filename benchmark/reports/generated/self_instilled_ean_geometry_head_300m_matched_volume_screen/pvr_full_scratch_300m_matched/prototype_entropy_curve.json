@@ -1,0 +1,50 @@
+{
+  "model": "pvr_full_scratch_300m_matched",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9910457608307102,
+      "step": 100
+    },
+    {
+      "prototype_entropy": 2.035932486012168,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 2.0523862130325905,
+      "step": 300
+    },
+    {
+      "prototype_entropy": 2.0578690188746607,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 2.0592785394969844,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.063782914961312,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 2.06246248508575,
+      "step": 700
+    },
+    {
+      "prototype_entropy": 2.0642206649568413,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 2.063695639887352,
+      "step": 900
+    },
+    {
+      "prototype_entropy": 2.0600416345706924,
+      "step": 1000
+    },
+    {
+      "prototype_entropy": 2.0626269403877076,
+      "step": 1100
+    }
+  ],
+  "schema_version": "1.0"
+}

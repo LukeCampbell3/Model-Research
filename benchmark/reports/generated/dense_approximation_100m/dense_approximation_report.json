@@ -1,0 +1,131 @@
+{
+  "comparison_path": "benchmark\\reports\\generated\\comparison_100m_real_4k\\benchmark_comparison_report.json",
+  "created_at": "2026-06-13T13:42:51.333081+00:00",
+  "dense_gap_closed": false,
+  "dense_lm_loss": 3.3908622777462005,
+  "dense_model": "dense_transformer_100m",
+  "forbidden_repair": {
+    "reason": "Matched diagnostic ablation worsened train/eval loss and reduced route margin.",
+    "route_confidence_regularization_0_01": "DO_NOT_USE_AGAIN"
+  },
+  "git_commit": "b663fee2c088f2b0ad6a7327b1b55a5c1e53321f",
+  "high_margin_dense_match_supported": true,
+  "high_margin_mean_pvr_minus_dense_eval_loss": -0.050121498107910153,
+  "high_margin_window_count": 5,
+  "interpretation": {
+    "bottom_line": "Dense approximation gap must be closed before adding more routing/confidence machinery.",
+    "findings": [
+      "PVR full still trails dense on global LM loss.",
+      "PVR full does not beat shared-only; routed residuals are not buying loss.",
+      "No-prototypes beats full, so prototype structure is not helping loss yet.",
+      "Generic Top2 reference beats PVR full on LM loss.",
+      "High-margin routed windows beat dense, but not better than low-margin windows; dense match is present but route-confidence usefulness is not supported.",
+      "High-vs-low margin gap delta is 0.015095."
+    ]
+  },
+  "low_margin_mean_pvr_minus_dense_eval_loss": -0.0652165412902832,
+  "low_margin_window_count": 5,
+  "paired_eval_window_count": 10,
+  "paired_eval_windows": [
+    {
+      "dense_eval_loss": 17.45244026184082,
+      "high_margin_routed_window": false,
+      "prototype_margin": 0.329671012305577,
+      "pvr_eval_loss": 15.785390853881836,
+      "pvr_minus_dense_eval_loss": -1.6670494079589844,
+      "step": 400
+    },
+    {
+      "dense_eval_loss": 7.615494728088379,
+      "high_margin_routed_window": false,
+      "prototype_margin": 0.3615528115769848,
+      "pvr_eval_loss": 6.977733612060547,
+      "pvr_minus_dense_eval_loss": -0.637761116027832,
+      "step": 800
+    },
+    {
+      "dense_eval_loss": 4.236259460449219,
+      "high_margin_routed_window": false,
+      "prototype_margin": 0.3630502030961604,
+      "pvr_eval_loss": 4.057992458343506,
+      "pvr_minus_dense_eval_loss": -0.1782670021057129,
+      "step": 1200
+    },
+    {
+      "dense_eval_loss": 3.025355339050293,
+      "high_margin_routed_window": true,
+      "prototype_margin": 0.3736652965162648,
+      "pvr_eval_loss": 3.0125372409820557,
+      "pvr_minus_dense_eval_loss": -0.012818098068237305,
+      "step": 1600
+    },
+    {
+      "dense_eval_loss": 3.01277756690979,
+      "high_margin_routed_window": true,
+      "prototype_margin": 0.38467378947340575,
+      "pvr_eval_loss": 2.947233200073242,
+      "pvr_minus_dense_eval_loss": -0.06554436683654785,
+      "step": 2000
+    },
+    {
+      "dense_eval_loss": 3.1802210807800293,
+      "high_margin_routed_window": true,
+      "prototype_margin": 0.39281320343919407,
+      "pvr_eval_loss": 3.0382330417633057,
+      "pvr_minus_dense_eval_loss": -0.14198803901672363,
+      "step": 2400
+    },
+    {
+      "dense_eval_loss": 2.396434783935547,
+      "high_margin_routed_window": true,
+      "prototype_margin": 0.38654077231573564,
+      "pvr_eval_loss": 2.4258477687835693,
+      "pvr_minus_dense_eval_loss": 0.02941298484802246,
+      "step": 2800
+    },
+    {
+      "dense_eval_loss": 2.7959585189819336,
+      "high_margin_routed_window": true,
+      "prototype_margin": 0.37307514796460356,
+      "pvr_eval_loss": 2.736288547515869,
+      "pvr_minus_dense_eval_loss": -0.05966997146606445,
+      "step": 3200
+    },
+    {
+      "dense_eval_loss": 9.662761688232422,
+      "high_margin_routed_window": false,
+      "prototype_margin": 0.35680020083479275,
+      "pvr_eval_loss": 10.4562349319458,
+      "pvr_minus_dense_eval_loss": 0.7934732437133789,
+      "step": 3600
+    },
+    {
+      "dense_eval_loss": 11.834527969360352,
+      "high_margin_routed_window": false,
+      "prototype_margin": 0.3549196755484445,
+      "pvr_eval_loss": 13.198049545288086,
+      "pvr_minus_dense_eval_loss": 1.3635215759277344,
+      "step": 4000
+    }
+  ],
+  "pvr_lm_loss": 3.5073373568058015,
+  "pvr_minus_dense_lm_loss": 0.11647507905960097,
+  "pvr_minus_generic_top2_lm_loss": 0.1201643955707552,
+  "pvr_minus_no_prototypes_lm_loss": 0.19245217800140413,
+  "pvr_minus_shared_only_lm_loss": 0.2408316314220431,
+  "pvr_model": "pvr_ec_o_full_100m",
+  "recommended_next_experiment": {
+    "name": "dense_mimic_then_specialize",
+    "objective": "Close the dense approximation gap before relying on expert specialization.",
+    "phases": [
+      "shared-heavy dense imitation",
+      "strict Top1 diagnostics while keeping shared path strong",
+      "expert specialization after dense gap narrows",
+      "route-family loss evaluation"
+    ]
+  },
+  "route_conditional_loss_win_supported": false,
+  "schema_version": "1.0",
+  "size": "100m",
+  "status": "PVR_DENSE_APPROXIMATION_GAP_IDENTIFIED"
+}

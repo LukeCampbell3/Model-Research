@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-06-13T04:26:01.607277+00:00",
+  "model": "generic_top2_moe_reference_100m",
+  "routing_curve": [],
+  "routing_window_count": 0,
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

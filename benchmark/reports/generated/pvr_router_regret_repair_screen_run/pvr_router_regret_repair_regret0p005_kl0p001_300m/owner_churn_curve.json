@@ -1,0 +1,14 @@
+{
+  "model": "pvr_router_regret_repair_regret0p005_kl0p001_300m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 244
+    },
+    {
+      "owner_churn": null,
+      "step": 488
+    }
+  ],
+  "schema_version": "1.0"
+}

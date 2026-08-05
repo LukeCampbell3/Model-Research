@@ -1,0 +1,797 @@
+{
+  "batch_size": 2,
+  "budget_status": "NONE",
+  "created_at": "2026-06-13T14:56:17.531116+00:00",
+  "dense_checkpoint": "checkpoints/benchmark_100m/dense_transformer_100m/checkpoint.pt",
+  "dense_checkpoint_hash": "20a9e191637e426a00a80caa59b1dad7a93cc415627235026bdc239ac85a687e",
+  "dense_gap_window_classification": {
+    "created_at": "2026-06-13T14:57:58.506228+00:00",
+    "dense_eval_curve_path": "benchmark/reports/generated/training_100m_real_4k/dense_transformer_100m/eval_curve.json",
+    "schema_version": "1.0",
+    "variants": {
+      "baseline": {
+        "bucket_counts": {
+          "dense_better_route_high_confidence": 1,
+          "dense_better_route_low_confidence": 0,
+          "pvr_better_route_high_confidence": 4,
+          "pvr_better_route_low_confidence": 5
+        },
+        "bucket_mean_pvr_minus_dense": {
+          "dense_better_route_high_confidence": 0.09550786018371582,
+          "dense_better_route_low_confidence": null,
+          "pvr_better_route_high_confidence": -0.23280388116836548,
+          "pvr_better_route_low_confidence": -1.483490800857544
+        },
+        "model": "pvr_ec_o_full_100m_baseline",
+        "route_margin_threshold": 0.6889458099709979,
+        "windows": {
+          "dense_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 3.025355339050293,
+              "pvr_eval_loss": 3.120863199234009,
+              "pvr_minus_dense_eval_loss": 0.09550786018371582,
+              "route_margin": 0.695590304438762,
+              "step": 1600
+            }
+          ],
+          "dense_better_route_low_confidence": [],
+          "pvr_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 7.615494728088379,
+              "pvr_eval_loss": 7.161859512329102,
+              "pvr_minus_dense_eval_loss": -0.45363521575927734,
+              "route_margin": 0.7011346730820757,
+              "step": 800
+            },
+            {
+              "dense_eval_loss": 4.236259460449219,
+              "pvr_eval_loss": 3.9534926414489746,
+              "pvr_minus_dense_eval_loss": -0.28276681900024414,
+              "route_margin": 0.7037658546226643,
+              "step": 1200
+            },
+            {
+              "dense_eval_loss": 3.01277756690979,
+              "pvr_eval_loss": 2.8235557079315186,
+              "pvr_minus_dense_eval_loss": -0.18922185897827148,
+              "route_margin": 0.6889458099709979,
+              "step": 2000
+            },
+            {
+              "dense_eval_loss": 2.396434783935547,
+              "pvr_eval_loss": 2.390843152999878,
+              "pvr_minus_dense_eval_loss": -0.005591630935668945,
+              "route_margin": 0.6953906612664772,
+              "step": 2800
+            }
+          ],
+          "pvr_better_route_low_confidence": [
+            {
+              "dense_eval_loss": 17.45244026184082,
+              "pvr_eval_loss": 15.424704551696777,
+              "pvr_minus_dense_eval_loss": -2.027735710144043,
+              "route_margin": 0.6832212297595106,
+              "step": 400
+            },
+            {
+              "dense_eval_loss": 3.1802210807800293,
+              "pvr_eval_loss": 3.0553829669952393,
+              "pvr_minus_dense_eval_loss": -0.12483811378479004,
+              "route_margin": 0.6848247693560552,
+              "step": 2400
+            },
+            {
+              "dense_eval_loss": 2.7959585189819336,
+              "pvr_eval_loss": 2.704496383666992,
+              "pvr_minus_dense_eval_loss": -0.0914621353149414,
+              "route_margin": 0.6849123911282126,
+              "step": 3200
+            },
+            {
+              "dense_eval_loss": 9.662761688232422,
+              "pvr_eval_loss": 6.821418762207031,
+              "pvr_minus_dense_eval_loss": -2.8413429260253906,
+              "route_margin": 0.6813479539414402,
+              "step": 3600
+            },
+            {
+              "dense_eval_loss": 11.834527969360352,
+              "pvr_eval_loss": 9.502452850341797,
+              "pvr_minus_dense_eval_loss": -2.3320751190185547,
+              "route_margin": 0.6486920290238535,
+              "step": 4000
+            }
+          ]
+        }
+      },
+      "gated_teacher_low_confidence_only": {
+        "bucket_counts": {
+          "dense_better_route_high_confidence": 1,
+          "dense_better_route_low_confidence": 0,
+          "pvr_better_route_high_confidence": 4,
+          "pvr_better_route_low_confidence": 5
+        },
+        "bucket_mean_pvr_minus_dense": {
+          "dense_better_route_high_confidence": 0.09051084518432617,
+          "dense_better_route_low_confidence": null,
+          "pvr_better_route_high_confidence": -0.2401484251022339,
+          "pvr_better_route_low_confidence": -1.4830417156219482
+        },
+        "model": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+        "route_margin_threshold": 0.6897909211353787,
+        "windows": {
+          "dense_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 3.025355339050293,
+              "pvr_eval_loss": 3.115866184234619,
+              "pvr_minus_dense_eval_loss": 0.09051084518432617,
+              "route_margin": 0.695540936171407,
+              "step": 1600
+            }
+          ],
+          "dense_better_route_low_confidence": [],
+          "pvr_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 7.615494728088379,
+              "pvr_eval_loss": 7.134860515594482,
+              "pvr_minus_dense_eval_loss": -0.4806342124938965,
+              "route_margin": 0.7005289561056998,
+              "step": 800
+            },
+            {
+              "dense_eval_loss": 4.236259460449219,
+              "pvr_eval_loss": 3.9498701095581055,
+              "pvr_minus_dense_eval_loss": -0.2863893508911133,
+              "route_margin": 0.7028858026266486,
+              "step": 1200
+            },
+            {
+              "dense_eval_loss": 3.01277756690979,
+              "pvr_eval_loss": 2.821526050567627,
+              "pvr_minus_dense_eval_loss": -0.19125151634216309,
+              "route_margin": 0.6897909211353787,
+              "step": 2000
+            },
+            {
+              "dense_eval_loss": 2.396434783935547,
+              "pvr_eval_loss": 2.394116163253784,
+              "pvr_minus_dense_eval_loss": -0.0023186206817626953,
+              "route_margin": 0.6963068891297249,
+              "step": 2800
+            }
+          ],
+          "pvr_better_route_low_confidence": [
+            {
+              "dense_eval_loss": 17.45244026184082,
+              "pvr_eval_loss": 15.433926582336426,
+              "pvr_minus_dense_eval_loss": -2.0185136795043945,
+              "route_margin": 0.6826633094775995,
+              "step": 400
+            },
+            {
+              "dense_eval_loss": 3.1802210807800293,
+              "pvr_eval_loss": 3.051046371459961,
+              "pvr_minus_dense_eval_loss": -0.12917470932006836,
+              "route_margin": 0.6859594995815618,
+              "step": 2400
+            },
+            {
+              "dense_eval_loss": 2.7959585189819336,
+              "pvr_eval_loss": 2.69991135597229,
+              "pvr_minus_dense_eval_loss": -0.09604716300964355,
+              "route_margin": 0.6862377368233865,
+              "step": 3200
+            },
+            {
+              "dense_eval_loss": 9.662761688232422,
+              "pvr_eval_loss": 6.827317714691162,
+              "pvr_minus_dense_eval_loss": -2.8354439735412598,
+              "route_margin": 0.6826445891298741,
+              "step": 3600
+            },
+            {
+              "dense_eval_loss": 11.834527969360352,
+              "pvr_eval_loss": 9.498498916625977,
+              "pvr_minus_dense_eval_loss": -2.336029052734375,
+              "route_margin": 0.6503071128390729,
+              "step": 4000
+            }
+          ]
+        }
+      },
+      "shared_capacity_plus": {
+        "bucket_counts": {
+          "dense_better_route_high_confidence": 1,
+          "dense_better_route_low_confidence": 0,
+          "pvr_better_route_high_confidence": 4,
+          "pvr_better_route_low_confidence": 5
+        },
+        "bucket_mean_pvr_minus_dense": {
+          "dense_better_route_high_confidence": 0.08497953414916992,
+          "dense_better_route_low_confidence": null,
+          "pvr_better_route_high_confidence": -1.5832471251487732,
+          "pvr_better_route_low_confidence": -1.0277795791625977
+        },
+        "model": "pvr_ec_o_full_100m_shared_capacity_plus",
+        "route_margin_threshold": 0.5215901164968576,
+        "windows": {
+          "dense_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 2.7959585189819336,
+              "pvr_eval_loss": 2.8809380531311035,
+              "pvr_minus_dense_eval_loss": 0.08497953414916992,
+              "route_margin": 0.5281103466453109,
+              "step": 3200
+            }
+          ],
+          "dense_better_route_low_confidence": [],
+          "pvr_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 3.1802210807800293,
+              "pvr_eval_loss": 2.9574759006500244,
+              "pvr_minus_dense_eval_loss": -0.22274518013000488,
+              "route_margin": 0.5218720367362645,
+              "step": 2400
+            },
+            {
+              "dense_eval_loss": 2.396434783935547,
+              "pvr_eval_loss": 2.3769874572753906,
+              "pvr_minus_dense_eval_loss": -0.01944732666015625,
+              "route_margin": 0.5310706297314027,
+              "step": 2800
+            },
+            {
+              "dense_eval_loss": 9.662761688232422,
+              "pvr_eval_loss": 6.66039514541626,
+              "pvr_minus_dense_eval_loss": -3.002366542816162,
+              "route_margin": 0.5262310776355056,
+              "step": 3600
+            },
+            {
+              "dense_eval_loss": 11.834527969360352,
+              "pvr_eval_loss": 8.746098518371582,
+              "pvr_minus_dense_eval_loss": -3.0884294509887695,
+              "route_margin": 0.5215901164968576,
+              "step": 4000
+            }
+          ],
+          "pvr_better_route_low_confidence": [
+            {
+              "dense_eval_loss": 17.45244026184082,
+              "pvr_eval_loss": 13.411945343017578,
+              "pvr_minus_dense_eval_loss": -4.040494918823242,
+              "route_margin": 0.4997859945675979,
+              "step": 400
+            },
+            {
+              "dense_eval_loss": 7.615494728088379,
+              "pvr_eval_loss": 7.270732879638672,
+              "pvr_minus_dense_eval_loss": -0.34476184844970703,
+              "route_margin": 0.5041651962286172,
+              "step": 800
+            },
+            {
+              "dense_eval_loss": 4.236259460449219,
+              "pvr_eval_loss": 3.7621569633483887,
+              "pvr_minus_dense_eval_loss": -0.4741024971008301,
+              "route_margin": 0.4785219444602262,
+              "step": 1200
+            },
+            {
+              "dense_eval_loss": 3.025355339050293,
+              "pvr_eval_loss": 2.990802049636841,
+              "pvr_minus_dense_eval_loss": -0.03455328941345215,
+              "route_margin": 0.5160179631008456,
+              "step": 1600
+            },
+            {
+              "dense_eval_loss": 3.01277756690979,
+              "pvr_eval_loss": 2.767792224884033,
+              "pvr_minus_dense_eval_loss": -0.24498534202575684,
+              "route_margin": 0.513240894957562,
+              "step": 2000
+            }
+          ]
+        }
+      },
+      "shared_trunk_init_from_dense": {
+        "bucket_counts": {
+          "dense_better_route_high_confidence": 0,
+          "dense_better_route_low_confidence": 0,
+          "pvr_better_route_high_confidence": 5,
+          "pvr_better_route_low_confidence": 5
+        },
+        "bucket_mean_pvr_minus_dense": {
+          "dense_better_route_high_confidence": null,
+          "dense_better_route_low_confidence": null,
+          "pvr_better_route_high_confidence": -4.008419179916382,
+          "pvr_better_route_low_confidence": -1.0316692352294923
+        },
+        "model": "pvr_ec_o_full_100m_shared_trunk_init_from_dense",
+        "route_margin_threshold": 0.4144882427499397,
+        "windows": {
+          "dense_better_route_high_confidence": [],
+          "dense_better_route_low_confidence": [],
+          "pvr_better_route_high_confidence": [
+            {
+              "dense_eval_loss": 17.45244026184082,
+              "pvr_eval_loss": 2.8336968421936035,
+              "pvr_minus_dense_eval_loss": -14.618743419647217,
+              "route_margin": 0.44588188856626704,
+              "step": 400
+            },
+            {
+              "dense_eval_loss": 7.615494728088379,
+              "pvr_eval_loss": 3.1063907146453857,
+              "pvr_minus_dense_eval_loss": -4.509104013442993,
+              "route_margin": 0.41511940529744606,
+              "step": 800
+            },
+            {
+              "dense_eval_loss": 3.1802210807800293,
+              "pvr_eval_loss": 2.578169345855713,
+              "pvr_minus_dense_eval_loss": -0.6020517349243164,
+              "route_margin": 0.41566665926560137,
+              "step": 2400
+            },
+            {
+              "dense_eval_loss": 2.396434783935547,
+              "pvr_eval_loss": 2.3476293087005615,
+              "pvr_minus_dense_eval_loss": -0.04880547523498535,
+              "route_margin": 0.4144882427499397,
+              "step": 2800
+            },
+            {
+              "dense_eval_loss": 2.7959585189819336,
+              "pvr_eval_loss": 2.532567262649536,
+              "pvr_minus_dense_eval_loss": -0.26339125633239746,
+              "route_margin": 0.41525607729514985,
+              "step": 3200
+            }
+          ],
+          "pvr_better_route_low_confidence": [
+            {
+              "dense_eval_loss": 4.236259460449219,
+              "pvr_eval_loss": 2.566321611404419,
+              "pvr_minus_dense_eval_loss": -1.6699378490447998,
+              "route_margin": 0.41345548280029715,
+              "step": 1200
+            },
+            {
+              "dense_eval_loss": 3.025355339050293,
+              "pvr_eval_loss": 2.438136100769043,
+              "pvr_minus_dense_eval_loss": -0.58721923828125,
+              "route_margin": 0.4103795038390672,
+              "step": 1600
+            },
+            {
+              "dense_eval_loss": 3.01277756690979,
+              "pvr_eval_loss": 2.4916954040527344,
+              "pvr_minus_dense_eval_loss": -0.5210821628570557,
+              "route_margin": 0.4068924798387646,
+              "step": 2000
+            },
+            {
+              "dense_eval_loss": 9.662761688232422,
+              "pvr_eval_loss": 8.132766723632812,
+              "pvr_minus_dense_eval_loss": -1.5299949645996094,
+              "route_margin": 0.4096117836258297,
+              "step": 3600
+            },
+            {
+              "dense_eval_loss": 11.834527969360352,
+              "pvr_eval_loss": 10.984416007995605,
+              "pvr_minus_dense_eval_loss": -0.8501119613647461,
+              "route_margin": 0.4023661313331104,
+              "step": 4000
+            }
+          ]
+        }
+      }
+    }
+  },
+  "deprecated_paths_not_used": [
+    "in_bounds_probability_head_as_previously_implemented",
+    "route_confidence_regularization_0_01",
+    "global_dense_kl_persistent_objective"
+  ],
+  "device": "cuda",
+  "effective_batch_tokens": 256,
+  "environment": {
+    "cwd": "/workspace",
+    "machine": "x86_64",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.10.13"
+  },
+  "experiment": "PVR_SHARED_APPROXIMATION_BOTTLENECK_TEST",
+  "gated_teacher_warmup_steps": 500,
+  "gated_teacher_weight": 0.001,
+  "git_commit": "f7ad2dad46570383bed4c7e7d067c0269583a828",
+  "max_steps": 4000,
+  "route_stability_rule_update": {
+    "reason": "Absolute route margin remained healthy while Top1, entropy, and utilization were stable; lower-than-baseline margin alone should not be called collapse.",
+    "route_margin_not_collapsed_rule": "mean_route_margin >= 0.25 and ratio_vs_baseline >= 0.50",
+    "status": "UPDATED_AFTER_REVIEW"
+  },
+  "rows": [
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/checkpoint.pt",
+      "diagnostic_mode": "baseline",
+      "effective_batch_tokens": 256,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/eval_curve.json",
+      "eval_window_count": 10,
+      "final_loss": 2.7715015411376953,
+      "gpu_hours": 0.09074083679252201,
+      "hardware_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/hardware_manifest.json",
+      "init_report": {},
+      "mean_gated_teacher_loss": null,
+      "mean_gated_teacher_mask_rate": null,
+      "model_variant": "pvr_ec_o_full_100m_baseline",
+      "optimizer_steps": 4000,
+      "routing_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/routing_curve.json",
+      "routing_window_count": 10,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/throughput_log.json",
+      "tokens_seen": 1024000,
+      "training_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_baseline/training_curve.json",
+      "training_tokens_seen": 1024000,
+      "variant_name": "baseline",
+      "vram_peak": 1778107392
+    },
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/checkpoint.pt",
+      "diagnostic_mode": "shared_trunk_init_from_dense",
+      "effective_batch_tokens": 256,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/eval_curve.json",
+      "eval_window_count": 10,
+      "final_loss": 2.6657094955444336,
+      "gpu_hours": 0.09348781420124902,
+      "hardware_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/hardware_manifest.json",
+      "init_report": {
+        "copied": [
+          "token_emb.weight",
+          "pos_emb.weight",
+          "ln_f.weight",
+          "ln_f.bias",
+          "attn.0.self_attn.in_proj_weight",
+          "attn.0.self_attn.in_proj_bias",
+          "attn.0.self_attn.out_proj.weight",
+          "attn.0.self_attn.out_proj.bias",
+          "attn.0.linear2.bias",
+          "attn.0.norm1.weight",
+          "attn.0.norm1.bias",
+          "attn.0.norm2.weight",
+          "attn.0.norm2.bias",
+          "blocks.0.shared.w2.bias",
+          "attn.1.self_attn.in_proj_weight",
+          "attn.1.self_attn.in_proj_bias",
+          "attn.1.self_attn.out_proj.weight",
+          "attn.1.self_attn.out_proj.bias",
+          "attn.1.linear2.bias",
+          "attn.1.norm1.weight",
+          "attn.1.norm1.bias",
+          "attn.1.norm2.weight",
+          "attn.1.norm2.bias",
+          "blocks.1.shared.w2.bias",
+          "attn.2.self_attn.in_proj_weight",
+          "attn.2.self_attn.in_proj_bias",
+          "attn.2.self_attn.out_proj.weight",
+          "attn.2.self_attn.out_proj.bias",
+          "attn.2.linear2.bias",
+          "attn.2.norm1.weight",
+          "attn.2.norm1.bias",
+          "attn.2.norm2.weight",
+          "attn.2.norm2.bias",
+          "blocks.2.shared.w2.bias",
+          "attn.3.self_attn.in_proj_weight",
+          "attn.3.self_attn.in_proj_bias",
+          "attn.3.self_attn.out_proj.weight",
+          "attn.3.self_attn.out_proj.bias",
+          "attn.3.linear2.bias",
+          "attn.3.norm1.weight",
+          "attn.3.norm1.bias",
+          "attn.3.norm2.weight",
+          "attn.3.norm2.bias",
+          "blocks.3.shared.w2.bias",
+          "attn.4.self_attn.in_proj_weight",
+          "attn.4.self_attn.in_proj_bias",
+          "attn.4.self_attn.out_proj.weight",
+          "attn.4.self_attn.out_proj.bias",
+          "attn.4.linear2.bias",
+          "attn.4.norm1.weight",
+          "attn.4.norm1.bias",
+          "attn.4.norm2.weight",
+          "attn.4.norm2.bias",
+          "blocks.4.shared.w2.bias",
+          "attn.5.self_attn.in_proj_weight",
+          "attn.5.self_attn.in_proj_bias",
+          "attn.5.self_attn.out_proj.weight",
+          "attn.5.self_attn.out_proj.bias",
+          "attn.5.linear2.bias",
+          "attn.5.norm1.weight",
+          "attn.5.norm1.bias",
+          "attn.5.norm2.weight",
+          "attn.5.norm2.bias",
+          "blocks.5.shared.w2.bias",
+          "attn.6.self_attn.in_proj_weight",
+          "attn.6.self_attn.in_proj_bias",
+          "attn.6.self_attn.out_proj.weight",
+          "attn.6.self_attn.out_proj.bias",
+          "attn.6.linear2.bias",
+          "attn.6.norm1.weight",
+          "attn.6.norm1.bias",
+          "attn.6.norm2.weight",
+          "attn.6.norm2.bias",
+          "blocks.6.shared.w2.bias",
+          "attn.7.self_attn.in_proj_weight",
+          "attn.7.self_attn.in_proj_bias",
+          "attn.7.self_attn.out_proj.weight",
+          "attn.7.self_attn.out_proj.bias",
+          "attn.7.linear2.bias",
+          "attn.7.norm1.weight"
+        ],
+        "copied_count": 124,
+        "skipped_count": 73,
+        "skipped_sample": [
+          "head.weight",
+          "attn.0.linear1.weight",
+          "attn.0.linear1.bias",
+          "attn.0.linear2.weight",
+          "blocks.0.shared.w1.weight",
+          "blocks.0.shared.w1.bias",
+          "blocks.0.shared.w2.weight",
+          "attn.1.linear1.weight",
+          "attn.1.linear1.bias",
+          "attn.1.linear2.weight",
+          "blocks.1.shared.w1.weight",
+          "blocks.1.shared.w1.bias",
+          "blocks.1.shared.w2.weight",
+          "attn.2.linear1.weight",
+          "attn.2.linear1.bias",
+          "attn.2.linear2.weight",
+          "blocks.2.shared.w1.weight",
+          "blocks.2.shared.w1.bias",
+          "blocks.2.shared.w2.weight",
+          "attn.3.linear1.weight",
+          "attn.3.linear1.bias",
+          "attn.3.linear2.weight",
+          "blocks.3.shared.w1.weight",
+          "blocks.3.shared.w1.bias",
+          "blocks.3.shared.w2.weight",
+          "attn.4.linear1.weight",
+          "attn.4.linear1.bias",
+          "attn.4.linear2.weight",
+          "blocks.4.shared.w1.weight",
+          "blocks.4.shared.w1.bias",
+          "blocks.4.shared.w2.weight",
+          "attn.5.linear1.weight",
+          "attn.5.linear1.bias",
+          "attn.5.linear2.weight",
+          "blocks.5.shared.w1.weight",
+          "blocks.5.shared.w1.bias",
+          "blocks.5.shared.w2.weight",
+          "attn.6.linear1.weight",
+          "attn.6.linear1.bias",
+          "attn.6.linear2.weight",
+          "blocks.6.shared.w1.weight",
+          "blocks.6.shared.w1.bias",
+          "blocks.6.shared.w2.weight",
+          "attn.7.linear1.weight",
+          "attn.7.linear1.bias",
+          "attn.7.linear2.weight",
+          "blocks.7.shared.w1.weight",
+          "blocks.7.shared.w1.bias",
+          "blocks.7.shared.w2.weight",
+          "attn.8.linear1.weight",
+          "attn.8.linear1.bias",
+          "attn.8.linear2.weight",
+          "blocks.8.shared.w1.weight",
+          "blocks.8.shared.w1.bias",
+          "blocks.8.shared.w2.weight",
+          "attn.9.linear1.weight",
+          "attn.9.linear1.bias",
+          "attn.9.linear2.weight",
+          "blocks.9.shared.w1.weight",
+          "blocks.9.shared.w1.bias",
+          "blocks.9.shared.w2.weight",
+          "attn.10.linear1.weight",
+          "attn.10.linear1.bias",
+          "attn.10.linear2.weight",
+          "blocks.10.shared.w1.weight",
+          "blocks.10.shared.w1.bias",
+          "blocks.10.shared.w2.weight",
+          "attn.11.linear1.weight",
+          "attn.11.linear1.bias",
+          "attn.11.linear2.weight",
+          "blocks.11.shared.w1.weight",
+          "blocks.11.shared.w1.bias",
+          "blocks.11.shared.w2.weight"
+        ]
+      },
+      "mean_gated_teacher_loss": null,
+      "mean_gated_teacher_mask_rate": null,
+      "model_variant": "pvr_ec_o_full_100m_shared_trunk_init_from_dense",
+      "optimizer_steps": 4000,
+      "routing_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/routing_curve.json",
+      "routing_window_count": 10,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/throughput_log.json",
+      "tokens_seen": 1024000,
+      "training_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_trunk_init_from_dense/training_curve.json",
+      "training_tokens_seen": 1024000,
+      "variant_name": "shared_trunk_init_from_dense",
+      "vram_peak": 2052617216
+    },
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/checkpoint.pt",
+      "diagnostic_mode": "shared_capacity_plus",
+      "effective_batch_tokens": 256,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/eval_curve.json",
+      "eval_window_count": 10,
+      "final_loss": 2.885643482208252,
+      "gpu_hours": 0.09471821142567528,
+      "hardware_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/hardware_manifest.json",
+      "init_report": {},
+      "mean_gated_teacher_loss": null,
+      "mean_gated_teacher_mask_rate": null,
+      "model_variant": "pvr_ec_o_full_100m_shared_capacity_plus",
+      "optimizer_steps": 4000,
+      "routing_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/routing_curve.json",
+      "routing_window_count": 10,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/throughput_log.json",
+      "tokens_seen": 1024000,
+      "training_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_shared_capacity_plus/training_curve.json",
+      "training_tokens_seen": 1024000,
+      "variant_name": "shared_capacity_plus",
+      "vram_peak": 1824551936
+    },
+    {
+      "checkpoint_exists": true,
+      "checkpoint_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/checkpoint_manifest.json",
+      "checkpoint_path": "checkpoints/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/checkpoint.pt",
+      "diagnostic_mode": "gated_teacher_low_confidence_only",
+      "effective_batch_tokens": 256,
+      "error": null,
+      "eval_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/eval_curve.json",
+      "eval_window_count": 10,
+      "final_loss": 2.7720274925231934,
+      "gpu_hours": 0.09282671683364445,
+      "hardware_manifest": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/hardware_manifest.json",
+      "init_report": {},
+      "mean_gated_teacher_loss": 117.25526112365722,
+      "mean_gated_teacher_mask_rate": 0.7524375,
+      "model_variant": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+      "optimizer_steps": 4000,
+      "routing_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/routing_curve.json",
+      "routing_window_count": 10,
+      "status": "GENUINE_REDUCED_TRAINING_COMPLETE",
+      "throughput_log": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/throughput_log.json",
+      "tokens_seen": 1024000,
+      "training_curve": "benchmark/reports/generated/shared_approximation_bottleneck_100m_4k/pvr_ec_o_full_100m_gated_teacher_low_confidence_only/training_curve.json",
+      "training_tokens_seen": 1024000,
+      "variant_name": "gated_teacher_low_confidence_only",
+      "vram_peak": 2149880832
+    }
+  ],
+  "schema_version": "1.0",
+  "secondary_status": "PVR_ROUTING_NOT_MAIN_BOTTLENECK",
+  "seed": 20260613,
+  "seq_len": 128,
+  "shared_capacity_multiplier": 4.0,
+  "status": "PVR_SHARED_TRUNK_INIT_SUPPORTED",
+  "summary": {
+    "baseline": {
+      "final_train_loss": 2.7715015411376953,
+      "mean_eval_loss": 5.6959069728851315,
+      "mean_owner_entropy": 1.931473880189085,
+      "mean_prototype_monopoly_rate": 0.2621744791666667,
+      "mean_route_margin": 0.6867825676590049,
+      "top1_invariants_clean": true
+    },
+    "created_at": "2026-06-13T14:57:58.483122+00:00",
+    "decision_rule": "repair is supported only if it improves final train loss and mean eval loss while Top1 invariants and route-collapse checks remain clean",
+    "git_commit": "f7ad2dad46570383bed4c7e7d067c0269583a828",
+    "rows": {
+      "baseline": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": 0.0,
+          "mean_eval_loss_delta_vs_baseline": 0.0,
+          "mean_owner_entropy_delta_vs_baseline": 0.0,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": 0.0,
+          "mean_route_margin_delta_vs_baseline": 0.0
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.7715015411376953,
+        "loss_supported": false,
+        "mean_eval_loss": 5.6959069728851315,
+        "mean_owner_entropy": 1.931473880189085,
+        "mean_prototype_monopoly_rate": 0.2621744791666667,
+        "mean_route_margin": 0.6867825676590049,
+        "model": "pvr_ec_o_full_100m_baseline",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      },
+      "gated_teacher_low_confidence_only": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": 0.0005259513854980469,
+          "mean_eval_loss_delta_vs_baseline": -0.003212976455688299,
+          "mean_owner_entropy_delta_vs_baseline": 0.0006201852143887798,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": -6.510416666671848e-05,
+          "mean_route_margin_delta_vs_baseline": 0.0005040076430304907
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.7720274925231934,
+        "loss_supported": false,
+        "mean_eval_loss": 5.692693996429443,
+        "mean_owner_entropy": 1.9320940654034737,
+        "mean_prototype_monopoly_rate": 0.262109375,
+        "mean_route_margin": 0.6872865753020354,
+        "model": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      },
+      "shared_capacity_plus": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": 0.11414194107055664,
+          "mean_eval_loss_delta_vs_baseline": -0.31337451934814453,
+          "mean_owner_entropy_delta_vs_baseline": -0.022058776562072557,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": 0.024218749999999956,
+          "mean_route_margin_delta_vs_baseline": -0.17272194760298587
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.885643482208252,
+        "loss_supported": false,
+        "mean_eval_loss": 5.382532453536987,
+        "mean_owner_entropy": 1.9094151036270124,
+        "mean_prototype_monopoly_rate": 0.28639322916666665,
+        "mean_route_margin": 0.514060620056019,
+        "model": "pvr_ec_o_full_100m_shared_capacity_plus",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      },
+      "shared_trunk_init_from_dense": {
+        "deltas": {
+          "final_train_loss_delta_vs_baseline": -0.10579204559326172,
+          "mean_eval_loss_delta_vs_baseline": -1.69472804069519,
+          "mean_owner_entropy_delta_vs_baseline": -0.004488287911066369,
+          "mean_prototype_monopoly_rate_delta_vs_baseline": 0.009765625,
+          "mean_route_margin_delta_vs_baseline": -0.27187080219785764
+        },
+        "eval_window_count": 10,
+        "final_train_loss": 2.6657094955444336,
+        "loss_supported": true,
+        "mean_eval_loss": 4.001178932189942,
+        "mean_owner_entropy": 1.9269855922780186,
+        "mean_prototype_monopoly_rate": 0.2719401041666667,
+        "mean_route_margin": 0.4149117654611473,
+        "model": "pvr_ec_o_full_100m_shared_trunk_init_from_dense",
+        "route_stable": true,
+        "top1_invariants_clean": true
+      }
+    },
+    "schema_version": "1.0",
+    "secondary_status": "PVR_ROUTING_NOT_MAIN_BOTTLENECK",
+    "status": "PVR_SHARED_TRUNK_INIT_SUPPORTED",
+    "supported_repairs": [
+      "shared_trunk_init_from_dense"
+    ]
+  },
+  "temperature": 2.0,
+  "variant_names": {
+    "baseline": "pvr_ec_o_full_100m_baseline",
+    "gated_teacher_low_confidence_only": "pvr_ec_o_full_100m_gated_teacher_low_confidence_only",
+    "shared_capacity_plus": "pvr_ec_o_full_100m_shared_capacity_plus",
+    "shared_trunk_init_from_dense": "pvr_ec_o_full_100m_shared_trunk_init_from_dense"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-07-22T14:49:35.665258+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 27.07453727722168,
+      "eval_tokens": 256,
+      "optimizer_step": 244,
+      "step": 244,
+      "training_tokens_seen": 249856
+    },
+    {
+      "eval_loss": 22.264923095703125,
+      "eval_tokens": 256,
+      "optimizer_step": 488,
+      "step": 488,
+      "training_tokens_seen": 499712
+    }
+  ],
+  "eval_window_count": 2,
+  "model": "pvr_router_regret_repair_baseline_no_regret_300m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

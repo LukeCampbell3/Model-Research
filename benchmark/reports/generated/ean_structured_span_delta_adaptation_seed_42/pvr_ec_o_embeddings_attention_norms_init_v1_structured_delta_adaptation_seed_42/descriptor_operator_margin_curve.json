@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.5149003297362166,
+      "operator_control_margin": 0.5149003297362166,
+      "step": 100
+    },
+    {
+      "descriptor_control_margin": 0.5203834788844688,
+      "operator_control_margin": 0.5203834788844688,
+      "step": 200
+    },
+    {
+      "descriptor_control_margin": 0.5458789111677712,
+      "operator_control_margin": 0.5458789111677712,
+      "step": 300
+    },
+    {
+      "descriptor_control_margin": 0.5395870561114862,
+      "operator_control_margin": 0.5395870561114862,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.548513956401924,
+      "operator_control_margin": 0.548513956401924,
+      "step": 500
+    },
+    {
+      "descriptor_control_margin": 0.5317204753058226,
+      "operator_control_margin": 0.5317204753058226,
+      "step": 600
+    },
+    {
+      "descriptor_control_margin": 0.5454322798383752,
+      "operator_control_margin": 0.5454322798383752,
+      "step": 700
+    },
+    {
+      "descriptor_control_margin": 0.5436747492894938,
+      "operator_control_margin": 0.5436747492894938,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.5395766381989233,
+      "operator_control_margin": 0.5395766381989233,
+      "step": 900
+    },
+    {
+      "descriptor_control_margin": 0.5400465105073332,
+      "operator_control_margin": 0.5400465105073332,
+      "step": 1000
+    }
+  ],
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "schema_version": "1.0"
+}

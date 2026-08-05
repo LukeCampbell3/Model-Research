@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-06-12T03:13:58.160136+00:00",
+  "loss_curve": [
+    {
+      "loss": 353.6523132324219,
+      "step": 1,
+      "tokens_seen": 16
+    }
+  ],
+  "model": "pvr_ec_o_no_contrastive_geometry_100m",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

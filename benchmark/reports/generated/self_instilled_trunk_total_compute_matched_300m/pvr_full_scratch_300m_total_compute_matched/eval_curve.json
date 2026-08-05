@@ -1,0 +1,219 @@
+{
+  "created_at": "2026-06-19T21:43:56.373062+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 34.994810700416565,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 100,
+      "phase": "full_training",
+      "step": 100,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 21.36000907421112,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 200,
+      "phase": "full_training",
+      "step": 200,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 17.809612452983856,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 300,
+      "phase": "full_training",
+      "step": 300,
+      "training_tokens_seen": 307200
+    },
+    {
+      "eval_loss": 16.14113473892212,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 400,
+      "phase": "full_training",
+      "step": 400,
+      "training_tokens_seen": 409600
+    },
+    {
+      "eval_loss": 15.223938912153244,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 500,
+      "phase": "full_training",
+      "step": 500,
+      "training_tokens_seen": 512000
+    },
+    {
+      "eval_loss": 14.727201342582703,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 600,
+      "phase": "full_training",
+      "step": 600,
+      "training_tokens_seen": 614400
+    },
+    {
+      "eval_loss": 14.297425359487534,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 700,
+      "phase": "full_training",
+      "step": 700,
+      "training_tokens_seen": 716800
+    },
+    {
+      "eval_loss": 13.829124614596367,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 800,
+      "phase": "full_training",
+      "step": 800,
+      "training_tokens_seen": 819200
+    },
+    {
+      "eval_loss": 13.262168675661087,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 900,
+      "phase": "full_training",
+      "step": 900,
+      "training_tokens_seen": 921600
+    },
+    {
+      "eval_loss": 12.724424570798874,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1000,
+      "phase": "full_training",
+      "step": 1000,
+      "training_tokens_seen": 1024000
+    },
+    {
+      "eval_loss": 12.821065917611122,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1100,
+      "phase": "full_training",
+      "step": 1100,
+      "training_tokens_seen": 1126400
+    },
+    {
+      "eval_loss": 12.547025755047798,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1200,
+      "phase": "full_training",
+      "step": 1200,
+      "training_tokens_seen": 1228800
+    },
+    {
+      "eval_loss": 12.45340995490551,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1300,
+      "phase": "full_training",
+      "step": 1300,
+      "training_tokens_seen": 1331200
+    },
+    {
+      "eval_loss": 12.247130408883095,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1400,
+      "phase": "full_training",
+      "step": 1400,
+      "training_tokens_seen": 1433600
+    },
+    {
+      "eval_loss": 11.588855609297752,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1500,
+      "phase": "full_training",
+      "step": 1500,
+      "training_tokens_seen": 1536000
+    },
+    {
+      "eval_loss": 11.47337356209755,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1600,
+      "phase": "full_training",
+      "step": 1600,
+      "training_tokens_seen": 1638400
+    },
+    {
+      "eval_loss": 10.975496128201485,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1700,
+      "phase": "full_training",
+      "step": 1700,
+      "training_tokens_seen": 1740800
+    },
+    {
+      "eval_loss": 11.005626782774925,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1800,
+      "phase": "full_training",
+      "step": 1800,
+      "training_tokens_seen": 1843200
+    },
+    {
+      "eval_loss": 10.782575592398643,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 1900,
+      "phase": "full_training",
+      "step": 1900,
+      "training_tokens_seen": 1945600
+    },
+    {
+      "eval_loss": 10.736795738339424,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 2000,
+      "phase": "full_training",
+      "step": 2000,
+      "training_tokens_seen": 2048000
+    },
+    {
+      "eval_loss": 10.618630811572075,
+      "eval_tokens": 1024,
+      "head_active": false,
+      "head_off_retained_geometry_eval": false,
+      "optimizer_step": 2100,
+      "phase": "full_training",
+      "step": 2100,
+      "training_tokens_seen": 2150400
+    }
+  ],
+  "eval_window_count": 21,
+  "model": "pvr_full_scratch_300m_total_compute_matched",
+  "schema_version": "1.0",
+  "status": "PVR_SELF_INSTILLED_EAN_GEOMETRY_HEAD_MATCHED_VOLUME_SCREEN_COMPLETE"
+}

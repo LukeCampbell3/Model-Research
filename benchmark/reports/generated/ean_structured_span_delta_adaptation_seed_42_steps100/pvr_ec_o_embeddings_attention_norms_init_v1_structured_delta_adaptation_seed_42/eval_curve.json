@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-06-17T03:23:28.932894+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 3.7679762840270996,
+      "eval_tokens": 128,
+      "optimizer_step": 25,
+      "step": 25,
+      "training_tokens_seen": 6400
+    },
+    {
+      "eval_loss": 4.861076354980469,
+      "eval_tokens": 128,
+      "optimizer_step": 50,
+      "step": 50,
+      "training_tokens_seen": 12800
+    },
+    {
+      "eval_loss": 12.870946884155273,
+      "eval_tokens": 128,
+      "optimizer_step": 75,
+      "step": 75,
+      "training_tokens_seen": 19200
+    },
+    {
+      "eval_loss": 7.729979515075684,
+      "eval_tokens": 128,
+      "optimizer_step": 100,
+      "step": 100,
+      "training_tokens_seen": 25600
+    }
+  ],
+  "eval_window_count": 4,
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

@@ -1,9 +1,0 @@
-{
-  "status": "GENERATED",
-  "task_groups": [
-    "language_modeling",
-    "classification",
-    "qa_instruction",
-    "coreference"
-  ]
-}

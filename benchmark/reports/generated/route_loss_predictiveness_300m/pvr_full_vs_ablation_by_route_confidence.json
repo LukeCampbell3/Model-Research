@@ -1,0 +1,37 @@
+{
+  "dense_transformer_300m": {
+    "compile_rate_delta_full_minus_other": 0.054878048780487805,
+    "lm_loss_delta_full_minus_other": 0.09723039746284501,
+    "status": "COMPLETED"
+  },
+  "generic_top2_moe_reference_300m": {
+    "compile_rate_delta_full_minus_other": 0.01829268292682927,
+    "lm_loss_delta_full_minus_other": 0.03761759042739854,
+    "status": "COMPLETED"
+  },
+  "pvr_ec_o_no_contrastive_geometry_300m": {
+    "compile_rate_delta_full_minus_other": 0.054878048780487805,
+    "lm_loss_delta_full_minus_other": 0.00302313566207868,
+    "status": "COMPLETED"
+  },
+  "pvr_ec_o_no_descriptor_operator_300m": {
+    "compile_rate_delta_full_minus_other": -0.1524390243902439,
+    "lm_loss_delta_full_minus_other": 0.0014561462402342684,
+    "status": "COMPLETED"
+  },
+  "pvr_ec_o_no_prototypes_300m": {
+    "compile_rate_delta_full_minus_other": 0.08536585365853658,
+    "lm_loss_delta_full_minus_other": -0.1321074080467226,
+    "status": "COMPLETED"
+  },
+  "pvr_ec_o_shared_only_300m": {
+    "compile_rate_delta_full_minus_other": 0.09146341463414634,
+    "lm_loss_delta_full_minus_other": -0.15752140164375295,
+    "status": "COMPLETED"
+  },
+  "vanilla_switch_top1_reference_300m": {
+    "compile_rate_delta_full_minus_other": 0.048780487804878044,
+    "lm_loss_delta_full_minus_other": 0.08364775776863098,
+    "status": "COMPLETED"
+  }
+}

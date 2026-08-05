@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-06-17T03:21:29.552113+00:00",
+  "eval_curve": [
+    {
+      "eval_loss": 7.729979515075684,
+      "eval_tokens": 128,
+      "optimizer_step": 100,
+      "step": 100,
+      "training_tokens_seen": 25600
+    },
+    {
+      "eval_loss": 3.1149187088012695,
+      "eval_tokens": 128,
+      "optimizer_step": 200,
+      "step": 200,
+      "training_tokens_seen": 51200
+    },
+    {
+      "eval_loss": 2.87509822845459,
+      "eval_tokens": 128,
+      "optimizer_step": 300,
+      "step": 300,
+      "training_tokens_seen": 76800
+    },
+    {
+      "eval_loss": 2.9362666606903076,
+      "eval_tokens": 128,
+      "optimizer_step": 400,
+      "step": 400,
+      "training_tokens_seen": 102400
+    },
+    {
+      "eval_loss": 2.9943439960479736,
+      "eval_tokens": 128,
+      "optimizer_step": 500,
+      "step": 500,
+      "training_tokens_seen": 128000
+    },
+    {
+      "eval_loss": 2.8748974800109863,
+      "eval_tokens": 128,
+      "optimizer_step": 600,
+      "step": 600,
+      "training_tokens_seen": 153600
+    },
+    {
+      "eval_loss": 3.163774251937866,
+      "eval_tokens": 128,
+      "optimizer_step": 700,
+      "step": 700,
+      "training_tokens_seen": 179200
+    },
+    {
+      "eval_loss": 3.0640316009521484,
+      "eval_tokens": 128,
+      "optimizer_step": 800,
+      "step": 800,
+      "training_tokens_seen": 204800
+    },
+    {
+      "eval_loss": 3.3054027557373047,
+      "eval_tokens": 128,
+      "optimizer_step": 900,
+      "step": 900,
+      "training_tokens_seen": 230400
+    },
+    {
+      "eval_loss": 3.3726308345794678,
+      "eval_tokens": 128,
+      "optimizer_step": 1000,
+      "step": 1000,
+      "training_tokens_seen": 256000
+    }
+  ],
+  "eval_window_count": 10,
+  "model": "pvr_ec_o_embeddings_attention_norms_init_v1_structured_delta_adaptation_seed_42",
+  "schema_version": "1.0",
+  "status": "GENUINE_REDUCED_TRAINING_COMPLETE"
+}

@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 1024,
+  "model": "pvr_self_instilled_ean_trunk_only_300m_total_compute_matched",
+  "optimizer_steps": 2100,
+  "resource_reduction": {
+    "completed_eval_windows": 21,
+    "completed_steps": 2100,
+    "completed_training_tokens": 2150400,
+    "estimated_steps_needed": 2100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 21,
+    "target_training_tokens": 2150400
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 21,
+  "target_steps": 2100,
+  "target_training_tokens": 2150400,
+  "tokens_per_second": 2574.6264187335782,
+  "tokens_seen": 2150400,
+  "training_tokens_seen": 2150400,
+  "wall_clock_seconds": 835.2279710769653
+}

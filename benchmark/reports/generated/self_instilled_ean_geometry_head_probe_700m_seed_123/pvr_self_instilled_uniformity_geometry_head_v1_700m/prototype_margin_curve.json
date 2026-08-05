@@ -1,0 +1,10 @@
+{
+  "model": "pvr_self_instilled_uniformity_geometry_head_v1_700m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.38403021691374306,
+      "step": 100
+    }
+  ],
+  "schema_version": "1.0"
+}

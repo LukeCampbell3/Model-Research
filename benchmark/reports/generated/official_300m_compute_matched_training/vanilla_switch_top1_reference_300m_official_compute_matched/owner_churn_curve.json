@@ -1,0 +1,5 @@
+{
+  "model": "vanilla_switch_top1_reference_300m_official_compute_matched",
+  "owner_churn_curve": [],
+  "schema_version": "1.0"
+}

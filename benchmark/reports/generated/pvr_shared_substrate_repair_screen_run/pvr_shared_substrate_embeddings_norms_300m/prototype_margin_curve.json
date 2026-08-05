@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_embeddings_norms_300m",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 0.3495188441981251,
+      "step": 244
+    },
+    {
+      "prototype_margin": 0.4039949826025501,
+      "step": 488
+    },
+    {
+      "prototype_margin": 0.42505059713463805,
+      "step": 732
+    },
+    {
+      "prototype_margin": 0.4520951272000578,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

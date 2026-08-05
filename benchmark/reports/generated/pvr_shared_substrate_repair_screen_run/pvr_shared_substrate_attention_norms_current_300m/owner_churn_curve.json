@@ -1,0 +1,22 @@
+{
+  "model": "pvr_shared_substrate_attention_norms_current_300m",
+  "owner_churn_curve": [
+    {
+      "owner_churn": null,
+      "step": 244
+    },
+    {
+      "owner_churn": null,
+      "step": 488
+    },
+    {
+      "owner_churn": null,
+      "step": 732
+    },
+    {
+      "owner_churn": null,
+      "step": 976
+    }
+  ],
+  "schema_version": "1.0"
+}

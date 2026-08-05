@@ -1,0 +1,57 @@
+{
+  "analysis_type": "predictive_correlational",
+  "blocked_claims": [
+    "route confidence causes loss reduction",
+    "routing causally improves loss"
+  ],
+  "comparison_groups": {
+    "dense_transformer_300m": {
+      "compile_rate_delta_full_minus_other": 0.054878048780487805,
+      "lm_loss_delta_full_minus_other": 0.09723039746284501,
+      "status": "COMPLETED"
+    },
+    "generic_top2_moe_reference_300m": {
+      "compile_rate_delta_full_minus_other": 0.01829268292682927,
+      "lm_loss_delta_full_minus_other": 0.03761759042739854,
+      "status": "COMPLETED"
+    },
+    "pvr_ec_o_no_contrastive_geometry_300m": {
+      "compile_rate_delta_full_minus_other": 0.054878048780487805,
+      "lm_loss_delta_full_minus_other": 0.00302313566207868,
+      "status": "COMPLETED"
+    },
+    "pvr_ec_o_no_descriptor_operator_300m": {
+      "compile_rate_delta_full_minus_other": -0.1524390243902439,
+      "lm_loss_delta_full_minus_other": 0.0014561462402342684,
+      "status": "COMPLETED"
+    },
+    "pvr_ec_o_no_prototypes_300m": {
+      "compile_rate_delta_full_minus_other": 0.08536585365853658,
+      "lm_loss_delta_full_minus_other": -0.1321074080467226,
+      "status": "COMPLETED"
+    },
+    "pvr_ec_o_shared_only_300m": {
+      "compile_rate_delta_full_minus_other": 0.09146341463414634,
+      "lm_loss_delta_full_minus_other": -0.15752140164375295,
+      "status": "COMPLETED"
+    },
+    "vanilla_switch_top1_reference_300m": {
+      "compile_rate_delta_full_minus_other": 0.048780487804878044,
+      "lm_loss_delta_full_minus_other": 0.08364775776863098,
+      "status": "COMPLETED"
+    }
+  },
+  "comparison_path": "benchmark\\reports\\generated\\comparison_300m_real_4k\\benchmark_comparison_report.json",
+  "confidence_source": "trained_in_bounds_head_when_available_else_margin_proxy",
+  "created_at": "2026-06-13T13:18:21.481203+00:00",
+  "loss_prediction_auc": 0.2288,
+  "residuals_path": null,
+  "route_confidence_loss_correlation": 0.15605151924400393,
+  "route_margin_loss_correlation": -0.00896701748042059,
+  "routing_path": null,
+  "schema_version": "1.0",
+  "size": "300m",
+  "status": "RBA_PVR_ROUTE_USEFULNESS_INCONCLUSIVE",
+  "whether_routing_improves_loss": true,
+  "whether_routing_predicts_loss": false
+}

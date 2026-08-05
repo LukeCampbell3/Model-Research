@@ -1,0 +1,26 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.887128088157624,
+      "operator_control_margin": 0.887128088157624,
+      "step": 244
+    },
+    {
+      "descriptor_control_margin": 1.1640138519505854,
+      "operator_control_margin": 1.1640138519505854,
+      "step": 488
+    },
+    {
+      "descriptor_control_margin": 1.2969498726233724,
+      "operator_control_margin": 1.2969498726233724,
+      "step": 732
+    },
+    {
+      "descriptor_control_margin": 1.425149407691303,
+      "operator_control_margin": 1.425149407691303,
+      "step": 976
+    }
+  ],
+  "model": "pvr_shared_substrate_embeddings_only_300m",
+  "schema_version": "1.0"
+}

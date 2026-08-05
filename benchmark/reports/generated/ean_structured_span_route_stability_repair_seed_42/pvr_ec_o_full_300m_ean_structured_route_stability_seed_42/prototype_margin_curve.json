@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_ean_structured_route_stability_seed_42",
+  "prototype_margin_curve": [
+    {
+      "prototype_margin": 2.1043467339574513,
+      "step": 400
+    },
+    {
+      "prototype_margin": 2.618044531351188,
+      "step": 800
+    },
+    {
+      "prototype_margin": 2.878185717821907,
+      "step": 1200
+    },
+    {
+      "prototype_margin": 3.0623320449716025,
+      "step": 1600
+    },
+    {
+      "prototype_margin": 3.2197544402394365,
+      "step": 2000
+    },
+    {
+      "prototype_margin": 3.3421427486270354,
+      "step": 2400
+    },
+    {
+      "prototype_margin": 3.48303971435962,
+      "step": 2800
+    },
+    {
+      "prototype_margin": 3.542019712923017,
+      "step": 3200
+    },
+    {
+      "prototype_margin": 3.573578739912288,
+      "step": 3600
+    },
+    {
+      "prototype_margin": 3.671783296740614,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

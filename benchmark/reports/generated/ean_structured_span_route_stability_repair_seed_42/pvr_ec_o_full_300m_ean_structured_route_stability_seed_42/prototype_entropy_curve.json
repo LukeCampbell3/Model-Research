@@ -1,0 +1,46 @@
+{
+  "model": "pvr_ec_o_full_300m_ean_structured_route_stability_seed_42",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9677256596287256,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 1.9630500100017985,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 1.9703531300376471,
+      "step": 1200
+    },
+    {
+      "prototype_entropy": 1.9755777773279282,
+      "step": 1600
+    },
+    {
+      "prototype_entropy": 1.966384872771724,
+      "step": 2000
+    },
+    {
+      "prototype_entropy": 1.9739128416851646,
+      "step": 2400
+    },
+    {
+      "prototype_entropy": 1.9717562767198982,
+      "step": 2800
+    },
+    {
+      "prototype_entropy": 1.9738969810948959,
+      "step": 3200
+    },
+    {
+      "prototype_entropy": 1.9723382125754136,
+      "step": 3600
+    },
+    {
+      "prototype_entropy": 1.9738529230375244,
+      "step": 4000
+    }
+  ],
+  "schema_version": "1.0"
+}

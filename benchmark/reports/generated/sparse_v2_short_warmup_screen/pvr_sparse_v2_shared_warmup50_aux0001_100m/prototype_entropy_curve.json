@@ -1,0 +1,18 @@
+{
+  "model": "pvr_sparse_v2_shared_warmup50_aux0001_100m",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 2.2918020268610406,
+      "step": 250
+    },
+    {
+      "prototype_entropy": 2.2689562656612696,
+      "step": 500
+    },
+    {
+      "prototype_entropy": 2.203173520779999,
+      "step": 950
+    }
+  ],
+  "schema_version": "1.0"
+}

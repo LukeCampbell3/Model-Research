@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 2.1043467339574513,
+      "operator_control_margin": 2.1043467339574513,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 2.618044531351188,
+      "operator_control_margin": 2.618044531351188,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 2.878185717821907,
+      "operator_control_margin": 2.878185717821907,
+      "step": 1200
+    },
+    {
+      "descriptor_control_margin": 3.0623320449716025,
+      "operator_control_margin": 3.0623320449716025,
+      "step": 1600
+    },
+    {
+      "descriptor_control_margin": 3.2197544402394365,
+      "operator_control_margin": 3.2197544402394365,
+      "step": 2000
+    },
+    {
+      "descriptor_control_margin": 3.3421427486270354,
+      "operator_control_margin": 3.3421427486270354,
+      "step": 2400
+    },
+    {
+      "descriptor_control_margin": 3.48303971435962,
+      "operator_control_margin": 3.48303971435962,
+      "step": 2800
+    },
+    {
+      "descriptor_control_margin": 3.542019712923017,
+      "operator_control_margin": 3.542019712923017,
+      "step": 3200
+    },
+    {
+      "descriptor_control_margin": 3.573578739912288,
+      "operator_control_margin": 3.573578739912288,
+      "step": 3600
+    },
+    {
+      "descriptor_control_margin": 3.671783296740614,
+      "operator_control_margin": 3.671783296740614,
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_300m_ean_structured_route_stability_seed_42",
+  "schema_version": "1.0"
+}

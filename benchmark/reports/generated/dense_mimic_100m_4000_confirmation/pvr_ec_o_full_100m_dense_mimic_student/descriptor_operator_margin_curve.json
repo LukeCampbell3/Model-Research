@@ -1,0 +1,56 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 0.6802332554507302,
+      "operator_control_margin": 0.6802332554507302,
+      "step": 400
+    },
+    {
+      "descriptor_control_margin": 0.6498647540259602,
+      "operator_control_margin": 0.6498647540259602,
+      "step": 800
+    },
+    {
+      "descriptor_control_margin": 0.6490031971261487,
+      "operator_control_margin": 0.6490031971261487,
+      "step": 1200
+    },
+    {
+      "descriptor_control_margin": 0.6499420389712517,
+      "operator_control_margin": 0.6499420389712517,
+      "step": 1600
+    },
+    {
+      "descriptor_control_margin": 0.6537937014266694,
+      "operator_control_margin": 0.6537937014266694,
+      "step": 2000
+    },
+    {
+      "descriptor_control_margin": 0.6534466854306326,
+      "operator_control_margin": 0.6534466854306326,
+      "step": 2400
+    },
+    {
+      "descriptor_control_margin": 0.6706718726539597,
+      "operator_control_margin": 0.6706718726539597,
+      "step": 2800
+    },
+    {
+      "descriptor_control_margin": 0.6678224859642796,
+      "operator_control_margin": 0.6678224859642796,
+      "step": 3200
+    },
+    {
+      "descriptor_control_margin": 0.6757391803888216,
+      "operator_control_margin": 0.6757391803888216,
+      "step": 3600
+    },
+    {
+      "descriptor_control_margin": 0.6387511475719899,
+      "operator_control_margin": 0.6387511475719899,
+      "step": 4000
+    }
+  ],
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,102 @@
+{
+  "candidate": "pvr_ec_o_embeddings_attention_norms_init_v1",
+  "created_at": "2026-06-17T02:18:21.414007+00:00",
+  "decision": {
+    "architecture_change_recommended": false,
+    "bad_training_window_mean_is_outlier_driven": true,
+    "ean_and_full_copy_share_the_outlier_pattern": true,
+    "gutenberg_windows_are_not_the_problem": true,
+    "next_recommended_diagnostic": "structured-code-json-span robustness audit or eval-window robust aggregation",
+    "positive_outlier_count": 2,
+    "structured_positive_outlier_count": 2
+  },
+  "git_commit": "d18165e32bec94cea3ca836937c81f6a0f3dc5f7",
+  "interpretation": "The bad training-window mean is driven by structured coding/JSON-like spans, not broad heldout prose. Dense, EAN, and full-copy all perform worse than the PVR baseline on the worst HumanEval-style span, which suggests a distribution/window artifact or structured-span robustness issue rather than a general EAN geometry failure.",
+  "non_outlier_or_win_windows": [
+    {
+      "delta": -0.10412192344665527,
+      "source": {
+        "offset_in_source": 399090,
+        "path": "data/eval/broad_nlp/gutenberg_frankenstein_heldout.txt"
+      },
+      "span_stats": {
+        "code_marker_count": 0,
+        "math_marker_count": 0,
+        "printable_ascii_density": 0.984375,
+        "repeated_token_rate": 0.007874015748031496,
+        "schema_marker_count": 0,
+        "sequence_length": 128,
+        "special_token_density": 0.015625,
+        "unknown_or_non_ascii_density": 0.0
+      },
+      "window_id": "step_3200"
+    },
+    {
+      "delta": -0.1245412826538086,
+      "source": {
+        "offset_in_source": 192690,
+        "path": "data/eval/broad_nlp/gutenberg_frankenstein_heldout.txt"
+      },
+      "span_stats": {
+        "code_marker_count": 0,
+        "math_marker_count": 0,
+        "printable_ascii_density": 0.96875,
+        "repeated_token_rate": 0.007874015748031496,
+        "schema_marker_count": 0,
+        "sequence_length": 128,
+        "special_token_density": 0.03125,
+        "unknown_or_non_ascii_density": 0.0
+      },
+      "window_id": "step_1600"
+    }
+  ],
+  "positive_outlier_windows": [
+    {
+      "baseline_loss": 11.067705154418945,
+      "delta": 3.838240623474121,
+      "dense_loss": 16.326173782348633,
+      "ean_loss": 14.90594482421875,
+      "full_copy_loss": 14.941277503967285,
+      "source": {
+        "offset_in_source": 36970,
+        "path": "data/eval/coding/humaneval_base.jsonl"
+      },
+      "span_stats": {
+        "code_marker_count": 2,
+        "math_marker_count": 2,
+        "printable_ascii_density": 1.0,
+        "repeated_token_rate": 0.1889763779527559,
+        "schema_marker_count": 0,
+        "sequence_length": 128,
+        "special_token_density": 0.0,
+        "unknown_or_non_ascii_density": 0.0
+      },
+      "window_id": "step_4000"
+    },
+    {
+      "baseline_loss": 8.865435600280762,
+      "delta": 2.7385520935058594,
+      "dense_loss": 12.357632637023926,
+      "ean_loss": 11.60399055480957,
+      "full_copy_loss": 11.633596420288086,
+      "source": {
+        "offset_in_source": 1804,
+        "path": "data/eval/broad_nlp/json_schema_test_suite_type.txt"
+      },
+      "span_stats": {
+        "code_marker_count": 1,
+        "math_marker_count": 1,
+        "printable_ascii_density": 0.984375,
+        "repeated_token_rate": 0.25196850393700787,
+        "schema_marker_count": 0,
+        "sequence_length": 128,
+        "special_token_density": 0.015625,
+        "unknown_or_non_ascii_density": 0.0
+      },
+      "window_id": "step_3600"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_report": "benchmark/reports/generated/ean_bad_token_span_inspection/bad_token_span_inspection_report.json",
+  "status": "PVR_EAN_TRAINING_WINDOW_OUTLIERS_STRUCTURED_SPAN_SENSITIVITY"
+}

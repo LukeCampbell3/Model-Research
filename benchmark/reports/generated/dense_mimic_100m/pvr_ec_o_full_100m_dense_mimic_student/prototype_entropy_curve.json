@@ -1,0 +1,26 @@
+{
+  "model": "pvr_ec_o_full_100m_dense_mimic_student",
+  "prototype_entropy_curve": [
+    {
+      "prototype_entropy": 1.9652805215744271,
+      "step": 200
+    },
+    {
+      "prototype_entropy": 1.9762140959718753,
+      "step": 400
+    },
+    {
+      "prototype_entropy": 1.968403243572905,
+      "step": 600
+    },
+    {
+      "prototype_entropy": 1.992901341280967,
+      "step": 800
+    },
+    {
+      "prototype_entropy": 1.9991556362680605,
+      "step": 1000
+    }
+  ],
+  "schema_version": "1.0"
+}

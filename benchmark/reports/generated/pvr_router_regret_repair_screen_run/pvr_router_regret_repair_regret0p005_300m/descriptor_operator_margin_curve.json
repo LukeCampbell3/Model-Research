@@ -1,0 +1,16 @@
+{
+  "descriptor_operator_margin_curve": [
+    {
+      "descriptor_control_margin": 1.5737961248111485,
+      "operator_control_margin": 1.5737961248111485,
+      "step": 244
+    },
+    {
+      "descriptor_control_margin": 1.9625959687715901,
+      "operator_control_margin": 1.9625959687715901,
+      "step": 488
+    }
+  ],
+  "model": "pvr_router_regret_repair_regret0p005_300m",
+  "schema_version": "1.0"
+}

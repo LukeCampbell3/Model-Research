@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Coding Scorecard",
+  "allOf": [{"$ref": "scorecard_schema.json"}],
+  "required": ["scorecard"],
+  "properties": {
+    "scorecard": {
+      "type": "object",
+      "required": ["humaneval_plus_pass_at_1", "mbpp_plus_pass_at_1", "bigcodebench_complete", "bigcodebench_instruct", "livecodebench_pass_at_1", "repobench_r_recall_at_k", "repobench_c_exact_match", "swe_bench_lite_resolved_standard_scaffold", "swe_bench_verified_resolved_standard_scaffold"]
+    }
+  }
+}
+

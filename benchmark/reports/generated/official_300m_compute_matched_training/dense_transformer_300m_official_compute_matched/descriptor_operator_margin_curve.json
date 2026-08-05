@@ -1,0 +1,5 @@
+{
+  "descriptor_operator_margin_curve": [],
+  "model": "dense_transformer_300m_official_compute_matched",
+  "schema_version": "1.0"
+}

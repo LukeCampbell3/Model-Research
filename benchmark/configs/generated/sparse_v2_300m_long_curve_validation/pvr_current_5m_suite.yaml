@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "experiment": "PVR_SPARSE_V2_300M_LONG_CURVE_VALIDATION_PVR_CURRENT_5M",
+  "model_configs": [
+    "benchmark/configs/generated/sparse_v2_300m_long_curve_validation/configs/pvr_teacher_independent_sparse_v2_300m_long_curve.yaml"
+  ],
+  "official_test_data_used_for_selection": false,
+  "training_data": "data/broad_nlp_train",
+  "eval_data": "data/eval/official_like_dev",
+  "selection_rule": "Official-like dev learning curves only; final official files remain untouched."
+}

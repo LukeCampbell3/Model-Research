@@ -1,0 +1,23 @@
+{
+  "effective_batch_tokens": 128,
+  "model": "pvr_sparse_v2_official_like_aux0p001_100m",
+  "optimizer_steps": 100,
+  "resource_reduction": {
+    "completed_eval_windows": 5,
+    "completed_steps": 100,
+    "completed_training_tokens": 12800,
+    "estimated_steps_needed": 100,
+    "reason_for_reduction": "",
+    "status": "NONE",
+    "target_eval_windows": 5,
+    "target_training_tokens": 12800
+  },
+  "schema_version": "1.0",
+  "target_eval_windows": 5,
+  "target_steps": 100,
+  "target_training_tokens": 12800,
+  "tokens_per_second": 366.893069518755,
+  "tokens_seen": 12800,
+  "training_tokens_seen": 12800,
+  "wall_clock_seconds": 34.88754916191101
+}

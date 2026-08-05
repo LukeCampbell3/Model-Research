@@ -1,0 +1,127 @@
+{
+  "assertions": {
+    "current_local_roots_have_no_exact_line_overlap_with_final": true,
+    "final_official_files_present": true,
+    "final_official_may_guide_training": false,
+    "official_like_development_set_ready": true
+  },
+  "blocked_until_dev_set_exists": [
+    "router_regret_training_on_official_like_dev",
+    "checkpoint_selection_by_official_like_macro_score",
+    "official_like_development_generalization_claim"
+  ],
+  "created_at": "2026-07-17T12:01:43.819760+00:00",
+  "exact_line_overlap_audit": {
+    "rows": [
+      {
+        "line_hash_overlap_with_final": 0,
+        "root": "data/eval/broad_nlp"
+      },
+      {
+        "line_hash_overlap_with_final": 0,
+        "root": "data/eval/coding"
+      },
+      {
+        "line_hash_overlap_with_final": 0,
+        "root": "data/eval/routing_probes"
+      },
+      {
+        "line_hash_overlap_with_final": 0,
+        "root": "data/eval/official_like_dev"
+      }
+    ],
+    "total_line_hash_overlap": 0
+  },
+  "experiment": "OFFICIAL_EVALUATION_BOUNDARY_FREEZE",
+  "final_official_files": [
+    {
+      "bytes": 27321,
+      "line_count": 64,
+      "path": "data/eval/official_300m_bounded/arc_challenge.jsonl",
+      "sha256": "634a846c5bc74ec68aefb7ec406761007fecdcd5459578170de943c6bef5fb77"
+    },
+    {
+      "bytes": 45054,
+      "line_count": 64,
+      "path": "data/eval/official_300m_bounded/boolq.jsonl",
+      "sha256": "02bf9efaf51420cde39cdacb3d43599744cf55dc63459ae2ad515005faa604ae"
+    },
+    {
+      "bytes": 8839,
+      "line_count": 16,
+      "path": "data/eval/official_300m_bounded/gsm8k.jsonl",
+      "sha256": "dd6f8e7327263a60b372e4e41982864c98c8a5c7d06242a0b53bad66d78e9762"
+    },
+    {
+      "bytes": 85171,
+      "line_count": 64,
+      "path": "data/eval/official_300m_bounded/hellaswag.jsonl",
+      "sha256": "8816236184840f2f3ddc0f2b8675da598f6f50c1eb293d053c7755942de941a8"
+    },
+    {
+      "bytes": 12532,
+      "line_count": 8,
+      "path": "data/eval/official_300m_bounded/humaneval.jsonl",
+      "sha256": "f61186f43e80a033c9268d1188a0f4420c83cc911cccdd20e539f321fdc4e984"
+    },
+    {
+      "bytes": 5294,
+      "line_count": 8,
+      "path": "data/eval/official_300m_bounded/mbpp.jsonl",
+      "sha256": "8c968039acb9ee9564bd78167a365010a3e4f243ff988106facceefd38f963c1"
+    },
+    {
+      "bytes": 55203,
+      "line_count": 64,
+      "path": "data/eval/official_300m_bounded/mmlu.jsonl",
+      "sha256": "7260aaebf8f8ea2849e437abaee646eef3dacd35c5bba394abc4d32baaf844c7"
+    },
+    {
+      "bytes": 53243,
+      "line_count": 1198,
+      "path": "data/eval/official_300m_bounded/official_300m_data_manifest.json",
+      "sha256": "9d73220d712170b26673508c12a2f754eca216212274b2f04a8aae6de202ce70"
+    },
+    {
+      "bytes": 12603,
+      "line_count": 64,
+      "path": "data/eval/official_300m_bounded/winogrande.jsonl",
+      "sha256": "ff083be668d5fe3dfe39b73123e946e043c61733ba76a34031506c6a39c36db5"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "OFFICIAL_EVALUATION_BOUNDARY_FROZEN",
+  "tiers": {
+    "final_official_bounded": {
+      "expected_file_count": 8,
+      "file_count": 8,
+      "may_guide_training": false,
+      "purpose": "Final untouched evaluation only; not for checkpoint selection or hyperparameter search.",
+      "root": "data/eval/official_300m_bounded"
+    },
+    "local_heldout": {
+      "may_guide_training": true,
+      "purpose": "Fast regression and screening only.",
+      "roots": [
+        "data/eval/broad_nlp",
+        "data/eval/coding",
+        "data/eval/routing_probes"
+      ]
+    },
+    "official_like_development": {
+      "may_guide_training": true,
+      "purpose": "Router and substrate development; must exclude final official examples.",
+      "required_categories": [
+        "multiple_choice_reasoning",
+        "boolean_qa",
+        "mathematics",
+        "commonsense_completion",
+        "code_generation",
+        "general_knowledge",
+        "pronoun_coreference"
+      ],
+      "root": "data/eval/official_like_dev",
+      "status": "OFFICIAL_LIKE_DEVELOPMENT_SET_MATERIALIZED"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Benchmark Scorecard",
+  "type": "object",
+  "required": ["schema_version", "status", "scorecard_type", "scorecard", "benchmark_evidence"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "status": {"type": "string"},
+    "scorecard_type": {"type": "string"},
+    "benchmark_evidence": {"type": "boolean"},
+    "scorecard": {
+      "type": "object",
+      "required": ["model", "checkpoint", "training_tokens", "total_params", "active_params_per_token", "context_length", "tokenizer", "training_data_manifest_hash", "eval_manifest_hash", "contamination_scan", "hardware", "wall_clock", "gpu_hours", "vram_peak", "throughput"]
+    }
+  }
+}
+

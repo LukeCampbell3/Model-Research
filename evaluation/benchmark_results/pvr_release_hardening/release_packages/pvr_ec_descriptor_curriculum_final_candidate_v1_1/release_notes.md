@@ -1,2 +1,0 @@
-# pvr_ec_descriptor_curriculum_final_candidate_v1_1
-Descriptor-conditioned Top1 MoE. Deployment confirmed.
